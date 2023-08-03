@@ -1,4 +1,20 @@
 {
+  "ball.png": {
+  "text": [
+    "Copyright 2022 University of Colorado Boulder"
+  ],
+  "projectURL": "https://phet.colorado.edu",
+  "license": "contact phethelp@colorado.edu",
+  "notes": "created by Mariah Hermsmeyer"
+},
+  "ballDark.png": {
+    "text": [
+      "Copyright 2022 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
   "player01Kicking.png": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"

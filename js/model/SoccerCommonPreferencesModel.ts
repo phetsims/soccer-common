@@ -10,7 +10,7 @@
 import regionAndCultureManager from '../../../joist/js/preferences/regionAndCultureManager.js';
 import Property from '../../../axon/js/Property.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
-import soccerCommon from '../../../center-and-variability/js/soccer-common/soccerCommon.js';
+import soccerCommon from '../soccerCommon.js';
 
 
 export default class SoccerCommonPreferencesModel {
@@ -25,4 +25,4 @@ export default class SoccerCommonPreferencesModel {
   }
 }
 
-soccerCommon.register( 'SoccerCommonPreferencesModel', SoccerCommonPreferencesModel )
+soccerCommon.register( 'SoccerCommonPreferencesModel', SoccerCommonPreferencesModel );

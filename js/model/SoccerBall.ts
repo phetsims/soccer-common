@@ -9,7 +9,7 @@
 
 
 import Animation from '../../../twixt/js/Animation.js';
-import soccerCommon from '../../../center-and-variability/js/soccer-common/soccerCommon.js';
+import soccerCommon from '../soccerCommon.js';
 import Vector2Property from '../../../dot/js/Vector2Property.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import Vector2 from '../../../dot/js/Vector2.js';
@@ -17,14 +17,14 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import Property from '../../../axon/js/Property.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import Emitter from '../../../axon/js/Emitter.js';
-import { SoccerBallPhase } from '../../../center-and-variability/js/soccer-common/model/SoccerBallPhase.js';
+import { SoccerBallPhase } from './SoccerBallPhase.js';
 import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
 import TEmitter from '../../../axon/js/TEmitter.js';
 import Kicker from './Kicker.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import SoccerCommonConstants from '../../../center-and-variability/js/soccer-common/SoccerCommonConstants.js';
+import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
-import SoccerBallValueProperty from '../../../center-and-variability/js/soccer-common/model/SoccerBallValueProperty.js';
+import SoccerBallValueProperty from './SoccerBallValueProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 export type SoccerBallOptions = SelfOptions & WithRequired<PhetioObjectOptions, 'tandem'>;

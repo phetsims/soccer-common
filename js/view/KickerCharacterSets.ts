@@ -341,3 +341,5 @@ const KickerCharacterSets = {
 };
 
 soccerCommon.register( 'KickerCharacterSets', KickerCharacterSets );
+
+export default KickerCharacterSets;

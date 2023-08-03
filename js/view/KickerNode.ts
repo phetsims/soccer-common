@@ -17,6 +17,8 @@ import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2
 import Pose from '../model/Pose.js';
 import { KickerPhase } from '../model/KickerPhase.js';
 import { KickerImageSet } from './KickerCharacterSet.js';
+import ToggleNode from '../../../sun/js/ToggleNode.js';
+import KickerCharacterSets from '../view/KickerCharacterSets.js';
 
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
@@ -26,7 +28,7 @@ const SCALE = 0.155;
 export default class KickerNode extends Node {
   public readonly kicker: Kicker;
 
-  public constructor( kicker: Kicker, playerImageSet: KickerImageSet, modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
+  public constructor( kicker: Kicker, playerImageSets: KickerImageSet[], modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
     super( {
 
       // Avoid a flickering on firefox where the image temporarily disappears (even in built mode)
@@ -35,13 +37,58 @@ export default class KickerNode extends Node {
 
     this.kicker = kicker;
 
-    const standingNode = new Image( playerImageSet.standing );
+    // Load in standing images for all locales
+
+    const standingNode = new ToggleNode( kicker.regionAndCultureProperty, [
+      {
+        createNode: () => new Image( playerImageSets[ 0 ].standing ),
+        value: KickerCharacterSets.CHARACTER_SET_1
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 1 ].standing ),
+        value: KickerCharacterSets.CHARACTER_SET_2
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 2 ].standing ),
+        value: KickerCharacterSets.CHARACTER_SET_3
+      }
+    ] );
+
     this.addChild( standingNode );
 
-    const poisedToKickNode = new Image( playerImageSet.poisedToKick );
+    // Load in poisedToKick images for all locales
+
+    const poisedToKickNode = new ToggleNode( kicker.regionAndCultureProperty, [
+      {
+        createNode: () => new Image( playerImageSets[ 0 ].poisedToKick ),
+        value: KickerCharacterSets.CHARACTER_SET_1
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 1 ].poisedToKick ),
+        value: KickerCharacterSets.CHARACTER_SET_2
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 2 ].poisedToKick ),
+        value: KickerCharacterSets.CHARACTER_SET_3
+      }
+    ] );
     this.addChild( poisedToKickNode );
 
-    const kickingNode = new Image( playerImageSet.kicking );
+    // Load in kicking images for all locales
+    const kickingNode = new ToggleNode( kicker.regionAndCultureProperty, [
+      {
+        createNode: () => new Image( playerImageSets[ 0 ].kicking ),
+        value: KickerCharacterSets.CHARACTER_SET_1
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 1 ].kicking ),
+        value: KickerCharacterSets.CHARACTER_SET_2
+      },
+      {
+        createNode: () => new Image( playerImageSets[ 2 ].kicking ),
+        value: KickerCharacterSets.CHARACTER_SET_3
+      }
+    ] );
     this.addChild( kickingNode );
 
     this.setScaleMagnitude( SCALE );

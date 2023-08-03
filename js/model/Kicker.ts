@@ -7,14 +7,14 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../../../center-and-variability/js/soccer-common/soccerCommon.js';
-import Pose from '../../../center-and-variability/js/soccer-common/model/Pose.js';
+import soccerCommon from '../soccerCommon.js';
+import Pose from './Pose.js';
 import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import Property from '../../../axon/js/Property.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import { KickerPhase } from '../../../center-and-variability/js/soccer-common/model/KickerPhase.js';
+import { KickerPhase } from './KickerPhase.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';

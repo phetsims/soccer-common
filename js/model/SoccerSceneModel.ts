@@ -8,7 +8,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../../../center-and-variability/js/soccer-common/soccerCommon.js';
+import soccerCommon from '../soccerCommon.js';
 import SoccerBall from './SoccerBall.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import Range from '../../../dot/js/Range.js';
@@ -26,10 +26,10 @@ import Kicker from './Kicker.js';
 import dotRandom from '../../../dot/js/dotRandom.js';
 import Animation from '../../../twixt/js/Animation.js';
 import Easing from '../../../twixt/js/Easing.js';
-import { SoccerBallPhase } from '../../../center-and-variability/js/soccer-common/model/SoccerBallPhase.js';
+import { SoccerBallPhase } from './SoccerBallPhase.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
-import { TKickDistanceStrategy } from '../../../center-and-variability/js/soccer-common/model/TKickDistanceStrategy.js';
+import { TKickDistanceStrategy } from './TKickDistanceStrategy.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
@@ -38,12 +38,12 @@ import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
 import kick_mp3 from '../../../center-and-variability/sounds/kick_mp3.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
-import SoccerCommonConstants from '../../../center-and-variability/js/soccer-common/SoccerCommonConstants.js';
-import SoccerCommonQueryParameters from '../../../center-and-variability/js/soccer-common/SoccerCommonQueryParameters.js';
+import SoccerCommonConstants from '../SoccerCommonConstants.js';
+import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
-import KickDistanceStrategy from '../../../center-and-variability/js/soccer-common/model/KickDistanceStrategy.js';
-import { KickerPhase } from '../../../center-and-variability/js/soccer-common/model/KickerPhase.js';
+import KickDistanceStrategy from '../model/KickDistanceStrategy.js';
+import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
 

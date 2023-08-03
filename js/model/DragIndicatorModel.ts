@@ -9,7 +9,7 @@
  *
  */
 
-import soccerCommon from '../../../center-and-variability/js/soccer-common/soccerCommon.js';
+import soccerCommon from '../soccerCommon.js';
 import Property from '../../../axon/js/Property.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';

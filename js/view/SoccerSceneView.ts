@@ -41,7 +41,7 @@ export default class SoccerSceneView {
     dragIndicatorModel: DragIndicatorModel,
     soccerBallsInputEnabledProperty: Property<boolean>,
     public readonly sceneModel: SoccerSceneModel,
-    getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet,
+    getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
     options: { tandem: Tandem } ) {
