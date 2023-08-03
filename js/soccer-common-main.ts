@@ -9,9 +9,9 @@
 import Sim, { SimOptions } from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import SoccerCommonScreen from './soccer-common/SoccerCommonScreen.js';
+import SoccerCommonScreen from './SoccerCommonScreen.js';
 import SoccerCommonStrings from './SoccerCommonStrings.js';
-import './common/SoccerCommonQueryParameters.js';
+import './SoccerCommonQueryParameters.js';
 
 // Launch the sim. Beware that scenery Image nodes created outside simLauncher.launch() will have zero bounds
 // until the images are fully loaded. See https://github.com/phetsims/coulombs-law/issues/70#issuecomment-429037461

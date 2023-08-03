@@ -1,9 +1,9 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Creates the namespace for this simulation.
+ * Creates the namespace for this repo.
  *
- * @author Marla Schulz
+ * @author Sam Reid (PhET Interactive Simulations)
  */
 
 import Namespace from '../../phet-core/js/Namespace.js';

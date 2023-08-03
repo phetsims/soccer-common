@@ -14,6 +14,11 @@ type StringsType = {
   };
   'screen': {
     'nameStringProperty': LocalizedStringProperty;
+  };
+  'characterSet': {
+    'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
+    'africaStringProperty': LocalizedStringProperty;
+    'africaModestStringProperty': LocalizedStringProperty;
   }
 };
 
