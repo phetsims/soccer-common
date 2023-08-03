@@ -1,4 +1,4 @@
-// Copyright 2022-2023, University of Colorado Boulder
+// Copyright 2023, University of Colorado Boulder
 
 /**
  * Base class for the scene model in a screen. The Median and Mean & Median screens only have one scene model.
