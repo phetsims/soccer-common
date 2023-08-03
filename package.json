@@ -11,11 +11,8 @@
   },
   "phet": {
     "requirejsNamespace": "SOCCER_COMMON",
-    "simulation": true,
-    "runnable": true,
-    "supportedBrands": [
-      "phet",
-      "adapted-from-phet"
+    "phetLibs": [
+      "twixt"
     ],
     "supportsOutputJS": true,
     "simFeatures": {
