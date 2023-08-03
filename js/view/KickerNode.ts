@@ -17,8 +17,8 @@ import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2
 import Pose from '../model/Pose.js';
 import { KickerPhase } from '../model/KickerPhase.js';
 import { KickerImageSet } from './KickerCharacterSet.js';
-import ToggleNode from '../../../sun/js/ToggleNode.js';
 import KickerCharacterSets from '../view/KickerCharacterSets.js';
+import Multilink from '../../../axon/js/Multilink.js';
 
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
@@ -38,58 +38,29 @@ export default class KickerNode extends Node {
     this.kicker = kicker;
 
     // Load in standing images for all locales
+    const standingCharacterSetImage1 = new Image( playerImageSets[ 0 ].standing );
+    const standingCharacterSetImage2 = new Image( playerImageSets[ 1 ].standing );
+    const standingCharacterSetImage3 = new Image( playerImageSets[ 2 ].standing );
 
-    const standingNode = new ToggleNode( kicker.regionAndCultureProperty, [
-      {
-        createNode: () => new Image( playerImageSets[ 0 ].standing ),
-        value: KickerCharacterSets.CHARACTER_SET_1
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 1 ].standing ),
-        value: KickerCharacterSets.CHARACTER_SET_2
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 2 ].standing ),
-        value: KickerCharacterSets.CHARACTER_SET_3
-      }
-    ] );
-
-    this.addChild( standingNode );
+    this.addChild( standingCharacterSetImage1 );
+    this.addChild( standingCharacterSetImage2 );
+    this.addChild( standingCharacterSetImage3 );
 
     // Load in poisedToKick images for all locales
+    const poisedToKickCharacterSetImage1 = new Image( playerImageSets[ 0 ].poisedToKick );
+    const poisedToKickCharacterSetImage2 = new Image( playerImageSets[ 1 ].poisedToKick );
+    const poisedToKickCharacterSetImage3 = new Image( playerImageSets[ 2 ].poisedToKick );
 
-    const poisedToKickNode = new ToggleNode( kicker.regionAndCultureProperty, [
-      {
-        createNode: () => new Image( playerImageSets[ 0 ].poisedToKick ),
-        value: KickerCharacterSets.CHARACTER_SET_1
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 1 ].poisedToKick ),
-        value: KickerCharacterSets.CHARACTER_SET_2
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 2 ].poisedToKick ),
-        value: KickerCharacterSets.CHARACTER_SET_3
-      }
-    ] );
-    this.addChild( poisedToKickNode );
+    this.addChild( poisedToKickCharacterSetImage1 );
+    this.addChild( poisedToKickCharacterSetImage2 );
+    this.addChild( poisedToKickCharacterSetImage3 );
 
-    // Load in kicking images for all locales
-    const kickingNode = new ToggleNode( kicker.regionAndCultureProperty, [
-      {
-        createNode: () => new Image( playerImageSets[ 0 ].kicking ),
-        value: KickerCharacterSets.CHARACTER_SET_1
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 1 ].kicking ),
-        value: KickerCharacterSets.CHARACTER_SET_2
-      },
-      {
-        createNode: () => new Image( playerImageSets[ 2 ].kicking ),
-        value: KickerCharacterSets.CHARACTER_SET_3
-      }
-    ] );
-    this.addChild( kickingNode );
+    const kickingCharacterSetImage1 = new Image( playerImageSets[ 0 ].kicking );
+    const kickingCharacterSetImage2 = new Image( playerImageSets[ 1 ].kicking );
+    const kickingCharacterSetImage3 = new Image( playerImageSets[ 2 ].kicking );
+    this.addChild( kickingCharacterSetImage1 );
+    this.addChild( kickingCharacterSetImage2 );
+    this.addChild( kickingCharacterSetImage3 );
 
     this.setScaleMagnitude( SCALE );
 
@@ -106,10 +77,21 @@ export default class KickerNode extends Node {
       this.visible = phase !== KickerPhase.INACTIVE;
     } );
 
-    kicker.poseProperty.link( pose => {
-      standingNode.visible = pose === Pose.STANDING;
-      poisedToKickNode.visible = pose === Pose.POISED_TO_KICK;
-      kickingNode.visible = pose === Pose.KICKING;
+    Multilink.multilink( [ kicker.characterSetProperty, kicker.poseProperty ], ( characterSet, pose ) => {
+
+      // The first character set will be the default at startup when the character set property is null.
+      standingCharacterSetImage1.visible = pose === Pose.STANDING && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
+      poisedToKickCharacterSetImage1.visible = pose === Pose.POISED_TO_KICK && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
+      kickingCharacterSetImage1.visible = pose === Pose.KICKING && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
+
+      standingCharacterSetImage2.visible = pose === Pose.STANDING && characterSet === KickerCharacterSets.CHARACTER_SET_2;
+      poisedToKickCharacterSetImage2.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSets.CHARACTER_SET_2;
+      kickingCharacterSetImage2.visible = pose === Pose.KICKING && characterSet === KickerCharacterSets.CHARACTER_SET_2;
+
+      standingCharacterSetImage3.visible = pose === Pose.STANDING && characterSet === KickerCharacterSets.CHARACTER_SET_3;
+      poisedToKickCharacterSetImage3.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSets.CHARACTER_SET_3;
+      kickingCharacterSetImage3.visible = pose === Pose.KICKING && characterSet === KickerCharacterSets.CHARACTER_SET_3;
+
       this.centerBottom = modelViewTransform.modelToViewPosition( new Vector2( 0, 0 ) ).plusXY( -28, 8.5 );
     } );
 
