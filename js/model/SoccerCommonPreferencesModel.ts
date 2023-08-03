@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TODO: describe file
+ * Model for sim specific preferences
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
