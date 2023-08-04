@@ -79,6 +79,8 @@ const africaConservativeStringProperty = SoccerCommonStrings.characterSet.africa
 const CHARACTER_SET_1 = new KickerCharacterSet(
   kicker1_set1_headshot_TEMP_png,
   unitedStatesOfAmericaStringProperty,
+
+  // Unnumbered Kickers
   [
     {
       standing: player01Standing_png,
@@ -156,6 +158,8 @@ const CHARACTER_SET_1 = new KickerCharacterSet(
       kicking: player15Kicking_png
     }
   ],
+
+  // Numbered Kickers
   [
     {
       standing: variabilityPlayer01Standing_png,
@@ -183,6 +187,8 @@ const CHARACTER_SET_1 = new KickerCharacterSet(
 const CHARACTER_SET_2 = new KickerCharacterSet(
   kicker1_set2_headshot_TEMP_png,
   africaStringProperty,
+
+  // Unnumbered Kickers
   [
     {
       standing: player01Standing_png,
@@ -230,6 +236,8 @@ const CHARACTER_SET_2 = new KickerCharacterSet(
       kicking: player09Kicking_png
     }
   ],
+
+  // Numbered Kickers
   [
     {
       standing: variabilityPlayer01Standing_png,
@@ -257,6 +265,8 @@ const CHARACTER_SET_2 = new KickerCharacterSet(
 const CHARACTER_SET_3 = new KickerCharacterSet(
   kicker1_set3_headshot_TEMP_png,
   africaConservativeStringProperty,
+
+  // Unnumbered Kickers
   [
     {
       standing: player01Standing_png,
@@ -309,6 +319,8 @@ const CHARACTER_SET_3 = new KickerCharacterSet(
       kicking: player10Kicking_png
     }
   ],
+
+  // Numbered Kickers
   [
     {
       standing: variabilityPlayer01Standing_png,
