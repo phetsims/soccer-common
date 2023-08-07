@@ -59,9 +59,6 @@ const TIME_BETWEEN_RAPID_KICKS = 0.5; // in seconds
 export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends PhetioObject implements TModel {
   public readonly soccerBalls: T[];
 
-  // The number of stacked soccer balls
-  public readonly stackedSoccerBallCountProperty: NumberProperty;
-
   // The max kickable (highest value in the combo box, if there is one)
   private readonly maxKicksLimit: number;
 
@@ -136,10 +133,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.maxKicksLimit = Math.max( ...maxKicksChoices );
 
-    this.stackedSoccerBallCountProperty = new NumberProperty( 0, {
-      range: new Range( 0, this.maxKicksLimit ),
-      tandem: options.tandem.createTandem( 'stackedSoccerBallCountProperty' )
-    } );
     this.soccerBalls = _.range( 0, this.maxKicksLimit ).map( index => {
 
       const soccerBall = createSoccerBall( index === 0, {
@@ -203,17 +196,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       return soccerBall;
     } );
 
-    this.soccerBalls.forEach( soccerBall => {
-      soccerBall.soccerBallPhaseProperty.link( soccerBallPhase => {
-        if ( soccerBallPhase === SoccerBallPhase.STACKED ) {
-          this.stackedSoccerBallCountProperty.value =
-            this.getActiveSoccerBalls().filter( soccerBall =>
-              soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ).length;
-        }
-      } );
-    } );
-
-
     this.meanValueProperty = new Property<number | null>( null, {
       tandem: options.tandem.createTandem( 'meanValueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
@@ -222,6 +204,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.numberOfDataPointsProperty = new NumberProperty( 0, {
       tandem: options.tandem.createTandem( 'numberOfDataPointsProperty' ),
+      range: new Range( 0, this.maxKicksLimit ),
       phetioReadOnly: true
     } );
 
