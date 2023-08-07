@@ -47,7 +47,7 @@ import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
 
-const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.2 } );
+const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
 
 type SelfOptions = EmptySelfOptions;
