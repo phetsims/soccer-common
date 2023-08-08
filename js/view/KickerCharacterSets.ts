@@ -1,4 +1,5 @@
 // Copyright 2023, University of Colorado Boulder
+
 /**
  * Responsible for all images for the Kicker in this sim. Collects the images into usable classes to support
  * animation, and selecting a different set of kicker characters for

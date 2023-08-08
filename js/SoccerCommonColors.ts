@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Defines the colors for this sim.
+ * Defines the colors for this repo.
  *
  * All simulations should have a Colors.js file, see https://github.com/phetsims/scenery-phet/issues/642.
  *

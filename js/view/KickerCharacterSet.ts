@@ -1,10 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- *
  * A collection of KickerImageSets. One KickerCharacterSet is active at a time. A different KickerCharacterSet can be selected
  * from preferences.
- *
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
