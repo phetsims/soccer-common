@@ -1,5 +1,4 @@
 // Copyright 2023, University of Colorado Boulder
-import dotRandom from '../../../dot/js/dotRandom.js';
 
 /**
  * Strategies for how the kick distances are generated. State is represented in the KickDistanceStrategy for save/load and phet-io
@@ -7,6 +6,8 @@ import dotRandom from '../../../dot/js/dotRandom.js';
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
+
+import dotRandom from '../../../dot/js/dotRandom.js';
 
 export type TKickDistanceStrategy = {
   reset(): void;
