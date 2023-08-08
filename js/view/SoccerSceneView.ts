@@ -248,13 +248,13 @@ export default class SoccerSceneView {
     } );
 
     // Set the outer group focus region to cover the entire area where soccer balls may land, translate lower so it also includes the number line and labels
-    const focusHighlightFromNode = new FocusHighlightPath( modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) ), {
+    const focusHighlightPath = new FocusHighlightPath( modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) ), {
       outerStroke: FocusHighlightPath.OUTER_LIGHT_GROUP_FOCUS_COLOR,
       innerStroke: FocusHighlightPath.INNER_LIGHT_GROUP_FOCUS_COLOR,
       outerLineWidth: FocusHighlightPath.GROUP_OUTER_LINE_WIDTH,
       innerLineWidth: FocusHighlightPath.GROUP_INNER_LINE_WIDTH
     } );
-    backLayerSoccerBallLayer.setGroupFocusHighlight( focusHighlightFromNode );
+    backLayerSoccerBallLayer.setGroupFocusHighlight( focusHighlightPath );
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
 
     this.backSceneViewLayer = backLayer;
