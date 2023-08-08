@@ -15,7 +15,8 @@ export class KickerPhase extends EnumerationValue {
   public static readonly READY = new KickerPhase();
   public static readonly POISED = new KickerPhase();
   public static readonly KICKING = new KickerPhase();
-  private static readonly enumeration = new Enumeration( KickerPhase );
+
+  public static readonly enumeration = new Enumeration( KickerPhase );
 }
 
 soccerCommon.register( 'KickerPhase', KickerPhase );

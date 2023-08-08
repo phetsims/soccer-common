@@ -17,7 +17,8 @@ export class SoccerBallPhase extends EnumerationValue {
   public static readonly FLYING = new SoccerBallPhase();
   public static readonly STACKING = new SoccerBallPhase();
   public static readonly STACKED = new SoccerBallPhase();
-  private static readonly enumeration = new Enumeration( SoccerBallPhase );
+
+  public static readonly enumeration = new Enumeration( SoccerBallPhase );
 }
 
 soccerCommon.register( 'SoccerBallPhase', SoccerBallPhase );

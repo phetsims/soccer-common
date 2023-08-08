@@ -17,7 +17,7 @@ export default class Pose extends EnumerationValue {
   public static readonly POISED_TO_KICK = new Pose();
   public static readonly KICKING = new Pose();
 
-  private static readonly enumeration = new Enumeration( Pose );
+  public static readonly enumeration = new Enumeration( Pose );
 }
 
 soccerCommon.register( 'Pose', Pose );
