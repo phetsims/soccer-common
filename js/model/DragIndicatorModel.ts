@@ -33,7 +33,7 @@ export default class DragIndicatorModel {
 
     // Cannot take a range, since it is nullable
     this.dragIndicatorValueProperty = new Property<number | null>( null, {
-      tandem: options.tandem.createTandem( 'dragIndicatorValueProperty' ),
+      tandem: options.tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO )
     } );
   }
