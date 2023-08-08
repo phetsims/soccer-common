@@ -40,7 +40,6 @@ import kick_mp3 from '../../../center-and-variability/sounds/kick_mp3.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import KickDistanceStrategy from '../model/KickDistanceStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
@@ -112,7 +111,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
     kickDistanceStrategyFromStateObject: ( string: string ) => TKickDistanceStrategy,
-    createSoccerBall: ( isFirstSoccerBall: boolean, options: { tandem: Tandem } ) => T,
+    createSoccerBall: ( isFirstSoccerBall: boolean, options: PickRequired<PhetioObjectOptions, 'tandem'> ) => T,
     regionAndCultureProperty: Property<CharacterSet | null>,
     providedOptions: SoccerSceneModelOptions
   ) {

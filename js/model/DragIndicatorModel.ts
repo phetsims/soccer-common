@@ -15,15 +15,16 @@ import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 
 export default class DragIndicatorModel {
   public readonly isDragIndicatorVisibleProperty: Property<boolean>; // Screens 1-3
   public readonly dragIndicatorValueProperty: Property<number | null>;
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
-  public constructor( public readonly soccerBallsInputEnabledProperty: TReadOnlyProperty<boolean>, options: { tandem: Tandem } ) {
+  public constructor( public readonly soccerBallsInputEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'soccerBallHasBeenDraggedProperty' )

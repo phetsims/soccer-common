@@ -13,7 +13,6 @@ import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import KickerNode from './KickerNode.js';
 import { KickerImageSet } from './KickerCharacterSet.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import soccerCommon from '../soccerCommon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoccerBall from '../model/SoccerBall.js';
@@ -26,6 +25,8 @@ import DragIndicatorModel from '../model/DragIndicatorModel.js';
 import Utils from '../../../dot/js/Utils.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 
 /**
  * Renders view elements for a CAVSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -43,7 +44,7 @@ export default class SoccerSceneView {
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
-    options: { tandem: Tandem } ) {
+    options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
