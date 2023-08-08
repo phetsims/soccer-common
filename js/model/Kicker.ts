@@ -29,7 +29,8 @@ export default class Kicker {
 
   public constructor( placeInLine: number, public readonly characterSetProperty: Property<CharacterSet | null>, tandem: Tandem ) {
     this.kickerPhaseProperty = new EnumerationProperty( placeInLine === 0 ? KickerPhase.READY : KickerPhase.INACTIVE, {
-      tandem: tandem.createTandem( 'kickerPhaseProperty' )
+      tandem: tandem.createTandem( 'kickerPhaseProperty' ),
+      phetioReadOnly: true
     } );
     this.poseProperty = new DerivedProperty( [ this.kickerPhaseProperty ], kickerPhase => {
       if ( kickerPhase === KickerPhase.POISED ) {
