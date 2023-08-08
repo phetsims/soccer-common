@@ -36,13 +36,14 @@ export default class SoccerSceneView {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
+  private readonly focusHighlightPath: FocusHighlightPath;
 
   public constructor(
     dragIndicatorModel: DragIndicatorModel,
     soccerBallsInputEnabledProperty: Property<boolean>,
     public readonly sceneModel: SoccerSceneModel,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
-    modelViewTransform: ModelViewTransform2,
+    public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
     options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
 
@@ -249,17 +250,32 @@ export default class SoccerSceneView {
     } );
 
     // Set the outer group focus region to cover the entire area where soccer balls may land, translate lower so it also includes the number line and labels
-    const focusHighlightPath = new FocusHighlightPath( modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) ), {
+    this.focusHighlightPath = new FocusHighlightPath( null, {
       outerStroke: FocusHighlightPath.OUTER_LIGHT_GROUP_FOCUS_COLOR,
       innerStroke: FocusHighlightPath.INNER_LIGHT_GROUP_FOCUS_COLOR,
       outerLineWidth: FocusHighlightPath.GROUP_OUTER_LINE_WIDTH,
       innerLineWidth: FocusHighlightPath.GROUP_INNER_LINE_WIDTH
     } );
-    backLayerSoccerBallLayer.setGroupFocusHighlight( focusHighlightPath );
+    backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
+  }
+
+  /**
+   * The group focus region for the soccer ball area is supposed to be just below the accordion box, and adjust when the
+   * accordion box expands and collapses.
+   */
+  public setGroupFocusHighlightTop( top: number ): void {
+    const margin = 4; // Distance below the accordion box
+    const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) );
+    this.focusHighlightPath.shape = Shape.rect(
+      shapeForLeftRightBottom.bounds.x,
+      top + margin,
+      shapeForLeftRightBottom.bounds.width,
+      shapeForLeftRightBottom.bounds.bottom - top - margin
+    );
   }
 }
 
