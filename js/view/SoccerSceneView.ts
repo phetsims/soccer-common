@@ -225,19 +225,23 @@ export default class SoccerSceneView {
               isSoccerBallGrabbedProperty.value = false;
             }
             else {
-              focusedSoccerBallProperty.value.valueProperty.value = keysPressed === 'home' ? physicalRange.min :
-                                                                    keysPressed === 'end' ? physicalRange.max :
-                                                                    keysPressed === '1' ? 1 :
-                                                                    keysPressed === '2' ? 2 :
-                                                                    keysPressed === '3' ? 3 :
-                                                                    keysPressed === '4' ? 4 :
-                                                                    keysPressed === '5' ? 5 :
-                                                                    keysPressed === '6' ? 6 :
-                                                                    keysPressed === '7' ? 7 :
-                                                                    keysPressed === '8' ? 8 :
-                                                                    keysPressed === '9' ? 9 :
-                                                                    keysPressed === '0' ? 10 :
-                                                                    focusedSoccerBallProperty.value.valueProperty.value;
+              const soccerBall = focusedSoccerBallProperty.value;
+              soccerBall.valueProperty.value = keysPressed === 'home' ? physicalRange.min :
+                                               keysPressed === 'end' ? physicalRange.max :
+                                               keysPressed === '1' ? 1 :
+                                               keysPressed === '2' ? 2 :
+                                               keysPressed === '3' ? 3 :
+                                               keysPressed === '4' ? 4 :
+                                               keysPressed === '5' ? 5 :
+                                               keysPressed === '6' ? 6 :
+                                               keysPressed === '7' ? 7 :
+                                               keysPressed === '8' ? 8 :
+                                               keysPressed === '9' ? 9 :
+                                               keysPressed === '0' ? 10 :
+                                               soccerBall.valueProperty.value;
+              if ( typeof soccerBall.valueProperty.value === 'number' ) {
+                soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
+              }
             }
           }
         }
