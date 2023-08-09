@@ -190,7 +190,7 @@ export default class SoccerSceneView {
     );
 
     const keyboardListener = new KeyboardListener( {
-      keys: [ 'arrowRight', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape' ],
+      keys: [ 'arrowRight', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
       callback: ( event, listener ) => {
 
         const keysPressed = listener.keysPressed;
@@ -239,6 +239,8 @@ export default class SoccerSceneView {
                                                keysPressed === '8' ? 8 :
                                                keysPressed === '9' ? 9 :
                                                keysPressed === '0' ? 10 :
+                                               keysPressed === 'pageDown' ? Math.max( soccerBall.valueProperty.value! - 3, physicalRange.min ) :
+                                               keysPressed === 'pageUp' ? Math.min( soccerBall.valueProperty.value! + 3, physicalRange.max ) :
                                                soccerBall.valueProperty.value;
               if ( typeof soccerBall.valueProperty.value === 'number' ) {
                 soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
