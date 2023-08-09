@@ -29,7 +29,6 @@ import Easing from '../../../twixt/js/Easing.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
-import { TKickDistanceStrategy } from './TKickDistanceStrategy.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
@@ -41,7 +40,7 @@ import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStat
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
-import KickDistanceStrategy from '../model/KickDistanceStrategy.js';
+import KickDistanceStrategy, { KickDistanceStrategySpecification } from '../model/KickDistanceStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
@@ -107,10 +106,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
-    initialKickDistanceStrategy: TKickDistanceStrategy,
+    initialKickDistanceStrategy: KickDistanceStrategySpecification,
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
-    kickDistanceStrategyFromStateObject: ( string: string ) => TKickDistanceStrategy,
     createSoccerBall: ( isFirstSoccerBall: boolean, options: PickRequired<PhetioObjectOptions, 'tandem'> ) => T,
     regionAndCultureProperty: Property<CharacterSet | null>,
     providedOptions: SoccerSceneModelOptions
@@ -124,8 +122,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     super( options );
 
-    this.kickDistanceStrategy = new KickDistanceStrategy( initialKickDistanceStrategy, kickDistanceStrategyFromStateObject, {
-      tandem: options.tandem.createTandem( 'kickDistanceStrategy' )
+    // TODO: Rename variable and class like KickDistributionStrategy, see https://github.com/phetsims/center-and-variability/issues/117
+    this.kickDistanceStrategy = new KickDistanceStrategy( initialKickDistanceStrategy.type, initialKickDistanceStrategy.values, initialKickDistanceStrategy.skewType, {
+      tandem: options.tandem.createTandem( 'kickDistributionStrategy' )
     } );
 
     const updateDataMeasures = () => this.updateDataMeasures();
@@ -570,7 +569,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     kicker.kickerPhaseProperty.value = KickerPhase.KICKING;
 
     const x1 = SoccerCommonQueryParameters.sameSpot ? 7 :
-               this.kickDistanceStrategy.currentStrategy.getNextKickDistance( this.soccerBalls.indexOf( soccerBall ) );
+               this.kickDistanceStrategy.getKickDistance( this.soccerBalls.indexOf( soccerBall ) );
 
     // Range equation is R=v0^2 sin(2 theta0) / g, see https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion
     // Equation 4.26
