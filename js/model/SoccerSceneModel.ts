@@ -389,8 +389,17 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   public getSortedStackedObjects(): T[] {
-    return _.sortBy( this.getActiveSoccerBalls().filter( soccerBall =>
-        soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ),
+    const stackedSoccerBalls = this.getActiveSoccerBalls().filter( soccerBall => soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED );
+
+    if ( assert ) {
+      stackedSoccerBalls.forEach( soccerBall => {
+        assert && assert( soccerBall.valueProperty.value !== null, 'valueProperty.value should not be null' );
+        assert && assert( soccerBall.valueProperty.value !== undefined, 'valueProperty.value should not be undefined' );
+        assert && assert( typeof soccerBall.valueProperty.value === 'number', 'valueProperty.value should be a number' );
+      } );
+    }
+
+    return _.sortBy( stackedSoccerBalls,
 
       // The numerical value takes precedence for sorting
       soccerBall => soccerBall.valueProperty.value,
