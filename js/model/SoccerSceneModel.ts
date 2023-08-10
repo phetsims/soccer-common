@@ -261,7 +261,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
           updateDataMeasures();
         }
       } );
-      soccerBall.soccerBallPhaseProperty.link( ( newPhase, oldPhase ) => {
+      soccerBall.soccerBallPhaseProperty.link( newPhase => {
 
         // update data measures when the ball finished its stacking animation
         if ( newPhase === SoccerBallPhase.STACKED ) {
@@ -270,7 +270,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
     } );
 
-    maxKicksProperty.lazyLink( maxKicks => this.clearData() );
+    maxKicksProperty.lazyLink( () => this.clearData() );
   }
 
   // Cancel out all animations in the soccer ball stack.
