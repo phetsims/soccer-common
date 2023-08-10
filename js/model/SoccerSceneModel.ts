@@ -101,12 +101,12 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // This is to avoid performance issues when the data is cleared.
   public isClearingData = false;
 
-  private readonly kickDistanceStrategy: KickDistributionStrategy;
+  private readonly kickDistributionStrategy: KickDistributionStrategy;
 
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
-    initialKickDistanceStrategy: KickDistributionStrategySpecification,
+    kickDistributionStrategySpecification: KickDistributionStrategySpecification,
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, options: PickRequired<PhetioObjectOptions, 'tandem'> ) => T,
@@ -123,7 +123,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     super( options );
 
     // TODO: Rename variable and class like KickDistributionStrategy, see https://github.com/phetsims/center-and-variability/issues/117
-    this.kickDistanceStrategy = new KickDistributionStrategy( initialKickDistanceStrategy.type, initialKickDistanceStrategy.values, initialKickDistanceStrategy.skewType, {
+    this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
       tandem: options.tandem.createTandem( 'kickDistributionStrategy' )
     } );
 
@@ -377,7 +377,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
    * Resets the model.
    */
   public reset(): void {
-    this.kickDistanceStrategy.reset();
+    this.kickDistributionStrategy.reset();
     this.clearData();
     this.resetEmitter.emit();
   }
@@ -569,7 +569,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     kicker.kickerPhaseProperty.value = KickerPhase.KICKING;
 
     const x1 = SoccerCommonQueryParameters.sameSpot ? 7 :
-               this.kickDistanceStrategy.getKickDistance( this.soccerBalls.indexOf( soccerBall ) );
+               this.kickDistributionStrategy.getKickDistance( this.soccerBalls.indexOf( soccerBall ) );
 
     // Range equation is R=v0^2 sin(2 theta0) / g, see https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion
     // Equation 4.26

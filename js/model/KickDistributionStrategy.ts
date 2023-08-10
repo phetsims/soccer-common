@@ -41,7 +41,7 @@ export default class KickDistributionStrategy extends PhetioObject {
     const code = '<code style="background-color: #f9f9f9; font-family: \'Courier New\', Courier, monospace;">';
 
     const options = optionize<PhetioObjectOptions, EmptySelfOptions, PhetioObjectOptions>()( {
-      phetioType: KickDistanceStrategyIO,
+      phetioType: KickDistributionStrategyIO,
 
       // TODO: Update the documentation to match the new schema: https://github.com/phetsims/center-and-variability/issues/117
       phetioDocumentation: 'The values for the kicks can be specified using the state object. <br><ul>' +
@@ -95,7 +95,7 @@ export default class KickDistributionStrategy extends PhetioObject {
   }
 }
 
-const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
+const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
   supertype: GetSetButtonsIO,
   valueType: KickDistributionStrategy,
   stateSchema: {
