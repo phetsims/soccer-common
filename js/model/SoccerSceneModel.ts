@@ -122,7 +122,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     super( options );
 
-    // TODO: Rename variable and class like KickDistributionStrategy, see https://github.com/phetsims/center-and-variability/issues/117
     this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
       tandem: options.tandem.createTandem( 'kickDistributionStrategy' )
     } );
