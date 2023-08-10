@@ -25,14 +25,14 @@ type SelfOptions = {
 
 export type CAVObjectNodeOptions =
   SelfOptions
-// Take all options from NodeOptions, but do not allow passing through inputEnabledProperty since it requires special handling in multilink
+
+  // Take all options from NodeOptions, but do not allow passing through inputEnabledProperty since it requires special handling in multilink
   & StrictOmit<NodeOptions, 'inputEnabledProperty'>
   & PickRequired<NodeOptions, 'tandem'>;
 
 export default class SoccerObjectNode extends InteractiveHighlightingNode {
   public constructor( public readonly soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
-                      modelRadius: number,
                       providedOptions?: CAVObjectNodeOptions ) {
 
     const options = optionize<CAVObjectNodeOptions, SelfOptions, NodeOptions>()( {

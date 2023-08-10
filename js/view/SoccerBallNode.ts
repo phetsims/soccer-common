@@ -52,7 +52,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
         phase !== SoccerBallPhase.INACTIVE )
     }, providedOptions );
 
-    super( soccerBall, modelViewTransform, SoccerCommonConstants.SOCCER_BALL_RADIUS, options );
+    super( soccerBall, modelViewTransform, options );
 
     // The dark soccer ball is used for when a ball has input disabled.
     const soccerBallNode = new Image( ball_png );
