@@ -19,6 +19,7 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import dotRandom from '../../../dot/js/dotRandom.js';
 import CAVConstants from '../../../center-and-variability/js/common/CAVConstants.js';
+import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew';
 
@@ -94,13 +95,6 @@ export default class KickDistanceStrategy extends PhetioObject {
   }
 }
 
-// TODO: Move to whatever repo IOType lives in: https://github.com/phetsims/center-and-variability/issues/117. Tandem it is
-const GetSetButtonsIO = new IOType( 'GetSetButtonsIO', {
-  isValidValue: ( value: unknown ) => true
-} );
-
-// TODO: This adds a new IOType stub into PhetioElementView. Is that how we want to continue doing this? See https://github.com/phetsims/center-and-variability/issues/117 But maybe the long term solution for that problem is https://github.com/phetsims/studio/issues/292
-// TODO: See Matt B idea to see if GetSetButtonsIO works. See https://github.com/phetsims/center-and-variability/issues/117
 const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
   supertype: GetSetButtonsIO,
   valueType: KickDistanceStrategy,
