@@ -40,7 +40,7 @@ import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStat
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
-import KickDistanceStrategy, { KickDistanceStrategySpecification } from '../model/KickDistanceStrategy.js';
+import KickDistributionStrategy, { KickDistanceStrategySpecification } from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
@@ -101,7 +101,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // This is to avoid performance issues when the data is cleared.
   public isClearingData = false;
 
-  private readonly kickDistanceStrategy: KickDistanceStrategy;
+  private readonly kickDistanceStrategy: KickDistributionStrategy;
 
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
@@ -123,7 +123,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     super( options );
 
     // TODO: Rename variable and class like KickDistributionStrategy, see https://github.com/phetsims/center-and-variability/issues/117
-    this.kickDistanceStrategy = new KickDistanceStrategy( initialKickDistanceStrategy.type, initialKickDistanceStrategy.values, initialKickDistanceStrategy.skewType, {
+    this.kickDistanceStrategy = new KickDistributionStrategy( initialKickDistanceStrategy.type, initialKickDistanceStrategy.values, initialKickDistanceStrategy.skewType, {
       tandem: options.tandem.createTandem( 'kickDistributionStrategy' )
     } );
 

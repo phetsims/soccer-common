@@ -29,7 +29,7 @@ export type KickDistanceStrategySpecification = {
   skewType: 'left' | 'right' | null;
 };
 
-export default class KickDistanceStrategy extends PhetioObject {
+export default class KickDistributionStrategy extends PhetioObject {
 
   public constructor(
     public type: DistributionType,
@@ -90,27 +90,27 @@ export default class KickDistanceStrategy extends PhetioObject {
 
   public reset(): void {
     if ( this.type === 'randomSkew' ) {
-      this.skewType = KickDistanceStrategy.chooseSkewDirection();
+      this.skewType = KickDistributionStrategy.chooseSkewDirection();
     }
   }
 }
 
 const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
   supertype: GetSetButtonsIO,
-  valueType: KickDistanceStrategy,
+  valueType: KickDistributionStrategy,
   stateSchema: {
     type: StringIO,
     values: NullableIO( ArrayIO( NumberIO ) ),
     skewType: NullableIO( StringIO )
   },
-  applyState: ( distribution: KickDistanceStrategy, stateObject: KickDistanceStrategySpecification ) => {
+  applyState: ( distribution: KickDistributionStrategy, stateObject: KickDistanceStrategySpecification ) => {
     distribution.applyState( stateObject );
   },
   methods: {
     getValue: {
       returnType: ObjectLiteralIO,
       parameterTypes: [],
-      implementation: function( this: KickDistanceStrategy ) {
+      implementation: function( this: KickDistributionStrategy ) {
         const state = phet.phetio.phetioEngine.phetioStateEngine.getState( this );
         return state[ this.phetioID ];
       },
@@ -119,7 +119,7 @@ const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
     getValidationError: {
       returnType: NullableIO( StringIO ),
       parameterTypes: [ ObjectLiteralIO ],
-      implementation: function( this: KickDistanceStrategy, value: KickDistanceStrategySpecification ) {
+      implementation: function( this: KickDistributionStrategy, value: KickDistanceStrategySpecification ) {
 
         // TODO: check validation, see https://github.com/phetsims/center-and-variability/issues/117
         // Are the values valid, like the "type" values?
@@ -133,11 +133,11 @@ const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
       returnType: VoidIO,
       parameterTypes: [ ObjectLiteralIO ],
       documentation: 'Sets the value for the scene model, including the kick distance strategy.',
-      implementation: function( this: KickDistanceStrategy, state: KickDistanceStrategySpecification ) {
+      implementation: function( this: KickDistributionStrategy, state: KickDistanceStrategySpecification ) {
         this.applyState( state );
       }
     }
   }
 } );
 
-soccerCommon.register( 'KickDistanceStrategy', KickDistanceStrategy );
+soccerCommon.register( 'KickDistributionStrategy', KickDistributionStrategy );
