@@ -23,7 +23,7 @@ import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew';
 
-export type KickDistanceStrategySpecification = {
+export type KickDistributionStrategySpecification = {
   type: DistributionType;
   values: number[] | null;
   skewType: 'left' | 'right' | null;
@@ -78,7 +78,7 @@ export default class KickDistributionStrategy extends PhetioObject {
     }
   }
 
-  public applyState( stateObject: KickDistanceStrategySpecification ): void {
+  public applyState( stateObject: KickDistributionStrategySpecification ): void {
     this.type = stateObject.type;
     this.values = stateObject.values;
     this.skewType = stateObject.skewType;
@@ -103,7 +103,7 @@ const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
     values: NullableIO( ArrayIO( NumberIO ) ),
     skewType: NullableIO( StringIO )
   },
-  applyState: ( distribution: KickDistributionStrategy, stateObject: KickDistanceStrategySpecification ) => {
+  applyState: ( distribution: KickDistributionStrategy, stateObject: KickDistributionStrategySpecification ) => {
     distribution.applyState( stateObject );
   },
   methods: {
@@ -119,7 +119,7 @@ const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
     getValidationError: {
       returnType: NullableIO( StringIO ),
       parameterTypes: [ ObjectLiteralIO ],
-      implementation: function( this: KickDistributionStrategy, value: KickDistanceStrategySpecification ) {
+      implementation: function( this: KickDistributionStrategy, value: KickDistributionStrategySpecification ) {
 
         // TODO: check validation, see https://github.com/phetsims/center-and-variability/issues/117
         // Are the values valid, like the "type" values?
@@ -133,7 +133,7 @@ const KickDistanceStrategyIO = new IOType( 'KickDistanceStrategyIO', {
       returnType: VoidIO,
       parameterTypes: [ ObjectLiteralIO ],
       documentation: 'Sets the value for the scene model, including the kick distance strategy.',
-      implementation: function( this: KickDistributionStrategy, state: KickDistanceStrategySpecification ) {
+      implementation: function( this: KickDistributionStrategy, state: KickDistributionStrategySpecification ) {
         this.applyState( state );
       }
     }

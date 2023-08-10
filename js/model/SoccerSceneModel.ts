@@ -40,7 +40,7 @@ import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStat
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
-import KickDistributionStrategy, { KickDistanceStrategySpecification } from '../model/KickDistributionStrategy.js';
+import KickDistributionStrategy, { KickDistributionStrategySpecification } from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
@@ -106,7 +106,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
-    initialKickDistanceStrategy: KickDistanceStrategySpecification,
+    initialKickDistanceStrategy: KickDistributionStrategySpecification,
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, options: PickRequired<PhetioObjectOptions, 'tandem'> ) => T,
