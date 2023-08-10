@@ -121,11 +121,52 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
       parameterTypes: [ ObjectLiteralIO ],
       implementation: function( this: KickDistributionStrategy, value: KickDistributionStrategySpecification ) {
 
-        // TODO: check validation, see https://github.com/phetsims/center-and-variability/issues/117
-        // Are the values valid, like the "type" values?
-        // If skew, are is the value left/right?
-        // etc.
-        return null;
+        const errors: string[] = [];
+
+        // 1. Check the type property.
+        if ( !value.hasOwnProperty( 'type' ) ) {
+          errors.push( 'type is required. It must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
+        }
+        else {
+          if ( value.type !== 'probabilityByDistance' && value.type !== 'distanceByIndex' && value.type !== 'randomSkew' ) {
+            errors.push( 'type must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
+          }
+        }
+
+        // 2. For types 'probabilityByDistance' and 'distanceByIndex', check the values.
+        if ( value.type === 'probabilityByDistance' || value.type === 'distanceByIndex' ) {
+          if ( value.values === null ) {
+            errors.push( 'values must be specified for type: ' + value.type );
+          }
+          else if ( !Array.isArray( value.values ) ) {
+            errors.push( 'values must be an array for type: ' + value.type );
+          }
+          else if ( value.values.some( v => typeof v !== 'number' ) ) {
+            errors.push( 'all elements in values must be numbers for type: ' + value.type );
+          }
+        }
+
+        // 3. For type 'randomSkew', check the skewType.
+        if ( value.type === 'randomSkew' ) {
+          if ( value.skewType !== 'left' && value.skewType !== 'right' ) {
+            errors.push( 'skewType must be one of the following: "left" or "right"' );
+          }
+        }
+
+        // 4. Check for unnecessary properties.
+        for ( const key in value ) {
+          if ( ![ 'type', 'values', 'skewType' ].includes( key ) ) {
+            errors.push( `Unexpected property: "${key}"` );
+          }
+        }
+
+        // Return all errors or null if none found.
+        if ( errors.length === 0 ) {
+          return null;
+        }
+        else {
+          return errors.join( ', ' );
+        }
       },
       documentation: 'Checks to see if a proposed value is valid. Returns the first validation error, or null if the value is valid.'
     },
