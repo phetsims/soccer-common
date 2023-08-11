@@ -27,15 +27,21 @@ export default class DragIndicatorModel {
   public constructor( public readonly soccerBallsInputEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'soccerBallHasBeenDraggedProperty' )
+      tandem: options.tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
+      phetioFeatured: true
     } );
 
-    this.isDragIndicatorVisibleProperty = new BooleanProperty( false, { tandem: options.tandem.createTandem( 'isDragIndicatorVisibleProperty' ) } );
+    this.isDragIndicatorVisibleProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'isDragIndicatorVisibleProperty' ),
+      phetioFeatured: true
+    } );
 
     // Cannot take a range, since it is nullable
+    // TODO: https://github.com/phetsims/center-and-variability/issues/447 variable name should match tandem name
     this.dragIndicatorValueProperty = new Property<number | null>( null, {
       tandem: options.tandem.createTandem( 'valueProperty' ),
-      phetioValueType: NullableIO( NumberIO )
+      phetioValueType: NullableIO( NumberIO ),
+      phetioFeatured: true
     } );
   }
 

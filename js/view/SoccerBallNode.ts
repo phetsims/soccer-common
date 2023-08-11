@@ -117,7 +117,8 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
     // For PhET-iO, allow clients to shut off interactivity via this Property.
     const selfInputEnabledProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'selfInputEnabledProperty' )
+      tandem: options.tandem.createTandem( 'selfInputEnabledProperty' ),
+      phetioFeatured: true
     } );
 
     // Prevent dragging or interaction while the object does not have a value (when it is not in the play area yet),

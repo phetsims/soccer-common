@@ -123,7 +123,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     super( options );
 
     this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
-      tandem: options.tandem.createTandem( 'kickDistributionStrategy' )
+      tandem: options.tandem.createTandem( 'kickDistributionStrategy' ),
+      phetioFeatured: true
     } );
 
     const updateDataMeasures = () => this.updateDataMeasures();
@@ -196,13 +197,15 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.meanValueProperty = new Property<number | null>( null, {
       tandem: options.tandem.createTandem( 'meanValueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
-      phetioReadOnly: true
+      phetioReadOnly: true,
+      phetioFeatured: true
     } );
 
     this.numberOfDataPointsProperty = new NumberProperty( 0, {
       tandem: options.tandem.createTandem( 'numberOfDataPointsProperty' ),
       range: new Range( 0, this.maxKicksLimit ),
-      phetioReadOnly: true
+      phetioReadOnly: true,
+      phetioFeatured: true
     } );
 
     this.timeProperty = new NumberProperty( 0 );
@@ -241,7 +244,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.activeKickerIndexProperty = new NumberProperty( 0, {
       tandem: options.tandem.createTandem( 'activeKickerIndexProperty' ),
-      phetioReadOnly: true
+      phetioReadOnly: true,
+      phetioFeatured: true
     } );
 
     Multilink.multilink( [ this.activeKickerIndexProperty, this.maxKicksProperty ], ( activeKickerIndex, maxKicks ) => {

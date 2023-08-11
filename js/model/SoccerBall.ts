@@ -72,7 +72,8 @@ export default class SoccerBall extends PhetioObject {
   public constructor( public readonly isFirstSoccerBall: boolean, providedOptions: SoccerBallOptions ) {
 
     const options = optionize<SoccerBallOptions, SelfOptions, PhetioObjectOptions>()( {
-      phetioState: false
+      phetioState: false,
+      phetioFeatured: true
     }, providedOptions );
     super( options );
 
@@ -95,7 +96,8 @@ export default class SoccerBall extends PhetioObject {
       phetioDocumentation: 'The location of the soccer ball in meters, or null if the soccer ball has not yet landed. ' +
                            'This is the value that is used to calculate the statistical measures. ' +
                            'The value cannot be changed from null to non-null (or vice versa) directly. Instead use the ' +
-                           'scene model setDataPoints function to change the entire data set. Please see the Examples document.'
+                           'scene model setDataPoints function to change the entire data set. Please see the Examples document.',
+      phetioFeatured: true
     } );
 
     this.targetXProperty = new Property<number | null>( null, {
