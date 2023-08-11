@@ -100,6 +100,10 @@ export default class SoccerBall extends PhetioObject {
       phetioFeatured: true
     } );
 
+    // During normal sim run the value will always be set before the phaseProperty is set. We want to make sure this is
+    // respected while setting state as well, because all the listeners are driven by the phase emitters.
+    this.soccerBallPhaseProperty.addPhetioStateDependencies( [ this.valueProperty ] );
+
     this.targetXProperty = new Property<number | null>( null, {
       tandem: options.tandem.createTandem( 'targetXProperty' ),
       phetioValueType: NullableIO( NumberIO ),

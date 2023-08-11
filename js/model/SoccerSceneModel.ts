@@ -546,13 +546,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
         this.objectChangedEmitter.emit();
 
-        // During the state wrapper, sometimes the soccerBall.valueProperty.value was null, so it wasn't really supposed to be in the stack any longer
-        if ( soccerBall.valueProperty.value === value ) {
-
-          // Identify the soccer balls in the stack at the time the animation ended
-          this.stackChangedEmitter.emit( this.getActiveSoccerBalls().filter( x =>
-            x.valueProperty.value === value && x.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) );
-        }
+        // Identify the soccer balls in the stack at the time the animation ended
+        this.stackChangedEmitter.emit( this.getActiveSoccerBalls().filter( x =>
+          x.valueProperty.value === value && x.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) );
       } );
       soccerBall.animation.start();
     }
