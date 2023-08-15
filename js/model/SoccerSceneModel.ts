@@ -198,7 +198,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       tandem: options.tandem.createTandem( 'meanValueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true,
-      phetioFeatured: true
+      phetioFeatured: true,
+      hasListenerOrderDependencies: true
     } );
 
     this.numberOfDataPointsProperty = new NumberProperty( 0, {
