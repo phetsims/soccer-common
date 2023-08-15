@@ -206,7 +206,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       tandem: options.tandem.createTandem( 'numberOfDataPointsProperty' ),
       range: new Range( 0, this.maxKicksLimit ),
       phetioReadOnly: true,
-      phetioFeatured: true
+      phetioFeatured: true,
+      phetioDocumentation: 'Indicates the number of soccer balls on the field.'
     } );
 
     this.timeProperty = new NumberProperty( 0 );
