@@ -12,7 +12,7 @@ import soccerCommon from '../soccerCommon.js';
 import SoccerBall from '../model/SoccerBall.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import TProperty from '../../../axon/js/TProperty.js';
-import { DragListener, Image, Node } from '../../../scenery/js/imports.js';
+import { DragListener, FocusHighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Multilink from '../../../axon/js/Multilink.js';
@@ -69,8 +69,11 @@ export default class SoccerBallNode extends SoccerObjectNode {
       center: Vector2.ZERO
     } );
 
-    // Play sound only when dragging
-    const isDraggingProperty = new BooleanProperty( false );
+    const interactiveHighlight = new FocusHighlightFromNode( this );
+    this.setInteractiveHighlight( interactiveHighlight );
+    soccerBall.isDraggingProperty.link( isDragging => {
+      interactiveHighlight.makeDashed( isDragging );
+    } );
 
     // only setup input-related things if dragging is enabled
     const dragListener = new DragListener( {
@@ -78,7 +81,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
       positionProperty: soccerBall.dragPositionProperty,
       transform: modelViewTransform,
       start: () => {
-        isDraggingProperty.value = true;
+        soccerBall.isDraggingProperty.value = true;
 
         // if the user presses an object that's animating, allow it to keep animating up in the stack
         soccerBall.dragStartedEmitter.emit();
@@ -89,14 +92,14 @@ export default class SoccerBallNode extends SoccerObjectNode {
       },
 
       end: () => {
-        isDraggingProperty.value = false;
+        soccerBall.isDraggingProperty.value = false;
       }
     } );
 
 
     // When the user drags a soccer ball, play audio corresponding to its new position.
     soccerBall.valueProperty.link( value => {
-      if ( value !== null && ( isDraggingProperty.value ) ) {
+      if ( value !== null && ( soccerBall.isDraggingProperty.value ) ) {
         soccerBall.toneEmitter.emit( value );
       }
     } );

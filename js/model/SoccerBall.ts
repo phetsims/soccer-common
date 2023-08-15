@@ -25,6 +25,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 import SoccerBallValueProperty from './SoccerBallValueProperty.js';
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 export type SoccerBallOptions = SelfOptions & WithRequired<PhetioObjectOptions, 'tandem'>;
@@ -38,6 +39,7 @@ export default class SoccerBall extends PhetioObject {
   // detail for the drag listener that is only used for deltas, and the absolute value does not matter.
   // Therefore, it should not be reset (because resetting it would take the model through an incorrect transient state).
   public readonly dragPositionProperty: Vector2Property;
+  public readonly isDraggingProperty = new BooleanProperty( false );
 
   // Continuous position during animation. After landing, it's discrete.
   public readonly positionProperty: Vector2Property;
@@ -167,6 +169,7 @@ export default class SoccerBall extends PhetioObject {
     this.velocityProperty.reset();
     this.soccerBallPhaseProperty.reset();
     this.valueProperty.reset();
+    this.isDraggingProperty.reset();
 
     this.targetXProperty.value = null;
     this.kicker = null;
