@@ -97,7 +97,11 @@ export default class SoccerBall extends PhetioObject {
                            'This is the value that is used to calculate the statistical measures. ' +
                            'The value cannot be changed from null to non-null (or vice versa) directly. Instead use the ' +
                            'scene model setDataPoints function to change the entire data set. Please see the Examples document.',
-      phetioFeatured: true
+      phetioFeatured: true,
+
+      // The listeners must be processed in the order specified or "sort data" with cards while soccer balls are still landing
+      // will cause the data to be sorted incorrectly.
+      hasListenerOrderDependencies: true
     } );
 
     // During normal sim run the value will always be set before the phaseProperty is set. We want to make sure this is
