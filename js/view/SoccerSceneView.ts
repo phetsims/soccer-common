@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { FocusHighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Rectangle } from '../../../scenery/js/imports.js';
+import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Rectangle } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -178,7 +178,7 @@ export default class SoccerSceneView {
     Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
         if ( focusedSoccerBall ) {
 
-          const focusForSelectedBall = new FocusHighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
+          const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
           backLayerSoccerBallLayer.setFocusHighlight( focusForSelectedBall );
         }
         else {

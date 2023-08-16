@@ -12,7 +12,7 @@ import soccerCommon from '../soccerCommon.js';
 import SoccerBall from '../model/SoccerBall.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import TProperty from '../../../axon/js/TProperty.js';
-import { DragListener, FocusHighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
+import { DragListener, HighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Multilink from '../../../axon/js/Multilink.js';
@@ -69,7 +69,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
       center: Vector2.ZERO
     } );
 
-    const interactiveHighlight = new FocusHighlightFromNode( this );
+    const interactiveHighlight = new HighlightFromNode( this );
     this.setInteractiveHighlight( interactiveHighlight );
     soccerBall.isDraggingProperty.link( isDragging => {
       interactiveHighlight.makeDashed( isDragging );
