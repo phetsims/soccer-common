@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { FocusHighlightFromNode, FocusHighlightPath, KeyboardListener, Node } from '../../../scenery/js/imports.js';
+import { FocusHighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Rectangle } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -36,7 +36,8 @@ export default class SoccerSceneView {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
-  private readonly focusHighlightPath: FocusHighlightPath;
+  private readonly focusHighlightPath: HighlightPath;
+  private readonly backLayerSoccerBallLayer: HighlightingRectangle;
 
   public constructor(
     dragIndicatorModel: DragIndicatorModel,
@@ -49,12 +50,9 @@ export default class SoccerSceneView {
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
-    // Keep soccer balls in one layer so we can control the focus order
-    const backLayerSoccerBallLayer = new Node( {
-      // groupFocusHighlight: true,
-      focusable: true,
-      tagName: 'div'
-    } );
+    // Keep soccer balls in one layer so we can control the focus order. This is a rectangle so it receives
+    // input for the "group" focus highlights.
+    const backLayerSoccerBallLayer = new HighlightingRectangle();
     const backLayer = new Node( {
       children: [ backLayerSoccerBallLayer ]
     } );
@@ -252,17 +250,18 @@ export default class SoccerSceneView {
     } );
 
     // Set the outer group focus region to cover the entire area where soccer balls may land, translate lower so it also includes the number line and labels
-    this.focusHighlightPath = new FocusHighlightPath( null, {
-      outerStroke: FocusHighlightPath.OUTER_LIGHT_GROUP_FOCUS_COLOR,
-      innerStroke: FocusHighlightPath.INNER_LIGHT_GROUP_FOCUS_COLOR,
-      outerLineWidth: FocusHighlightPath.GROUP_OUTER_LINE_WIDTH,
-      innerLineWidth: FocusHighlightPath.GROUP_INNER_LINE_WIDTH
+    this.focusHighlightPath = new HighlightPath( null, {
+      outerStroke: HighlightPath.OUTER_LIGHT_GROUP_FOCUS_COLOR,
+      innerStroke: HighlightPath.INNER_LIGHT_GROUP_FOCUS_COLOR,
+      outerLineWidth: HighlightPath.GROUP_OUTER_LINE_WIDTH,
+      innerLineWidth: HighlightPath.GROUP_INNER_LINE_WIDTH
     } );
     backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
+    this.backLayerSoccerBallLayer = backLayerSoccerBallLayer;
   }
 
   /**
@@ -278,6 +277,21 @@ export default class SoccerSceneView {
       shapeForLeftRightBottom.bounds.width,
       shapeForLeftRightBottom.bounds.bottom - top - margin
     );
+    this.backLayerSoccerBallLayer.rect.setRectBounds( this.focusHighlightPath.shape.bounds );
+  }
+}
+
+class HighlightingRectangle extends InteractiveHighlightingNode {
+  public rect: Rectangle;
+  public constructor() {
+    super();
+
+    this.rect = new Rectangle( 0, 0, 0, 0, {
+      fill: 'rgba(255,255,255,0.5)',
+      focusable: true,
+      tagName: 'div'
+    } );
+    this.addChild( this.rect );
   }
 }
 
