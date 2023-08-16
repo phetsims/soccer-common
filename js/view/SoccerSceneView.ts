@@ -283,11 +283,14 @@ export default class SoccerSceneView {
 
 class HighlightingRectangle extends InteractiveHighlightingNode {
   public rect: Rectangle;
+
   public constructor() {
     super();
 
     this.rect = new Rectangle( 0, 0, 0, 0, {
-      fill: 'rgba(255,255,255,0.5)',
+
+      // transparent, just used for hit testing and highlighting
+      fill: 'rgba(255,255,255,0)',
       focusable: true,
       tagName: 'div'
     } );
