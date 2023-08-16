@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Rectangle } from '../../../scenery/js/imports.js';
+import { HighlightFromNode, HighlightPath, KeyboardListener, Node } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -37,7 +37,6 @@ export default class SoccerSceneView {
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
   private readonly focusHighlightPath: HighlightPath;
-  private readonly backLayerSoccerBallLayer: HighlightingRectangle;
 
   public constructor(
     dragIndicatorModel: DragIndicatorModel,
@@ -52,7 +51,10 @@ export default class SoccerSceneView {
 
     // Keep soccer balls in one layer so we can control the focus order. This is a rectangle so it receives
     // input for the "group" focus highlights.
-    const backLayerSoccerBallLayer = new HighlightingRectangle();
+    const backLayerSoccerBallLayer = new Node( {
+      focusable: true,
+      tagName: 'div'
+    } );
     const backLayer = new Node( {
       children: [ backLayerSoccerBallLayer ]
     } );
@@ -261,7 +263,6 @@ export default class SoccerSceneView {
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
-    this.backLayerSoccerBallLayer = backLayerSoccerBallLayer;
   }
 
   /**
@@ -277,24 +278,6 @@ export default class SoccerSceneView {
       shapeForLeftRightBottom.bounds.width,
       shapeForLeftRightBottom.bounds.bottom - top - margin
     );
-    this.backLayerSoccerBallLayer.rect.setRectBounds( this.focusHighlightPath.shape.bounds );
-  }
-}
-
-class HighlightingRectangle extends InteractiveHighlightingNode {
-  public rect: Rectangle;
-
-  public constructor() {
-    super();
-
-    this.rect = new Rectangle( 0, 0, 0, 0, {
-
-      // transparent, just used for hit testing and highlighting
-      fill: 'rgba(255,255,255,0)',
-      focusable: true,
-      tagName: 'div'
-    } );
-    this.addChild( this.rect );
   }
 }
 
