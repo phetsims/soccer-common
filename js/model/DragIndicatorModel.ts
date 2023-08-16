@@ -21,7 +21,7 @@ import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 
 export default class DragIndicatorModel {
   public readonly isDragIndicatorVisibleProperty: Property<boolean>; // Screens 1-3
-  public readonly dragIndicatorValueProperty: Property<number | null>;
+  public readonly valueProperty: Property<number | null>;
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
   public constructor( public readonly soccerBallsInputEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
@@ -37,8 +37,7 @@ export default class DragIndicatorModel {
     } );
 
     // Cannot take a range, since it is nullable
-    // TODO: https://github.com/phetsims/center-and-variability/issues/447 variable name should match tandem name
-    this.dragIndicatorValueProperty = new Property<number | null>( null, {
+    this.valueProperty = new Property<number | null>( null, {
       tandem: options.tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioFeatured: true,
@@ -58,7 +57,7 @@ export default class DragIndicatorModel {
     const reversedBalls = sceneModel.getActiveSoccerBalls().reverse();
 
     // Show the drag indicator over the most recently landed ball
-    this.dragIndicatorValueProperty.value = reversedBalls[ 0 ].valueProperty.value;
+    this.valueProperty.value = reversedBalls[ 0 ].valueProperty.value;
   }
 
   public reset(): void {
