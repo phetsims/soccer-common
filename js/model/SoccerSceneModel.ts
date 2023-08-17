@@ -44,6 +44,7 @@ import KickDistributionStrategy, { KickDistributionStrategySpecification } from 
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import NumberTone from '../../../center-and-variability/js/common/model/NumberTone.js';
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
