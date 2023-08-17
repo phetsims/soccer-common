@@ -14,17 +14,16 @@ import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2
 import TProperty from '../../../axon/js/TProperty.js';
 import { DragListener, HighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
-import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import ballDark_png from '../../images/ballDark_png.js';
 import ball_png from '../../images/ball_png.js';
 import Vector2 from '../../../dot/js/Vector2.js';
-import Property from '../../../axon/js/Property.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { Shape } from '../../../kite/js/imports.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
+import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 type ParentOptions = CAVObjectNodeOptions;
@@ -35,17 +34,14 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
   public constructor( soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
-                      soccerBallsInputEnabledProperty: TProperty<boolean>,
+                      soccerBallsEnabledProperty: TProperty<boolean>,
                       providedOptions: SoccerBallNodeOptions ) {
 
     // Use the y dimension, since it determines how the soccer balls stack. But maintain the same aspect ratio as the image
     const viewRadius = Math.abs( modelViewTransform.modelToViewDeltaY( SoccerCommonConstants.SOCCER_BALL_RADIUS ) );
 
-    const enabledProperty = new Property( true );
-
     const options = optionize<SoccerBallNodeOptions, SelfOptions, ParentOptions>()( {
       cursor: 'pointer',
-      enabledProperty: enabledProperty,
 
       // Data point should be visible if the soccer ball landed
       visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], phase =>
@@ -119,16 +115,16 @@ export default class SoccerBallNode extends SoccerObjectNode {
     this.addInputListener( dragListener );
 
     // For PhET-iO, allow clients to shut off interactivity via this Property.
-    const selfInputEnabledProperty = new BooleanProperty( true, {
-      tandem: options.tandem.createTandem( 'selfInputEnabledProperty' ),
+    const enabledProperty = new EnabledProperty( true, {
+      tandem: options.tandem.createTandem( 'enabledProperty' ),
       phetioFeatured: true
     } );
 
     // Prevent dragging or interaction while the object does not have a value (when it is not in the play area yet),
-    // when it is animating, if input for this individual node is disabled, or if input for all of the object nodes
+    // when it is animating, if input for this individual node is disabled, or if input for all the object nodes
     // has been disabled
     Multilink.multilink(
-      [ soccerBall.soccerBallPhaseProperty, soccerBall.valueProperty, selfInputEnabledProperty, soccerBallsInputEnabledProperty ],
+      [ soccerBall.soccerBallPhaseProperty, soccerBall.valueProperty, enabledProperty, soccerBallsEnabledProperty ],
       ( mode, value, selfInputEnabled, objectsInputEnabled ) => {
         const inputEnabled = value !== null && mode === SoccerBallPhase.STACKED && selfInputEnabled && objectsInputEnabled;
 

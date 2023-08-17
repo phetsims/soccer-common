@@ -40,7 +40,7 @@ export default class SoccerSceneView {
 
   public constructor(
     dragIndicatorModel: DragIndicatorModel,
-    soccerBallsInputEnabledProperty: Property<boolean>,
+    soccerBallsEnabledProperty: Property<boolean>,
     public readonly sceneModel: SoccerSceneModel,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
@@ -66,7 +66,7 @@ export default class SoccerSceneView {
       const soccerBallNode = new SoccerBallNode(
         soccerBall,
         modelViewTransform,
-        soccerBallsInputEnabledProperty, {
+        soccerBallsEnabledProperty, {
           tandem: options.tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
           pickable: false
         } );

@@ -24,7 +24,7 @@ export default class DragIndicatorModel {
   public readonly valueProperty: Property<number | null>;
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
-  public constructor( public readonly soccerBallsInputEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
+  public constructor( public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: options.tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
@@ -51,7 +51,7 @@ export default class DragIndicatorModel {
     //  don't show the dragIndicatorArrowNode
     this.isDragIndicatorVisibleProperty.value = !soccerBallHasBeenDragged &&
                                                 soccerBallCount === maxKicks &&
-                                                this.soccerBallsInputEnabledProperty.value &&
+                                                this.soccerBallsEnabledProperty.value &&
                                                 _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
 
     const reversedBalls = sceneModel.getActiveSoccerBalls().reverse();
