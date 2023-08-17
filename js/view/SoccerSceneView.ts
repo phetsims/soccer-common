@@ -191,9 +191,7 @@ export default class SoccerSceneView {
 
     const keyboardListener = new KeyboardListener( {
       keys: [ 'arrowRight', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
-      callback: ( event, listener ) => {
-
-        const keysPressed = listener.keysPressed;
+      callback: ( event, keysPressed ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
 
         // Select a soccer ball
@@ -201,7 +199,7 @@ export default class SoccerSceneView {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
             if ( !isSoccerBallGrabbedProperty.value ) {
-              const delta = listener.keysPressed === 'arrowRight' ? 1 : -1;
+              const delta = keysPressed === 'arrowRight' ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
               // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
@@ -211,7 +209,7 @@ export default class SoccerSceneView {
               focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
             }
             else {
-              const delta = listener.keysPressed === 'arrowLeft' ? -1 : 1;
+              const delta = keysPressed === 'arrowLeft' ? -1 : 1;
               const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
