@@ -9,12 +9,6 @@ import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProper
 import soccerCommon from './soccerCommon.js';
 
 type StringsType = {
-  'soccer-common': {
-    'titleStringProperty': LocalizedStringProperty;
-  };
-  'screen': {
-    'nameStringProperty': LocalizedStringProperty;
-  };
   'characterSet': {
     'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
     'africaStringProperty': LocalizedStringProperty;
