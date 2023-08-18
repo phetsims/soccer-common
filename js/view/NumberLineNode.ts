@@ -37,7 +37,8 @@ export default class NumberLineNode extends Node {
   ) {
 
     const options = optionize<NumberLineNodeOptions, SelfOptions, NodeOptions>()( {
-      color: 'white'
+      color: 'white',
+      isDisposable: false
     }, providedOptions );
 
     super();

@@ -39,7 +39,8 @@ export default class SoccerObjectNode extends InteractiveHighlightingNode {
       cursor: 'pointer',
       translationStrategy: ( position: Vector2 ) => {
         this.translation = modelViewTransform.modelToViewPosition( position );
-      }
+      },
+      isDisposable: false
     }, providedOptions );
     super( options );
 

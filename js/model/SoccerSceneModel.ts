@@ -117,7 +117,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     const options = optionize<SoccerSceneModelOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioState: false,
       phetioType: SoccerSceneModelIO,
-      phetioDocumentation: 'The model for the CAV scene, which includes the soccer balls and the soccer players.'
+      phetioDocumentation: 'The model for the CAV scene, which includes the soccer balls and the soccer players.',
+      isDisposable: false
     }, providedOptions );
 
     super( options );

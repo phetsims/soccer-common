@@ -45,7 +45,8 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
       // Data point should be visible if the soccer ball landed
       visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], phase =>
-        phase !== SoccerBallPhase.INACTIVE )
+        phase !== SoccerBallPhase.INACTIVE ),
+      isDisposable: false
     }, providedOptions );
 
     super( soccerBall, modelViewTransform, options );

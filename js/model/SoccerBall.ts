@@ -75,7 +75,8 @@ export default class SoccerBall extends PhetioObject {
 
     const options = optionize<SoccerBallOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioState: false,
-      phetioFeatured: true
+      phetioFeatured: true,
+      isDisposable: false
     }, providedOptions );
     super( options );
 

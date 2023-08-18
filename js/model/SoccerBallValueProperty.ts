@@ -32,7 +32,8 @@ export default class SoccerBallValueProperty extends Property<number | null> {
     // Fill in superclass options that are controlled by BooleanProperty.
     const options = optionize<SoccerBallValuePropertyOptions, SelfOptions, PropertyOptions<number | null>>()( {
       phetioValueType: NullableIO( NumberIO ),
-      phetioOuterType: () => SoccerBallValueProperty.SoccerBallValuePropertyIO
+      phetioOuterType: () => SoccerBallValueProperty.SoccerBallValuePropertyIO,
+      isDisposable: false
     }, providedOptions );
 
     super( value, options );

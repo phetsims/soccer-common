@@ -32,7 +32,8 @@ export default class KickerNode extends Node {
     super( {
 
       // Avoid a flickering on firefox where the image temporarily disappears (even in built mode)
-      renderer: 'webgl'
+      renderer: 'webgl',
+      isDisposable: false
     } );
 
     this.kicker = kicker;
