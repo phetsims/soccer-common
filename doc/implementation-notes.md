@@ -27,4 +27,4 @@ See SoccerBallPhase for the full list of phases a soccer ball may take.
 
 ### Further Reading
 
-For more details on how this repo is used, please see the documentation in center-and-variability/doc
+For more details on how this repo is used, please see the documentation in [model.md](./model.md) and center-and-variability/doc
