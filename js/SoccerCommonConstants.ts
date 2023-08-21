@@ -9,9 +9,9 @@
 import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonConstants = {
-  SOCCER_BALL_OVERLAP: 0.01,
   GRAVITY: -9.8, // in meters/second^2
-  SOCCER_BALL_RADIUS: 0.3 // in meters
+  SOCCER_BALL_RADIUS: 0.3, // in meters
+  SOCCER_BALL_OVERLAP: 0.01
 };
 
 soccerCommon.register( 'SoccerCommonConstants', SoccerCommonConstants );
