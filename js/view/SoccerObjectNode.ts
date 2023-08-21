@@ -1,5 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
+//REVIEW This doc could be better. It's used as the base class for SoccerBallNode and DataPointNode, so it's rendering
+//   some shared part of the view of a soccer ball. But it's not clear which part.
 /**
  * Base class which renders a Node for the SoccerBall.
  *
@@ -32,6 +34,7 @@ export type SoccerObjectNodeOptions =
 
 export default class SoccerObjectNode extends InteractiveHighlightingNode {
 
+  //REVIEW if this is really a "Base class", should constructor be protected?
   public constructor( public readonly soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
                       providedOptions?: SoccerObjectNodeOptions ) {
