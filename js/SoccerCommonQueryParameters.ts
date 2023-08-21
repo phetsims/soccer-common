@@ -9,9 +9,13 @@
 import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonQueryParameters = QueryStringMachine.getAll( {
+
+  //REVIEW document
   slowAnimation: {
     type: 'flag'
   },
+
+  //REVIEW document
   sameSpot: {
     type: 'flag'
   }
