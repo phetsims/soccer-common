@@ -20,6 +20,8 @@ import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
 
 export default class Kicker {
+
+  //REVIEW document these Properties
   public readonly kickerPhaseProperty: Property<KickerPhase>;
   public readonly poseProperty: TReadOnlyProperty<Pose>;
   public readonly timestampWhenPoisedBeganProperty: Property<number | null>;
@@ -28,10 +30,12 @@ export default class Kicker {
   public readonly initialPlaceInLine: number;
 
   public constructor( placeInLine: number, public readonly characterSetProperty: Property<CharacterSet | null>, tandem: Tandem ) {
+
     this.kickerPhaseProperty = new EnumerationProperty( placeInLine === 0 ? KickerPhase.READY : KickerPhase.INACTIVE, {
       tandem: tandem.createTandem( 'kickerPhaseProperty' ),
       phetioReadOnly: true
     } );
+
     this.poseProperty = new DerivedProperty( [ this.kickerPhaseProperty ], kickerPhase => {
       if ( kickerPhase === KickerPhase.POISED ) {
         return Pose.POISED_TO_KICK;
@@ -43,6 +47,7 @@ export default class Kicker {
         return Pose.STANDING;
       }
     } );
+
     this.timestampWhenPoisedBeganProperty = new Property<number | null>( null, {
       tandem: tandem.createTandem( 'timestampWhenPoisedBeganProperty' ),
       phetioValueType: NullableIO( NumberIO ),
