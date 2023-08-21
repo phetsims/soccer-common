@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-//REVIEW Doc here is referring to CAV screens. Is that appropriate in soccer-common?
+//REVIEW inappropriate reference to "Median and Mean & Median screens" and "Variability screen"
 /**
  * Base class for the scene model in a screen. The Median and Mean & Median screens only have one scene model.
  * The Variability screen has 4 scene models.
@@ -122,6 +122,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     const options = optionize<SoccerSceneModelOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioState: false,
       phetioType: SoccerSceneModelIO,
+      //REVIEW inappropriate reference to CAV in soccer-common
       phetioDocumentation: 'The model for the CAV scene, which includes the soccer balls and the soccer players.',
       isDisposable: false
     }, providedOptions );

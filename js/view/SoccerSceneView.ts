@@ -1,5 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
+//REVIEW inappropriate reference to "CAV screen"
 /**
  * Depicts a single scene in the CAV screen.  This includes the soccer balls, soccer players, and drag indicator arrow.
  * The scene is rendered in two layers to ensure the correct z-ordering.
@@ -28,6 +29,7 @@ import Matrix3 from '../../../dot/js/Matrix3.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 
+//REVIEW inappropriate reference to "CAVSceneModel"
 /**
  * Renders view elements for a CAVSceneModel. Note that to satisfy the correct z-ordering, elements
  * populate the middleScreenViewLayer and frontScreenViewLayer in the parent.
