@@ -29,11 +29,9 @@ import Animation from '../../../twixt/js/Animation.js';
 import Easing from '../../../twixt/js/Easing.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
 import kick_mp3 from '../../../center-and-variability/sounds/kick_mp3.js';
@@ -45,12 +43,10 @@ import KickDistributionStrategy, { KickDistributionStrategySpecification } from 
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
-
-type SelfOptions = EmptySelfOptions;
-export type SoccerSceneModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 // constants
 const TIME_BETWEEN_RAPID_KICKS = 0.5; // in seconds
@@ -122,23 +118,22 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     kickDistributionStrategySpecification: KickDistributionStrategySpecification,
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
-    createSoccerBall: ( isFirstSoccerBall: boolean, options: PickRequired<PhetioObjectOptions, 'tandem'> ) => T,
+    createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
     regionAndCultureProperty: Property<CharacterSet | null>,
-    providedOptions: SoccerSceneModelOptions
+    tandem: Tandem
   ) {
 
-    const options = optionize<SoccerSceneModelOptions, SelfOptions, PhetioObjectOptions>()( {
+    super( {
       phetioState: false,
       phetioType: SoccerSceneModelIO,
       //REVIEW inappropriate reference to CAV in soccer-common
       phetioDocumentation: 'The model for the CAV scene, which includes the soccer balls and the soccer players.',
-      isDisposable: false
-    }, providedOptions );
-
-    super( options );
+      isDisposable: false,
+      tandem: tandem
+    } );
 
     this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
-      tandem: options.tandem.createTandem( 'kickDistributionStrategy' ),
+      tandem: tandem.createTandem( 'kickDistributionStrategy' ),
       phetioFeatured: true
     } );
 
@@ -153,9 +148,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.soccerBalls = _.range( 0, this.maxKicksLimit ).map( index => {
 
-      const soccerBall = createSoccerBall( index === 0, {
-        tandem: options.tandem.createTandem( 'soccerBalls' ).createTandem1Indexed( 'soccerBall', index )
-      } );
+      const soccerBall = createSoccerBall(
+        index === 0,
+        tandem.createTandem( 'soccerBalls' ).createTandem1Indexed( 'soccerBall', index )
+      );
 
       // When the soccer ball drag position changes, constrain it to the physical range and move it to the top, if necessary
       soccerBall.dragPositionProperty.lazyLink( ( dragPosition: Vector2 ) => {
@@ -215,7 +211,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     this.meanValueProperty = new Property<number | null>( null, {
-      tandem: options.tandem.createTandem( 'meanValueProperty' ),
+      tandem: tandem.createTandem( 'meanValueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true,
       phetioFeatured: true,
@@ -223,7 +219,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     this.numberOfDataPointsProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'numberOfDataPointsProperty' ),
+      tandem: tandem.createTandem( 'numberOfDataPointsProperty' ),
       range: new Range( 0, this.maxKicksLimit ),
       phetioReadOnly: true,
       phetioFeatured: true,
@@ -235,13 +231,13 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.objectValueBecameNonNullEmitter = new Emitter();
 
     this.numberOfQueuedKicksProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'numberOfQueuedKicksProperty' ),
+      tandem: tandem.createTandem( 'numberOfQueuedKicksProperty' ),
       phetioReadOnly: true
     } );
     this.timeWhenLastBallWasKickedProperty = new NumberProperty( 0 );
 
     this.kickers = _.range( 0, this.maxKicksLimit ).map( placeInLine => new Kicker( placeInLine, regionAndCultureProperty,
-      options.tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
+      tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
     ) );
 
     this.numberOfUnkickedBallsProperty = DerivedProperty.deriveAny( [
@@ -265,7 +261,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.hasKickableSoccerBallsStableProperty = new BooleanProperty( this.hasKickableSoccerBallsProperty.value );
 
     this.activeKickerIndexProperty = new NumberProperty( 0, {
-      tandem: options.tandem.createTandem( 'activeKickerIndexProperty' ),
+      tandem: tandem.createTandem( 'activeKickerIndexProperty' ),
       phetioReadOnly: true,
       phetioFeatured: true
     } );

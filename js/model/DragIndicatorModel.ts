@@ -15,9 +15,8 @@ import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import CAVSoccerSceneModel from '../../../center-and-variability/js/common/model/CAVSoccerSceneModel.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
 export type UpdateDragIndicatorSceneModel = Pick<CAVSoccerSceneModel, 'getStackAtLocation' | 'medianValueProperty' | 'getTopSoccerBalls' | 'getActiveSoccerBalls'>;
 
@@ -28,21 +27,21 @@ export default class DragIndicatorModel {
   public readonly valueProperty: Property<number | null>;
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
-  public constructor( public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
+  public constructor( public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
+      tandem: tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
       phetioFeatured: true
     } );
 
     this.isDragIndicatorVisibleProperty = new BooleanProperty( false, {
-      tandem: options.tandem.createTandem( 'isDragIndicatorVisibleProperty' ),
+      tandem: tandem.createTandem( 'isDragIndicatorVisibleProperty' ),
       phetioFeatured: true
     } );
 
     // Cannot take a range, since it is nullable
     this.valueProperty = new Property<number | null>( null, {
-      tandem: options.tandem.createTandem( 'valueProperty' ),
+      tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioFeatured: true,
       phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'

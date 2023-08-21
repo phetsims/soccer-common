@@ -12,7 +12,7 @@
 import Animation from '../../../twixt/js/Animation.js';
 import soccerCommon from '../soccerCommon.js';
 import Vector2Property from '../../../dot/js/Vector2Property.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import Property from '../../../axon/js/Property.js';
@@ -22,14 +22,10 @@ import { SoccerBallPhase } from './SoccerBallPhase.js';
 import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
 import TEmitter from '../../../axon/js/TEmitter.js';
 import Kicker from './Kicker.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
-import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 import SoccerBallValueProperty from './SoccerBallValueProperty.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
-
-type SelfOptions = EmptySelfOptions;
-export type SoccerBallOptions = SelfOptions & WithRequired<PhetioObjectOptions, 'tandem'>;
+import Tandem from '../../../tandem/js/Tandem.js';
 
 // Global counter for debugging
 let count = 0;
@@ -73,31 +69,31 @@ export default class SoccerBall extends PhetioObject {
   } );
 
   //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
-  public constructor( public readonly isFirstSoccerBall: boolean, providedOptions: SoccerBallOptions ) {
+  public constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
 
-    const options = optionize<SoccerBallOptions, SelfOptions, PhetioObjectOptions>()( {
+    super( {
       phetioState: false,
       phetioFeatured: true,
-      isDisposable: false
-    }, providedOptions );
-    super( options );
+      isDisposable: false,
+      tandem: tandem
+    } );
 
     this.positionProperty = new Vector2Property( new Vector2( 0, SoccerCommonConstants.SOCCER_BALL_RADIUS ), {
-      tandem: options.tandem.createTandem( 'positionProperty' ),
+      tandem: tandem.createTandem( 'positionProperty' ),
       valueComparisonStrategy: 'equalsFunction',
       phetioReadOnly: true
     } );
     this.velocityProperty = new Vector2Property( new Vector2( 0, 0 ), {
-      tandem: options.tandem.createTandem( 'velocityProperty' ),
+      tandem: tandem.createTandem( 'velocityProperty' ),
       phetioReadOnly: true
     } );
     this.soccerBallPhaseProperty = new EnumerationProperty( isFirstSoccerBall ? SoccerBallPhase.READY : SoccerBallPhase.INACTIVE, {
-      tandem: options.tandem.createTandem( 'soccerBallPhaseProperty' ),
+      tandem: tandem.createTandem( 'soccerBallPhaseProperty' ),
       phetioReadOnly: true
     } );
     this.dragPositionProperty = new Vector2Property( this.positionProperty.value.copy() );
     this.valueProperty = new SoccerBallValueProperty( null, {
-      tandem: options.tandem.createTandem( 'valueProperty' ),
+      tandem: tandem.createTandem( 'valueProperty' ),
       phetioDocumentation: 'The location of the soccer ball in meters, or null if the soccer ball has not yet landed. ' +
                            'This is the value that is used to calculate the statistical measures. ' +
                            'The value cannot be changed from null to non-null (or vice versa) directly. Instead use the ' +
@@ -114,7 +110,7 @@ export default class SoccerBall extends PhetioObject {
     this.soccerBallPhaseProperty.addPhetioStateDependencies( [ this.valueProperty ] );
 
     this.targetXProperty = new Property<number | null>( null, {
-      tandem: options.tandem.createTandem( 'targetXProperty' ),
+      tandem: tandem.createTandem( 'targetXProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true
     } );

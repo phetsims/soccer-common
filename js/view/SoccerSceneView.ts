@@ -26,9 +26,8 @@ import DragIndicatorModel from '../model/DragIndicatorModel.js';
 import Utils from '../../../dot/js/Utils.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
-import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
 //REVIEW inappropriate reference to "CAVSceneModel"
 /**
@@ -52,7 +51,7 @@ export default class SoccerSceneView {
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
-    options: PickRequired<PhetioObjectOptions, 'tandem'> ) {
+    tandem: Tandem ) {
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
@@ -76,7 +75,7 @@ export default class SoccerSceneView {
         soccerBall,
         modelViewTransform,
         soccerBallsEnabledProperty, {
-          tandem: options.tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
+          tandem: tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
           pickable: false
         } );
 
