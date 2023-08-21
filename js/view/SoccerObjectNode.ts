@@ -23,7 +23,7 @@ type SelfOptions = {
   translationStrategy?: ( position: Vector2 ) => void;
 };
 
-export type CAVObjectNodeOptions =
+export type SoccerObjectNodeOptions =
   SelfOptions
 
   // Take all options from NodeOptions, but do not allow passing through inputEnabledProperty since it requires special handling in multilink
@@ -32,12 +32,11 @@ export type CAVObjectNodeOptions =
 
 export default class SoccerObjectNode extends InteractiveHighlightingNode {
 
-  //REVIEW Why is this class not named SoccerBallNode? It's first parameter is soccerBall: SoccerBall.
   public constructor( public readonly soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
-                      providedOptions?: CAVObjectNodeOptions ) {
+                      providedOptions?: SoccerObjectNodeOptions ) {
 
-    const options = optionize<CAVObjectNodeOptions, SelfOptions, NodeOptions>()( {
+    const options = optionize<SoccerObjectNodeOptions, SelfOptions, NodeOptions>()( {
       cursor: 'pointer',
       translationStrategy: ( position: Vector2 ) => {
         this.translation = modelViewTransform.modelToViewPosition( position );

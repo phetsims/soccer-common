@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import SoccerObjectNode, { CAVObjectNodeOptions } from './SoccerObjectNode.js';
+import SoccerObjectNode, { SoccerObjectNodeOptions } from './SoccerObjectNode.js';
 import soccerCommon from '../soccerCommon.js';
 import SoccerBall from '../model/SoccerBall.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
@@ -26,7 +26,7 @@ import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 
 type SelfOptions = EmptySelfOptions;
-type ParentOptions = CAVObjectNodeOptions;
+type ParentOptions = SoccerObjectNodeOptions;
 
 type SoccerBallNodeOptions = SelfOptions & ParentOptions;
 
@@ -101,10 +101,10 @@ export default class SoccerBallNode extends SoccerObjectNode {
       }
     } );
 
-    // pan and zoom - In order to move the CAVObjectNode to a new position the pointer has to move more than half the
-    // unit model length. When the CAVObjectNode is near the edge of the screen while zoomed in, the pointer doesn't
-    // have enough space to move that far. If we make sure that bounds surrounding the CAVObjectNode have a width
-    // of 2 model units the pointer will always have enough space to drag the CAVObjectNode to a new position.
+    // pan and zoom - In order to move the SoccerObjectNode to a new position the pointer has to move more than half the
+    // unit model length. When the SoccerObjectNode is near the edge of the screen while zoomed in, the pointer doesn't
+    // have enough space to move that far. If we make sure that bounds surrounding the SoccerObjectNode have a width
+    // of 2 model units the pointer will always have enough space to drag the SoccerObjectNode to a new position.
     // See https://github.com/phetsims/center-and-variability/issues/88
     dragListener.createPanTargetBounds = () => {
       const modelPosition = soccerBall.positionProperty.value;
