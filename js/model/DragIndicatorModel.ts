@@ -20,6 +20,8 @@ import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 
 export default class DragIndicatorModel {
+
+  //REVIEW comment here doesn't seem appropriate in common repo, specific to CAV
   public readonly isDragIndicatorVisibleProperty: Property<boolean>; // Screens 1-3
   public readonly valueProperty: Property<number | null>;
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
