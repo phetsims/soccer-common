@@ -27,6 +27,7 @@ export type SoccerBallValuePropertyOptions = SelfOptions & StrictOmit<PropertyOp
 
 export default class SoccerBallValueProperty extends Property<number | null> {
 
+  //REVIEW Document the semantic of value here, for number and null cases.
   public constructor( value: number | null, providedOptions?: SoccerBallValuePropertyOptions ) {
 
     // Fill in superclass options that are controlled by BooleanProperty.

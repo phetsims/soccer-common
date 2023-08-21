@@ -1,5 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
+//REVIEW This is a common-code repo. Is "sim specific" appropriate here?
 /**
  * Model for sim specific preferences
  *

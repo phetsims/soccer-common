@@ -71,6 +71,7 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
+  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
   public constructor( public readonly isFirstSoccerBall: boolean, providedOptions: SoccerBallOptions ) {
 
     const options = optionize<SoccerBallOptions, SelfOptions, PhetioObjectOptions>()( {

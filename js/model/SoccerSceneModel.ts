@@ -1,5 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
+//REVIEW Doc here is referring to CAV screens. Is that appropriate in soccer-common?
 /**
  * Base class for the scene model in a screen. The Median and Mean & Median screens only have one scene model.
  * The Variability screen has 4 scene models.
@@ -60,16 +61,19 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The max kickable (highest value in the combo box, if there is one)
   private readonly maxKicksLimit: number;
 
+  //REVIEW Does meanValueProperty belong in soccer-common? Is seems specific to CAV.
   public readonly meanValueProperty: Property<number | null>;
 
+  //REVIEW document -- what does isVisible mean for a scene?
   public readonly isVisibleProperty: Property<boolean> = new BooleanProperty( true );
 
   // Signify whenever any object's value changes
   public readonly objectChangedEmitter = new Emitter();
 
+  //REVIEW document
   public readonly timeProperty: NumberProperty;
 
-  public readonly objectValueBecameNonNullEmitter: TEmitter;
+  public readonly objectValueBecameNonNullEmitter: TEmitter; //REVIEW document
   public readonly resetEmitter: TEmitter = new Emitter();
   public readonly clearDataEmitter: TEmitter = new Emitter();
   public readonly numberOfDataPointsProperty: Property<number>;
@@ -103,6 +107,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
+  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],

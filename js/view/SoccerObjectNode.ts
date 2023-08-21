@@ -31,6 +31,8 @@ export type CAVObjectNodeOptions =
   & PickRequired<NodeOptions, 'tandem'>;
 
 export default class SoccerObjectNode extends InteractiveHighlightingNode {
+
+  //REVIEW Why is this class not named SoccerBallNode? It's first parameter is soccerBall: SoccerBall.
   public constructor( public readonly soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
                       providedOptions?: CAVObjectNodeOptions ) {
