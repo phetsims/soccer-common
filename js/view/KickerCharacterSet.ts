@@ -21,6 +21,7 @@ export type KickerImageSet = {
 
 export default class KickerCharacterSet extends CharacterSet {
 
+  //REVIEW inappropriate references to "1st and 2nd screens" and "3rd screen"
   // Keeps track of how many characters are in each set. This is only needed for the unnumbered kickers in the 1st and 2nd screens.
   // THe numbered kickers will always be a length of 4, because there are 4 scenes in the 3rd screen.
   public readonly unnumberedKickersCount: number;
