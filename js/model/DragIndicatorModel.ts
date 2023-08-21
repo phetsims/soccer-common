@@ -14,10 +14,12 @@ import Property from '../../../axon/js/Property.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import SoccerSceneModel from './SoccerSceneModel.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import CAVSoccerSceneModel from '../../../center-and-variability/js/common/model/CAVSoccerSceneModel.js';
+
+export type UpdateDragIndicatorSceneModel = Pick<CAVSoccerSceneModel, 'getStackAtLocation' | 'medianValueProperty' | 'getTopSoccerBalls' | 'getActiveSoccerBalls'>;
 
 export default class DragIndicatorModel {
 
@@ -47,7 +49,7 @@ export default class DragIndicatorModel {
     } );
   }
 
-  public updateDragIndicator( sceneModel: SoccerSceneModel, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
+  public updateDragIndicator( sceneModel: UpdateDragIndicatorSceneModel, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
 
     //  if an object was moved, objects are not input enabled, or the max number of balls haven't been kicked out
     //  don't show the dragIndicatorArrowNode
