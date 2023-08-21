@@ -107,12 +107,15 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
-  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
-  //Keyboard Input Properties
+  // Keyboard Input Properties
   // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
   public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
   public readonly isSoccerBallGrabbedProperty = new Property( false );
+  public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly hasGrabbedBallProperty = new BooleanProperty( false );
+  public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
 
+  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
@@ -137,6 +140,11 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
       tandem: options.tandem.createTandem( 'kickDistributionStrategy' ),
       phetioFeatured: true
+    } );
+
+    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasGrabbedBallProperty, this.hasKeyboardFocusProperty ],
+      ( focusedSoccerBall, hasGrabbedBall, hasKeyboardFocus ) => {
+      return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
     } );
 
     const updateDataMeasures = () => this.updateDataMeasures();
@@ -384,7 +392,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.focusedSoccerBallProperty.reset();
     this.isSoccerBallGrabbedProperty.reset();
-
+    this.hasGrabbedBallProperty.reset();
+    this.hasKeyboardFocusProperty.reset();
     this.isClearingData = false;
     this.updateDataMeasures();
     this.clearDataEmitter.emit();

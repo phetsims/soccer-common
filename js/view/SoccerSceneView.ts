@@ -28,6 +28,7 @@ import Multilink from '../../../axon/js/Multilink.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 
 //REVIEW inappropriate reference to "CAVSceneModel"
 /**
@@ -162,9 +163,11 @@ export default class SoccerSceneView {
         if ( sceneModel.focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
           sceneModel.focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
         }
+        sceneModel.hasKeyboardFocusProperty.value = true;
       },
       blur: () => {
         sceneModel.isSoccerBallGrabbedProperty.value = false;
+        sceneModel.hasKeyboardFocusProperty.value = false;
       }
     } );
 
@@ -216,6 +219,7 @@ export default class SoccerSceneView {
           }
           else if ( keysPressed === 'enter' || keysPressed === 'space' ) {
             sceneModel.isSoccerBallGrabbedProperty.value = !sceneModel.isSoccerBallGrabbedProperty.value;
+            sceneModel.hasGrabbedBallProperty.value = true;
           }
           else if ( sceneModel.isSoccerBallGrabbedProperty.value ) {
 
@@ -258,6 +262,13 @@ export default class SoccerSceneView {
     backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
     // backLayerSoccerBallLayer.interactiveHighlight = this.focusHighlightPath;
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
+
+    // TODO: This should be z-ordered in front of flying balls, see: https://github.com/phetsims/center-and-variability/issues/433
+    const grabReleaseCueNode = new GrabReleaseCueNode( {
+      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 6 ),
+      visibleProperty: sceneModel.isGrabReleaseVisibleProperty
+    } );
+    frontLayer.addChild( grabReleaseCueNode );
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
