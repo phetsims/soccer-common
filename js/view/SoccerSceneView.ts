@@ -8,7 +8,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { HighlightFromNode, HighlightPath, KeyboardListener, Node } from '../../../scenery/js/imports.js';
+import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Path } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -40,6 +40,10 @@ export default class SoccerSceneView {
   public readonly frontSceneViewLayer: Node;
   private readonly focusHighlightPath: HighlightPath;
 
+  // Path that defines the area a user can hover and still see group interactive highlight on the
+  // backLayerSoccerBallLayer.
+  private readonly highlightRectangle = new Path( null );
+
   public constructor(
     dragIndicatorModel: DragIndicatorModel,
     soccerBallsEnabledProperty: Property<boolean>,
@@ -51,12 +55,14 @@ export default class SoccerSceneView {
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
-    // Keep soccer balls in one layer so we can control the focus order. This is a rectangle so it receives
-    // input for the "group" focus highlights.
-    const backLayerSoccerBallLayer = new Node( {
+    // Keep soccer balls in one layer, so we can control the focus order.
+    const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
+      children: [ this.highlightRectangle ],
       focusable: true,
+      pickable: true,
       tagName: 'div'
     } );
+
     const backLayer = new Node( {
       children: [ backLayerSoccerBallLayer ]
     } );
@@ -104,15 +110,6 @@ export default class SoccerSceneView {
       return soccerBallNode;
     } );
 
-    // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
-    const focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
-    const isSoccerBallGrabbedProperty = new Property( false );
-
-    sceneModel.clearDataEmitter.addListener( () => {
-      focusedSoccerBallProperty.reset();
-      isSoccerBallGrabbedProperty.reset();
-    } );
-
     // Update pointer areas when topmost ball changes
     sceneModel.stackChangedEmitter.addListener( stack => {
 
@@ -146,28 +143,28 @@ export default class SoccerSceneView {
       // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
       // a focusedSoccerBall gets assigned once the ball lands.
       const topSoccerBalls = sceneModel.getTopSoccerBalls();
-      if ( focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 && backLayerSoccerBallLayer.focused ) {
-        focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+      if ( sceneModel.focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 && backLayerSoccerBallLayer.focused ) {
+        sceneModel.focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
       }
 
       // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
       // stays on top.
-      if ( focusedSoccerBallProperty.value !== null ) {
-        assert && assert( focusedSoccerBallProperty.value.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
-        const focusedStack = sceneModel.getStackAtLocation( focusedSoccerBallProperty.value.valueProperty.value! );
-        focusedSoccerBallProperty.value = focusedStack[ focusedStack.length - 1 ];
+      if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
+        assert && assert( sceneModel.focusedSoccerBallProperty.value.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
+        const focusedStack = sceneModel.getStackAtLocation( sceneModel.focusedSoccerBallProperty.value.valueProperty.value! );
+        sceneModel.focusedSoccerBallProperty.value = focusedStack[ focusedStack.length - 1 ];
       }
     } );
 
     backLayerSoccerBallLayer.addInputListener( {
       focus: () => {
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
-          focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+        if ( sceneModel.focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
+          sceneModel.focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
         }
       },
       blur: () => {
-        isSoccerBallGrabbedProperty.value = false;
+        sceneModel.isSoccerBallGrabbedProperty.value = false;
       }
     } );
 
@@ -179,7 +176,7 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
+    Multilink.multilink( [ sceneModel.focusedSoccerBallProperty, sceneModel.isSoccerBallGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
         if ( focusedSoccerBall ) {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
@@ -197,36 +194,36 @@ export default class SoccerSceneView {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
 
         // Select a soccer ball
-        if ( focusedSoccerBallProperty.value !== null ) {
+        if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
-            if ( !isSoccerBallGrabbedProperty.value ) {
+            if ( !sceneModel.isSoccerBallGrabbedProperty.value ) {
               const delta = keysPressed === 'arrowRight' ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
               // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
               // also does not wrap.
-              const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBallProperty.value )! );
+              const currentIndex = topBallNodes.indexOf( soccerBallMap.get( sceneModel.focusedSoccerBallProperty.value )! );
               const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-              focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
+              sceneModel.focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
             }
             else {
               const delta = keysPressed === 'arrowLeft' ? -1 : 1;
-              const soccerBall = focusedSoccerBallProperty.value;
+              const soccerBall = sceneModel.focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
             }
           }
           else if ( keysPressed === 'enter' || keysPressed === 'space' ) {
-            isSoccerBallGrabbedProperty.value = !isSoccerBallGrabbedProperty.value;
+            sceneModel.isSoccerBallGrabbedProperty.value = !sceneModel.isSoccerBallGrabbedProperty.value;
           }
-          else if ( isSoccerBallGrabbedProperty.value ) {
+          else if ( sceneModel.isSoccerBallGrabbedProperty.value ) {
 
             if ( keysPressed === 'escape' ) {
-              isSoccerBallGrabbedProperty.value = false;
+              sceneModel.isSoccerBallGrabbedProperty.value = false;
             }
             else {
-              const soccerBall = focusedSoccerBallProperty.value;
+              const soccerBall = sceneModel.focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = keysPressed === 'home' ? physicalRange.min :
                                                keysPressed === 'end' ? physicalRange.max :
                                                keysPressed === '1' ? 1 :
@@ -259,6 +256,7 @@ export default class SoccerSceneView {
       innerLineWidth: HighlightPath.GROUP_INNER_LINE_WIDTH
     } );
     backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
+    // backLayerSoccerBallLayer.interactiveHighlight = this.focusHighlightPath;
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
 
     this.backSceneViewLayer = backLayer;
@@ -272,12 +270,14 @@ export default class SoccerSceneView {
   public setGroupFocusHighlightTop( top: number ): void {
     const margin = 4; // Distance below the accordion box
     const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) );
-    this.focusHighlightPath.shape = Shape.rect(
+    const fieldShape = Shape.rect(
       shapeForLeftRightBottom.bounds.x,
       top + margin,
       shapeForLeftRightBottom.bounds.width,
       shapeForLeftRightBottom.bounds.bottom - top - margin
     );
+    this.focusHighlightPath.shape = fieldShape;
+    this.highlightRectangle.shape = fieldShape;
   }
 }
 

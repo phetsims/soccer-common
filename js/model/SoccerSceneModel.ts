@@ -108,6 +108,11 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
   //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
+  //Keyboard Input Properties
+  // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
+  public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
+  public readonly isSoccerBallGrabbedProperty = new Property( false );
+
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
@@ -376,6 +381,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.soccerBalls.forEach( soccerBall => soccerBall.reset() );
 
     this.activeKickerIndexProperty.reset();
+
+    this.focusedSoccerBallProperty.reset();
+    this.isSoccerBallGrabbedProperty.reset();
 
     this.isClearingData = false;
     this.updateDataMeasures();
