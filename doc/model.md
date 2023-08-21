@@ -1,6 +1,7 @@
 ### Distribution
 
-The various distributions are described in KickDistributionStrategy, which can be based on a skew, or a distribution by distance
+The various distributions are described in KickDistributionStrategy, which can be based on a skew, or a distribution by
+distance
 (like an unnormalized histogram) or a sequence of exact distances.
 
 The randomSkew distribution is randomly chosen to be left/right skewed on startup, and on reset (but not on clear).
