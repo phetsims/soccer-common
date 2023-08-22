@@ -1,14 +1,34 @@
-### Distribution
+# Soccer Common - Model Description
 
-The various distributions are described in KickDistributionStrategy, which can be based on a skew, or a distribution by
-distance
-(like an unnormalized histogram) or a sequence of exact distances.
+@author Matthew Blackman
+<br>@author Marla Schulz
+<br>@author Sam Reid
 
-The randomSkew distribution is randomly chosen to be left/right skewed on startup, and on reset (but not on clear).
+This document is a high-level description of the model used in PhET's _Soccer Common_ repository, which is used as a
+foundation for simulations including _Center and Variability_ and _Mean Share and Balance_.
 
-The soccer ball has a null value until it lands, at which time it takes a numerical value.
+The _Soccer Common_ repository is used to create _Soccer Scenes_ in which one or more _kickers_ can kick _soccer balls_,
+which land along a horizontal number line and stack vertically. The main functionalities of the model include:
+
+## Soccer Scenes
+Each _Soccer Scene_ contains an independent set of _kickers_ and _soccer balls_, which can be kicked using a specific 
+_kick distance strategy_. A simulation screen may contain one or more _Soccer Scenes_.
+
+## Number Line
+Each _Soccer Scene_ contains a horizontal number line, labeled with integer values.
+
+## Kickers
+The people kicking the soccer balls are referred to as _Kickers_. Each one has a set of images that show the person
+at various phases of kicking a soccer ball. _KickerPhases_ can be _INACTIVE_, _READY_, _POISED_ or _KICKING_.
+
+## Soccer Balls
+The soccer balls that can be kicked within a given _Soccer Scene_. Each soccer ball has a null value until it 
+lands, at which time it takes an integer numerical value. Each soccer ball has a _SoccerBallPhase_ that describes the 
+portion of the kick it is currently in. _SoccerBallPhases_ can be _INACTIVE_, _READY_, _FLYING_, _STACKING_ or _STACKED_.
+
+## Kick Distribution Strategy
+Used to determine the distances for each kicked soccer ball. Can be based on a probability distribution, a sequence of
+exact distances, or a skew. The distributions are described in detail in _KickDistributionStrategy_.
+
 
 For more information on how this model is used in context, please see the documentation in center-and-variability/doc
-
-The SoccerSceneModel is the central container, which contains the data points, soccer players, etc.
-It is set up to be reused it different "scenes".
