@@ -20,13 +20,13 @@ import SoccerBall from '../model/SoccerBall.js';
 import { Shape } from '../../../kite/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Kicker from '../model/Kicker.js';
-import Property from '../../../axon/js/Property.js';
 import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
 
 //REVIEW inappropriate reference to "CAVSceneModel"
@@ -45,13 +45,20 @@ export default class SoccerSceneView {
   private readonly highlightRectangle = new Path( null );
 
   public constructor(
+    soccerModel: Pick<SoccerModel<SoccerSceneModel>,
+      'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'hasKeyboardFocusProperty' |
+      'isSoccerBallGrabbedProperty' | 'hasGrabbedBallProperty' | 'isGrabReleaseVisibleProperty'>,
     public readonly sceneModel: SoccerSceneModel,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
-    soccerBallsEnabledProperty: Property<boolean>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
     tandem: Tandem ) {
+
+    const soccerBallsEnabledProperty = soccerModel.soccerBallsEnabledProperty;
+    const focusedSoccerBallProperty = soccerModel.focusedSoccerBallProperty;
+    const hasKeyboardFocusProperty = soccerModel.hasKeyboardFocusProperty;
+    const isGrabReleaseVisibleProperty = soccerModel.isGrabReleaseVisibleProperty;
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
@@ -142,8 +149,8 @@ export default class SoccerSceneView {
       // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
       // a focusedSoccerBall gets assigned once the ball lands.
       const topSoccerBalls = sceneModel.getTopSoccerBalls();
-      if ( sceneModel.focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 && backLayerSoccerBallLayer.focused ) {
-        sceneModel.focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+      if ( focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 && backLayerSoccerBallLayer.focused ) {
+        focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
       }
 
       // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
@@ -158,10 +165,10 @@ export default class SoccerSceneView {
     backLayerSoccerBallLayer.addInputListener( {
       focus: () => {
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( sceneModel.focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
-          sceneModel.focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+        if ( focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
+          focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
         }
-        sceneModel.hasKeyboardFocusProperty.value = true;
+        hasKeyboardFocusProperty.value = true;
       },
       blur: () => {
         sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
@@ -195,7 +202,7 @@ export default class SoccerSceneView {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
 
         // Select a soccer ball
-        if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
+        if ( focusedSoccerBallProperty.value !== null ) {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
             if ( !sceneModel.isSoccerBallKeyboardGrabbedProperty.value ) {
@@ -204,13 +211,13 @@ export default class SoccerSceneView {
 
               // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
               // also does not wrap.
-              const currentIndex = topBallNodes.indexOf( soccerBallMap.get( sceneModel.focusedSoccerBallProperty.value )! );
+              const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBallProperty.value )! );
               const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-              sceneModel.focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
+              focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
             }
             else {
               const delta = keysPressed === 'arrowLeft' ? -1 : 1;
-              const soccerBall = sceneModel.focusedSoccerBallProperty.value;
+              const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
             }
@@ -225,7 +232,7 @@ export default class SoccerSceneView {
               sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
             }
             else {
-              const soccerBall = sceneModel.focusedSoccerBallProperty.value;
+              const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = keysPressed === 'home' ? physicalRange.min :
                                                keysPressed === 'end' ? physicalRange.max :
                                                keysPressed === '1' ? 1 :
@@ -263,7 +270,7 @@ export default class SoccerSceneView {
     // TODO: This should be z-ordered in front of flying balls, see: https://github.com/phetsims/center-and-variability/issues/433
     const grabReleaseCueNode = new GrabReleaseCueNode( {
       centerTop: this.modelViewTransform.modelToViewXY( 7.5, 6 ),
-      visibleProperty: sceneModel.isGrabReleaseVisibleProperty
+      visibleProperty: isGrabReleaseVisibleProperty
     } );
     frontLayer.addChild( grabReleaseCueNode );
 
