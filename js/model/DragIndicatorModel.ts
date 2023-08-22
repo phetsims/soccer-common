@@ -44,7 +44,7 @@ export default class DragIndicatorModel {
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioFeatured: true,
-      phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
+      phetioDocumentation: 'Sets the position of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
     } );
   }
 

@@ -94,7 +94,7 @@ export default class SoccerBall extends PhetioObject {
     this.dragPositionProperty = new Vector2Property( this.positionProperty.value.copy() );
     this.valueProperty = new SoccerBallValueProperty( null, {
       tandem: tandem.createTandem( 'valueProperty' ),
-      phetioDocumentation: 'The location of the soccer ball on the number line, or null if the soccer ball has not yet landed. ' +
+      phetioDocumentation: 'The value of the soccer ball on the number line, or null if the soccer ball has not yet landed. ' +
                            'This is the value that is used to calculate the statistical measures. ' +
                            'The value cannot be changed from null to non-null (or vice versa) directly. Instead use the ' +
                            'scene model setDataPoints function to change the entire data set. Please see the Examples document.',
