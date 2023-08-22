@@ -22,8 +22,7 @@ The people kicking the soccer balls are referred to as _Kickers_. Each one has a
 at various phases of kicking a soccer ball. _KickerPhases_ can be _INACTIVE_, _READY_, _POISED_ or _KICKING_.
 
 ## Soccer Balls
-The soccer balls that can be kicked within a given _Soccer Scene_. Each soccer ball has a null value until it 
-lands, at which time it takes an integer numerical value. Each soccer ball has a _SoccerBallPhase_ that describes the 
+The soccer balls that can be kicked within a given _Soccer Scene_. A soccer ball is like a data point that has a null value until it lands, then it takes a numerical integer value. Each soccer ball has a _SoccerBallPhase_ that describes the 
 portion of the kick it is currently in. _SoccerBallPhases_ can be _INACTIVE_, _READY_, _FLYING_, _STACKING_ or _STACKED_.
 
 ## Kick Distribution Strategy
