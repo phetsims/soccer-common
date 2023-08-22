@@ -33,7 +33,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   public readonly selectedSceneModelProperty: Property<T>;
   public readonly soccerBallsEnabledProperty: Property<boolean>;
 
-  protected readonly playAreaTandem: Tandem;
+  protected readonly soccerAreaTandem: Tandem;
 
   protected readonly selectedSceneStackedSoccerBallCountProperty: DynamicProperty<number, number, SoccerSceneModel>;
   protected readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
@@ -56,7 +56,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
 
     super( options );
 
-    this.playAreaTandem = options.tandem.createTandem( 'playArea' );
+    this.soccerAreaTandem = options.tandem.createTandem( 'soccerArea' );
 
     this.selectedSceneModelProperty = new Property( sceneModels[ 0 ], {
       validValues: sceneModels,
@@ -73,7 +73,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     } );
 
     this.soccerBallsEnabledProperty = new EnabledProperty( true, {
-      tandem: this.playAreaTandem.createTandem( 'soccerBallsEnabledProperty' ),
+      tandem: this.soccerAreaTandem.createTandem( 'soccerBallsEnabledProperty' ),
       phetioDocumentation: 'Enable or disable input on the entire set of soccer balls.',
       phetioFeatured: true,
       checkTandemName: false
