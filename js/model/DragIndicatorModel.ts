@@ -18,7 +18,7 @@ import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import CAVSoccerSceneModel from '../../../center-and-variability/js/common/model/CAVSoccerSceneModel.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 
-export type UpdateDragIndicatorSceneModel = Pick<CAVSoccerSceneModel, 'getStackAtLocation' | 'medianValueProperty' | 'getTopSoccerBalls' | 'getActiveSoccerBalls'>;
+export type UpdateDragIndicatorSceneModel = Pick<CAVSoccerSceneModel, 'getStackAtValue' | 'medianValueProperty' | 'getTopSoccerBalls' | 'getActiveSoccerBalls'>;
 
 export default class DragIndicatorModel {
 

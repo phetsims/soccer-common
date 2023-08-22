@@ -151,7 +151,7 @@ export default class SoccerSceneView {
       // stays on top.
       if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
         assert && assert( sceneModel.focusedSoccerBallProperty.value.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
-        const focusedStack = sceneModel.getStackAtLocation( sceneModel.focusedSoccerBallProperty.value.valueProperty.value! );
+        const focusedStack = sceneModel.getStackAtValue( sceneModel.focusedSoccerBallProperty.value.valueProperty.value! );
         sceneModel.focusedSoccerBallProperty.value = focusedStack[ focusedStack.length - 1 ];
       }
     } );

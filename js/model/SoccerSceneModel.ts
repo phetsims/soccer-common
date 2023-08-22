@@ -89,7 +89,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // Starting at 0, iterate through the index of the kickers. This updates the Kicker.kickerPhaseProperty to show the current kicker
   private readonly activeKickerIndexProperty: NumberProperty;
 
-  // Called when the location of a ball changed within a stack, so the pointer areas can be updated
+  // Called when the value of a ball changed within a stack, so the pointer areas can be updated
   public readonly stackChangedEmitter = new Emitter<[ SoccerBall[] ]>( {
 
     // We don't really need a runtime type check because TypeScript checks at type checking time
@@ -174,7 +174,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       // in which case we want it to animate to the top of the stack.
       soccerBall.valueProperty.lazyLink( ( value, oldValue ) => {
         if ( value !== null && !isSettingPhetioStateProperty.value && oldValue !== null ) {
-          const oldStack = this.getStackAtLocation( oldValue );
+          const oldStack = this.getStackAtValue( oldValue );
           if ( oldStack.length > 0 ) {
             this.reorganizeStack( oldStack );
             this.clearAnimationsInStack( oldStack );
@@ -193,7 +193,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
 
       soccerBall.dragStartedEmitter.addListener( () => {
-        const stack = this.getStackAtLocation( soccerBall.valueProperty.value! );
+        const stack = this.getStackAtValue( soccerBall.valueProperty.value! );
         this.reorganizeStack( stack );
         this.clearAnimationsInStack( stack );
       } );
@@ -324,15 +324,15 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   /**
-   * Returns all objects at the target location, matching the filter if provided. Note that some logic such as
+   * Returns all objects at the target value, matching the filter if provided. Note that some logic such as
    * determining where a ball will animate to within a stack depends on the number of balls in the stack (whether STACKING or STACKED)
    * but other logic such as where to draw the median arrow depends on the number of balls in the stack (whether STACKED only).
    */
-  public getStackAtLocation( location: number, filter?: ( soccerBall: SoccerBall ) => boolean ): SoccerBall[] {
-    const activeSoccerBallsAtLocation = this.getActiveSoccerBalls().filter( soccerBall => {
-      return soccerBall.valueProperty.value === location && ( filter ? filter( soccerBall ) : true );
+  public getStackAtValue( value: number, filter?: ( soccerBall: SoccerBall ) => boolean ): SoccerBall[] {
+    const activeSoccerBallsAtValue = this.getActiveSoccerBalls().filter( soccerBall => {
+      return soccerBall.valueProperty.value === value && ( filter ? filter( soccerBall ) : true );
     } );
-    return _.sortBy( activeSoccerBallsAtLocation, soccerBall => soccerBall.positionProperty.value.y );
+    return _.sortBy( activeSoccerBallsAtValue, soccerBall => soccerBall.positionProperty.value.y );
   }
 
   public getTallestStack( filter?: ( soccerBall: SoccerBall ) => boolean ): SoccerBall[] {
@@ -344,8 +344,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
    */
   public getStacks( filter?: ( soccerBall: SoccerBall ) => boolean ): SoccerBall[][] {
     return _.range( this.physicalRange.min, this.physicalRange.max + 1 )
-      .filter( location => this.getStackAtLocation( location, filter ).length > 0 )
-      .map( location => this.getStackAtLocation( location, filter ) );
+      .filter( value => this.getStackAtValue( value, filter ).length > 0 )
+      .map( value => this.getStackAtValue( value, filter ) );
   }
 
   /**
@@ -542,7 +542,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     const targetPositionY = targetIndex * diameter * ( 1 - SoccerCommonConstants.SOCCER_BALL_OVERLAP ) + SoccerCommonConstants.SOCCER_BALL_RADIUS;
 
     const animationSlowdownFactor = SoccerCommonQueryParameters.slowAnimation ? 20 : 1;
-    const animationTime = animationSlowdownFactor * 0.06 * ( this.getStackAtLocation( value ).length - 1 );
+    const animationTime = animationSlowdownFactor * 0.06 * ( this.getStackAtValue( value ).length - 1 );
 
     soccerBall.clearAnimation();
 
@@ -595,7 +595,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   /**
-   * Select a target location for the nextBallToKick, set its velocity and mark it for animation.
+   * Select a target value for the nextBallToKick, set its velocity and mark it for animation.
    */
   private kickBall( kicker: Kicker, soccerBall: T, playAudio: boolean ): void {
     kicker.kickerPhaseProperty.value = KickerPhase.KICKING;
@@ -646,7 +646,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     }
 
     // Reorganize the stacks
-    _.uniq( dataPoints ).forEach( value => this.reorganizeStack( this.getStackAtLocation( value ) ) );
+    _.uniq( dataPoints ).forEach( value => this.reorganizeStack( this.getStackAtValue( value ) ) );
 
     this.updateDataMeasures();
 

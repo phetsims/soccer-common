@@ -94,7 +94,7 @@ export default class SoccerBall extends PhetioObject {
     this.dragPositionProperty = new Vector2Property( this.positionProperty.value.copy() );
     this.valueProperty = new SoccerBallValueProperty( null, {
       tandem: tandem.createTandem( 'valueProperty' ),
-      phetioDocumentation: 'The location of the soccer ball in meters, or null if the soccer ball has not yet landed. ' +
+      phetioDocumentation: 'The location of the soccer ball on the number line, or null if the soccer ball has not yet landed. ' +
                            'This is the value that is used to calculate the statistical measures. ' +
                            'The value cannot be changed from null to non-null (or vice versa) directly. Instead use the ' +
                            'scene model setDataPoints function to change the entire data set. Please see the Examples document.',
@@ -179,7 +179,7 @@ export default class SoccerBall extends PhetioObject {
 
 /**
  * 4th order Runge Kutte integration under constant acceleration.  We use this more sophisticated algorithm instead of
- * x=x0+v0t+1/2at^2 because that looked too much like the ball ended a little to the left of the target location,
+ * x=x0+v0t+1/2at^2 because that looked too much like the ball ended a little to the left of the target value,
  * and jumped slightly to the side.
  * See https://mtdevans.com/2013/05/fourth-order-runge-kutta-algorithm-in-javascript-with-demo/
  */
