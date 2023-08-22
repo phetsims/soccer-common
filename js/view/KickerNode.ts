@@ -23,7 +23,7 @@ import Multilink from '../../../axon/js/Multilink.js';
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
 
-const SCALE = 0.155;
+const SCALE = 0.31;
 
 export default class KickerNode extends Node {
   public readonly kicker: Kicker;
