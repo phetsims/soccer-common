@@ -59,7 +59,6 @@ export default class SoccerSceneView {
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       children: [ this.highlightRectangle ],
       focusable: true,
-      pickable: true,
       tagName: 'div'
     } );
 
@@ -165,7 +164,7 @@ export default class SoccerSceneView {
         sceneModel.hasKeyboardFocusProperty.value = true;
       },
       blur: () => {
-        sceneModel.isSoccerBallGrabbedProperty.value = false;
+        sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
         sceneModel.hasKeyboardFocusProperty.value = false;
       }
     } );
@@ -178,7 +177,7 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    Multilink.multilink( [ sceneModel.focusedSoccerBallProperty, sceneModel.isSoccerBallGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
+    Multilink.multilink( [ sceneModel.focusedSoccerBallProperty, sceneModel.isSoccerBallKeyboardGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
         if ( focusedSoccerBall ) {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
@@ -199,7 +198,7 @@ export default class SoccerSceneView {
         if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
-            if ( !sceneModel.isSoccerBallGrabbedProperty.value ) {
+            if ( !sceneModel.isSoccerBallKeyboardGrabbedProperty.value ) {
               const delta = keysPressed === 'arrowRight' ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
@@ -217,13 +216,13 @@ export default class SoccerSceneView {
             }
           }
           else if ( keysPressed === 'enter' || keysPressed === 'space' ) {
-            sceneModel.isSoccerBallGrabbedProperty.value = !sceneModel.isSoccerBallGrabbedProperty.value;
+            sceneModel.isSoccerBallKeyboardGrabbedProperty.value = !sceneModel.isSoccerBallKeyboardGrabbedProperty.value;
             sceneModel.hasGrabbedBallProperty.value = true;
           }
-          else if ( sceneModel.isSoccerBallGrabbedProperty.value ) {
+          else if ( sceneModel.isSoccerBallKeyboardGrabbedProperty.value ) {
 
             if ( keysPressed === 'escape' ) {
-              sceneModel.isSoccerBallGrabbedProperty.value = false;
+              sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
             }
             else {
               const soccerBall = sceneModel.focusedSoccerBallProperty.value;
@@ -259,7 +258,6 @@ export default class SoccerSceneView {
       innerLineWidth: HighlightPath.GROUP_INNER_LINE_WIDTH
     } );
     backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
-    // backLayerSoccerBallLayer.interactiveHighlight = this.focusHighlightPath;
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
 
     // TODO: This should be z-ordered in front of flying balls, see: https://github.com/phetsims/center-and-variability/issues/433

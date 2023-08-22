@@ -106,8 +106,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // Keyboard Input Properties
   // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
   public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
-  public readonly isSoccerBallGrabbedProperty = new Property( false );
+  public readonly isSoccerBallKeyboardGrabbedProperty = new Property( false );
   public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
+
+  // Becomes true if the soccer ball has ever been grabbed.
   public readonly hasGrabbedBallProperty = new BooleanProperty( false );
   public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
 
@@ -139,8 +141,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasGrabbedBallProperty, this.hasKeyboardFocusProperty ],
       ( focusedSoccerBall, hasGrabbedBall, hasKeyboardFocus ) => {
-      return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
-    } );
+        return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
+      } );
 
     const updateDataMeasures = () => this.updateDataMeasures();
 
@@ -387,7 +389,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.activeKickerIndexProperty.reset();
 
     this.focusedSoccerBallProperty.reset();
-    this.isSoccerBallGrabbedProperty.reset();
+    this.isSoccerBallKeyboardGrabbedProperty.reset();
     this.hasGrabbedBallProperty.reset();
     this.hasKeyboardFocusProperty.reset();
     this.isClearingData = false;
