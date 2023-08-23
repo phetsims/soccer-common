@@ -1,9 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
-//REVIEW inappropriate reference to "Median and Mean & Median screens" and "Variability screen"
 /**
- * Base class for the scene model in a screen. The Median and Mean & Median screens only have one scene model.
- * The Variability screen has 4 scene models.
+ * Model for  a scene on which soccer balls can be kicked to various locations on a number line by one or more kickers.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)
@@ -77,6 +75,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public readonly kickers: Kicker[];
 
   private readonly numberOfQueuedKicksProperty: NumberProperty;
+
+  //
   public readonly numberOfUnkickedBallsProperty: TReadOnlyProperty<number>;
   public readonly hasKickableSoccerBallsProperty: TReadOnlyProperty<boolean>;
 
@@ -113,7 +113,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public readonly hasGrabbedBallProperty = new BooleanProperty( false );
   public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
 
-  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
