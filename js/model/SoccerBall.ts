@@ -67,7 +67,7 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  public constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
+  protected constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
 
     super( {
       phetioState: false,
