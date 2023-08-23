@@ -1,6 +1,5 @@
 // Copyright 2023, University of Colorado Boulder
 
-//REVIEW inappropriate reference to "lab screen"
 /**
  * The `SoccerBall` class represents a data point within the simulation. Upon instantiation, the `SoccerBall` object has a null value. However, once the `SoccerBall` object lands after a kick, it assumes an integer value.
  *
@@ -68,7 +67,6 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  //REVIEW "Base class" in the doc above implies that it's not intended to be instantiated directly. Is that accurate? Should constructor be protected?
   public constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
 
     super( {
