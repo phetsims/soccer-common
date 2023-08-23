@@ -1,9 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
-//REVIEW inappropriate reference to "CAV screen"
 /**
- * Depicts a single scene in the CAV screen.  This includes the soccer balls, soccer players, and drag indicator arrow.
- * The scene is rendered in two layers to ensure the correct z-ordering.
+ * Depicts a single scene in which soccer balls can be kicked. This includes the soccer balls, soccer players,
+ * and drag indicator arrow. The scene is rendered in two layers to ensure the correct z-ordering.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
@@ -29,9 +28,8 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
 
-//REVIEW inappropriate reference to "CAVSceneModel"
 /**
- * Renders view elements for a CAVSceneModel. Note that to satisfy the correct z-ordering, elements
+ * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
  * populate the middleScreenViewLayer and frontScreenViewLayer in the parent.
  */
 export default class SoccerSceneView {

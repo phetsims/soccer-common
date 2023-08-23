@@ -1,8 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
-//REVIEW inappropriate reference to "lab screen"
 /**
- * Kicker is the soccer player that kicks balls into the soccer area.
+ * Used to create a representation of a person with images showing different phases of them kicking a ball.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)
@@ -22,9 +21,13 @@ import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
 
 export default class Kicker {
 
-  //REVIEW document these Properties
+  // Which portion of the kicking animation the person is currently in. Determines which pose to set.
   public readonly kickerPhaseProperty: Property<KickerPhase>;
+
+  // Which pose the kicker is currently showing. Determines which image to display.
   public readonly poseProperty: TReadOnlyProperty<Pose>;
+
+  // The timestamp for when the kicker's poseProperty was last set to POISED_TO_KICK
   public readonly timestampWhenPoisedBeganProperty: Property<number | null>;
 
   // Used to determine the artwork for rendering the KickerNode

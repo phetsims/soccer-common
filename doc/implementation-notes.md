@@ -85,7 +85,8 @@ PhET-iO API.
 
 ### KickDistributionStrategy
 
-The SoccerSceneModel has a KickDistributionStrategy which determines where the kicks will fall. The values are determined
+The SoccerSceneModel has a KickDistributionStrategy which determines where the kicks will fall. Each kick location is
+determined
 at the time of the kick (not predetermined). For the random skew strategy, it re-randomizes to left/right skew on reset.
 PhET-iO provides a rich API for specifying different types of distributions.
 

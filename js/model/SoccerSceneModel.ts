@@ -58,32 +58,44 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   //TODO - Does meanValueProperty belong in soccer-common? See https://github.com/phetsims/center-and-variability/issues/509
   public readonly meanValueProperty: Property<number | null>;
 
-  //REVIEW document -- what does isVisible mean for a scene?
+  // Whether the scene model is currently being displayed on the screen
   public readonly isVisibleProperty: Property<boolean> = new BooleanProperty( true );
 
   // Signify whenever any object's value changes
   public readonly objectChangedEmitter = new Emitter();
 
-  //REVIEW document
+  // Keeps track of simulation time, starting when a sequence of kicks begins. Used to schedule queued kicks.
   public readonly timeProperty: NumberProperty;
 
-  public readonly objectValueBecameNonNullEmitter: TEmitter; //REVIEW document
+  // Emitter that fires when a SoccerBall's value goes from null to non-null
+  public readonly objectValueBecameNonNullEmitter: TEmitter;
+
+  // Emitter that fires when a scene is reset
   public readonly resetEmitter: TEmitter = new Emitter();
+
+  // Emitter that fires when a scene's soccer ball data is cleared
   public readonly clearDataEmitter: TEmitter = new Emitter();
+
+  // The total number of data points (landed soccer balls) that a scene is currently showing
   public readonly numberOfDataPointsProperty: Property<number>;
 
+  // The array of kickers that can kick soccer balls in a scene
   public readonly kickers: Kicker[];
 
+  // The number kicks are currently scheduled to be kicked
   private readonly numberOfQueuedKicksProperty: NumberProperty;
 
-  //
+  // The number of soccer balls that have not yet been kicked
   public readonly numberOfUnkickedBallsProperty: TReadOnlyProperty<number>;
+
+  // Whether the scene has any kickable soccer balls remaining
   public readonly hasKickableSoccerBallsProperty: TReadOnlyProperty<boolean>;
 
   // Takes the same values as hasKickableSoccerBallsProperty, but updated synchronously during step() so it never
   // goes through incorrect intermediate values. See https://github.com/phetsims/center-and-variability/issues/77
   public readonly hasKickableSoccerBallsStableProperty: BooleanProperty;
 
+  // The timestamp for when the last soccer ball was kicked
   private readonly timeWhenLastBallWasKickedProperty: NumberProperty;
 
   // Starting at 0, iterate through the index of the kickers. This updates the Kicker.kickerPhaseProperty to show the current kicker
@@ -101,6 +113,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // This is to avoid performance issues when the data is cleared.
   public isClearingData = false;
 
+  // The logical strategy for determining kick distances
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
   // Keyboard Input Properties
@@ -127,8 +140,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     super( {
       phetioState: false,
       phetioType: SoccerSceneModelIO,
-      //REVIEW inappropriate reference to CAV in soccer-common
-      phetioDocumentation: 'The model for the CAV scene, which includes the soccer balls and the soccer players.',
+      phetioDocumentation: 'The model for the soccer scene, which includes the soccer balls and the soccer players.',
       isDisposable: false,
       tandem: tandem
     } );

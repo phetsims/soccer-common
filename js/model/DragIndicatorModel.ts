@@ -1,10 +1,12 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * DragIndicatorModel tracks whether a soccer ball has been dragged, and whether the drag indicator needs to be visible.
+ * A model that tracks whether soccerBalls have been dragged or not.
+ * Will also determine if the dragIndicator needs to be visible.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  * @author Matthew Blackman (PhET Interactive Simulations)
+ *
  */
 
 import soccerCommon from '../soccerCommon.js';
@@ -18,9 +20,13 @@ import SoccerSceneModel from './SoccerSceneModel.js';
 
 export default class DragIndicatorModel {
 
-  //REVIEW The comment here doesn't seem appropriate, it's specific to CAV.
-  public readonly isDragIndicatorVisibleProperty: Property<boolean>; // Screens 1-3
+  // Whether the hand drag icon is currently showing on the soccer ball area
+  public readonly isDragIndicatorVisibleProperty: Property<boolean>;
+
+  // The value on the number line for the soccer ball that the drag indicator is currently over
   public readonly valueProperty: Property<number | null>;
+
+  // Whether a soccer ball has ever been dragged to a new value in the current scene
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
   public constructor( public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
@@ -40,7 +46,7 @@ export default class DragIndicatorModel {
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioFeatured: true,
-      phetioDocumentation: 'Sets the position of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
+      phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
     } );
   }
 

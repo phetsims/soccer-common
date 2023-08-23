@@ -10,12 +10,12 @@ import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonQueryParameters = QueryStringMachine.getAll( {
 
-  //REVIEW document
+  // Sets the soccer ball stacking animation to 20x slower. Used for testing/debugging
   slowAnimation: {
     type: 'flag'
   },
 
-  //REVIEW document
+  // Causes all kicked soccer balls to land in the same location (7 meters)
   sameSpot: {
     type: 'flag'
   }

@@ -19,12 +19,6 @@ import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonColors = {
 
-  //REVIEW screenBackgroundColorProperty seems inappropriate in soccer-common, as is the "this sim" comment, and it's unused. Delete?
-  // Background color for screens in this sim
-  screenBackgroundColorProperty: new ProfileColorProperty( soccerCommon, 'background', {
-    default: 'white'
-  } ),
-
   dragIndicatorColorProperty: new ProfileColorProperty( soccerCommon, 'dragIndicatorColor', {
     default: '#6bc6ff'
   } ),
