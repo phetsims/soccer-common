@@ -55,7 +55,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The max kickable (highest value in the combo box, if there is one)
   private readonly maxKicksLimit: number;
 
-  //REVIEW Does meanValueProperty belong in soccer-common? Is seems specific to CAV.
+  //TODO - Does meanValueProperty belong in soccer-common? See https://github.com/phetsims/center-and-variability/issues/509
   public readonly meanValueProperty: Property<number | null>;
 
   //REVIEW document -- what does isVisible mean for a scene?
