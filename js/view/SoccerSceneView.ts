@@ -23,7 +23,6 @@ import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
-import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
@@ -45,7 +44,7 @@ export default class SoccerSceneView {
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
       'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'hasKeyboardFocusProperty' |
-      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty' | 'isGrabReleaseVisibleProperty'>,
+      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty'>,
     public readonly sceneModel: SoccerSceneModel,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
@@ -56,7 +55,6 @@ export default class SoccerSceneView {
     const soccerBallsEnabledProperty = soccerModel.soccerBallsEnabledProperty;
     const focusedSoccerBallProperty = soccerModel.focusedSoccerBallProperty;
     const hasKeyboardFocusProperty = soccerModel.hasKeyboardFocusProperty;
-    const isGrabReleaseVisibleProperty = soccerModel.isGrabReleaseVisibleProperty;
     const isSoccerBallKeyboardGrabbedProperty = soccerModel.isSoccerBallKeyboardGrabbedProperty;
     const hasKeyboardGrabbedBallProperty = soccerModel.hasKeyboardGrabbedBallProperty;
 
@@ -269,13 +267,6 @@ export default class SoccerSceneView {
     } );
     backLayerSoccerBallLayer.setGroupFocusHighlight( this.focusHighlightPath );
     backLayerSoccerBallLayer.addInputListener( keyboardListener );
-
-    // TODO: This should be z-ordered in front of flying balls, see: https://github.com/phetsims/center-and-variability/issues/433
-    const grabReleaseCueNode = new GrabReleaseCueNode( {
-      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 5.4 ),
-      visibleProperty: isGrabReleaseVisibleProperty
-    } );
-    frontLayer.addChild( grabReleaseCueNode );
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;

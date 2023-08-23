@@ -11,7 +11,11 @@ import soccerCommon from './soccerCommon.js';
 const SoccerCommonConstants = {
   GRAVITY: -9.8, // in meters/second^2
   SOCCER_BALL_RADIUS: 0.3, // in meters
-  SOCCER_BALL_OVERLAP: 0.01 // as a percentage of the soccer ball diameter
+  SOCCER_BALL_OVERLAP: 0.01, // as a percentage of the soccer ball diameter
+  GROUND_POSITION_Y: 515,
+  SOCCER_BALL_VIEW_SIZE: 41,
+  SCREEN_VIEW_X_MARGIN: 15,
+  SCREEN_VIEW_Y_MARGIN: 15
 };
 
 soccerCommon.register( 'SoccerCommonConstants', SoccerCommonConstants );
