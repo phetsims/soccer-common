@@ -15,10 +15,8 @@ import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import CAVSoccerSceneModel from '../../../center-and-variability/js/common/model/CAVSoccerSceneModel.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-
-export type UpdateDragIndicatorSceneModel = Pick<CAVSoccerSceneModel, 'getStackAtValue' | 'medianValueProperty' | 'getTopSoccerBalls' | 'getActiveSoccerBalls'>;
+import SoccerSceneModel from './SoccerSceneModel.js';
 
 export default class DragIndicatorModel {
 
@@ -48,7 +46,7 @@ export default class DragIndicatorModel {
     } );
   }
 
-  public updateDragIndicator( sceneModel: UpdateDragIndicatorSceneModel, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
+  public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls'>, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
 
     //  if an object was moved, objects are not input enabled, or the max number of balls haven't been kicked out
     //  don't show the dragIndicatorArrowNode

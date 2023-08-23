@@ -36,6 +36,15 @@
               "ts-check": true,
               "ts-nocheck": true
             }
+          ],
+          "additional-bad-text": [
+            "error",
+            {
+              "forbiddenTextObjects": [
+                "dispose",
+                "../center-and-variability/js"
+              ]
+            }
           ]
         }
       }

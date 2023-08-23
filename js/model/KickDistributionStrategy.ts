@@ -18,10 +18,18 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import dotRandom from '../../../dot/js/dotRandom.js';
-import CAVConstants from '../../../center-and-variability/js/common/CAVConstants.js';
 import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
+
+// Right skewed means most of the data is on the left, see https://github.com/phetsims/center-and-variability/issues/112
+export const RIGHT_SKEWED_DATA = [
+  10, 25, 45, 30, 18,
+  12, 10, 5, 4, 4,
+  4, 4, 4, 4, 4
+];
+
+export const LEFT_SKEWED_DATA = RIGHT_SKEWED_DATA.slice().reverse();
 
 export type KickDistributionStrategySpecification = {
   type: DistributionType;
@@ -44,10 +52,10 @@ export default class KickDistributionStrategy extends PhetioObject {
       phetioType: KickDistributionStrategyIO,
 
       phetioDocumentation: 'The rules for kick distances can be specified using the state object. There are three ways to customize the values:<br><ul>' +
-                           `<li><b>Probability by Distance</b>: Defines the frequencies or relative likelihoods per each value on the number line. The "values" array should contain only positive real numbers, where each value is the relative likelihood that a ball will land in each position from 1 to 15, in order. The array does not need to be normalized. e.g., ${pre}${code}{<br>   "type": "probabilityByDistance",<br>   "values": [0,0,1,3,5,7,3,3,1,1,0,0,0,0,1],<br>   "skewType": null<br>}</code></pre></li>` +
-                           `<li><b>Distance By Index</b>: Defines the value on the number line each ball will land in the order it is kicked. Values should be positive integers from 1 to 15. The length of the "values" array should equal the maximum number of kicks for the scene (defined in preferences). Note: This works whether any balls have been kicked or not. For example, if zero balls have been kicked prior to the set value command, the first ball will land at the value in the first position of the "values" array. If three balls have been kicked prior to the command, the next ball will land at the value in the fourth position in the "values" array. ${pre}${code}{<br>   "type": "distanceByIndex",<br>   "values": [5,11,9,12,10,2,7,3,4,14,1,15,8,13,2,4,12,10,6,1,13,9,3,14,5,6,11,8,7,15],<br>   "skewType": null<br>}</code></pre></li>` +
+                           `<li><b>Probability by Distance</b>: Defines the frequencies or relative likelihoods per each location on the number line. The "values" array should contain only positive real numbers, where each value is the relative likelihood that a ball will land in each position from 1 to 15, in order. The array does not need to be normalized. e.g., ${pre}${code}{<br>   "type": "probabilityByDistance",<br>   "values": [0,0,1,3,5,7,3,3,1,1,0,0,0,0,1],<br>   "skewType": null<br>}</code></pre></li>` +
+                           `<li><b>Distance By Index</b>: Defines the location on the number line each ball will land in the order it is kicked. Values should be positive integers from 1 to 15. The length of the "values" array should equal the maximum number of kicks for the scene (defined in preferences). Note: This works whether any balls have been kicked or not. For example, if zero balls have been kicked prior to the set value command, the first ball will land at the value in the first position of the "values" array. If three balls have been kicked prior to the command, the next ball will land at the value in the fourth position in the "values" array. ${pre}${code}{<br>   "type": "distanceByIndex",<br>   "values": [5,11,9,12,10,2,7,3,4,14,1,15,8,13,2,4,12,10,6,1,13,9,3,14,5,6,11,8,7,15],<br>   "skewType": null<br>}</code></pre></li>` +
                            `<li><b>Random Skew</b>: Randomly chooses a left or right skewed distribution each time the sim is reset. "skewType" defines the initial skew of the distribution, which can be "left" or "right". (Recall that a right-skewed data set means most of the values fall to the left.) ${pre}${code}{<br>   "type": "randomSkew",<br>   "values": null,<br>   "skewType": "right"<br>}</code></pre></li>` +
-                           `<li><b>Skew</b>: Left or right skew which does not change on startup or reset. The left skewed data set being used has a probability by distance distribution with these values: [${CAVConstants.LEFT_SKEWED_DATA.join( ',' )}]. The right skewed data set reverses that array. Example:${pre}${code}{<br>   "type": "skew",<br>   "values": null,<br>   "skewType": "left"<br>}</code></pre></li>`,
+                           `<li><b>Skew</b>: Left or right skew which does not change on startup or reset. The left skewed data set being used has a probability by distance distribution with these values: [${LEFT_SKEWED_DATA.join( ',' )}]. The right skewed data set reverses that array. Example:${pre}${code}{<br>   "type": "skew",<br>   "values": null,<br>   "skewType": "left"<br>}</code></pre></li>`,
       isDisposable: false
     }, providedOptions );
 
@@ -57,10 +65,10 @@ export default class KickDistributionStrategy extends PhetioObject {
   public getKickDistance( kickIndex: number ): number {
     if ( this.type === 'randomSkew' || this.type === 'skew' ) {
       if ( this.skewType === 'left' ) {
-        return dotRandom.sampleProbabilities( CAVConstants.LEFT_SKEWED_DATA ) + 1;
+        return dotRandom.sampleProbabilities( LEFT_SKEWED_DATA ) + 1;
       }
       else if ( this.skewType === 'right' ) {
-        return dotRandom.sampleProbabilities( CAVConstants.RIGHT_SKEWED_DATA ) + 1;
+        return dotRandom.sampleProbabilities( RIGHT_SKEWED_DATA ) + 1;
       }
       else {
         assert && assert( false, 'incorrect skewType: ' + this.skewType );
