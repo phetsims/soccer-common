@@ -123,16 +123,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The logical strategy for determining kick distances
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
-  // Keyboard Input Properties
-  // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
-  public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
-  public readonly isSoccerBallKeyboardGrabbedProperty = new Property( false );
-  public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
-
-  // Becomes true if the soccer ball has ever been grabbed.
-  public readonly hasGrabbedBallProperty = new BooleanProperty( false );
-  public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
-
   public constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
@@ -156,11 +146,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       tandem: tandem.createTandem( 'kickDistributionStrategy' ),
       phetioFeatured: true
     } );
-
-    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasGrabbedBallProperty, this.hasKeyboardFocusProperty ],
-      ( focusedSoccerBall, hasGrabbedBall, hasKeyboardFocus ) => {
-        return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
-      } );
 
     const updateDataMeasures = () => this.updateDataMeasures();
 
@@ -406,10 +391,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.activeKickerIndexProperty.reset();
 
-    this.focusedSoccerBallProperty.reset();
-    this.isSoccerBallKeyboardGrabbedProperty.reset();
-    this.hasGrabbedBallProperty.reset();
-    this.hasKeyboardFocusProperty.reset();
     this.isClearingData = false;
     this.updateDataMeasures();
     this.clearDataEmitter.emit();

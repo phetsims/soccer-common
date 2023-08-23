@@ -44,9 +44,11 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // Keyboard Input Properties
   // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
   public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
-  public readonly isSoccerBallGrabbedProperty = new Property( false );
+  public readonly isSoccerBallKeyboardGrabbedProperty = new Property( false );
   public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
-  public readonly hasGrabbedBallProperty = new BooleanProperty( false );
+
+  // Becomes true if the soccer ball has ever been grabbed via keyboard input.
+  public readonly hasKeyboardGrabbedBallProperty = new BooleanProperty( false );
   public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
@@ -92,7 +94,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       derive: 'maxKicksProperty'
     } );
 
-    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasGrabbedBallProperty, this.hasKeyboardFocusProperty ],
+    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasKeyboardGrabbedBallProperty, this.hasKeyboardFocusProperty ],
       ( focusedSoccerBall, hasGrabbedBall, hasKeyboardFocus ) => {
         return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
       } );
@@ -109,8 +111,8 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     this.selectedSceneModelProperty.reset();
 
     this.focusedSoccerBallProperty.reset();
-    this.isSoccerBallGrabbedProperty.reset();
-    this.hasGrabbedBallProperty.reset();
+    this.isSoccerBallKeyboardGrabbedProperty.reset();
+    this.hasKeyboardGrabbedBallProperty.reset();
     this.hasKeyboardFocusProperty.reset();
   }
 }

@@ -45,7 +45,7 @@ export default class SoccerSceneView {
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
       'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'hasKeyboardFocusProperty' |
-      'isSoccerBallGrabbedProperty' | 'hasGrabbedBallProperty' | 'isGrabReleaseVisibleProperty'>,
+      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty' | 'isGrabReleaseVisibleProperty'>,
     public readonly sceneModel: SoccerSceneModel,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
@@ -57,6 +57,8 @@ export default class SoccerSceneView {
     const focusedSoccerBallProperty = soccerModel.focusedSoccerBallProperty;
     const hasKeyboardFocusProperty = soccerModel.hasKeyboardFocusProperty;
     const isGrabReleaseVisibleProperty = soccerModel.isGrabReleaseVisibleProperty;
+    const isSoccerBallKeyboardGrabbedProperty = soccerModel.isSoccerBallKeyboardGrabbedProperty;
+    const hasKeyboardGrabbedBallProperty = soccerModel.hasKeyboardGrabbedBallProperty;
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
@@ -153,10 +155,10 @@ export default class SoccerSceneView {
 
       // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
       // stays on top.
-      if ( sceneModel.focusedSoccerBallProperty.value !== null ) {
-        assert && assert( sceneModel.focusedSoccerBallProperty.value.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
-        const focusedStack = sceneModel.getStackAtValue( sceneModel.focusedSoccerBallProperty.value.valueProperty.value! );
-        sceneModel.focusedSoccerBallProperty.value = focusedStack[ focusedStack.length - 1 ];
+      if ( focusedSoccerBallProperty.value !== null ) {
+        assert && assert( focusedSoccerBallProperty.value.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
+        const focusedStack = sceneModel.getStackAtValue( focusedSoccerBallProperty.value.valueProperty.value! );
+        focusedSoccerBallProperty.value = focusedStack[ focusedStack.length - 1 ];
       }
     } );
 
@@ -169,8 +171,11 @@ export default class SoccerSceneView {
         hasKeyboardFocusProperty.value = true;
       },
       blur: () => {
-        sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
-        sceneModel.hasKeyboardFocusProperty.value = false;
+        isSoccerBallKeyboardGrabbedProperty.value = false;
+        hasKeyboardFocusProperty.value = false;
+      },
+      over: () => {
+        hasKeyboardFocusProperty.value = false;
       }
     } );
 
@@ -182,7 +187,7 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    Multilink.multilink( [ sceneModel.focusedSoccerBallProperty, sceneModel.isSoccerBallKeyboardGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
+    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
         if ( focusedSoccerBall ) {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
@@ -203,7 +208,7 @@ export default class SoccerSceneView {
         if ( focusedSoccerBallProperty.value !== null ) {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
-            if ( !sceneModel.isSoccerBallKeyboardGrabbedProperty.value ) {
+            if ( !isSoccerBallKeyboardGrabbedProperty.value ) {
               const delta = keysPressed === 'arrowRight' ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
@@ -221,13 +226,13 @@ export default class SoccerSceneView {
             }
           }
           else if ( keysPressed === 'enter' || keysPressed === 'space' ) {
-            sceneModel.isSoccerBallKeyboardGrabbedProperty.value = !sceneModel.isSoccerBallKeyboardGrabbedProperty.value;
-            sceneModel.hasGrabbedBallProperty.value = true;
+            isSoccerBallKeyboardGrabbedProperty.value = !isSoccerBallKeyboardGrabbedProperty.value;
+            hasKeyboardGrabbedBallProperty.value = true;
           }
-          else if ( sceneModel.isSoccerBallKeyboardGrabbedProperty.value ) {
+          else if ( isSoccerBallKeyboardGrabbedProperty.value ) {
 
             if ( keysPressed === 'escape' ) {
-              sceneModel.isSoccerBallKeyboardGrabbedProperty.value = false;
+              isSoccerBallKeyboardGrabbedProperty.value = false;
             }
             else {
               const soccerBall = focusedSoccerBallProperty.value;
@@ -267,7 +272,7 @@ export default class SoccerSceneView {
 
     // TODO: This should be z-ordered in front of flying balls, see: https://github.com/phetsims/center-and-variability/issues/433
     const grabReleaseCueNode = new GrabReleaseCueNode( {
-      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 6 ),
+      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 5.4 ),
       visibleProperty: isGrabReleaseVisibleProperty
     } );
     frontLayer.addChild( grabReleaseCueNode );
