@@ -33,7 +33,8 @@ export default class DragIndicatorModel {
   // Whether a soccer ball has ever been dragged to a new value in the current scene
   public readonly soccerBallHasBeenDraggedProperty: Property<boolean>;
 
-  public constructor( public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
+  public constructor( protected readonly isKeyboardFocusedProperty: TReadOnlyProperty<boolean>,
+                      public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
@@ -52,6 +53,10 @@ export default class DragIndicatorModel {
       phetioFeatured: true,
       phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
     } );
+
+    this.isKeyboardFocusedProperty.link( isKeyboardFocused => {
+      this.isDragIndicatorVisibleProperty.set( !isKeyboardFocused && !this.soccerBallHasBeenDraggedProperty.value );
+    } );
   }
 
   public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls'>, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
@@ -59,6 +64,7 @@ export default class DragIndicatorModel {
     //  if an object was moved, objects are not input enabled, or the max number of balls haven't been kicked out
     //  don't show the dragIndicatorArrowNode
     this.isDragIndicatorVisibleProperty.value = !soccerBallHasBeenDragged &&
+                                                !this.isKeyboardFocusedProperty.value &&
                                                 soccerBallCount === maxKicks &&
                                                 this.soccerBallsEnabledProperty.value &&
                                                 _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );

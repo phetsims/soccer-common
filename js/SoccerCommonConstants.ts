@@ -19,15 +19,15 @@ const SoccerCommonConstants = {
   SCREEN_VIEW_X_MARGIN: 15,
   SCREEN_VIEW_Y_MARGIN: 15,
 
-  CREATE_KEYBOARD_ARROW_NODE: ( visibleProperty: TReadOnlyProperty<boolean> ): InteractiveCueArrowNode => new InteractiveCueArrowNode( {
+  CREATE_KEYBOARD_ARROW_NODE: ( visibleProperty: TReadOnlyProperty<boolean>, scale = 1 ): InteractiveCueArrowNode => new InteractiveCueArrowNode( {
       doubleHead: true,
-      dashWidth: 3.5,
-      dashHeight: 2.8,
+      dashWidth: 3.5 * scale,
+      dashHeight: 2.8 * scale,
       numberOfDashes: 2,
-      spacing: 2,
+      spacing: 2 * scale,
       triangleNodeOptions: {
-        triangleWidth: 12,
-        triangleHeight: 11
+        triangleWidth: 12 * scale,
+        triangleHeight: 11 * scale
       },
       visibleProperty: visibleProperty
     }

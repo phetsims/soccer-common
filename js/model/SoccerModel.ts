@@ -88,7 +88,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     } );
 
     const dragIndicatorModelTandem = options.dragIndicatorModelTandem !== null ? options.dragIndicatorModelTandem : Tandem.OPT_OUT;
-    this.dragIndicatorModel = new DragIndicatorModel( this.soccerBallsEnabledProperty, dragIndicatorModelTandem );
+    this.dragIndicatorModel = new DragIndicatorModel( this.isKeyboardFocusedProperty, this.soccerBallsEnabledProperty, dragIndicatorModelTandem );
 
     // These DynamicProperties allow us to track all the necessary scenes Properties for dragIndicator update, and not
     // just the first selectedScene
@@ -107,8 +107,8 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     this.isKeyboardDragArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
         this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardMovedBallProperty ],
       ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, hasKeyboardMovedBall ) => {
-      return focusedBall !== null && isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardMovedBall;
-    } );
+        return focusedBall !== null && isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardMovedBall;
+      } );
 
     this.isKeyboardSelectArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
         this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardSelectedDifferentBallProperty ],

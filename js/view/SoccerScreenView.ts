@@ -32,6 +32,8 @@ type SelfOptions = {
   numberLineXMargin: number;
 };
 
+export const DRAG_CUE_SCALE = 0.8;
+
 export type SoccerScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class SoccerScreenView<T extends SoccerSceneModel, Q extends SoccerModel<T>> extends ScreenView {
@@ -96,8 +98,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       }
     }, options.questionBarOptions ) );
 
-    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty );
-    this.keyboardSelectArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardSelectArrowVisibleProperty );
+    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
+    this.keyboardSelectArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardSelectArrowVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
     this.addChild( this.keyboardSelectArrowNode );
