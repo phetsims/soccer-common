@@ -78,6 +78,8 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       this.sceneModels.forEach( sceneModel => {
         sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
       } );
+
+      this.focusedSoccerBallProperty.value = null;
     } );
 
     this.soccerBallsEnabledProperty = new EnabledProperty( true, {
