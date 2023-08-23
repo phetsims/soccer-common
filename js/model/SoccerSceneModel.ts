@@ -123,7 +123,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The logical strategy for determining kick distances
   private readonly kickDistributionStrategy: KickDistributionStrategy;
 
-  public constructor(
+  protected constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
     kickDistributionStrategySpecification: KickDistributionStrategySpecification,
