@@ -136,6 +136,11 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     this.hasKeyboardSelectedDifferentBallProperty.reset();
     this.hasKeyboardMovedBallProperty.reset();
   }
+
+  public clearData(): void {
+    this.focusedSoccerBallProperty.value = null;
+    this.selectedSceneModelProperty.value.clearData();
+  }
 }
 
 soccerCommon.register( 'SoccerModel', SoccerModel );

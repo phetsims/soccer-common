@@ -119,7 +119,7 @@ export default class SoccerSceneView {
       return soccerBallNode;
     } );
 
-    // Update pointer areas when topmost ball changes
+    // Update pointer areas and soccer ball focus (for keyboard and interactive highlight) when topmost ball changes
     sceneModel.stackChangedEmitter.addListener( stack => {
 
       let bounds: Bounds2 | null = null;
