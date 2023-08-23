@@ -43,9 +43,12 @@ export default class SoccerSceneView {
 
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
-      'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'hasKeyboardFocusProperty' |
-      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty'>,
+      'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'isKeyboardFocusedProperty' |
+      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty' | 'hasKeyboardMovedBallProperty' |
+      'hasKeyboardSelectedDifferentBallProperty'>,
     public readonly sceneModel: SoccerSceneModel,
+    keyboardDragArrowNode: Node,
+    keyboardSelectArrowNode: Node,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
@@ -54,7 +57,7 @@ export default class SoccerSceneView {
 
     const soccerBallsEnabledProperty = soccerModel.soccerBallsEnabledProperty;
     const focusedSoccerBallProperty = soccerModel.focusedSoccerBallProperty;
-    const hasKeyboardFocusProperty = soccerModel.hasKeyboardFocusProperty;
+    const hasKeyboardFocusProperty = soccerModel.isKeyboardFocusedProperty;
     const isSoccerBallKeyboardGrabbedProperty = soccerModel.isSoccerBallKeyboardGrabbedProperty;
     const hasKeyboardGrabbedBallProperty = soccerModel.hasKeyboardGrabbedBallProperty;
 
@@ -190,6 +193,11 @@ export default class SoccerSceneView {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
           backLayerSoccerBallLayer.setFocusHighlight( focusForSelectedBall );
+
+          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -10 );
+          keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -10 );
+          keyboardDragArrowNode.moveToFront();
+          keyboardSelectArrowNode.moveToFront();
         }
         else {
           backLayerSoccerBallLayer.setFocusHighlight( 'invisible' );
@@ -207,6 +215,8 @@ export default class SoccerSceneView {
           if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
 
             if ( !isSoccerBallKeyboardGrabbedProperty.value ) {
+              soccerModel.hasKeyboardSelectedDifferentBallProperty.value = true;
+
               const delta = keysPressed === 'arrowRight' ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
@@ -217,6 +227,8 @@ export default class SoccerSceneView {
               focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
             }
             else {
+              soccerModel.hasKeyboardMovedBallProperty.value = true;
+
               const delta = keysPressed === 'arrowLeft' ? -1 : 1;
               const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );

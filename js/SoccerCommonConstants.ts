@@ -7,6 +7,8 @@
  */
 
 import soccerCommon from './soccerCommon.js';
+import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
+import InteractiveCueArrowNode from '../../center-and-variability/js/common/view/InteractiveCueArrowNode.js';
 
 const SoccerCommonConstants = {
   GRAVITY: -9.8, // in meters/second^2
@@ -15,7 +17,21 @@ const SoccerCommonConstants = {
   GROUND_POSITION_Y: 515,
   SOCCER_BALL_VIEW_SIZE: 41,
   SCREEN_VIEW_X_MARGIN: 15,
-  SCREEN_VIEW_Y_MARGIN: 15
+  SCREEN_VIEW_Y_MARGIN: 15,
+
+  CREATE_KEYBOARD_ARROW_NODE: ( visibleProperty: TReadOnlyProperty<boolean> ): InteractiveCueArrowNode => new InteractiveCueArrowNode( {
+      doubleHead: true,
+      dashWidth: 3.5,
+      dashHeight: 2.8,
+      numberOfDashes: 2,
+      spacing: 2,
+      triangleNodeOptions: {
+        triangleWidth: 12,
+        triangleHeight: 11
+      },
+      visibleProperty: visibleProperty
+    }
+  )
 };
 
 soccerCommon.register( 'SoccerCommonConstants', SoccerCommonConstants );

@@ -46,10 +46,15 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
   public readonly isSoccerBallKeyboardGrabbedProperty = new Property( false );
   public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly isKeyboardDragArrowVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly isKeyboardSelectArrowVisibleProperty: TReadOnlyProperty<boolean>;
+  public readonly isKeyboardFocusedProperty = new BooleanProperty( false );
 
-  // Becomes true if the soccer ball has ever been grabbed via keyboard input.
+
+  // Properties that switch to true when the specified action has occurred once.
   public readonly hasKeyboardGrabbedBallProperty = new BooleanProperty( false );
-  public readonly hasKeyboardFocusProperty = new BooleanProperty( false );
+  public readonly hasKeyboardMovedBallProperty = new BooleanProperty( false );
+  public readonly hasKeyboardSelectedDifferentBallProperty = new BooleanProperty( false );
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
     const options = optionize<SoccerModelOptions, SelfOptions, PhetioObjectOptions>()( {
@@ -94,9 +99,21 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       derive: 'maxKicksProperty'
     } );
 
-    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasKeyboardGrabbedBallProperty, this.hasKeyboardFocusProperty ],
+    this.isGrabReleaseVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty, this.hasKeyboardGrabbedBallProperty, this.isKeyboardFocusedProperty ],
       ( focusedSoccerBall, hasGrabbedBall, hasKeyboardFocus ) => {
         return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
+      } );
+
+    this.isKeyboardDragArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
+        this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardMovedBallProperty ],
+      ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, hasKeyboardMovedBall ) => {
+      return focusedBall !== null && isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardMovedBall;
+    } );
+
+    this.isKeyboardSelectArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
+        this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardSelectedDifferentBallProperty ],
+      ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, hasKeyboardSelectedDifferentBall ) => {
+        return focusedBall !== null && !isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardSelectedDifferentBall;
       } );
   }
 
@@ -113,7 +130,9 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     this.focusedSoccerBallProperty.reset();
     this.isSoccerBallKeyboardGrabbedProperty.reset();
     this.hasKeyboardGrabbedBallProperty.reset();
-    this.hasKeyboardFocusProperty.reset();
+    this.isKeyboardFocusedProperty.reset();
+    this.hasKeyboardSelectedDifferentBallProperty.reset();
+    this.hasKeyboardMovedBallProperty.reset();
   }
 }
 

@@ -23,6 +23,7 @@ import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
+import { Node } from '../../../scenery/js/imports.js';
 
 type SelfOptions = {
   questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>;
@@ -34,17 +35,17 @@ type SelfOptions = {
 export type SoccerScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class SoccerScreenView<T extends SoccerSceneModel, Q extends SoccerModel<T>> extends ScreenView {
-
-  protected readonly resetAllButton: ResetAllButton;
+  protected readonly model: Q;
   protected readonly modelViewTransform: ModelViewTransform2;
-  protected readonly questionBar: QuestionBar;
-  protected readonly playAreaNumberLineNode: NumberLineNode;
-
   protected readonly numberOfKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
-  protected readonly model: Q;
+  protected readonly questionBar: QuestionBar;
+  protected readonly resetAllButton: ResetAllButton;
+  protected readonly playAreaNumberLineNode: NumberLineNode;
+  protected readonly keyboardDragArrowNode: Node;
+  protected readonly keyboardSelectArrowNode: Node;
 
-  public constructor( model: Q, providedOptions: SoccerScreenViewOptions ) {
+  protected constructor( model: Q, providedOptions: SoccerScreenViewOptions ) {
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
       isDisposable: false
@@ -94,6 +95,12 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         phetioFeatured: true
       }
     }, options.questionBarOptions ) );
+
+    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty );
+    this.keyboardSelectArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardSelectArrowVisibleProperty );
+
+    this.addChild( this.keyboardDragArrowNode );
+    this.addChild( this.keyboardSelectArrowNode );
   }
 
   protected addGrabReleaseCue(): void {
