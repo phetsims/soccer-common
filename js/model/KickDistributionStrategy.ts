@@ -1,8 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * PhetioObject that specifies how kick distances are determined. Can be used to specify probability distributions
- * or exact sequences of distances. See phetioDocumentation for more details.
+ * KickDistributionStrategy specifies how kick distances are determined. Can be used to specify probability distributions
+ * or exact sequences of distances. Please refer to the phetioDocumentation below for more details.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */

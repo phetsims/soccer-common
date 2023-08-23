@@ -1,7 +1,13 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * A number line for displaying data objects.
+ * NumberLineNode represents a visual representation of a number line, tailored to display data objects with optional
+ * features.
+ *
+ * Features:
+ * - Can include tick marks and their respective labels.
+ * - Has the flexibility to show or hide the X axis.
+ * - Provides customization options such as color and layout.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)

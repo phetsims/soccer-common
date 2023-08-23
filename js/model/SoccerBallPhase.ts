@@ -1,6 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
+
 /**
- * SoccerBallPhase is used to identify what type of animation a SoccerBall is undergoing.
+ * SoccerBallPhase is used to identify what part of the lifecycle a SoccerBall is in.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)

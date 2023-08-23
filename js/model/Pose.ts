@@ -1,8 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * This class defines the various poses a Kicker can assume during the animation lifecycle.
- * The poses include standing, poised to kick, and kicking.
+ * This class defines the various poses a Kicker can assume during the animation lifecycle. The poses include standing,
+ * poised to kick, and kicking.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)

@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * This Property represents the value of a soccer ball within a soccer scene. The value can either be a number or null. However, it is important to note that the value cannot be changed from null to a non-null value through PhET-IO.
+ * This Property represents the value of a soccer ball within a soccer scene. The value can either be a number or null.
+ * However, it is important to note that the value cannot be changed from null to a non-null value through PhET-IO.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  * @author Michael Kauzmann (PhET Interactive Simulations)

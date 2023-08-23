@@ -2,7 +2,7 @@
 
 /**
  * SoccerModel is the base class for the soccer simulation. It manages the scene models and keyboard input properties.
- * It also handles the state and behavior of the soccer balls,  including their interactions with the soccer field and
+ * It also handles the state and behavior of the soccer balls, including their interactions with the soccer field and
  * players.
  *
  * @author Marla Schulz (PhET Interactive Simulations)

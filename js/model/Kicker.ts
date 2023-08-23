@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Used to create a representation of a person with images showing different phases of them kicking a ball.
+ * Kicker represents the model of a person with images showing different phases of them kicking a ball.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)

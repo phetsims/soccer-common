@@ -1,12 +1,12 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * The `SoccerBall` class represents a data point within the simulation. Upon instantiation, the `SoccerBall` object has a null value. However, once the `SoccerBall` object lands after a kick, it assumes an integer value.
+ * The `SoccerBall` class represents a data point within the simulation. Upon instantiation, the `SoccerBall` object has
+ * a null value. However, once the `SoccerBall` object lands after a kick, it assumes an integer value.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)
  */
-
 
 import Animation from '../../../twixt/js/Animation.js';
 import soccerCommon from '../soccerCommon.js';

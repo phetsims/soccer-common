@@ -1,7 +1,14 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Model for  a scene on which soccer balls can be kicked to various locations on a number line by one or more kickers.
+ *
+ * SoccerSceneModel represents a dynamic scene in which soccer balls are kicked to various locations on a number line.
+ * The model is capable of:
+ *
+ * - Tracking positions of soccer balls.
+ * - Handling one or more kickers to kick soccer balls onto the number line.
+ * - Managing properties related to kickable soccer balls and the state of kickers.
+ * - Emitting events for significant state changes.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)

@@ -1,7 +1,13 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Base class for SoccerBallNode and DataPointNode, handling object opacity and position translation
+ * SoccerObjectNode represents a base class for visual nodes related to soccer objects, specifically `SoccerBallNode` and
+ * `DataPointNode`.
+ *
+ * - Manages and translates the position of a soccer ball object.
+ * - Handles the opacity of the soccer object based on its phase and value.
+ * - Integrates with InteractiveHighlightingNode for interactive highlights.
+ * - Offers debugging tools for the development phase.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)
@@ -32,8 +38,8 @@ export type SoccerObjectNodeOptions =
 
 export default class SoccerObjectNode extends InteractiveHighlightingNode {
   protected constructor( public readonly soccerBall: SoccerBall,
-                      modelViewTransform: ModelViewTransform2,
-                      providedOptions?: SoccerObjectNodeOptions ) {
+                         modelViewTransform: ModelViewTransform2,
+                         providedOptions?: SoccerObjectNodeOptions ) {
 
     const options = optionize<SoccerObjectNodeOptions, SelfOptions, NodeOptions>()( {
       cursor: 'pointer',
