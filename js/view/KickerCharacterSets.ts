@@ -2,9 +2,7 @@
 
 //REVIEW reference to "this sim" in soccer-common
 /**
- * Responsible for all images for the Kicker in this sim. Collects the images into usable classes to support
- * animation, and selecting a different set of kicker characters for
- * localization.
+ * Manages the images for the Kicker in this simulation. This class is responsible for gathering the images into classes that can be utilized for animation purposes. It also allows for the selection of different sets of kicker characters to accommodate localization needs.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
