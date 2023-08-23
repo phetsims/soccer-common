@@ -37,18 +37,21 @@ export type KickDistributionStrategySpecification = {
   skewType: 'left' | 'right' | null;
 };
 
+type SelfOptions = EmptySelfOptions;
+type KickDistributionStrategyOptions = SelfOptions & PhetioObjectOptions;
+
 export default class KickDistributionStrategy extends PhetioObject {
 
   public constructor(
     public type: DistributionType,
     public values: number[] | null,
     public skewType: 'left' | 'right' | null,
-    providedOptions?: PhetioObjectOptions ) {
+    providedOptions?: KickDistributionStrategyOptions ) {
 
     const pre = '<pre style="display: block; padding: 10px; border: 1px solid #ccc; border-radius: 3px; overflow: auto;">';
     const code = '<code style="background-color: #f9f9f9; font-family: \'Courier New\', Courier, monospace;">';
 
-    const options = optionize<PhetioObjectOptions, EmptySelfOptions, PhetioObjectOptions>()( {
+    const options = optionize<KickDistributionStrategyOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioType: KickDistributionStrategyIO,
 
       phetioDocumentation: 'The rules for kick distances can be specified using the state object. There are three ways to customize the values:<br><ul>' +

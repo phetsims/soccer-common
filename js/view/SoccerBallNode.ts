@@ -26,9 +26,7 @@ import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 
 type SelfOptions = EmptySelfOptions;
-type ParentOptions = SoccerObjectNodeOptions;
-
-type SoccerBallNodeOptions = SelfOptions & ParentOptions;
+type SoccerBallNodeOptions = SelfOptions & SoccerObjectNodeOptions;
 
 export default class SoccerBallNode extends SoccerObjectNode {
 
@@ -40,7 +38,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
     // Use the y dimension, since it determines how the soccer balls stack. But maintain the same aspect ratio as the image
     const viewRadius = Math.abs( modelViewTransform.modelToViewDeltaY( SoccerCommonConstants.SOCCER_BALL_RADIUS ) );
 
-    const options = optionize<SoccerBallNodeOptions, SelfOptions, ParentOptions>()( {
+    const options = optionize<SoccerBallNodeOptions, SelfOptions, SoccerObjectNodeOptions>()( {
       cursor: 'pointer',
 
       // Data point should be visible if the soccer ball landed
