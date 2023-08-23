@@ -65,7 +65,9 @@ export default class SoccerSceneView {
 
     // Keep soccer balls in one layer, so we can control the focus order.
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
-      children: [ this.highlightRectangle ],
+
+      // TODO: Evaluate for https://github.com/phetsims/center-and-variability/issues/506
+      // children: [ this.highlightRectangle ],
       focusable: true,
       tagName: 'div'
     } );
