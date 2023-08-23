@@ -1,12 +1,10 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * A model that tracks whether soccerBalls have been dragged or not.
- * Will also determine if the dragIndicator needs to be visible.
+ * DragIndicatorModel tracks whether a soccer ball has been dragged, and whether the drag indicator needs to be visible.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  * @author Matthew Blackman (PhET Interactive Simulations)
- *
  */
 
 import soccerCommon from '../soccerCommon.js';
