@@ -8,7 +8,7 @@
 
 import soccerCommon from './soccerCommon.js';
 import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
-import InteractiveCueArrowNode from '../../center-and-variability/js/common/view/InteractiveCueArrowNode.js';
+import InteractiveCueArrowNode from './view/InteractiveCueArrowNode.js';
 
 const SoccerCommonConstants = {
   GRAVITY: -9.8, // in meters/second^2
