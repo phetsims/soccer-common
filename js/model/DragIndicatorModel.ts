@@ -53,17 +53,13 @@ export default class DragIndicatorModel {
       phetioFeatured: true,
       phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
     } );
-
-    this.isKeyboardFocusedProperty.link( isKeyboardFocused => {
-      this.isDragIndicatorVisibleProperty.set( !isKeyboardFocused && !this.soccerBallHasBeenDraggedProperty.value );
-    } );
   }
 
-  public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls'>, soccerBallHasBeenDragged: boolean, soccerBallCount: number, maxKicks: number ): void {
+  public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls'>, soccerBallCount: number, maxKicks: number ): void {
 
     //  if an object was moved, objects are not input enabled, or the max number of balls haven't been kicked out
     //  don't show the dragIndicatorArrowNode
-    this.isDragIndicatorVisibleProperty.value = !soccerBallHasBeenDragged &&
+    this.isDragIndicatorVisibleProperty.value = !this.soccerBallHasBeenDraggedProperty.value &&
                                                 !this.isKeyboardFocusedProperty.value &&
                                                 soccerBallCount === maxKicks &&
                                                 this.soccerBallsEnabledProperty.value &&
