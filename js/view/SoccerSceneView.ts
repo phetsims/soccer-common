@@ -26,6 +26,7 @@ import Matrix3 from '../../../dot/js/Matrix3.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
+import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -50,6 +51,7 @@ export default class SoccerSceneView {
     keyboardDragArrowNode: Node,
     keyboardSelectArrowNode: Node,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
+    dragIndicatorValueProperty: TReadOnlyProperty<number | null>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
@@ -169,7 +171,15 @@ export default class SoccerSceneView {
       focus: () => {
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
         if ( focusedSoccerBallProperty.value === null && topSoccerBalls.length > 0 ) {
-          focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+          if ( dragIndicatorValueProperty.value !== null ) {
+            const dragIndicatorStack = sceneModel.getStackAtValue( dragIndicatorValueProperty.value,
+              ( soccerBall: SoccerBall ) => soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED );
+            focusedSoccerBallProperty.value = dragIndicatorStack[ dragIndicatorStack.length - 1 ];
+          }
+          else {
+            focusedSoccerBallProperty.value = topSoccerBalls[ 0 ];
+          }
+
         }
         hasKeyboardFocusProperty.value = true;
       },
