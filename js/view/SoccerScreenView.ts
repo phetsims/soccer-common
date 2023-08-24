@@ -107,7 +107,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
   protected addGrabReleaseCue(): void {
     const grabReleaseCueNode = new GrabReleaseCueNode( {
-      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 5.4 ),
+      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 ),
       visibleProperty: this.model.isGrabReleaseVisibleProperty
     } );
     this.addChild( grabReleaseCueNode );
