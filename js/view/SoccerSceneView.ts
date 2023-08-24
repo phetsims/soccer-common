@@ -196,8 +196,8 @@ export default class SoccerSceneView {
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
           backLayerSoccerBallLayer.setFocusHighlight( focusForSelectedBall );
 
-          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -14 );
-          keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -14 );
+          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -18 );
+          keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -18 );
           keyboardDragArrowNode.moveToFront();
           keyboardSelectArrowNode.moveToFront();
         }
