@@ -62,7 +62,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The max kickable (highest value in the combo box, if there is one)
   private readonly maxKicksLimit: number;
 
-  //TODO - Does meanValueProperty belong in soccer-common? See https://github.com/phetsims/center-and-variability/issues/509
+  // Keep track of the numeric mean value of the non-null soccer balls in the scene
   public readonly meanValueProperty: Property<number | null>;
 
   // Whether the scene model is currently being displayed on the screen
