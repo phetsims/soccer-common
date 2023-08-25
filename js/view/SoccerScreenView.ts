@@ -4,7 +4,6 @@
  * that positions balls along the number line, as well as a QuestionBar and NumberLineNode
  *
  * @author Marla Schulz (PhET Interactive Simulations)
- *
  */
 
 import ScreenView, { ScreenViewOptions } from '../../../joist/js/ScreenView.js';
@@ -41,6 +40,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected readonly modelViewTransform: ModelViewTransform2;
   protected readonly numberOfKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
+  // These Nodes are created here but added in the subclasses, since the subclass specifies how and where (what layer)
+  // they are added.
   protected readonly questionBar: QuestionBar;
   protected readonly resetAllButton: ResetAllButton;
   protected readonly playAreaNumberLineNode: NumberLineNode;

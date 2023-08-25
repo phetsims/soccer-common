@@ -50,7 +50,6 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   public readonly isKeyboardSelectArrowVisibleProperty: TReadOnlyProperty<boolean>;
   public readonly isKeyboardFocusedProperty = new BooleanProperty( false );
 
-
   // Properties that switch to true when the specified action has occurred once.
   public readonly hasKeyboardGrabbedBallProperty = new BooleanProperty( false );
   public readonly hasKeyboardMovedBallProperty = new BooleanProperty( false );
