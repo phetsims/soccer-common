@@ -1,7 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 /**
- * Parent screenView for sims that use a soccer context. Includes a ModelViewTransform
- * that positions balls along the number line, as well as a QuestionBar and NumberLineNode
+ * Parent screenView for sims that use a soccer context. Includes a ModelViewTransform2 and the NumberLineNode
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  */
@@ -9,16 +8,14 @@
 import ScreenView, { ScreenViewOptions } from '../../../joist/js/ScreenView.js';
 import soccerCommon from '../soccerCommon.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
-import QuestionBar, { QuestionBarOptions } from '../../../scenery-phet/js/QuestionBar.js';
-import optionize, { combineOptions } from '../../../phet-core/js/optionize.js';
+import { QuestionBarOptions } from '../../../scenery-phet/js/QuestionBar.js';
+import optionize from '../../../phet-core/js/optionize.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import Range from '../../../dot/js/Range.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import ResetAllButton from '../../../scenery-phet/js/buttons/ResetAllButton.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
@@ -39,10 +36,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected readonly modelViewTransform: ModelViewTransform2;
   protected readonly numberOfKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
-  // These Nodes are created here but added in the subclasses, since the subclass specifies how and where (what layer)
-  // they are added.
-  protected readonly questionBar: QuestionBar;
-  protected readonly resetAllButton: ResetAllButton;
   protected readonly playAreaNumberLineNode: NumberLineNode;
   protected readonly keyboardDragArrowNode: Node;
   protected readonly keyboardSelectArrowNode: Node;
@@ -74,30 +67,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         x: options.numberLineXMargin,
         y: SoccerCommonConstants.GROUND_POSITION_Y
       } );
-
-    this.resetAllButton = new ResetAllButton( {
-      listener: () => {
-        this.interruptSubtreeInput(); // cancel interactions that may be in progress
-        model.reset();
-      },
-      right: this.layoutBounds.maxX - SoccerCommonConstants.SCREEN_VIEW_X_MARGIN,
-      bottom: this.layoutBounds.maxY - SoccerCommonConstants.SCREEN_VIEW_Y_MARGIN,
-      tandem: options.tandem.createTandem( 'resetAllButton' )
-    } );
-
-    this.questionBar = new QuestionBar( this.layoutBounds, this.visibleBoundsProperty, combineOptions<QuestionBarOptions>( {
-      barHeight: 50,
-      tandem: options.tandem.createTandem( 'questionBar' ),
-      textOptions: {
-        font: new PhetFont( {
-          weight: 'bold',
-          size: '20px'
-        } )
-      },
-      visiblePropertyOptions: {
-        phetioFeatured: true
-      }
-    }, options.questionBarOptions ) );
 
     this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
     this.keyboardSelectArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardSelectArrowVisibleProperty, DRAG_CUE_SCALE );
