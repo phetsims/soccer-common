@@ -23,7 +23,7 @@ const SoccerCommonConstants = {
       doubleHead: true,
       dashWidth: 3.5 * scale,
       dashHeight: 2.8 * scale,
-      numberOfDashes: 2,
+      numberOfDashes: 3,
       spacing: 2 * scale,
       triangleNodeOptions: {
         triangleWidth: 12 * scale,
