@@ -7,7 +7,7 @@
 This document is a high-level description of the model used in PhET's _Soccer Common_ repository, which is used as a
 foundation for simulations including _Center and Variability_ and _Mean Share and Balance_.
 
-The _Soccer Common_ repository is used to create [_Soccer Scenes_](#soccer-scene) in which one or more _kickers_ can kick _soccer balls_,
+The _Soccer Common_ repository is used to create [_Soccer Scenes_](#Soccer-Scene) in which one or more _kickers_ can kick _soccer balls_,
 which land along a horizontal number line and stack vertically. The main functionalities of the model include:
 
 ## Soccer Scenes
