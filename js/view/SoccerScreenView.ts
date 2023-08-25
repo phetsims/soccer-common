@@ -36,7 +36,6 @@ export const DRAG_CUE_SCALE = 0.8;
 export type SoccerScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class SoccerScreenView<T extends SoccerSceneModel, Q extends SoccerModel<T>> extends ScreenView {
-  protected readonly model: Q;
   protected readonly modelViewTransform: ModelViewTransform2;
   protected readonly numberOfKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
@@ -48,15 +47,16 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected readonly keyboardDragArrowNode: Node;
   protected readonly keyboardSelectArrowNode: Node;
 
-  protected constructor( model: Q, providedOptions: SoccerScreenViewOptions ) {
+  // Flag to ensure that the grabReleaseCueNode is only added once
+  private grabReleaseCueNodeAdded = false;
+
+  protected constructor( protected readonly model: Q, providedOptions: SoccerScreenViewOptions ) {
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
       isDisposable: false
     }, providedOptions );
 
     super( options );
-
-    this.model = model;
 
     this.numberOfKicksProperty = new DynamicProperty<number, number, SoccerSceneModel>( model.selectedSceneModelProperty, { derive: 'numberOfDataPointsProperty' } );
 
@@ -107,11 +107,15 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   }
 
   protected addGrabReleaseCue(): void {
+    assert && assert( !this.grabReleaseCueNodeAdded, 'grabReleaseCueNode should only be added once' );
+
     const grabReleaseCueNode = new GrabReleaseCueNode( {
       centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 ),
       visibleProperty: this.model.isGrabReleaseVisibleProperty
     } );
     this.addChild( grabReleaseCueNode );
+
+    this.grabReleaseCueNodeAdded = true;
   }
 }
 
