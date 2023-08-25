@@ -105,17 +105,16 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
         return focusedSoccerBall !== null && !hasGrabbedBall && hasKeyboardFocus;
       } );
 
-    this.isKeyboardDragArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
-        this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardMovedBallProperty ],
-      ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, hasKeyboardMovedBall ) => {
-        return focusedBall !== null && isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardMovedBall;
-      } );
+    const createDerivedProperty = (fourthProperty, fourthCondition) => {
+      return new DerivedProperty( [ this.focusedSoccerBallProperty,
+          this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, fourthProperty ],
+        ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, fourthPropertyCondition ) => {
+          return focusedBall !== null && isSoccerBallGrabbed && isKeyboardFocused && fourthCondition(fourthPropertyCondition);
+        } );
+    }
 
-    this.isKeyboardSelectArrowVisibleProperty = new DerivedProperty( [ this.focusedSoccerBallProperty,
-        this.isSoccerBallKeyboardGrabbedProperty, this.isKeyboardFocusedProperty, this.hasKeyboardSelectedDifferentBallProperty ],
-      ( focusedBall, isSoccerBallGrabbed, isKeyboardFocused, hasKeyboardSelectedDifferentBall ) => {
-        return focusedBall !== null && !isSoccerBallGrabbed && isKeyboardFocused && !hasKeyboardSelectedDifferentBall;
-      } );
+    this.isKeyboardDragArrowVisibleProperty = createDerivedProperty(this.hasKeyboardMovedBallProperty, (hasKeyboardMovedBall) => !hasKeyboardMovedBall);
+    this.isKeyboardSelectArrowVisibleProperty = createDerivedProperty(this.hasKeyboardSelectedDifferentBallProperty, (hasKeyboardSelectedDifferentBall) => !hasKeyboardSelectedDifferentBall);
   }
 
   public step( dt: number ): void {
