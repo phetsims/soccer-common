@@ -6,12 +6,12 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soundManager from '../../../../tambo/js/soundManager.js';
-import SoundClip from '../../../../tambo/js/sound-generators/SoundClip.js';
-import soccerCommon from '../../../../soccer-common/js/soccerCommon.js';
-import phetAudioContext from '../../../../tambo/js/phetAudioContext.js';
-import Utils from '../../../../dot/js/Utils.js';
-import numberTone_mp3 from '../../../sounds/numberTone_mp3.js';
+import soundManager from '../../../tambo/js/soundManager.js';
+import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
+import soccerCommon from '../soccerCommon.js';
+import phetAudioContext from '../../../tambo/js/phetAudioContext.js';
+import Utils from '../../../dot/js/Utils.js';
+import numberTone_mp3 from '../../sounds/numberTone_mp3.js';
 
 // This is the dominant frequency of numberTone_mp3. If the audio file is changed, this will need to be updated.
 const E3 = 164.81; // Hz
