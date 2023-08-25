@@ -7,10 +7,10 @@
 This document is a high-level description of the model used in PhET's _Soccer Common_ repository, which is used as a
 foundation for simulations including _Center and Variability_ and _Mean Share and Balance_.
 
-The _Soccer Common_ repository is used to create _Soccer Scenes_ in which one or more _kickers_ can kick _soccer balls_,
+The _Soccer Common_ repository is used to create [_Soccer Scenes_](#scene) in which one or more _kickers_ can kick _soccer balls_,
 which land along a horizontal number line and stack vertically. The main functionalities of the model include:
 
-## Soccer Scenes
+## Soccer Scenes (#scene)
 Each _Soccer Scene_ contains an independent set of _kickers_ and _soccer balls_, which can be kicked using a specific 
 _kick distance strategy_. A simulation screen may contain one or more _Soccer Scenes_.
 
@@ -27,8 +27,12 @@ lands, at which time it takes an integer numerical value. Each soccer ball has a
 portion of the kick it is currently in. _SoccerBallPhases_ can be _INACTIVE_, _READY_, _FLYING_, _STACKING_ or _STACKED_.
 
 ## Kick Distribution Strategy
-Used to determine the distances for each kicked soccer ball. Can be based on a probability distribution, a sequence of
-exact distances, or a skew. The distributions are described in detail in _KickDistributionStrategy_.
+Used to determine the distances for each kicked soccer ball. The kick distances can be randomly chosen to be a left skewed distribution, 
+a right skewed distribution, or a symmetric distributions. The simulation is also capable of creating a distribution based on exact 
+distances per kick. 
+
+More information can be found in detail in _KickDistributionStrategy_.
+
 
 
 For more information on how this model is used in context, please see the documentation in center-and-variability/doc
