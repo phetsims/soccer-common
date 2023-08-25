@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node, Path } from '../../../scenery/js/imports.js';
+import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -38,10 +38,6 @@ export default class SoccerSceneView {
   public readonly frontSceneViewLayer: Node;
   private readonly focusHighlightPath: HighlightPath;
 
-  // Path that defines the area a user can hover and still see group interactive highlight on the
-  // backLayerSoccerBallLayer.
-  private readonly highlightRectangle = new Path( null );
-
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
       'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'isKeyboardFocusedProperty' |
@@ -67,9 +63,6 @@ export default class SoccerSceneView {
 
     // Keep soccer balls in one layer, so we can control the focus order.
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
-
-      // TODO: Evaluate for https://github.com/phetsims/center-and-variability/issues/506
-      // children: [ this.highlightRectangle ],
       focusable: true,
       tagName: 'div'
     } );
@@ -303,14 +296,12 @@ export default class SoccerSceneView {
   public setGroupFocusHighlightTop( top: number ): void {
     const margin = 4; // Distance below the accordion box
     const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) ).transformed( Matrix3.translation( 0, 37 ) );
-    const fieldShape = Shape.rect(
+    this.focusHighlightPath.shape = Shape.rect(
       shapeForLeftRightBottom.bounds.x,
       top + margin,
       shapeForLeftRightBottom.bounds.width,
       shapeForLeftRightBottom.bounds.bottom - top - margin
     );
-    this.focusHighlightPath.shape = fieldShape;
-    this.highlightRectangle.shape = fieldShape;
   }
 }
 
