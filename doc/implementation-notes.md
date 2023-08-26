@@ -44,7 +44,7 @@ of data points) to view coordinates in the soccer area. The transform is defined
 
 ### Query Parameters
 
-There are no query parameters specific to this common code repo. One of the usages (Center and Variability) has a query
+There are two query parameters specific to this common code repo used ofr development purposes. One of the usages (Center and Variability) has a public query
 parameter and preference to select the maximum number of kicks.
 
 ### Memory Management
