@@ -53,7 +53,7 @@ parameter and preference to select the maximum number of kicks.
   simulation. We use `isActiveProperty` flags or other phase Property flags to indicate whether they appear in the sim
   and participate in the model.
 - **Listeners**: All uses of `link`, `addListener`, etc. do NOT need a corresponding `unlink`, `removeListener`, etc.
-- **dispose**: A lint rule prevents the usage of the term dispose in this repo, disposal is not supported and should not
+- **dispose**: A lint rule prevents the usage of the term dispose in this repo, and classes are marked as `isDisposable: false`. Disposal is not supported and should not
   be used.
 
 ### Main Architecture & Scenes
@@ -78,10 +78,9 @@ arrow keys, then presses enter/spacebar to grab the soccer ball.
 
 ## PhET-iO
 
-The PhET-iO instrumentation of this sim is relatively straightforward. As described
-in [Memory Management](#memory-management), everything in this sim is created at startup, and exists for the lifetime of
-the sim. So there is no sim-specific use of PhetioGroup or PhetioCapsule. See examples.md for examples of how to use the
-PhET-iO API.
+The PhET-iO instrumentation of this repo is relatively straightforward. As described
+in [Memory Management](#memory-management), everything is created at startup, and exists for the lifetime of
+the sim. So there is no sim-specific use of PhetioGroup or PhetioCapsule.
 
 ### KickDistributionStrategy
 
