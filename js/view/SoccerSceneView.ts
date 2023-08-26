@@ -193,16 +193,27 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty ], ( focusedSoccerBall, isSoccerBallGrabbed ) => {
+    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty, dragIndicatorValueProperty ],
+      ( focusedSoccerBall, isSoccerBallGrabbed, dragIndicatorValue ) => {
         if ( focusedSoccerBall ) {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
           backLayerSoccerBallLayer.setFocusHighlight( focusForSelectedBall );
 
-          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -18 );
-          keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, -18 );
+          const arrowOffset = -18;
+
+          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, arrowOffset );
           keyboardDragArrowNode.moveToFront();
-          keyboardSelectArrowNode.moveToFront();
+
+          // The selection arrow is shown over the same ball as the mouse drag indicator ball
+          if ( dragIndicatorValue !== null ) {
+            const stack = this.sceneModel.getStackAtValue( dragIndicatorValue );
+            const topBall = stack[ stack.length - 1 ];
+            const position = topBall.positionProperty.value;
+
+            keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
+            keyboardSelectArrowNode.moveToFront();
+          }
         }
         else {
           backLayerSoccerBallLayer.setFocusHighlight( 'invisible' );
