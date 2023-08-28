@@ -566,7 +566,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       soccerBall.animation.endedEmitter.addListener( () => {
         soccerBall.animation = null;
 
-        // If the sim is cleared while the animation is is progress, do not signify the ball as being at the top of a stack
+        // If the sim is cleared while the animation is in progress, do not signify the ball as being at the top of a stack
         if ( soccerBall.valueProperty.value !== null ) {
           soccerBall.soccerBallPhaseProperty.value = SoccerBallPhase.STACKED;
 
@@ -579,7 +579,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
       soccerBall.animation.start();
 
-      // If the sim is cleared while the animation is is progress, clear it.
+      // If the sim is cleared while the animation is in progress, clear it.
       soccerBall.valueProperty.lazyLink( value => {
         if ( value === null ) {
           soccerBall.clearAnimation();
