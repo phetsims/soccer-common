@@ -33,11 +33,20 @@ export const DRAG_CUE_SCALE = 0.8;
 export type SoccerScreenViewOptions = SelfOptions & ScreenViewOptions;
 
 export default class SoccerScreenView<T extends SoccerSceneModel, Q extends SoccerModel<T>> extends ScreenView {
+
+  // The model-view transform for the screen view
   protected readonly modelViewTransform: ModelViewTransform2;
+
+  // The number of soccer balls that have been kicked in the active scene
   protected readonly numberOfKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
+  // The number line in the soccer area at the bottom of the screen
   protected readonly playAreaNumberLineNode: NumberLineNode;
+
+  // The keyboard drag indicator arrow
   protected readonly keyboardDragArrowNode: Node;
+
+  // The keyboard select indicator arrow
   protected readonly keyboardSelectArrowNode: Node;
 
   // Flag to ensure that the grabReleaseCueNode is only added once

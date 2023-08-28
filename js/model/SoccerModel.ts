@@ -31,28 +31,49 @@ type SelfOptions = {
 type SoccerModelOptions = SelfOptions & PhetioObjectOptions;
 export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObject {
 
+  // The scene model that is currently active
   public readonly selectedSceneModelProperty: Property<T>;
+
+  // Whether input is enabled for the entire set of soccer balls
   public readonly soccerBallsEnabledProperty: Property<boolean>;
 
+  // The tandem used for the soccer field area
   protected readonly soccerAreaTandem: Tandem;
 
+  // The number of stacked soccer balls in the currently active scene
   protected readonly selectedSceneStackedSoccerBallCountProperty: DynamicProperty<number, number, SoccerSceneModel>;
+
+  // The maximum number of kicks in the currently active scene
   protected readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
+  // The model for the visual indicator for dragging soccer balls via mouse, touch or keyboard
   public readonly dragIndicatorModel: DragIndicatorModel;
 
-  // Keyboard Input Properties
-  // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight.
+  // The soccerBall that is receiving highlight focus in the backLayerSoccerBallLayer group highlight
   public readonly focusedSoccerBallProperty = new Property<SoccerBall | null>( null );
+
+  // Whether a soccer ball is being grabbed via keyboard interaction
   public readonly isSoccerBallKeyboardGrabbedProperty = new Property( false );
+
+  // Whether the 'Press SPACE to Grab or Release' dialog is showing
   public readonly isGrabReleaseVisibleProperty: TReadOnlyProperty<boolean>;
+
+  // Whether the keyboard drag arrow is showing
   public readonly isKeyboardDragArrowVisibleProperty: TReadOnlyProperty<boolean>;
+
+  // Whether the keyboard select arrow is showing
   public readonly isKeyboardSelectArrowVisibleProperty: TReadOnlyProperty<boolean>;
+
+  // Whether the keybaord is currently focused on a sim component
   public readonly isKeyboardFocusedProperty = new BooleanProperty( false );
 
   // Properties that switch to true when the specified action has occurred once.
   public readonly hasKeyboardGrabbedBallProperty = new BooleanProperty( false );
+
+  // Whether a soccer ball has been moved with the keyboard controls
   public readonly hasKeyboardMovedBallProperty = new BooleanProperty( false );
+
+  // Whether the user has changed the selected soccer ball with the keyboard controls
   public readonly hasKeyboardSelectedDifferentBallProperty = new BooleanProperty( false );
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
