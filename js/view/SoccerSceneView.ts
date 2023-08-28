@@ -207,12 +207,15 @@ export default class SoccerSceneView {
 
           // The selection arrow is shown over the same ball as the mouse drag indicator ball
           if ( dragIndicatorValue !== null ) {
-            const stack = this.sceneModel.getStackAtValue( dragIndicatorValue );
-            const topBall = stack[ stack.length - 1 ];
-            const position = topBall.positionProperty.value;
 
-            keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
-            keyboardSelectArrowNode.moveToFront();
+            const stack = this.sceneModel.getStackAtValue( dragIndicatorValue );
+            if ( stack.length > 0 ) {
+              const topBall = stack[ stack.length - 1 ];
+              const position = topBall.positionProperty.value;
+
+              keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
+              keyboardSelectArrowNode.moveToFront();
+            }
           }
         }
         else {
