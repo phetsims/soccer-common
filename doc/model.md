@@ -27,8 +27,8 @@ lands, at which time it takes an integer numerical value. Each soccer ball has a
 portion of the kick it is currently in. _SoccerBallPhases_ can be _INACTIVE_, _READY_, _FLYING_, _STACKING_ or _STACKED_.
 
 ## Kick Distribution Strategy
-Used to determine the distances for each kicked soccer ball. The kick distances can be randomly chosen to be a left skewed distribution, 
-a right skewed distribution, or a symmetric distributions. The simulation is also capable of creating a distribution based on exact 
+Used to determine the distances for each kicked soccer ball. The kick distances create distributions that can be randomly chosen to be left skewed, 
+right skewed, or symmetric. The simulation is also capable of creating a distribution based on exact 
 distances per kick. 
 
 More information can be found in detail in _KickDistributionStrategy_.
