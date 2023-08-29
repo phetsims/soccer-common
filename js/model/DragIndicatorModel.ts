@@ -65,7 +65,7 @@ export default class DragIndicatorModel {
                                                 this.soccerBallsEnabledProperty.value &&
                                                 _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
 
-    const reversedBalls = sceneModel.getSortedStackedObjects().reverse();
+    const reversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall => soccerBall.valueProperty.value !== null ).reverse();
 
     // Show the drag indicator over the most recently landed ball
     this.valueProperty.value = reversedBalls.length > 0 ? reversedBalls[ 0 ].valueProperty.value : null;
