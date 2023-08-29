@@ -55,7 +55,7 @@ export default class DragIndicatorModel {
     } );
   }
 
-  public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls'>, soccerBallCount: number, maxKicks: number ): void {
+  public updateDragIndicator( sceneModel: Pick<SoccerSceneModel, 'getActiveSoccerBalls' | 'getSortedStackedObjects'>, soccerBallCount: number, maxKicks: number ): void {
 
     //  if an object was moved, objects are not input enabled, or the max number of balls haven't been kicked out
     //  don't show the dragIndicatorArrowNode
@@ -65,10 +65,10 @@ export default class DragIndicatorModel {
                                                 this.soccerBallsEnabledProperty.value &&
                                                 _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
 
-    const reversedBalls = sceneModel.getActiveSoccerBalls().reverse();
+    const reversedBalls = sceneModel.getSortedStackedObjects().reverse();
 
     // Show the drag indicator over the most recently landed ball
-    this.valueProperty.value = reversedBalls[ 0 ].valueProperty.value;
+    this.valueProperty.value = reversedBalls.length > 0 ? reversedBalls[ 0 ].valueProperty.value : null;
   }
 
   public reset(): void {
