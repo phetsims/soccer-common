@@ -27,6 +27,7 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import NumberProperty from '../../../axon/js/NumberProperty.js';
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -193,33 +194,41 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty, dragIndicatorValueProperty ],
+    // Adapter to make sure the multilink is called when the stack changes
+    const stackChangeCountProperty = new NumberProperty( 0 );
+    sceneModel.stackChangedEmitter.addListener( () => {stackChangeCountProperty.value++; } );
+
+    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty, dragIndicatorValueProperty, stackChangeCountProperty ],
       ( focusedSoccerBall, isSoccerBallGrabbed, dragIndicatorValue ) => {
         if ( focusedSoccerBall ) {
 
           const focusForSelectedBall = new HighlightFromNode( soccerBallMap.get( focusedSoccerBall )!, { dashed: isSoccerBallGrabbed } );
           backLayerSoccerBallLayer.setFocusHighlight( focusForSelectedBall );
-
-          const arrowOffset = -18;
-
-          keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( focusedSoccerBall.positionProperty.value ).plusXY( 0, arrowOffset );
-          keyboardDragArrowNode.moveToFront();
-
-          // The selection arrow is shown over the same ball as the mouse drag indicator ball
-          if ( dragIndicatorValue !== null ) {
-
-            const stack = this.sceneModel.getStackAtValue( dragIndicatorValue );
-            if ( stack.length > 0 ) {
-              const topBall = stack[ stack.length - 1 ];
-              const position = topBall.positionProperty.value;
-
-              keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
-              keyboardSelectArrowNode.moveToFront();
-            }
-          }
         }
         else {
           backLayerSoccerBallLayer.setFocusHighlight( 'invisible' );
+        }
+
+        // The selection arrow is shown over the same ball as the mouse drag indicator ball
+        if ( dragIndicatorValue !== null ) {
+
+          // If a soccer ball has focus, that takes precedence for displaying the indicators
+          const valueToShow = focusedSoccerBall ? focusedSoccerBall.valueProperty.value! : dragIndicatorValue;
+          const stack = this.sceneModel.getStackAtValue( valueToShow );
+
+          if ( stack.length > 0 ) {
+
+            const arrowOffset = -18;
+
+            const topBall = stack[ stack.length - 1 ];
+            const position = topBall.positionProperty.value;
+
+            keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
+            keyboardSelectArrowNode.moveToFront();
+
+            keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
+            keyboardDragArrowNode.moveToFront();
+          }
         }
       }
     );
