@@ -93,3 +93,8 @@ PhET-iO provides a rich API for specifying different types of distributions.
 
 A soccer ball is like a data point that has a null value until it lands, then it takes a numerical value.
 See SoccerBallPhase for the full list of phases a soccer ball may take.
+
+### Artwork & git push caveats
+
+There is a lot of artwork for this simulation, and sometimes when making changes across all images the change will
+commit but not push. To work around this, you can use `git config --global http.postBuffer 524288000`.
