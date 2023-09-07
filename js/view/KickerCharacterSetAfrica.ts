@@ -25,6 +25,7 @@ import player07PoisedToKick_png from '../../images/africa/player07PoisedToKick_p
 import player07Kicking_png from '../../images/africa/player07Kicking_png.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
+import { portrayalsTandem } from '../model/SoccerCommonPreferencesModel.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -87,7 +88,11 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
     } ],
 
   // Numbered Kickers
-  KickerCharacterSetUSA.numberedKickerImages
+  KickerCharacterSetUSA.numberedKickerImages,
+  {
+    tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfrica' ),
+    phetioState: false
+  }
 );
 
 export default KickerCharacterSetAfrica;

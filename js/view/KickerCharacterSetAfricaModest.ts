@@ -11,6 +11,7 @@ import player02Kicking_png from '../../images/africaModest/player02Kicking_png.j
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
+import { portrayalsTandem } from '../model/SoccerCommonPreferencesModel.js';
 
 /**
  * Artwork representing characters from Africa (modest).
@@ -47,7 +48,11 @@ const KickerCharacterSetAfricaModest = new KickerCharacterSet(
     KickerCharacterSetUSA.unnumberedKickerImages[ 5 - 1 ] ],
 
   // Numbered Kickers
-  KickerCharacterSetUSA.numberedKickerImages
+  KickerCharacterSetUSA.numberedKickerImages,
+  {
+    tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfricaModest' ),
+    phetioState: false
+  }
 );
 
 export default KickerCharacterSetAfricaModest;

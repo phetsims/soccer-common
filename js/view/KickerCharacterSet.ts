@@ -8,7 +8,7 @@
  *
  */
 
-import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
+import RegionAndCulturePortrayal, { RegionAndCulturePortrayalOptions } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
 import soccerCommon from '../soccerCommon.js';
 import { Image } from '../../../scenery/js/imports.js';
@@ -24,10 +24,11 @@ export default class KickerCharacterSet extends RegionAndCulturePortrayal {
   // Keeps track of how many characters are in each set. This is only needed for unnumbered kickers.
   public readonly unnumberedKickersCount: number;
 
-  public constructor( headshot: HTMLImageElement, labelString: LocalizedStringProperty, public readonly unnumberedKickerImages: KickerImageSet[], public readonly numberedKickerImages: KickerImageSet[] ) {
+  public constructor( headshot: HTMLImageElement, labelString: LocalizedStringProperty, public readonly unnumberedKickerImages: KickerImageSet[],
+                      public readonly numberedKickerImages: KickerImageSet[], providedOptions: RegionAndCulturePortrayalOptions ) {
 
     const headshotIcon = new Image( headshot, { scale: 0.35 } );
-    super( headshotIcon, labelString );
+    super( headshotIcon, labelString, providedOptions );
 
     this.unnumberedKickersCount = unnumberedKickerImages.length;
   }

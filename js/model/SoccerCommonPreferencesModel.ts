@@ -11,7 +11,9 @@ import regionAndCultureManager from '../../../joist/js/preferences/regionAndCult
 import Property from '../../../axon/js/Property.js';
 import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import soccerCommon from '../soccerCommon.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
+export const portrayalsTandem = Tandem.PREFERENCES.createTandem( 'regionAndCulturePortrayals' );
 
 export default class SoccerCommonPreferencesModel {
 
@@ -20,8 +22,8 @@ export default class SoccerCommonPreferencesModel {
   public constructor() {
 
     // Controls the selected SkaterImages.SkaterCharacterSet. A set of characters is selected from Preferences
-    // and the actual skater character is chosen from in-screen UI.
-    this.kickerCharacterSetProperty = regionAndCultureManager.regionAndCultureProperty;
+    // and the actual soccer character is chosen from in-screen UI.
+    this.kickerCharacterSetProperty = regionAndCultureManager.regionAndCulturePortrayalProperty;
   }
 }
 
