@@ -47,7 +47,7 @@ import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import KickDistributionStrategy, { KickDistributionStrategySpecification } from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
-import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
@@ -130,7 +130,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
-    regionAndCultureProperty: Property<CharacterSet | null>,
+    regionAndCultureProperty: Property<RegionAndCulturePortrayal | null>,
     tandem: Tandem
   ) {
 

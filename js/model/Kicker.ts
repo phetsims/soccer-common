@@ -17,7 +17,7 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import { KickerPhase } from './KickerPhase.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 export default class Kicker {
 
@@ -33,7 +33,7 @@ export default class Kicker {
   // Used to determine the artwork for rendering the KickerNode
   public readonly initialPlaceInLine: number;
 
-  public constructor( placeInLine: number, public readonly characterSetProperty: Property<CharacterSet | null>, tandem: Tandem ) {
+  public constructor( placeInLine: number, public readonly characterSetProperty: Property<RegionAndCulturePortrayal | null>, tandem: Tandem ) {
 
     this.kickerPhaseProperty = new EnumerationProperty( placeInLine === 0 ? KickerPhase.READY : KickerPhase.INACTIVE, {
       tandem: tandem.createTandem( 'kickerPhaseProperty' ),

@@ -8,7 +8,7 @@
  *
  */
 
-import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
 import soccerCommon from '../soccerCommon.js';
 import { Image } from '../../../scenery/js/imports.js';
@@ -19,7 +19,7 @@ export type KickerImageSet = {
   kicking: HTMLImageElement;
 };
 
-export default class KickerCharacterSet extends CharacterSet {
+export default class KickerCharacterSet extends RegionAndCulturePortrayal {
 
   // Keeps track of how many characters are in each set. This is only needed for unnumbered kickers.
   public readonly unnumberedKickersCount: number;

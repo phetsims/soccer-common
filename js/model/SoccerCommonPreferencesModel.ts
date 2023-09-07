@@ -9,13 +9,13 @@
 
 import regionAndCultureManager from '../../../joist/js/preferences/regionAndCultureManager.js';
 import Property from '../../../axon/js/Property.js';
-import CharacterSet from '../../../joist/js/preferences/CharacterSet.js';
+import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import soccerCommon from '../soccerCommon.js';
 
 
 export default class SoccerCommonPreferencesModel {
 
-  public readonly kickerCharacterSetProperty: Property<CharacterSet | null>;
+  public readonly kickerCharacterSetProperty: Property<RegionAndCulturePortrayal | null>;
 
   public constructor() {
 
