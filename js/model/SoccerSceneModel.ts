@@ -34,7 +34,7 @@ import Animation from '../../../twixt/js/Animation.js';
 import Easing from '../../../twixt/js/Easing.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
-import PhetioObject from '../../../tandem/js/PhetioObject.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
@@ -49,6 +49,14 @@ import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import optionize from '../../../phet-core/js/optionize.js';
+
+type SelfOptions = {
+  isSingleKickerScene?: boolean;
+};
+
+export type SoccerSceneModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
@@ -89,6 +97,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The array of kickers that can kick soccer balls in a scene
   public readonly kickers: Kicker[];
 
+  // Whether the current scene only has a single kicker
+  private readonly isSingleKickerScene: boolean;
+
   // The number kicks are currently scheduled to be kicked
   private readonly numberOfQueuedKicksProperty: NumberProperty;
 
@@ -106,7 +117,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   private readonly timeWhenLastBallWasKickedProperty: NumberProperty;
 
   // Starting at 0, iterate through the index of the kickers. This updates the Kicker.kickerPhaseProperty to show the current kicker
-  private readonly activeKickerIndexProperty: NumberProperty;
+  private readonly activeKickIndexProperty: NumberProperty;
 
   // Called when the value of a ball changed within a stack, so the pointer areas can be updated
   public readonly stackChangedEmitter = new Emitter<[ SoccerBall[] ]>( {
@@ -127,23 +138,26 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
     kickDistributionStrategySpecification: KickDistributionStrategySpecification,
-    showPlayersWhenDoneKicking: boolean,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
     regionAndCultureProperty: Property<RegionAndCulturePortrayal | null>,
-    tandem: Tandem
+    providedOptions: SoccerSceneModelOptions
   ) {
+
+    const options = optionize<SoccerSceneModelOptions, SelfOptions, PhetioObjectOptions>()( {
+      isSingleKickerScene: false
+    }, providedOptions );
 
     super( {
       phetioState: false,
       phetioType: SoccerSceneModelIO,
       phetioDocumentation: 'The model for the soccer scene, which includes the soccer balls and the soccer players.',
       isDisposable: false,
-      tandem: tandem
+      tandem: options.tandem
     } );
 
     this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
-      tandem: tandem.createTandem( 'kickDistributionStrategy' ),
+      tandem: options.tandem.createTandem( 'kickDistributionStrategy' ),
       phetioFeatured: true
     } );
 
@@ -151,11 +165,13 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.maxKicksLimit = Math.max( ...maxKicksChoices );
 
+    this.isSingleKickerScene = options.isSingleKickerScene;
+
     this.soccerBalls = _.range( 0, this.maxKicksLimit ).map( index => {
 
       const soccerBall = createSoccerBall(
         index === 0,
-        tandem.createTandem( 'soccerBalls' ).createTandem1Indexed( 'soccerBall', index )
+        options.tandem.createTandem( 'soccerBalls' ).createTandem1Indexed( 'soccerBall', index )
       );
 
       // When the soccer ball drag position changes, constrain it to the physical range and move it to the top, if necessary
@@ -216,7 +232,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     this.meanValueProperty = new Property<number | null>( null, {
-      tandem: tandem.createTandem( 'meanValueProperty' ),
+      tandem: options.tandem.createTandem( 'meanValueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true,
       phetioFeatured: true,
@@ -224,7 +240,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     this.numberOfDataPointsProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'numberOfDataPointsProperty' ),
+      tandem: options.tandem.createTandem( 'numberOfDataPointsProperty' ),
       range: new Range( 0, this.maxKicksLimit ),
       phetioReadOnly: true,
       phetioFeatured: true,
@@ -236,13 +252,15 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.objectValueBecameNonNullEmitter = new Emitter();
 
     this.numberOfQueuedKicksProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'numberOfQueuedKicksProperty' ),
+      tandem: options.tandem.createTandem( 'numberOfQueuedKicksProperty' ),
       phetioReadOnly: true
     } );
     this.timeWhenLastBallWasKickedProperty = new NumberProperty( 0 );
 
-    this.kickers = _.range( 0, this.maxKicksLimit ).map( placeInLine => new Kicker( placeInLine, regionAndCultureProperty,
-      tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
+    const numKickers = options.isSingleKickerScene ? 1 : this.maxKicksLimit;
+
+    this.kickers = _.range( 0, numKickers ).map( placeInLine => new Kicker( placeInLine, regionAndCultureProperty,
+      options.tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
     ) );
 
     this.numberOfUnkickedBallsProperty = DerivedProperty.deriveAny( [
@@ -265,18 +283,15 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.hasKickableSoccerBallsStableProperty = new BooleanProperty( this.hasKickableSoccerBallsProperty.value );
 
-    this.activeKickerIndexProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'activeKickerIndexProperty' ),
+    this.activeKickIndexProperty = new NumberProperty( 0, {
+      tandem: options.tandem.createTandem( 'activeKickIndexProperty' ),
       phetioReadOnly: true,
       phetioFeatured: true
     } );
 
-    Multilink.multilink( [ this.activeKickerIndexProperty, this.maxKicksProperty ], ( activeKickerIndex, maxKicks ) => {
+    Multilink.multilink( [ this.activeKickIndexProperty, this.maxKicksProperty ], ( activeKickIndex, maxKicks ) => {
       this.kickers.forEach( ( kicker, index ) => {
-
-        // If activeKickerIndex is greater than the number of kickers, but we want to show the last kicker, show the last available player
-        const showAsLastKicker = showPlayersWhenDoneKicking && ( activeKickerIndex === this.maxKicksLimit && index === activeKickerIndex - 1 );
-        kicker.kickerPhaseProperty.value = ( ( index === activeKickerIndex && ( index < maxKicks || showPlayersWhenDoneKicking ) ) || showAsLastKicker ) ? KickerPhase.READY : KickerPhase.INACTIVE;
+        kicker.kickerPhaseProperty.value = ( options.isSingleKickerScene || index === activeKickIndex ) ? KickerPhase.READY : KickerPhase.INACTIVE;
       } );
     } );
 
@@ -389,7 +404,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.kickers.forEach( kicker => kicker.reset() );
     this.soccerBalls.forEach( soccerBall => soccerBall.reset() );
 
-    this.activeKickerIndexProperty.reset();
+    this.activeKickIndexProperty.reset();
 
     this.isClearingData = false;
     this.updateDataMeasures();
@@ -435,7 +450,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   public getFrontKicker(): Kicker | null {
-    return this.kickers[ this.activeKickerIndexProperty.value ];
+    const kickerIndex = this.isSingleKickerScene ? 0 : this.activeKickIndexProperty.value;
+    return this.kickers[ kickerIndex ];
   }
 
   /**
@@ -513,11 +529,11 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     // if the previous ball was still in the air, we need to move the line forward so the next player can kick
     const kickers = this.kickers.filter( kicker => kicker.kickerPhaseProperty.value === KickerPhase.KICKING );
     if ( kickers.length > 0 ) {
-      let nextIndex = this.activeKickerIndexProperty.value + 1;
+      let nextIndex = this.activeKickIndexProperty.value + 1;
       if ( nextIndex > this.maxKicksProperty.value ) {
         nextIndex = 0;
       }
-      this.activeKickerIndexProperty.value = nextIndex;
+      this.activeKickIndexProperty.value = nextIndex;
       const nextBallFromPool = this.soccerBalls.find( ball => ball.soccerBallPhaseProperty.value === SoccerBallPhase.INACTIVE ) || null;
       if ( nextBallFromPool && this.soccerBalls.indexOf( nextBallFromPool ) < this.maxKicksProperty.value ) {
         nextBallFromPool.soccerBallPhaseProperty.value = SoccerBallPhase.READY;
