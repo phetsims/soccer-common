@@ -64,7 +64,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // Whether the keyboard select arrow is showing
   public readonly isKeyboardSelectArrowVisibleProperty: TReadOnlyProperty<boolean>;
 
-  // Whether the keybaord is currently focused on a sim component
+  // Whether the keyboard is currently focused on a sim component
   public readonly isKeyboardFocusedProperty = new BooleanProperty( false );
 
   // Properties that switch to true when the specified action has occurred once.
