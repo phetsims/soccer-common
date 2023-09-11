@@ -291,7 +291,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     Multilink.multilink( [ this.activeKickIndexProperty, this.maxKicksProperty ], ( activeKickIndex, maxKicks ) => {
       this.kickers.forEach( ( kicker, index ) => {
-        kicker.kickerPhaseProperty.value = ( options.isSingleKickerScene || index === activeKickIndex ) ? KickerPhase.READY : KickerPhase.INACTIVE;
+        kicker.kickerPhaseProperty.value = ( ( options.isSingleKickerScene || index === activeKickIndex ) && index < maxKicks ) ? KickerPhase.READY : KickerPhase.INACTIVE;
       } );
     } );
 
