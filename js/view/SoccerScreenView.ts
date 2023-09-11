@@ -46,9 +46,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   // The keyboard drag indicator arrow
   protected readonly keyboardDragArrowNode: Node;
 
-  // The keyboard select indicator arrow
-  protected readonly keyboardSelectArrowNode: Node;
-
   // Flag to ensure that the grabReleaseCueNode is only added once
   private grabReleaseCueNodeAdded = false;
 
@@ -78,10 +75,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       } );
 
     this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
-    this.keyboardSelectArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardSelectArrowVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
-    this.addChild( this.keyboardSelectArrowNode );
   }
 
   protected addGrabReleaseCue(): void {

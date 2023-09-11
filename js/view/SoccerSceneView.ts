@@ -46,7 +46,6 @@ export default class SoccerSceneView {
       'hasKeyboardSelectedDifferentBallProperty'>,
     public readonly sceneModel: SoccerSceneModel,
     keyboardDragArrowNode: Node,
-    keyboardSelectArrowNode: Node,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
     dragIndicatorValueProperty: TReadOnlyProperty<number | null>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
@@ -222,9 +221,6 @@ export default class SoccerSceneView {
 
             const topBall = stack[ stack.length - 1 ];
             const position = topBall.positionProperty.value;
-
-            keyboardSelectArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
-            keyboardSelectArrowNode.moveToFront();
 
             keyboardDragArrowNode.centerBottom = modelViewTransform.modelToViewPosition( position ).plusXY( 0, arrowOffset );
             keyboardDragArrowNode.moveToFront();

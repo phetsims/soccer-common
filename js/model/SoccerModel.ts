@@ -61,9 +61,6 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // Whether the keyboard drag arrow is showing
   public readonly isKeyboardDragArrowVisibleProperty: TReadOnlyProperty<boolean>;
 
-  // Whether the keyboard select arrow is showing
-  public readonly isKeyboardSelectArrowVisibleProperty: TReadOnlyProperty<boolean>;
-
   // Whether the keyboard is currently focused on a sim component
   public readonly isKeyboardFocusedProperty = new BooleanProperty( false );
 
@@ -132,7 +129,6 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
         focusedBall !== null && grabCondition( isSoccerBallKeyboardGrabbed ) && isKeyboardFocused && !condition );
 
     this.isKeyboardDragArrowVisibleProperty = createDerivedProperty( this.hasKeyboardMovedBallProperty, isSoccerBallKeyboardGrabbed => isSoccerBallKeyboardGrabbed );
-    this.isKeyboardSelectArrowVisibleProperty = createDerivedProperty( this.hasKeyboardSelectedDifferentBallProperty, isSoccerBallKeyboardGrabbed => !isSoccerBallKeyboardGrabbed );
   }
 
   public step( dt: number ): void {
