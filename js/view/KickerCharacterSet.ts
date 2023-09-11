@@ -12,12 +12,15 @@ import RegionAndCulturePortrayal, { RegionAndCulturePortrayalOptions } from '../
 import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
 import soccerCommon from '../soccerCommon.js';
 import { Image } from '../../../scenery/js/imports.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
 export type KickerImageSet = {
   standing: HTMLImageElement;
   poisedToKick: HTMLImageElement;
   kicking: HTMLImageElement;
 };
+
+export const portrayalsTandem = Tandem.PREFERENCES.createTandem( 'regionAndCulturePortrayals' );
 
 export default class KickerCharacterSet extends RegionAndCulturePortrayal {
 

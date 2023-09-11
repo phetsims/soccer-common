@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-import KickerCharacterSet from './KickerCharacterSet.js';
+import KickerCharacterSet, { portrayalsTandem } from './KickerCharacterSet.js';
 import kicker1_set1_headshot_TEMP_png from '../../images/kicker1_set1_headshot_TEMP_png.js';
 import player01Standing_png from '../../images/africaModest/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/africaModest/player01PoisedToKick_png.js';
@@ -11,7 +11,6 @@ import player02Kicking_png from '../../images/africaModest/player02Kicking_png.j
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
-import { portrayalsTandem } from '../model/SoccerCommonPreferencesModel.js';
 
 /**
  * Artwork representing characters from Africa (modest).

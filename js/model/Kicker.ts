@@ -33,7 +33,7 @@ export default class Kicker {
   // Used to determine the artwork for rendering the KickerNode
   public readonly initialPlaceInLine: number;
 
-  public constructor( placeInLine: number, public readonly characterSetProperty: Property<RegionAndCulturePortrayal | null>, tandem: Tandem ) {
+  public constructor( placeInLine: number, public readonly characterSetProperty: Property<RegionAndCulturePortrayal>, tandem: Tandem ) {
 
     this.kickerPhaseProperty = new EnumerationProperty( placeInLine === 0 ? KickerPhase.READY : KickerPhase.INACTIVE, {
       tandem: tandem.createTandem( 'kickerPhaseProperty' ),

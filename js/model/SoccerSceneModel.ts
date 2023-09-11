@@ -140,7 +140,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     kickDistributionStrategySpecification: KickDistributionStrategySpecification,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
-    regionAndCultureProperty: Property<RegionAndCulturePortrayal | null>,
+    regionAndCultureProperty: Property<RegionAndCulturePortrayal>,
     providedOptions: SoccerSceneModelOptions
   ) {
 
