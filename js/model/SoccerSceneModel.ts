@@ -313,6 +313,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     maxKicksProperty.lazyLink( () => this.clearData() );
+    regionAndCultureProperty.lazyLink( () => this.clearData() );
   }
 
   // Cancel out all animations in the soccer ball stack.
