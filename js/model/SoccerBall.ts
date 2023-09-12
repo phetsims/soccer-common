@@ -31,9 +31,14 @@ let count = 0;
 
 export default class SoccerBall extends PhetioObject {
 
-  // Continuous value for the drag listener. When dragging, the object snaps to each tickmark. This is an implementation
-  // detail for the drag listener that is only used for deltas, and the absolute value does not matter.
-  // Therefore, it should not be reset (because resetting it would take the model through an incorrect transient state).
+  /**
+   * Continuous value for the drag listener. When dragging, the object snaps to each tickmark. This is an implementation
+   * detail for the drag listener that is only used for deltas, and the absolute value does not matter.
+   * Therefore, it should not be reset (because resetting it would take the model through an incorrect transient state).
+   *
+   * In addition, both of these dragging Properties do not need to be instrumented for PhET-iO, because they are only tracking active dragging
+   * information as a drag is being performed by the user. This information is not necessary for setting state in the sim.
+   */
   public readonly dragPositionProperty: Vector2Property;
   public readonly isDraggingProperty = new BooleanProperty( false );
 
