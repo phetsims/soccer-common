@@ -79,8 +79,7 @@ export default class SoccerSceneView {
         soccerBall,
         modelViewTransform,
         soccerBallsEnabledProperty, {
-          tandem: tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
-          pickable: false
+          tandem: tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index )
         } );
 
       backLayerSoccerBallLayer.addChild( soccerBallNode );
@@ -133,10 +132,10 @@ export default class SoccerSceneView {
           const pointerArea = Shape.bounds( soccerBallNode.globalToLocalBounds( bounds!.dilated( 5 ) ) );
           soccerBallNode.mouseArea = pointerArea;
           soccerBallNode.touchArea = pointerArea;
-          soccerBallNode.pickable = true;
+          stack[ i ].isPickableProperty.value = true;
         }
         else {
-          soccerBallNode.pickable = false;
+          stack[ i ].isPickableProperty.value = false;
 
           // To make it easier to see when using ?showPointerAreas
           soccerBallNode.mouseArea = Shape.rectangle( 0, 0, 0, 0 );

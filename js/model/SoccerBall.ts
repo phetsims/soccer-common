@@ -72,6 +72,11 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
+  // At the point in development when this Property was introduced it was no longer fruitful to have
+  // input enabled Property control the desired behavior. "PickableProperty" is forbidden as a tandem name
+  // so we are using "isPickableProperty" instead. 
+  public readonly isPickableProperty: Property<boolean>;
+
   protected constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
 
     super( {
@@ -79,6 +84,12 @@ export default class SoccerBall extends PhetioObject {
       phetioFeatured: true,
       isDisposable: false,
       tandem: tandem
+    } );
+
+    this.isPickableProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isPickableProperty' ),
+      phetioFeatured: false,
+      phetioReadOnly: true
     } );
 
     this.positionProperty = new Vector2Property( new Vector2( 0, SoccerCommonConstants.SOCCER_BALL_RADIUS ), {
@@ -172,6 +183,7 @@ export default class SoccerBall extends PhetioObject {
     this.soccerBallPhaseProperty.reset();
     this.valueProperty.reset();
     this.isDraggingProperty.reset();
+    this.isPickableProperty.reset();
 
     this.targetXProperty.value = null;
     this.kicker = null;
