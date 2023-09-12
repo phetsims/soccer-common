@@ -140,8 +140,8 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
           errors.push( 'type is required. It must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
         }
         else {
-          if ( value.type !== 'probabilityByDistance' && value.type !== 'distanceByIndex' && value.type !== 'randomSkew' ) {
-            errors.push( 'type must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
+          if ( value.type !== 'probabilityByDistance' && value.type !== 'distanceByIndex' && value.type !== 'randomSkew' && value.type !== 'skew' ) {
+            errors.push( 'type must be one of the following: "probabilityByDistance", "distanceByIndex", "randomSkew", or "skew".' );
           }
         }
 
@@ -158,8 +158,8 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
           }
         }
 
-        // 3. For type 'randomSkew', check the skewType.
-        if ( value.type === 'randomSkew' ) {
+        // 3. For type 'randomSkew' and 'skew', check the skewType.
+        if ( value.type === 'randomSkew' || value.type === 'skew' ) {
           if ( value.skewType !== 'left' && value.skewType !== 'right' ) {
             errors.push( 'skewType must be one of the following: "left" or "right"' );
           }
