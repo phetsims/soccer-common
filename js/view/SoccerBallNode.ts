@@ -24,6 +24,7 @@ import { Shape } from '../../../kite/js/imports.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 type SoccerBallNodeOptions = SelfOptions & SoccerObjectNodeOptions;
@@ -38,6 +39,18 @@ export default class SoccerBallNode extends SoccerObjectNode {
     // Use the y dimension, since it determines how the soccer balls stack. But maintain the same aspect ratio as the image
     const viewRadius = Math.abs( modelViewTransform.modelToViewDeltaY( SoccerCommonConstants.SOCCER_BALL_RADIUS ) );
 
+    // Node's pickable attribute is not stateful, so soccer balls (instances of SoccerBallNode) were non-interactive in
+    // the State Wrapper and Standard PhET Wrapper. At the point in development when this was discovered, it was too
+    // costly to make the changes required to eliminate uses of pickable and make Node's inputEnabledProperty control
+    // the desired behavior. So we introduced this Property to make pickable stateful, and it is intended to be used as
+    // SoccerBallNode's pickableProperty. "pickableProperty" is forbidden as a tandem name, so we are using
+    // "isPickableProperty" instead. See https://github.com/phetsims/center-and-variability/issues/534
+    const isPickableProperty = new BooleanProperty( false, {
+      tandem: providedOptions.tandem.createTandem( 'isPickableProperty' ),
+      phetioFeatured: false,
+      phetioReadOnly: true
+    } );
+
     const options = optionize<SoccerBallNodeOptions, SelfOptions, SoccerObjectNodeOptions>()( {
       cursor: 'pointer',
 
@@ -47,7 +60,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
       isDisposable: false,
 
       //The pickability is controlled by the ball's position in the stack and updated on stackChangedEmitter
-      pickableProperty: soccerBall.isPickableProperty
+      pickableProperty: isPickableProperty
     }, providedOptions );
 
     super( soccerBall, modelViewTransform, options );

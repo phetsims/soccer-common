@@ -132,10 +132,10 @@ export default class SoccerSceneView {
           const pointerArea = Shape.bounds( soccerBallNode.globalToLocalBounds( bounds!.dilated( 5 ) ) );
           soccerBallNode.mouseArea = pointerArea;
           soccerBallNode.touchArea = pointerArea;
-          stack[ i ].isPickableProperty.value = true;
+          soccerBallNode.pickable = true;
         }
         else {
-          stack[ i ].isPickableProperty.value = false;
+          soccerBallNode.pickable = false;
 
           // To make it easier to see when using ?showPointerAreas
           soccerBallNode.mouseArea = Shape.rectangle( 0, 0, 0, 0 );
