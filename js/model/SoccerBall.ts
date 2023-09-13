@@ -72,9 +72,9 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  // At the point in development when this Property was introduced it was no longer fruitful to have
-  // input enabled Property control the desired behavior. "PickableProperty" is forbidden as a tandem name
-  // so we are using "isPickableProperty" instead. 
+  // At the point in development when this Property was introduced, it was no longer fruitful to have
+  // inputEnabledProperty control the desired behavior. "pickableProperty" is forbidden as a tandem name,
+  // so we are using "isPickableProperty" instead. See https://github.com/phetsims/center-and-variability/issues/534
   public readonly isPickableProperty: Property<boolean>;
 
   protected constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
