@@ -72,9 +72,12 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  // At the point in development when this Property was introduced, it was no longer fruitful to have
-  // inputEnabledProperty control the desired behavior. "pickableProperty" is forbidden as a tandem name,
-  // so we are using "isPickableProperty" instead. See https://github.com/phetsims/center-and-variability/issues/534
+  // Node's pickable attribute is not stateful, so soccer balls (instances of SoccerBallNode) were non-interactive in
+  // the State Wrapper and Standard PhET Wrapper. At the point in development when this was discovered, it was too
+  // costly to make the changes required to eliminate uses of pickable and make Node's inputEnabledProperty control
+  // the desired behavior. So we introduced this Property to make pickable stateful, and it is intended to be passed to
+  // SoccerBallNode as its pickableProperty. "pickableProperty" is forbidden as a tandem name, so we are using
+  // "isPickableProperty" instead. See https://github.com/phetsims/center-and-variability/issues/534
   public readonly isPickableProperty: Property<boolean>;
 
   protected constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
