@@ -21,8 +21,9 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
+import PhetioObject from '../../../tandem/js/PhetioObject.js';
 
-export default class DragIndicatorModel {
+export default class DragIndicatorModel extends PhetioObject {
 
   // Whether the hand drag icon is currently showing on the soccer ball area
   public readonly isDragIndicatorVisibleProperty: Property<boolean>;
@@ -35,6 +36,12 @@ export default class DragIndicatorModel {
 
   public constructor( protected readonly isKeyboardFocusedProperty: TReadOnlyProperty<boolean>,
                       public readonly soccerBallsEnabledProperty: TReadOnlyProperty<boolean>, tandem: Tandem ) {
+
+    super( {
+      tandem: tandem,
+      phetioState: false,
+      phetioDocumentation: 'This is the drag indicator (hand) that appears on a soccer ball after all balls have been kicked.'
+    } );
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
