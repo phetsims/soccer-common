@@ -27,7 +27,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import TProperty from '../../../axon/js/TProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import NumberProperty from '../../../axon/js/NumberProperty.js';
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -192,11 +191,7 @@ export default class SoccerSceneView {
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
-    // Adapter to make sure the multilink is called when the stack changes
-    const stackChangeCountProperty = new NumberProperty( 0 );
-    sceneModel.stackChangedEmitter.addListener( () => {stackChangeCountProperty.value++; } );
-
-    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty, dragIndicatorValueProperty, stackChangeCountProperty ],
+    Multilink.multilink( [ focusedSoccerBallProperty, isSoccerBallKeyboardGrabbedProperty, dragIndicatorValueProperty ],
       ( focusedSoccerBall, isSoccerBallGrabbed, dragIndicatorValue ) => {
         if ( focusedSoccerBall ) {
 
