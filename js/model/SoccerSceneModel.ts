@@ -559,8 +559,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     const diameter = SoccerCommonConstants.SOCCER_BALL_RADIUS * 2;
     const targetPositionY = targetIndex * diameter * ( 1 - SoccerCommonConstants.SOCCER_BALL_OVERLAP ) + SoccerCommonConstants.SOCCER_BALL_RADIUS;
 
-    const animationSlowdownFactor = SoccerCommonQueryParameters.slowAnimation ? 20 : 1;
-    const animationTime = animationSlowdownFactor * 0.06 * ( this.getStackAtValue( value ).length - 1 );
+    const stackingAnimationSlowdownFactor = SoccerCommonQueryParameters.slowStackingAnimation ? 20 : 1;
+    const stackingAnimationTime = stackingAnimationSlowdownFactor * 0.06 * ( this.getStackAtValue( value ).length - 1 );
 
     soccerBall.clearAnimation();
 
@@ -572,7 +572,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     else {
       soccerBall.soccerBallPhaseProperty.value = SoccerBallPhase.STACKING;
       soccerBall.animation = new Animation( {
-        duration: animationTime,
+        duration: stackingAnimationTime,
         targets: [ {
           property: soccerBall.positionProperty,
           to: new Vector2( Utils.roundSymmetric( soccerBall.positionProperty.value.x ), targetPositionY ),
