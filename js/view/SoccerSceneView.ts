@@ -224,6 +224,7 @@ export default class SoccerSceneView {
     );
 
     const keyboardListener = new KeyboardListener( {
+      fireOnHold: true,
       keys: [ 'arrowRight', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
       callback: ( event, keysPressed ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
