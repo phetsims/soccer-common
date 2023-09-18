@@ -52,7 +52,7 @@ Query parameters specific to this common code repo can be found in [SoccerCommon
   simulation. We use `isActiveProperty` flags or other phase Property flags to indicate whether they appear in the sim
   and participate in the model.
 - **Listeners**: All uses of `link`, `addListener`, etc. do NOT need a corresponding `unlink`, `removeListener`, etc.
-- **dispose**: A lint rule prevents the usage of the term dispose in this repo, and classes are marked
+- **dispose**: The "additional-bad-text" lint rule prevents the usage of the token "dispose" in this repo, and classes are marked
   as `isDisposable: false`. Disposal is not supported and should not be used.
 
 ### Main Architecture & Scenes
