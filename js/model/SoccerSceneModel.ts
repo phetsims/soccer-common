@@ -179,11 +179,25 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
 
       soccerBall.soccerBallLandedEmitter.addListener( soccerBall => {
+
+        // This changes the soccer ball phase.
         this.animateSoccerBallToTopOfStack( soccerBall, soccerBall.valueProperty.value! );
 
-        // If the soccer player that kicked that ball was still in line when the ball lands, they can leave the line now.
-        if ( soccerBall.kicker === this.getFrontKicker() ) {
-          this.advanceLine();
+        if ( this.isSingleKickerScene ) {
+
+          // In a single kicker scene, the kicker can put their foot down once all flying soccer balls have landed.
+          // Count the number of soccer balls still in the air
+          const flyingSoccerBalls = this.getActiveSoccerBalls().filter( soccerBall => soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.FLYING );
+          if ( flyingSoccerBalls.length === 0 ) {
+            this.advanceLine();
+          }
+        }
+        else {
+
+          // If the soccer player that kicked that ball was still in line when the ball lands, they can leave the line now.
+          if ( soccerBall.kicker === this.getFrontKicker() ) {
+            this.advanceLine();
+          }
         }
 
         this.objectValueBecameNonNullEmitter.emit();
