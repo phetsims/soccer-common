@@ -1,7 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
 import KickerCharacterSet, { portrayalsTandem } from './KickerCharacterSet.js';
-import kicker1_set1_headshot_TEMP_png from '../../images/kicker1_set1_headshot_TEMP_png.js';
 import player01Standing_png from '../../images/africa/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/africa/player01PoisedToKick_png.js';
 import player01Kicking_png from '../../images/africa/player01Kicking_png.js';
@@ -25,6 +24,7 @@ import player07PoisedToKick_png from '../../images/africa/player07PoisedToKick_p
 import player07Kicking_png from '../../images/africa/player07Kicking_png.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
+import HeadshotIcon from './HeadshotIcon.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -35,7 +35,7 @@ import SoccerCommonStrings from '../SoccerCommonStrings.js';
 const africaStringProperty = SoccerCommonStrings.characterSet.africaStringProperty;
 
 const KickerCharacterSetAfrica = new KickerCharacterSet(
-  kicker1_set1_headshot_TEMP_png,
+  new HeadshotIcon( player06Standing_png, 50 ),
   africaStringProperty,
 
   // Unnumbered Kickers
