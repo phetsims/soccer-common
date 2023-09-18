@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node } from '../../../scenery/js/imports.js';
+import { animatedPanZoomSingleton, HighlightFromNode, HighlightPath, InteractiveHighlightingNode, KeyboardListener, Node } from '../../../scenery/js/imports.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -174,6 +174,11 @@ export default class SoccerSceneView {
 
         }
         hasKeyboardFocusProperty.value = true;
+
+        // When the group receives keyboard focus, make sure that the focused ball is displayed
+        if ( focusedSoccerBallProperty.value !== null ) {
+          animatedPanZoomSingleton.listener.panToNode( soccerBallMap.get( focusedSoccerBallProperty.value )! );
+        }
       },
       blur: () => {
         isSoccerBallKeyboardGrabbedProperty.value = false;
@@ -286,6 +291,10 @@ export default class SoccerSceneView {
               }
             }
           }
+
+          // When using keyboard input, make sure that the "focused" ball is still displayed by panning to keep it
+          // in view. `panToCenter` is false because centering the ball in the screen is too much movement.
+          animatedPanZoomSingleton.listener.panToNode( soccerBallMap.get( focusedSoccerBallProperty.value )!, false );
         }
       }
     } );
