@@ -50,7 +50,7 @@ export default class SoccerBall extends PhetioObject {
   // Where the object is animating to, or null if not yet animating
   public targetXProperty: Property<number | null>;
 
-  // The ball's x position on the field. The value is null until the ball has landed on the field.
+  // The ball's position on the number line. The value is null until the ball has landed on the field.
   public valueProperty: Property<number | null>;
 
   public readonly dragStartedEmitter: TEmitter = new Emitter();
