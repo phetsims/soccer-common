@@ -89,8 +89,8 @@ skew on reset. PhET-iO provides a rich API for specifying different types of dis
 
 ### SoccerBall
 
-A soccer ball is like a data point that has a null value until it lands, then it takes a numerical value. See
-SoccerBallPhase for the full list of phases a soccer ball may take.
+A soccer ball is like a data point that has a `null` value until it lands, then it takes a numerical value that corresponds
+to its location on the soccer field. See SoccerBallPhase for the full list of phases a soccer ball may take.
 
 ### Artwork & git push caveats
 
