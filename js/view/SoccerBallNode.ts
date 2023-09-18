@@ -1,8 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * Renders a soccer ball that can be dragged horizontally. Uses AccessibleSlider so that the soccer ball functions
- * similarly to a slider in alternativeInput.
+ * SoccerBallNode renders a soccer ball that can be dragged horizontally. The Node has a "dark" version
+ * that is used to represent a soccerBall that is input disabled.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
@@ -143,16 +143,12 @@ export default class SoccerBallNode extends SoccerObjectNode {
     } );
 
     soccerBall.resetEmitter.addListener( () => {
-      this.focusable = false;
       this.pickable = false;
       this.mouseArea = Shape.rectangle( 0, 0, 0, 0 );
       this.touchArea = Shape.rectangle( 0, 0, 0, 0 );
     } );
 
     this.addLinkedElement( soccerBall );
-
-    // Not focusable until the ball has been kicked into the play area
-    this.focusable = false;
 
     super.addDebugText( soccerBall );
   }
