@@ -12,6 +12,7 @@ import soccerCommon from '../soccerCommon.js';
 import phetAudioContext from '../../../tambo/js/phetAudioContext.js';
 import Utils from '../../../dot/js/Utils.js';
 import numberTone_mp3 from '../../sounds/numberTone_mp3.js';
+import isResettingProperty from './isResettingProperty.js';
 
 // This is the dominant frequency of numberTone_mp3. If the audio file is changed, this will need to be updated.
 const E3 = 164.81; // Hz
@@ -123,6 +124,9 @@ const toPlaybackRate = ( value: number ): number => Math.pow( 2, toStep( value )
 export default class NumberTone {
 
   public static play( isPlayAreaMedianVisible: boolean, isPlayAreaMeanVisible: boolean, medianValue: number | null, meanValue: number | null, value: number ): void {
+    if ( isResettingProperty.value ) {
+      return;
+    }
     if ( isPlayAreaMedianVisible && !isPlayAreaMeanVisible && medianValue !== null ) {
       NumberTone.playMedian( medianValue );
     }
@@ -135,6 +139,9 @@ export default class NumberTone {
   }
 
   public static playValue( value: number ): void {
+    if ( isResettingProperty.value ) {
+      return;
+    }
     const playbackSpeed = toPlaybackRate( value );
 
     soundClip.setPlaybackRate( playbackSpeed );
@@ -142,6 +149,9 @@ export default class NumberTone {
   }
 
   public static playMedian( value: number ): void {
+    if ( isResettingProperty.value ) {
+      return;
+    }
     const playbackSpeed = toPlaybackRate( value );
 
     // set the frequency of the band pass filter to be equal to the frequency of the adjusted sound
@@ -153,6 +163,9 @@ export default class NumberTone {
   }
 
   public static playMean( value: number ): void {
+    if ( isResettingProperty.value ) {
+      return;
+    }
     const playbackRate = toPlaybackRate( value );
 
     // set the frequency of the band pass filter to be equal to the frequency of the adjusted sound
