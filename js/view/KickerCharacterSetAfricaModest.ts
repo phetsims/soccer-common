@@ -41,10 +41,10 @@ const KickerCharacterSetAfricaModest = new KickerCharacterSet(
       poisedToKick: player02PoisedToKick_png,
       kicking: player02Kicking_png
     },
-    KickerCharacterSetAfrica.unnumberedKickerImages[ 6 - 1 ],
+    KickerCharacterSetAfrica.unnumberedKickerImages[ 7 - 1 ],
     KickerCharacterSetUSA.unnumberedKickerImages[ 8 - 1 ],
     KickerCharacterSetUSA.unnumberedKickerImages[ 2 - 1 ],
-    KickerCharacterSetUSA.unnumberedKickerImages[ 5 - 1 ] ],
+    KickerCharacterSetAfrica.unnumberedKickerImages[ 11 - 1 ] ],
 
   // Numbered Kickers
   KickerCharacterSetUSA.numberedKickerImages,
