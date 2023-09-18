@@ -72,14 +72,6 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  // Node's pickable attribute is not stateful, so soccer balls (instances of SoccerBallNode) were non-interactive in
-  // the State Wrapper and Standard PhET Wrapper. At the point in development when this was discovered, it was too
-  // costly to make the changes required to eliminate uses of pickable and make Node's inputEnabledProperty control
-  // the desired behavior. So we introduced this Property to make pickable stateful, and it is intended to be used as
-  // SoccerBallNode's pickableProperty. "pickableProperty" is forbidden as a tandem name, so we are using
-  // "isPickableProperty" instead. See https://github.com/phetsims/center-and-variability/issues/534
-  public readonly isPickableProperty: Property<boolean>;
-
   protected constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
 
     super( {
@@ -87,12 +79,6 @@ export default class SoccerBall extends PhetioObject {
       phetioFeatured: true,
       isDisposable: false,
       tandem: tandem
-    } );
-
-    this.isPickableProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isPickableProperty' ),
-      phetioFeatured: false,
-      phetioReadOnly: true
     } );
 
     this.positionProperty = new Vector2Property( new Vector2( 0, SoccerCommonConstants.SOCCER_BALL_RADIUS ), {
@@ -186,7 +172,6 @@ export default class SoccerBall extends PhetioObject {
     this.soccerBallPhaseProperty.reset();
     this.valueProperty.reset();
     this.isDraggingProperty.reset();
-    this.isPickableProperty.reset();
 
     this.targetXProperty.value = null;
     this.kicker = null;

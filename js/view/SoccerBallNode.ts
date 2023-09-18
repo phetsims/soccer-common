@@ -44,10 +44,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
       // Data point should be visible if the soccer ball landed
       visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], phase =>
         phase !== SoccerBallPhase.INACTIVE ),
-      isDisposable: false,
-
-      //The pickability is controlled by the ball's position in the stack and updated on stackChangedEmitter
-      pickableProperty: soccerBall.isPickableProperty
+      isDisposable: false
     }, providedOptions );
 
     super( soccerBall, modelViewTransform, options );

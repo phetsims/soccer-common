@@ -40,7 +40,6 @@ import VoidIO from '../../../tandem/js/types/VoidIO.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
 import kick_mp3 from '../../../center-and-variability/sounds/kick_mp3.js';
-import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
@@ -190,11 +189,19 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         this.objectValueBecameNonNullEmitter.emit();
       } );
 
+      soccerBall.soccerBallPhaseProperty.link( phase => {
+        if ( phase === SoccerBallPhase.STACKED ) {
+
+          assert && assert( soccerBall.valueProperty.value !== null, 'if a ball is STACKED it cannot have a value of null' );
+          this.stackChangedEmitter.emit( this.getStackAtValue( soccerBall.valueProperty.value! ) );
+        }
+      } );
+
       // We only want this to fire if the valueProperty of a ball is changed after it has landed.
       // If oldValue is null, it means that the ball is going from FLYING to STACKING,
       // in which case we want it to animate to the top of the stack.
       soccerBall.valueProperty.lazyLink( ( value, oldValue ) => {
-        if ( value !== null && !isSettingPhetioStateProperty.value && oldValue !== null ) {
+        if ( value !== null && oldValue !== null ) {
           const oldStack = this.getStackAtValue( oldValue );
           if ( oldStack.length > 0 ) {
             this.reorganizeStack( oldStack );
@@ -566,7 +573,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     if ( otherObjectsInStack.length === 0 ) {
       soccerBall.soccerBallPhaseProperty.value = SoccerBallPhase.STACKED;
-      this.stackChangedEmitter.emit( [ soccerBall ] );
       this.objectChangedEmitter.emit();
     }
     else {
@@ -586,10 +592,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         // If the sim is cleared while the animation is in progress, do not signify the ball as being at the top of a stack
         if ( soccerBall.valueProperty.value !== null ) {
           soccerBall.soccerBallPhaseProperty.value = SoccerBallPhase.STACKED;
-
-          // Identify the soccer balls in the stack at the time the animation ended
-          this.stackChangedEmitter.emit( this.getActiveSoccerBalls().filter( x =>
-            x.valueProperty.value === value && x.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) );
         }
 
         this.objectChangedEmitter.emit();
