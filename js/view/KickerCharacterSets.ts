@@ -13,12 +13,7 @@ import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
 import KickerCharacterSetAfricaModest from './KickerCharacterSetAfricaModest.js';
 
-const KickerCharacterSets = {
-  CHARACTER_SETS: [ KickerCharacterSetUSA, KickerCharacterSetAfrica, KickerCharacterSetAfricaModest ],
-  CHARACTER_SET_1: KickerCharacterSetUSA,
-  CHARACTER_SET_2: KickerCharacterSetAfrica,
-  CHARACTER_SET_3: KickerCharacterSetAfricaModest
-};
+const KickerCharacterSets = [ KickerCharacterSetUSA, KickerCharacterSetAfrica, KickerCharacterSetAfricaModest ];
 
 soccerCommon.register( 'KickerCharacterSets', KickerCharacterSets );
 

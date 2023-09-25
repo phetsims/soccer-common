@@ -9,7 +9,6 @@
 
 import soccerCommon from '../soccerCommon.js';
 import { Image, Node, NodeOptions, Text } from '../../../scenery/js/imports.js';
-
 import Kicker from '../model/Kicker.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import Vector2 from '../../../dot/js/Vector2.js';
@@ -17,8 +16,10 @@ import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2
 import Pose from '../model/Pose.js';
 import { KickerPhase } from '../model/KickerPhase.js';
 import { KickerImageSet } from './KickerCharacterSet.js';
-import KickerCharacterSets from '../view/KickerCharacterSets.js';
 import Multilink from '../../../axon/js/Multilink.js';
+import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
+import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
+import KickerCharacterSetAfricaModest from './KickerCharacterSetAfricaModest.js';
 
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
@@ -39,29 +40,29 @@ export default class KickerNode extends Node {
     this.kicker = kicker;
 
     // Load in standing images for all locales
-    const standingCharacterSetImage1 = new Image( playerImageSets[ 0 ].standing );
-    const standingCharacterSetImage2 = new Image( playerImageSets[ 1 ].standing );
-    const standingCharacterSetImage3 = new Image( playerImageSets[ 2 ].standing );
+    const standingCharacterSetImageUSA = new Image( playerImageSets[ 0 ].standing );
+    const standingCharacterSetImageAfrica = new Image( playerImageSets[ 1 ].standing );
+    const standingCharacterSetImageAfricaModest = new Image( playerImageSets[ 2 ].standing );
 
-    this.addChild( standingCharacterSetImage1 );
-    this.addChild( standingCharacterSetImage2 );
-    this.addChild( standingCharacterSetImage3 );
+    this.addChild( standingCharacterSetImageUSA );
+    this.addChild( standingCharacterSetImageAfrica );
+    this.addChild( standingCharacterSetImageAfricaModest );
 
     // Load in poisedToKick images for all locales
-    const poisedToKickCharacterSetImage1 = new Image( playerImageSets[ 0 ].poisedToKick );
-    const poisedToKickCharacterSetImage2 = new Image( playerImageSets[ 1 ].poisedToKick );
-    const poisedToKickCharacterSetImage3 = new Image( playerImageSets[ 2 ].poisedToKick );
+    const poisedToKickCharacterSetImageUSA = new Image( playerImageSets[ 0 ].poisedToKick );
+    const poisedToKickCharacterSetAfrica = new Image( playerImageSets[ 1 ].poisedToKick );
+    const poisedToKickCharacterSetAfricaModest = new Image( playerImageSets[ 2 ].poisedToKick );
 
-    this.addChild( poisedToKickCharacterSetImage1 );
-    this.addChild( poisedToKickCharacterSetImage2 );
-    this.addChild( poisedToKickCharacterSetImage3 );
+    this.addChild( poisedToKickCharacterSetImageUSA );
+    this.addChild( poisedToKickCharacterSetAfrica );
+    this.addChild( poisedToKickCharacterSetAfricaModest );
 
-    const kickingCharacterSetImage1 = new Image( playerImageSets[ 0 ].kicking );
-    const kickingCharacterSetImage2 = new Image( playerImageSets[ 1 ].kicking );
-    const kickingCharacterSetImage3 = new Image( playerImageSets[ 2 ].kicking );
-    this.addChild( kickingCharacterSetImage1 );
-    this.addChild( kickingCharacterSetImage2 );
-    this.addChild( kickingCharacterSetImage3 );
+    const kickingCharacterSetImageUSA = new Image( playerImageSets[ 0 ].kicking );
+    const kickingCharacterSetAfrica = new Image( playerImageSets[ 1 ].kicking );
+    const kickingCharacterSetAfricaModest = new Image( playerImageSets[ 2 ].kicking );
+    this.addChild( kickingCharacterSetImageUSA );
+    this.addChild( kickingCharacterSetAfrica );
+    this.addChild( kickingCharacterSetAfricaModest );
 
     this.setScaleMagnitude( SCALE );
 
@@ -81,17 +82,17 @@ export default class KickerNode extends Node {
     Multilink.multilink( [ kicker.characterSetProperty, kicker.poseProperty ], ( characterSet, pose ) => {
 
       // The first character set will be the default at startup when the character set property is null.
-      standingCharacterSetImage1.visible = pose === Pose.STANDING && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
-      poisedToKickCharacterSetImage1.visible = pose === Pose.POISED_TO_KICK && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
-      kickingCharacterSetImage1.visible = pose === Pose.KICKING && ( characterSet === KickerCharacterSets.CHARACTER_SET_1 || characterSet === null );
+      standingCharacterSetImageUSA.visible = pose === Pose.STANDING && ( characterSet === KickerCharacterSetUSA || characterSet === null );
+      poisedToKickCharacterSetImageUSA.visible = pose === Pose.POISED_TO_KICK && ( characterSet === KickerCharacterSetUSA || characterSet === null );
+      kickingCharacterSetImageUSA.visible = pose === Pose.KICKING && ( characterSet === KickerCharacterSetUSA || characterSet === null );
 
-      standingCharacterSetImage2.visible = pose === Pose.STANDING && characterSet === KickerCharacterSets.CHARACTER_SET_2;
-      poisedToKickCharacterSetImage2.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSets.CHARACTER_SET_2;
-      kickingCharacterSetImage2.visible = pose === Pose.KICKING && characterSet === KickerCharacterSets.CHARACTER_SET_2;
+      standingCharacterSetImageAfrica.visible = pose === Pose.STANDING && characterSet === KickerCharacterSetAfrica;
+      poisedToKickCharacterSetAfrica.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSetAfrica;
+      kickingCharacterSetAfrica.visible = pose === Pose.KICKING && characterSet === KickerCharacterSetAfrica;
 
-      standingCharacterSetImage3.visible = pose === Pose.STANDING && characterSet === KickerCharacterSets.CHARACTER_SET_3;
-      poisedToKickCharacterSetImage3.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSets.CHARACTER_SET_3;
-      kickingCharacterSetImage3.visible = pose === Pose.KICKING && characterSet === KickerCharacterSets.CHARACTER_SET_3;
+      standingCharacterSetImageAfricaModest.visible = pose === Pose.STANDING && characterSet === KickerCharacterSetAfricaModest;
+      poisedToKickCharacterSetAfricaModest.visible = pose === Pose.POISED_TO_KICK && characterSet === KickerCharacterSetAfricaModest;
+      kickingCharacterSetAfricaModest.visible = pose === Pose.KICKING && characterSet === KickerCharacterSetAfricaModest;
 
       this.centerBottom = modelViewTransform.modelToViewPosition( new Vector2( 0, 0 ) ).plusXY( -28, 8.5 );
     } );
