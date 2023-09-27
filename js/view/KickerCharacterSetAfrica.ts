@@ -25,6 +25,18 @@ import player07Kicking_png from '../../images/africa/player07Kicking_png.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import HeadshotIcon from './HeadshotIcon.js';
+import variabilityPlayer01Standing_png from '../../images/africa/variabilityPlayer01Standing_png.js';
+import variabilityPlayer01PoisedToKick_png from '../../images/africa/variabilityPlayer01PoisedToKick_png.js';
+import variabilityPlayer01Kicking_png from '../../images/africa/variabilityPlayer01Kicking_png.js';
+import variabilityPlayer02Standing_png from '../../images/africa/variabilityPlayer02Standing_png.js';
+import variabilityPlayer02PoisedToKick_png from '../../images/africa/variabilityPlayer02PoisedToKick_png.js';
+import variabilityPlayer02Kicking_png from '../../images/africa/variabilityPlayer02Kicking_png.js';
+import variabilityPlayer03Standing_png from '../../images/africa/variabilityPlayer03Standing_png.js';
+import variabilityPlayer03PoisedToKick_png from '../../images/africa/variabilityPlayer03PoisedToKick_png.js';
+import variabilityPlayer03Kicking_png from '../../images/africa/variabilityPlayer03Kicking_png.js';
+import variabilityPlayer04Standing_png from '../../images/africa/variabilityPlayer04Standing_png.js';
+import variabilityPlayer04PoisedToKick_png from '../../images/africa/variabilityPlayer04PoisedToKick_png.js';
+import variabilityPlayer04Kicking_png from '../../images/africa/variabilityPlayer04Kicking_png.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -87,7 +99,28 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
     } ],
 
   // Numbered Kickers
-  KickerCharacterSetUSA.numberedKickerImages,
+  [
+    {
+      standing: variabilityPlayer01Standing_png,
+      poisedToKick: variabilityPlayer01PoisedToKick_png,
+      kicking: variabilityPlayer01Kicking_png
+    },
+    {
+      standing: variabilityPlayer02Standing_png,
+      poisedToKick: variabilityPlayer02PoisedToKick_png,
+      kicking: variabilityPlayer02Kicking_png
+    },
+    {
+      standing: variabilityPlayer03Standing_png,
+      poisedToKick: variabilityPlayer03PoisedToKick_png,
+      kicking: variabilityPlayer03Kicking_png
+    },
+    {
+      standing: variabilityPlayer04Standing_png,
+      poisedToKick: variabilityPlayer04PoisedToKick_png,
+      kicking: variabilityPlayer04Kicking_png
+    }
+  ],
   {
     tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfrica' ),
     phetioState: false
