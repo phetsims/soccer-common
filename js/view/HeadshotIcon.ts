@@ -23,7 +23,8 @@ export default class HeadshotIcon extends Image {
     const headshotDimension = 150;
     super( image, {
       clipArea: Shape.rectangle( xClipAreaStart, yClipAreaStart, xClipAreaStart + headshotDimension, yClipAreaStart + headshotDimension ),
-      scale: 0.12
+      scale: 0.12,
+      renderer: 'canvas' //this is specifically addressing a Safari clip-area bug. https://github.com/phetsims/center-and-variability/issues/561
     } );
   }
 }
