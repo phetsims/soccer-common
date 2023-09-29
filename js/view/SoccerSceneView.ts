@@ -231,15 +231,14 @@ export default class SoccerSceneView {
 
     const keyboardListener = new KeyboardListener( {
       fireOnHold: true,
-      keys: [ 'arrowRight', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
+      keys: [ 'd', 'arrowRight', 'a', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
       callback: ( event, keysPressed ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
 
         // Select a soccer ball
         if ( focusedSoccerBallProperty.value !== null ) {
-          if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) ) {
-
-            if ( !isSoccerBallKeyboardGrabbedProperty.value ) {
+          if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' || keysPressed === 'a' || keysPressed === 'd' ) ) {
+            if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) && !isSoccerBallKeyboardGrabbedProperty.value ) {
               soccerModel.hasKeyboardSelectedDifferentBallProperty.value = true;
 
               const delta = keysPressed === 'arrowRight' ? 1 : -1;
@@ -251,10 +250,10 @@ export default class SoccerSceneView {
               const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
               focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
             }
-            else {
+            else if ( isSoccerBallKeyboardGrabbedProperty.value ) {
               soccerModel.hasKeyboardMovedBallProperty.value = true;
 
-              const delta = keysPressed === 'arrowLeft' ? -1 : 1;
+              const delta = keysPressed === 'arrowLeft' || keysPressed === 'a' ? -1 : 1;
               const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
