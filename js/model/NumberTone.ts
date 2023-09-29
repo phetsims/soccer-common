@@ -127,15 +127,7 @@ export default class NumberTone {
     if ( isResettingProperty.value ) {
       return;
     }
-    if ( isPlayAreaMedianVisible && !isPlayAreaMeanVisible && medianValue !== null ) {
-      NumberTone.playMedian( medianValue );
-    }
-    else if ( !isPlayAreaMedianVisible && isPlayAreaMeanVisible && meanValue !== null ) {
-      NumberTone.playMean( meanValue );
-    }
-    else {
-      NumberTone.playValue( value );
-    }
+    NumberTone.playValue( value );
   }
 
   public static playValue( value: number ): void {
