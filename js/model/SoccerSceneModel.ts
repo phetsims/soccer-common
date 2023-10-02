@@ -50,7 +50,6 @@ import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCu
 import Tandem from '../../../tandem/js/Tandem.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
-import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -216,7 +215,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       // If oldValue is null, it means that the ball is going from FLYING to STACKING,
       // in which case we want it to animate to the top of the stack.
       soccerBall.valueProperty.lazyLink( ( value, oldValue ) => {
-        if ( value !== null && oldValue !== null ) {
+        if ( oldValue !== null && soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) {
           const oldStack = this.getStackAtValue( oldValue );
           if ( oldStack.length > 0 ) {
             this.reorganizeStack( oldStack );
@@ -232,6 +231,11 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
           const newStack = [ ...sortedOthers, soccerBall ];
           this.reorganizeStack( newStack );
           this.clearAnimationsInStack( newStack );
+        }
+
+        // If a ball was removed through the state wrapper we want to fire listeners based on the stack changing.
+        if ( oldValue !== null && value === null ) {
+          this.stackChangedEmitter.emit( this.getStackAtValue( oldValue ) );
         }
       } );
 
@@ -318,22 +322,18 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     } );
 
     this.soccerBalls.forEach( soccerBall => {
-      soccerBall.valueProperty.link( ( newValue, oldValue ) => {
+      soccerBall.valueProperty.lazyLink( () => {
 
         // update data measures if the ball is being dragged/moved to a new position after landing/stacking
-        if ( oldValue !== null && newValue !== null ) {
-          updateDataMeasures();
-        }
-
-        // We want to make sure to update data measures while setting state if a ball's value changed.
-        if ( isSettingPhetioStateProperty.value ) {
+        if ( soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) {
           updateDataMeasures();
         }
       } );
-      soccerBall.soccerBallPhaseProperty.link( newPhase => {
+      soccerBall.soccerBallPhaseProperty.link( ( newPhase, oldPhase ) => {
 
-        // update data measures when the ball finished its stacking animation
-        if ( newPhase === SoccerBallPhase.STACKED ) {
+        // update data measures when the ball finished its stacking animation or if a ball has been removed from
+        // the data set through state setting.
+        if ( newPhase === SoccerBallPhase.STACKED || oldPhase === SoccerBallPhase.STACKED ) {
           updateDataMeasures();
         }
       } );
