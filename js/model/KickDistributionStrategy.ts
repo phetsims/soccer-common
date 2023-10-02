@@ -93,7 +93,7 @@ export default class KickDistributionStrategy extends PhetioObject {
   public applyState( stateObject: KickDistributionStrategySpecification ): void {
     this.type = stateObject.type;
     this.values = stateObject.values;
-    this.skewType = stateObject.skewType;
+    this.skewType = stateObject.type === 'randomSkew' ? this.skewType : stateObject.skewType;
   }
 
   public static chooseSkewDirection(): 'left' | 'right' {
