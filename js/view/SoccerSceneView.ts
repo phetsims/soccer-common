@@ -231,17 +231,17 @@ export default class SoccerSceneView {
 
     const keyboardListener = new KeyboardListener( {
       fireOnHold: true,
-      keys: [ 'd', 'arrowRight', 'a', 'arrowLeft', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
+      keys: [ 'd', 'arrowRight', 'a', 'arrowLeft', 'arrowUp', 'arrowDown', 'w', 's', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
       callback: ( event, keysPressed ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
 
         // Select a soccer ball
         if ( focusedSoccerBallProperty.value !== null ) {
-          if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' || keysPressed === 'a' || keysPressed === 'd' ) ) {
-            if ( ( keysPressed === 'arrowRight' || keysPressed === 'arrowLeft' ) && !isSoccerBallKeyboardGrabbedProperty.value ) {
+          if ( ( [ 'arrowRight', 'arrowLeft', 'a', 'd', 'arrowUp', 'arrowDown', 'w', 's' ].includes( keysPressed ) ) ) {
+            if ( [ 'arrowRight', 'arrowLeft', 'arrowUp', 'arrowDown' ].includes( keysPressed ) && !isSoccerBallKeyboardGrabbedProperty.value ) {
               soccerModel.hasKeyboardSelectedDifferentBallProperty.value = true;
 
-              const delta = keysPressed === 'arrowRight' ? 1 : -1;
+              const delta = [ 'arrowRight', 'arrowUp' ].includes( keysPressed ) ? 1 : -1;
               const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
 
               // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
@@ -253,7 +253,7 @@ export default class SoccerSceneView {
             else if ( isSoccerBallKeyboardGrabbedProperty.value ) {
               soccerModel.hasKeyboardMovedBallProperty.value = true;
 
-              const delta = keysPressed === 'arrowLeft' || keysPressed === 'a' ? -1 : 1;
+              const delta = [ 'arrowLeft', 'a', 'arrowDown', 's' ].includes( keysPressed ) ? -1 : 1;
               const soccerBall = focusedSoccerBallProperty.value;
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
