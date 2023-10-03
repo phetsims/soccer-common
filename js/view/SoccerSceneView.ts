@@ -287,6 +287,7 @@ export default class SoccerSceneView {
                                                soccerBall.valueProperty.value;
               if ( typeof soccerBall.valueProperty.value === 'number' ) {
                 soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
+                soccerModel.hasKeyboardMovedBallProperty.value = true;
               }
             }
           }
