@@ -81,7 +81,7 @@ export default class KickerNode extends Node {
 
     Multilink.multilink( [ kicker.characterSetProperty, kicker.poseProperty ], ( characterSet, pose ) => {
 
-      // The first character set will be the default at startup when the character set property is null.
+      // The first character set will be the default at startup, when characterSetProperty is null.
       standingCharacterSetImageUSA.visible = pose === Pose.STANDING && ( characterSet === KickerCharacterSetUSA || characterSet === null );
       poisedToKickCharacterSetImageUSA.visible = pose === Pose.POISED_TO_KICK && ( characterSet === KickerCharacterSetUSA || characterSet === null );
       kickingCharacterSetImageUSA.visible = pose === Pose.KICKING && ( characterSet === KickerCharacterSetUSA || characterSet === null );
