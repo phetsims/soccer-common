@@ -138,15 +138,18 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   }
 
   public reset(): void {
-    this.sceneModels.forEach( sceneModel => sceneModel.reset() );
-    this.selectedSceneModelProperty.reset();
 
+    // We need to reset keyboard focus Properties that are used by the sceneModels, before
+    // resetting the sceneModels themselves.
     this.focusedSoccerBallProperty.reset();
     this.isSoccerBallKeyboardGrabbedProperty.reset();
     this.hasKeyboardGrabbedBallProperty.reset();
     this.isKeyboardFocusedProperty.reset();
     this.hasKeyboardSelectedDifferentBallProperty.reset();
     this.hasKeyboardMovedBallProperty.reset();
+
+    this.sceneModels.forEach( sceneModel => sceneModel.reset() );
+    this.selectedSceneModelProperty.reset();
   }
 
   public clearData(): void {
