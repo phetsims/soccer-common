@@ -45,19 +45,21 @@ export default class DragIndicatorModel extends PhetioObject {
 
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
-      phetioFeatured: true
+      phetioFeatured: false
     } );
 
     this.isDragIndicatorVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'isDragIndicatorVisibleProperty' ),
-      phetioFeatured: true
+      phetioReadOnly: true,
+      phetioFeatured: false
     } );
 
     // Cannot take a range, since it is nullable
     this.valueProperty = new Property<number | null>( null, {
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: NullableIO( NumberIO ),
-      phetioFeatured: true,
+      phetioFeatured: false,
+      phetioReadOnly: true,
       phetioDocumentation: 'Sets the location of the hand/arrow on the number line. If one or more soccer balls exist at that location, the indicator appears on the topmost ball.'
     } );
   }
