@@ -177,7 +177,7 @@ export default class SoccerSceneView {
 
         // When the group receives keyboard focus, make sure that the focused ball is displayed
         if ( focusedSoccerBallProperty.value !== null ) {
-          animatedPanZoomSingleton.listener.panToNode( soccerBallMap.get( focusedSoccerBallProperty.value )! );
+          animatedPanZoomSingleton.listener.panToNode( soccerBallMap.get( focusedSoccerBallProperty.value )!, true );
         }
       },
       blur: () => {
