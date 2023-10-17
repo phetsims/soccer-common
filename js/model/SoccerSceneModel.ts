@@ -425,6 +425,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
    */
   public clearData(): void {
     this.isClearingData = true;
+
+    // We want to reset the interactive and focus highlight properties first.
+    this.clearDataEmitter.emit();
+
     this.numberOfQueuedKicksProperty.reset();
     this.timeProperty.reset();
     this.timeWhenLastBallWasKickedProperty.reset();
@@ -436,7 +440,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     this.isClearingData = false;
     this.updateDataMeasures();
-    this.clearDataEmitter.emit();
 
     // This emitter was suppressed during isClearingData, so we must synchronize listeners now
     this.objectChangedEmitter.emit();

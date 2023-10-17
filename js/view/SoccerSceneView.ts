@@ -311,6 +311,13 @@ export default class SoccerSceneView {
 
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
+
+    sceneModel.clearDataEmitter.addListener( () => {
+        focusedSoccerBallProperty.reset();
+        isSoccerBallKeyboardGrabbedProperty.reset();
+        hasKeyboardFocusProperty.reset();
+      }
+    );
   }
 
   /**
