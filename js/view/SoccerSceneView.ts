@@ -229,6 +229,24 @@ export default class SoccerSceneView {
       }
     );
 
+    // Move the focus highlight to a different soccer ball based on the provided delta.
+    const moveFocusByDelta = ( delta: number, topBallNodes: SoccerBallNode[] ) => {
+
+      if ( focusedSoccerBallProperty.value === null ) {
+
+        // No-op if we do not have a focusedSoccerBallProperty.
+        return;
+      }
+
+      const numberOfTopSoccerBalls = topBallNodes.length;
+
+      // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
+      // also does not wrap.
+      const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBallProperty.value )! );
+      const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
+      focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
+    };
+
     const keyboardListener = new KeyboardListener( {
       fireOnHold: true,
       keys: [ 'd', 'arrowRight', 'a', 'arrowLeft', 'arrowUp', 'arrowDown', 'w', 's', 'enter', 'space', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'home', 'end', 'escape', 'pageUp', 'pageDown' ],
@@ -242,13 +260,7 @@ export default class SoccerSceneView {
               soccerModel.hasKeyboardSelectedDifferentBallProperty.value = true;
 
               const delta = [ 'arrowRight', 'arrowUp' ].includes( keysPressed ) ? 1 : -1;
-              const numberOfTopSoccerBalls = sceneModel.getTopSoccerBalls().length;
-
-              // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
-              // also does not wrap.
-              const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBallProperty.value )! );
-              const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-              focusedSoccerBallProperty.value = topBallNodes[ nextIndex ].soccerBall;
+              moveFocusByDelta( delta, topBallNodes );
             }
             else if ( isSoccerBallKeyboardGrabbedProperty.value ) {
               soccerModel.hasKeyboardMovedBallProperty.value = true;
@@ -258,6 +270,10 @@ export default class SoccerSceneView {
               soccerBall.valueProperty.value = physicalRange.constrainValue( soccerBall.valueProperty.value! + delta );
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
             }
+          }
+          else if ( [ 'home', 'end' ].includes( keysPressed ) ) {
+            const delta = keysPressed === 'home' ? -physicalRange.max : physicalRange.max;
+            moveFocusByDelta( delta, topBallNodes );
           }
           else if ( keysPressed === 'enter' || keysPressed === 'space' ) {
             isSoccerBallKeyboardGrabbedProperty.value = !isSoccerBallKeyboardGrabbedProperty.value;
