@@ -312,7 +312,7 @@ export default class SoccerSceneView {
     this.backSceneViewLayer = backLayer;
     this.frontSceneViewLayer = frontLayer;
 
-    sceneModel.clearDataEmitter.addListener( () => {
+    sceneModel.preClearDataEmitter.addListener( () => {
         focusedSoccerBallProperty.reset();
         isSoccerBallKeyboardGrabbedProperty.reset();
         hasKeyboardFocusProperty.reset();

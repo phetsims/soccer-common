@@ -90,7 +90,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public readonly resetEmitter: TEmitter = new Emitter();
 
   // Emitter that fires when a scene's soccer ball data is cleared
-  public readonly clearDataEmitter: TEmitter = new Emitter();
+  public readonly preClearDataEmitter: TEmitter = new Emitter();
 
   // The total number of data points (landed soccer balls) that a scene is currently showing
   public readonly numberOfDataPointsProperty: Property<number>;
@@ -439,8 +439,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public clearData(): void {
     this.isClearingData = true;
 
-    // We want to reset the interactive and focus highlight properties first.
-    this.clearDataEmitter.emit();
+    // This emitter handles interactive and focus highlight properties that need to reset before data values are reset.
+    this.preClearDataEmitter.emit();
 
     this.numberOfQueuedKicksProperty.reset();
     this.timeProperty.reset();
