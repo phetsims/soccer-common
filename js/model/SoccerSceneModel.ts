@@ -50,6 +50,8 @@ import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCu
 import Tandem from '../../../tandem/js/Tandem.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
+import isResettingProperty from './isResettingProperty.js';
+import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -247,7 +249,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
       // Signal to listeners that a value changed, but batch notifications during reset
       const guardedEmit = () => {
-        if ( !this.isClearingData ) {
+        if ( !this.isClearingData && !isResettingProperty.value && !isSettingPhetioStateProperty.value ) {
           this.objectChangedEmitter.emit();
         }
       };
@@ -255,6 +257,17 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       soccerBall.positionProperty.link( guardedEmit );
 
       return soccerBall;
+    } );
+
+    isResettingProperty.link( isResetting => {
+      if ( !isResetting ) {
+        this.objectChangedEmitter.emit();
+      }
+    } );
+    isSettingPhetioStateProperty.link( isSettingPhetioState => {
+      if ( !isSettingPhetioState ) {
+        this.objectChangedEmitter.emit();
+      }
     } );
 
     this.meanValueProperty = new Property<number | null>( null, {
@@ -356,7 +369,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   protected updateDataMeasures(): void {
-    if ( this.isClearingData ) {
+    if ( this.isClearingData || isResettingProperty.value || isSettingPhetioStateProperty.value ) {
       return;
     }
 
