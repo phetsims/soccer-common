@@ -18,8 +18,10 @@ import { KickerPhase } from './KickerPhase.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
+import PhetioObject from '../../../tandem/js/PhetioObject.js';
+import IOType from '../../../tandem/js/types/IOType.js';
 
-export default class Kicker {
+export default class Kicker extends PhetioObject {
 
   // Which portion of the kicking animation the person is currently in. Determines which pose to set.
   public readonly kickerPhaseProperty: Property<KickerPhase>;
@@ -34,6 +36,13 @@ export default class Kicker {
   public readonly initialPlaceInLine: number;
 
   public constructor( placeInLine: number, public readonly characterSetProperty: Property<RegionAndCulturePortrayal>, tandem: Tandem ) {
+
+    super( {
+      phetioState: false,
+      isDisposable: false,
+      phetioType: Kicker.KickerIO,
+      tandem: tandem
+    } );
 
     this.kickerPhaseProperty = new EnumerationProperty( placeInLine === 0 ? KickerPhase.READY : KickerPhase.INACTIVE, {
       tandem: tandem.createTandem( 'kickerPhaseProperty' ),
@@ -64,6 +73,10 @@ export default class Kicker {
     this.kickerPhaseProperty.reset();
     this.timestampWhenPoisedBeganProperty.reset();
   }
+
+  public static KickerIO = new IOType( 'KickerIO', {
+    valueType: Kicker
+  } );
 }
 
 soccerCommon.register( 'Kicker', Kicker );

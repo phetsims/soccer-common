@@ -25,6 +25,7 @@ import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerBallValueProperty from './SoccerBallValueProperty.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
 
 // Global counter for debugging
 let count = 0;
@@ -57,7 +58,7 @@ export default class SoccerBall extends PhetioObject {
   public readonly resetEmitter: TEmitter = new Emitter();
 
   public animation: Animation | null = null;
-  public kicker: Kicker | null = null;
+  public kickerProperty: Property<Kicker | null>;
 
   // Global index for debugging
   public readonly index = count++;
@@ -117,6 +118,13 @@ export default class SoccerBall extends PhetioObject {
       phetioValueType: NullableIO( NumberIO ),
       phetioReadOnly: true
     } );
+
+    this.kickerProperty = new Property<Kicker | null>( null, {
+      phetioFeatured: false,
+      phetioReadOnly: true,
+      phetioValueType: NullableIO( ReferenceIO( Kicker.KickerIO ) ),
+      tandem: tandem.createTandem( 'kickerProperty' )
+    } );
   }
 
   // this doesn't change the soccerBallPhaseProperty of the soccerBall - that is done by the ball animationEnded callback
@@ -174,7 +182,7 @@ export default class SoccerBall extends PhetioObject {
     this.isDraggingProperty.reset();
 
     this.targetXProperty.value = null;
-    this.kicker = null;
+    this.kickerProperty.reset();
 
     this.resetEmitter.emit();
   }

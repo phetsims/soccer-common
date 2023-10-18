@@ -197,7 +197,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         else {
 
           // If the soccer player that kicked that ball was still in line when the ball lands, they can leave the line now.
-          if ( soccerBall.kicker === this.getFrontKicker() ) {
+          if ( soccerBall.kickerProperty.value === this.getFrontKicker() ) {
             this.advanceLine();
           }
         }
@@ -672,7 +672,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     soccerBall.soccerBallPhaseProperty.value = SoccerBallPhase.FLYING;
     this.timeWhenLastBallWasKickedProperty.value = this.timeProperty.value;
 
-    soccerBall.kicker = kicker;
+    soccerBall.kickerProperty.value = kicker;
 
     playAudio && kickSound.play();
   }
