@@ -369,7 +369,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 
   protected updateDataMeasures(): void {
-    if ( this.isClearingData || isResettingProperty.value || isSettingPhetioStateProperty.value ) {
+
+    // It is expensive to update data measures, therefore we do not want to do this
+    // unnecessarily while setting phetio state.
+    if ( this.isClearingData || isSettingPhetioStateProperty.value ) {
       return;
     }
 
