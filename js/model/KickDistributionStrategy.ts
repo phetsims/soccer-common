@@ -156,7 +156,7 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
         }
 
         // 2. For types 'probabilityByDistance' and 'distanceByIndex', check the values.
-        if ( value.type === 'probabilityByDistance' || value.type === 'distanceByIndex' ) {
+        if ( value.type === 'probabilityByDistance' ) {
           if ( value.values === null ) {
             errors.push( 'values must be specified for type: ' + value.type );
           }
@@ -166,11 +166,21 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
           else if ( value.values.some( v => typeof v !== 'number' ) ) {
             errors.push( 'all elements in values must be numbers for type: ' + value.type );
           }
-          else if ( value.type === 'distanceByIndex' && value.values.some( v => v < 1 || v > 15 ) ) {
-            errors.push( 'all elements in values must satisfy the range [1, 15] for type: ' + value.type );
+        }
+        else if ( value.type === 'distanceByIndex' ) {
+          if ( value.values === null ) {
+            errors.push( 'values must be specified for type: ' + value.type );
           }
-          else if ( value.type === 'distanceByIndex' && value.values.some( v => !Number.isInteger( v ) ) ) {
-            errors.push( 'all elements in values must be an integer for type: ' + value.type );
+          else if ( !Array.isArray( value.values ) ) {
+            errors.push( 'values must be an array for type: ' + value.type );
+          }
+          else {
+            if ( value.values.some( v => !Number.isInteger( v ) ) ) {
+              errors.push( 'all elements in values must be an integer for type: ' + value.type );
+            }
+            if ( value.values.some( v => v < 1 || v > 15 ) ) {
+              errors.push( 'all elements in values must satisfy the range [1, 15] for type: ' + value.type );
+            }
           }
         }
 
