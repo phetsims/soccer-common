@@ -271,7 +271,7 @@ export default class SoccerSceneView {
               soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
             }
           }
-          else if ( [ 'home', 'end' ].includes( keysPressed ) ) {
+          else if ( [ 'home', 'end' ].includes( keysPressed ) && !isSoccerBallKeyboardGrabbedProperty.value ) {
             const delta = keysPressed === 'home' ? -physicalRange.max : physicalRange.max;
             moveFocusByDelta( delta, topBallNodes );
           }
