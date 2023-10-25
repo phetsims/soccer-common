@@ -236,7 +236,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         }
 
         // If a ball was removed through the state wrapper we want to fire listeners based on the stack changing.
-        if ( oldValue !== null && value === null ) {
+        if ( isSettingPhetioStateProperty.value && oldValue !== null ) {
           this.stackChangedEmitter.emit( this.getStackAtValue( oldValue ) );
         }
       } );
