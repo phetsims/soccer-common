@@ -166,6 +166,12 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
           else if ( value.values.some( v => typeof v !== 'number' ) ) {
             errors.push( 'all elements in values must be numbers for type: ' + value.type );
           }
+          else if ( value.type === 'distanceByIndex' && value.values.some( v => v < 1 || v > 15 ) ) {
+            errors.push( 'all elements in values must satisfy the range [1, 15] for type: ' + value.type );
+          }
+          else if ( value.type === 'distanceByIndex' && value.values.some( v => !Number.isInteger( v ) ) ) {
+            errors.push( 'all elements in values must be an integer for type: ' + value.type );
+          }
         }
 
         // 3. For type 'randomSkew' and 'skew', check the skewType.
