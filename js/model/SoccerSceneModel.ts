@@ -236,6 +236,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         }
 
         // If a ball was removed through the state wrapper we want to fire listeners based on the stack changing.
+        // The above calls to reorganizeStack also call stackChangedEmitter.emit, but they only trigger when the phase
+        // is STACKED. We do not control the order of setting phase vs valueProperty in the state wrapper, so we need
+        // to make sure the stackChangedEmitter triggers independently of the ordering.
         if ( isSettingPhetioStateProperty.value && oldValue !== null ) {
           this.stackChangedEmitter.emit( this.getStackAtValue( oldValue ) );
         }
