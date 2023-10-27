@@ -37,6 +37,7 @@ import variabilityPlayer03Kicking_png from '../../images/africa/variabilityPlaye
 import variabilityPlayer04Standing_png from '../../images/africa/variabilityPlayer04Standing_png.js';
 import variabilityPlayer04PoisedToKick_png from '../../images/africa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/africa/variabilityPlayer04Kicking_png.js';
+import { AFRICA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -121,6 +122,7 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
       kicking: variabilityPlayer04Kicking_png
     }
   ],
+  AFRICA_QUERY_VALUE,
   {
     tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfrica' ),
     phetioState: false

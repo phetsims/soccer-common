@@ -15,6 +15,7 @@ import player03Standing_png from '../../images/africa/player03Standing_png.js';
 import variabilityPlayer01Standing_png from '../../images/africaModest/variabilityPlayer01Standing_png.js';
 import variabilityPlayer01PoisedToKick_png from '../../images/africaModest/variabilityPlayer01PoisedToKick_png.js';
 import variabilityPlayer01Kicking_png from '../../images/africaModest/variabilityPlayer01Kicking_png.js';
+import { AFRICA_MODEST_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 
 /**
  * Artwork representing characters from Africa (modest).
@@ -61,6 +62,7 @@ const KickerCharacterSetAfricaModest = new KickerCharacterSet(
     KickerCharacterSetAfrica.numberedKickerImages[ 3 - 1 ],
     KickerCharacterSetAfrica.numberedKickerImages[ 4 - 1 ]
   ],
+  AFRICA_MODEST_QUERY_VALUE,
   {
     tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfricaModest' ),
     phetioState: false

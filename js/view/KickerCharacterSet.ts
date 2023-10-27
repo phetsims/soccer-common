@@ -27,10 +27,14 @@ export default class KickerCharacterSet extends RegionAndCulturePortrayal {
   // Keeps track of how many characters are in each set. This is only needed for unnumbered kickers.
   public readonly unnumberedKickersCount: number;
 
-  public constructor( headshotIcon: Image, labelString: LocalizedStringProperty, public readonly unnumberedKickerImages: KickerImageSet[],
-                      public readonly numberedKickerImages: KickerImageSet[], providedOptions: RegionAndCulturePortrayalOptions ) {
+  public constructor( headshotIcon: Image,
+                      labelString: LocalizedStringProperty,
+                      public readonly unnumberedKickerImages: KickerImageSet[],
+                      public readonly numberedKickerImages: KickerImageSet[],
+                      queryParameterValue: string,
+                      providedOptions: RegionAndCulturePortrayalOptions ) {
 
-    super( headshotIcon, labelString, providedOptions );
+    super( headshotIcon, labelString, queryParameterValue, providedOptions );
 
     this.unnumberedKickersCount = unnumberedKickerImages.length;
   }

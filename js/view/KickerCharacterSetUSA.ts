@@ -60,6 +60,7 @@ import variabilityPlayer04PoisedToKick_png from '../../images/usa/variabilityPla
 import variabilityPlayer04Kicking_png from '../../images/usa/variabilityPlayer04Kicking_png.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import HeadshotIcon from './HeadshotIcon.js';
+import { USA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 
 /**
  * Artwork representing characters from the United States of America.
@@ -174,6 +175,7 @@ const KickerCharacterSetUSA = new KickerCharacterSet(
       kicking: variabilityPlayer04Kicking_png
     }
   ],
+  USA_QUERY_VALUE,
   {
     tandem: portrayalsTandem.createTandem( 'kickerPortrayalUSA' ),
     phetioState: false
