@@ -7,10 +7,9 @@
  */
 
 import soccerCommon from '../soccerCommon.js';
-import { Image } from '../../../scenery/js/imports.js';
-import { Shape } from '../../../kite/js/imports.js';
+import RegionAndCultureHeadshotIcon from '../../../joist/js/preferences/RegionAndCultureHeadshotIcon.js';
 
-export default class HeadshotIcon extends Image {
+export default class HeadshotIcon extends RegionAndCultureHeadshotIcon {
 
   /**
    *
@@ -19,10 +18,11 @@ export default class HeadshotIcon extends Image {
    *                       - pngs have the same dimension
    */
   public constructor( image: HTMLImageElement, yClipAreaStart: number ) {
-    const xClipAreaStart = 35;
-    const headshotDimension = 150;
+
     super( image, {
-      clipArea: Shape.rectangle( xClipAreaStart, yClipAreaStart, xClipAreaStart + headshotDimension, yClipAreaStart + headshotDimension ),
+      yClipAreaStart: yClipAreaStart,
+      xClipAreaStart: 35,
+      headshotDimension: 150,
       scale: 0.12,
       renderer: 'canvas' //this is specifically addressing a Safari clip-area bug. https://github.com/phetsims/center-and-variability/issues/561
     } );
