@@ -23,8 +23,7 @@ export default class HeadshotIcon extends RegionAndCultureHeadshotIcon {
       yClipAreaStart: yClipAreaStart,
       xClipAreaStart: 35,
       headshotDimension: 150,
-      scale: 0.12,
-      renderer: 'canvas' //this is specifically addressing a Safari clip-area bug. https://github.com/phetsims/center-and-variability/issues/561
+      scale: 0.12
     } );
   }
 }
