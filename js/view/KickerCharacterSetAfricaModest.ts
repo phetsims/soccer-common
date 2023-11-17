@@ -10,8 +10,6 @@ import player02Kicking_png from '../../images/africaModest/player02Kicking_png.j
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
-import HeadshotIcon from './HeadshotIcon.js';
-import player03Standing_png from '../../images/africa/player03Standing_png.js';
 import variabilityPlayer01Standing_png from '../../images/africaModest/variabilityPlayer01Standing_png.js';
 import variabilityPlayer01PoisedToKick_png from '../../images/africaModest/variabilityPlayer01PoisedToKick_png.js';
 import variabilityPlayer01Kicking_png from '../../images/africaModest/variabilityPlayer01Kicking_png.js';
@@ -26,7 +24,6 @@ import { AFRICA_MODEST_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 const africaModestStringProperty = SoccerCommonStrings.characterSet.africaModestStringProperty;
 
 const KickerCharacterSetAfricaModest = new KickerCharacterSet(
-  new HeadshotIcon( player03Standing_png, 50 ),
   africaModestStringProperty,
 
   // Unnumbered Kickers

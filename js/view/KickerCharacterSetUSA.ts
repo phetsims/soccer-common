@@ -59,7 +59,6 @@ import variabilityPlayer04Standing_png from '../../images/usa/variabilityPlayer0
 import variabilityPlayer04PoisedToKick_png from '../../images/usa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/usa/variabilityPlayer04Kicking_png.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
-import HeadshotIcon from './HeadshotIcon.js';
 import { USA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 
 /**
@@ -70,7 +69,6 @@ import { USA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 const unitedStatesOfAmericaStringProperty = SoccerCommonStrings.characterSet.unitedStatesOfAmericaStringProperty;
 
 const KickerCharacterSetUSA = new KickerCharacterSet(
-  new HeadshotIcon( player01Standing_png, 80 ),
   unitedStatesOfAmericaStringProperty,
 
   // Unnumbered Kickers
