@@ -58,8 +58,8 @@ import variabilityPlayer03Kicking_png from '../../images/usa/variabilityPlayer03
 import variabilityPlayer04Standing_png from '../../images/usa/variabilityPlayer04Standing_png.js';
 import variabilityPlayer04PoisedToKick_png from '../../images/usa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/usa/variabilityPlayer04Kicking_png.js';
-import { USA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 import JoistStrings from '../../../joist/js/JoistStrings.js';
+import { USA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 /**
  * Artwork representing characters from the United States of America.
@@ -173,7 +173,7 @@ const KickerCharacterSetUSA = new KickerCharacterSet(
       kicking: variabilityPlayer04Kicking_png
     }
   ],
-  USA_QUERY_VALUE,
+  USA_REGION_AND_CULTURE_ID,
   {
     tandem: portrayalsTandem.createTandem( 'kickerPortrayalUSA' ),
     phetioState: false

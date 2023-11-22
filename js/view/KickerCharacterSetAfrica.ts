@@ -35,8 +35,8 @@ import variabilityPlayer03Kicking_png from '../../images/africa/variabilityPlaye
 import variabilityPlayer04Standing_png from '../../images/africa/variabilityPlayer04Standing_png.js';
 import variabilityPlayer04PoisedToKick_png from '../../images/africa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/africa/variabilityPlayer04Kicking_png.js';
-import { AFRICA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
 import JoistStrings from '../../../joist/js/JoistStrings.js';
+import { AFRICA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -47,84 +47,84 @@ import JoistStrings from '../../../joist/js/JoistStrings.js';
 const africaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty;
 
 const KickerCharacterSetAfrica = new KickerCharacterSet(
-    africaStringProperty,
+  africaStringProperty,
 
-    // Unnumbered Kickers
-    [
-        {
-            standing: player01Standing_png,
-            poisedToKick: player01PoisedToKick_png,
-            kicking: player01Kicking_png
-        },
-        {
-            standing: player02Standing_png,
-            poisedToKick: player02PoisedToKick_png,
-            kicking: player02Kicking_png
-        },
-        {
-            standing: player03Standing_png,
-            poisedToKick: player03PoisedToKick_png,
-            kicking: player03Kicking_png
-        },
-        {
-            standing: player04Standing_png,
-            poisedToKick: player04PoisedToKick_png,
-            kicking: player04Kicking_png
-        },
-
-        KickerCharacterSetUSA.unnumberedKickerImages[ 8 - 1 ],
-        KickerCharacterSetUSA.unnumberedKickerImages[ 14 - 1 ],
-
-        {
-            standing: player06Standing_png,
-            poisedToKick: player06PoisedToKick_png,
-            kicking: player06Kicking_png
-        },
-
-        KickerCharacterSetUSA.unnumberedKickerImages[ 12 - 1 ],
-        KickerCharacterSetUSA.unnumberedKickerImages[ 10 - 1 ],
-        KickerCharacterSetUSA.unnumberedKickerImages[ 2 - 1 ],
-
-        {
-            standing: player05Standing_png,
-            poisedToKick: player05PoisedToKick_png,
-            kicking: player05Kicking_png
-        },
-        KickerCharacterSetUSA.unnumberedKickerImages[ 4 - 1 ],
-        {
-            standing: player07Standing_png,
-            poisedToKick: player07PoisedToKick_png,
-            kicking: player07Kicking_png
-        } ],
-
-    // Numbered Kickers
-    [
-        {
-            standing: variabilityPlayer01Standing_png,
-            poisedToKick: variabilityPlayer01PoisedToKick_png,
-            kicking: variabilityPlayer01Kicking_png
-        },
-        {
-            standing: variabilityPlayer02Standing_png,
-            poisedToKick: variabilityPlayer02PoisedToKick_png,
-            kicking: variabilityPlayer02Kicking_png
-        },
-        {
-            standing: variabilityPlayer03Standing_png,
-            poisedToKick: variabilityPlayer03PoisedToKick_png,
-            kicking: variabilityPlayer03Kicking_png
-        },
-        {
-            standing: variabilityPlayer04Standing_png,
-            poisedToKick: variabilityPlayer04PoisedToKick_png,
-            kicking: variabilityPlayer04Kicking_png
-        }
-    ],
-    AFRICA_QUERY_VALUE,
+  // Unnumbered Kickers
+  [
     {
-        tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfrica' ),
-        phetioState: false
+      standing: player01Standing_png,
+      poisedToKick: player01PoisedToKick_png,
+      kicking: player01Kicking_png
+    },
+    {
+      standing: player02Standing_png,
+      poisedToKick: player02PoisedToKick_png,
+      kicking: player02Kicking_png
+    },
+    {
+      standing: player03Standing_png,
+      poisedToKick: player03PoisedToKick_png,
+      kicking: player03Kicking_png
+    },
+    {
+      standing: player04Standing_png,
+      poisedToKick: player04PoisedToKick_png,
+      kicking: player04Kicking_png
+    },
+
+    KickerCharacterSetUSA.unnumberedKickerImages[ 8 - 1 ],
+    KickerCharacterSetUSA.unnumberedKickerImages[ 14 - 1 ],
+
+    {
+      standing: player06Standing_png,
+      poisedToKick: player06PoisedToKick_png,
+      kicking: player06Kicking_png
+    },
+
+    KickerCharacterSetUSA.unnumberedKickerImages[ 12 - 1 ],
+    KickerCharacterSetUSA.unnumberedKickerImages[ 10 - 1 ],
+    KickerCharacterSetUSA.unnumberedKickerImages[ 2 - 1 ],
+
+    {
+      standing: player05Standing_png,
+      poisedToKick: player05PoisedToKick_png,
+      kicking: player05Kicking_png
+    },
+    KickerCharacterSetUSA.unnumberedKickerImages[ 4 - 1 ],
+    {
+      standing: player07Standing_png,
+      poisedToKick: player07PoisedToKick_png,
+      kicking: player07Kicking_png
+    } ],
+
+  // Numbered Kickers
+  [
+    {
+      standing: variabilityPlayer01Standing_png,
+      poisedToKick: variabilityPlayer01PoisedToKick_png,
+      kicking: variabilityPlayer01Kicking_png
+    },
+    {
+      standing: variabilityPlayer02Standing_png,
+      poisedToKick: variabilityPlayer02PoisedToKick_png,
+      kicking: variabilityPlayer02Kicking_png
+    },
+    {
+      standing: variabilityPlayer03Standing_png,
+      poisedToKick: variabilityPlayer03PoisedToKick_png,
+      kicking: variabilityPlayer03Kicking_png
+    },
+    {
+      standing: variabilityPlayer04Standing_png,
+      poisedToKick: variabilityPlayer04PoisedToKick_png,
+      kicking: variabilityPlayer04Kicking_png
     }
+  ],
+  AFRICA_REGION_AND_CULTURE_ID,
+  {
+    tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfrica' ),
+    phetioState: false
+  }
 );
 
 export default KickerCharacterSetAfrica;
