@@ -23,7 +23,6 @@ import player07Standing_png from '../../images/africa/player07Standing_png.js';
 import player07PoisedToKick_png from '../../images/africa/player07PoisedToKick_png.js';
 import player07Kicking_png from '../../images/africa/player07Kicking_png.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
-import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import variabilityPlayer01Standing_png from '../../images/africa/variabilityPlayer01Standing_png.js';
 import variabilityPlayer01PoisedToKick_png from '../../images/africa/variabilityPlayer01PoisedToKick_png.js';
 import variabilityPlayer01Kicking_png from '../../images/africa/variabilityPlayer01Kicking_png.js';
@@ -37,6 +36,7 @@ import variabilityPlayer04Standing_png from '../../images/africa/variabilityPlay
 import variabilityPlayer04PoisedToKick_png from '../../images/africa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/africa/variabilityPlayer04Kicking_png.js';
 import { AFRICA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
+import JoistStrings from '../../../joist/js/JoistStrings.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -44,7 +44,7 @@ import { AFRICA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-const africaStringProperty = SoccerCommonStrings.characterSet.africaStringProperty;
+const africaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty;
 
 const KickerCharacterSetAfrica = new KickerCharacterSet(
     africaStringProperty,

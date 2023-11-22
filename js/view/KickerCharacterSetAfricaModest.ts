@@ -9,11 +9,11 @@ import player02PoisedToKick_png from '../../images/africaModest/player02PoisedTo
 import player02Kicking_png from '../../images/africaModest/player02Kicking_png.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
-import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import variabilityPlayer01Standing_png from '../../images/africaModest/variabilityPlayer01Standing_png.js';
 import variabilityPlayer01PoisedToKick_png from '../../images/africaModest/variabilityPlayer01PoisedToKick_png.js';
 import variabilityPlayer01Kicking_png from '../../images/africaModest/variabilityPlayer01Kicking_png.js';
 import { AFRICA_MODEST_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
+import JoistStrings from '../../../joist/js/JoistStrings.js';
 
 /**
  * Artwork representing characters from Africa (modest).
@@ -21,7 +21,7 @@ import { AFRICA_MODEST_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-const africaModestStringProperty = SoccerCommonStrings.characterSet.africaModestStringProperty;
+const africaModestStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaModestStringProperty;
 
 const KickerCharacterSetAfricaModest = new KickerCharacterSet(
   africaModestStringProperty,

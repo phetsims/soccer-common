@@ -58,15 +58,15 @@ import variabilityPlayer03Kicking_png from '../../images/usa/variabilityPlayer03
 import variabilityPlayer04Standing_png from '../../images/usa/variabilityPlayer04Standing_png.js';
 import variabilityPlayer04PoisedToKick_png from '../../images/usa/variabilityPlayer04PoisedToKick_png.js';
 import variabilityPlayer04Kicking_png from '../../images/usa/variabilityPlayer04Kicking_png.js';
-import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import { USA_QUERY_VALUE } from '../SoccerCommonQueryParameters.js';
+import JoistStrings from '../../../joist/js/JoistStrings.js';
 
 /**
  * Artwork representing characters from the United States of America.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-const unitedStatesOfAmericaStringProperty = SoccerCommonStrings.characterSet.unitedStatesOfAmericaStringProperty;
+const unitedStatesOfAmericaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.unitedStatesOfAmericaStringProperty;
 
 const KickerCharacterSetUSA = new KickerCharacterSet(
   unitedStatesOfAmericaStringProperty,
