@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-import KickerCharacterSet, { portrayalsTandem } from './KickerCharacterSet.js';
+import KickerPortrayal, { portrayalsTandem } from './KickerPortrayal.js';
 import player01Standing_png from '../../images/usa/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/usa/player01PoisedToKick_png.js';
 import player01Kicking_png from '../../images/usa/player01Kicking_png.js';
@@ -68,7 +68,7 @@ import { USA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionA
  */
 const unitedStatesOfAmericaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.unitedStatesOfAmericaStringProperty;
 
-const KickerCharacterSetUSA = new KickerCharacterSet(
+const KickerPortrayalUSA = new KickerPortrayal(
   unitedStatesOfAmericaStringProperty,
 
   // Unnumbered Kickers
@@ -180,4 +180,4 @@ const KickerCharacterSetUSA = new KickerCharacterSet(
   }
 );
 
-export default KickerCharacterSetUSA;
+export default KickerPortrayalUSA;

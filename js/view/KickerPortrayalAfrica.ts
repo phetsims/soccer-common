@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-import KickerCharacterSet, { portrayalsTandem } from './KickerCharacterSet.js';
+import KickerPortrayal, { portrayalsTandem } from './KickerPortrayal.js';
 import player01Standing_png from '../../images/africa/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/africa/player01PoisedToKick_png.js';
 import player01Kicking_png from '../../images/africa/player01Kicking_png.js';
@@ -22,7 +22,7 @@ import player06Kicking_png from '../../images/africa/player06Kicking_png.js';
 import player07Standing_png from '../../images/africa/player07Standing_png.js';
 import player07PoisedToKick_png from '../../images/africa/player07PoisedToKick_png.js';
 import player07Kicking_png from '../../images/africa/player07Kicking_png.js';
-import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
+import KickerPortrayalUSA from './KickerPortrayalUSA.js';
 import variabilityPlayer01Standing_png from '../../images/africa/variabilityPlayer01Standing_png.js';
 import variabilityPlayer01PoisedToKick_png from '../../images/africa/variabilityPlayer01PoisedToKick_png.js';
 import variabilityPlayer01Kicking_png from '../../images/africa/variabilityPlayer01Kicking_png.js';
@@ -46,7 +46,7 @@ import { AFRICA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/Regi
 
 const africaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty;
 
-const KickerCharacterSetAfrica = new KickerCharacterSet(
+const KickerPortrayalAfrica = new KickerPortrayal(
   africaStringProperty,
 
   // Unnumbered Kickers
@@ -72,8 +72,8 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
       kicking: player04Kicking_png
     },
 
-    KickerCharacterSetUSA.unnumberedKickerImages[ 8 - 1 ],
-    KickerCharacterSetUSA.unnumberedKickerImages[ 14 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 8 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 14 - 1 ],
 
     {
       standing: player06Standing_png,
@@ -81,16 +81,16 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
       kicking: player06Kicking_png
     },
 
-    KickerCharacterSetUSA.unnumberedKickerImages[ 12 - 1 ],
-    KickerCharacterSetUSA.unnumberedKickerImages[ 10 - 1 ],
-    KickerCharacterSetUSA.unnumberedKickerImages[ 2 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 12 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 10 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 2 - 1 ],
 
     {
       standing: player05Standing_png,
       poisedToKick: player05PoisedToKick_png,
       kicking: player05Kicking_png
     },
-    KickerCharacterSetUSA.unnumberedKickerImages[ 4 - 1 ],
+    KickerPortrayalUSA.unnumberedKickerImages[ 4 - 1 ],
     {
       standing: player07Standing_png,
       poisedToKick: player07PoisedToKick_png,
@@ -127,4 +127,4 @@ const KickerCharacterSetAfrica = new KickerCharacterSet(
   }
 );
 
-export default KickerCharacterSetAfrica;
+export default KickerPortrayalAfrica;

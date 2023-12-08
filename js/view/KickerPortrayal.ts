@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * A collection of KickerImageSets. One KickerCharacterSet is active at a time. A different KickerCharacterSet can be selected
+ * A collection of KickerImageSets. One KickerPortrayal is active at a time. A different KickerPortrayal can be selected
  * from preferences.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
@@ -21,7 +21,7 @@ export type KickerImageSet = {
 
 export const portrayalsTandem = Tandem.PREFERENCES.createTandem( 'regionAndCulturePortrayals' );
 
-export default class KickerCharacterSet extends RegionAndCulturePortrayal {
+export default class KickerPortrayal extends RegionAndCulturePortrayal {
 
   // Keeps track of how many characters are in each set. This is only needed for unnumbered kickers.
   public readonly unnumberedKickersCount: number;
@@ -38,4 +38,4 @@ export default class KickerCharacterSet extends RegionAndCulturePortrayal {
   }
 }
 
-soccerCommon.register( 'KickerCharacterSet', KickerCharacterSet );
+soccerCommon.register( 'KickerPortrayal', KickerPortrayal );

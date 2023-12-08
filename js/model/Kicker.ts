@@ -35,7 +35,7 @@ export default class Kicker extends PhetioObject {
   // Used to determine the artwork for rendering the KickerNode
   public readonly initialPlaceInLine: number;
 
-  public constructor( placeInLine: number, public readonly characterSetProperty: Property<RegionAndCulturePortrayal>, tandem: Tandem ) {
+  public constructor( placeInLine: number, public readonly portrayalProperty: Property<RegionAndCulturePortrayal>, tandem: Tandem ) {
 
     super( {
       phetioState: false,
