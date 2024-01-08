@@ -75,11 +75,13 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       } );
 
     // TODO: factor out DRAG_CUE_SCALE? https://github.com/phetsims/scenery-phet/issues/815
+    // TODO: can this be managed by the scene view? JUst have one instance per scene? Who cares right? https://github.com/phetsims/scenery-phet/issues/815
     this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.groupSortInteractionModel.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
   }
 
+  // TODO: To GroupSortInteractionView, https://github.com/phetsims/scenery-phet/issues/815
   protected addGrabReleaseCue(): void {
     assert && assert( !this.grabReleaseCueNodeAdded, 'grabReleaseCueNode should only be added once' );
 
