@@ -40,9 +40,7 @@ export default class SoccerSceneView {
 
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
-      'soccerBallsEnabledProperty' | 'focusedSoccerBallProperty' | 'isKeyboardFocusedProperty' |
-      'isSoccerBallKeyboardGrabbedProperty' | 'hasKeyboardGrabbedBallProperty' | 'hasKeyboardMovedBallProperty' |
-      'hasKeyboardSelectedDifferentBallProperty'>,
+      'soccerBallsEnabledProperty' | 'groupSortInteractionModel'>,
     public readonly sceneModel: SoccerSceneModel,
     keyboardDragArrowNode: Node,
     soccerBallHasBeenDraggedProperty: TProperty<boolean>,
@@ -53,10 +51,10 @@ export default class SoccerSceneView {
     tandem: Tandem ) {
 
     const soccerBallsEnabledProperty = soccerModel.soccerBallsEnabledProperty;
-    const focusedSoccerBallProperty = soccerModel.focusedSoccerBallProperty;
-    const hasKeyboardFocusProperty = soccerModel.isKeyboardFocusedProperty;
-    const isSoccerBallKeyboardGrabbedProperty = soccerModel.isSoccerBallKeyboardGrabbedProperty;
-    const hasKeyboardGrabbedBallProperty = soccerModel.hasKeyboardGrabbedBallProperty;
+    const focusedSoccerBallProperty = soccerModel.groupSortInteractionModel.focusedSoccerBallProperty;
+    const hasKeyboardFocusProperty = soccerModel.groupSortInteractionModel.isKeyboardFocusedProperty;
+    const isSoccerBallKeyboardGrabbedProperty = soccerModel.groupSortInteractionModel.isSoccerBallKeyboardGrabbedProperty;
+    const hasKeyboardGrabbedBallProperty = soccerModel.groupSortInteractionModel.hasKeyboardGrabbedBallProperty;
 
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
 
@@ -257,13 +255,13 @@ export default class SoccerSceneView {
         if ( focusedSoccerBallProperty.value !== null ) {
           if ( ( [ 'arrowRight', 'arrowLeft', 'a', 'd', 'arrowUp', 'arrowDown', 'w', 's' ].includes( keysPressed ) ) ) {
             if ( [ 'arrowRight', 'arrowLeft', 'arrowUp', 'arrowDown' ].includes( keysPressed ) && !isSoccerBallKeyboardGrabbedProperty.value ) {
-              soccerModel.hasKeyboardSelectedDifferentBallProperty.value = true;
+              soccerModel.groupSortInteractionModel.hasKeyboardSelectedDifferentBallProperty.value = true;
 
               const delta = [ 'arrowRight', 'arrowUp' ].includes( keysPressed ) ? 1 : -1;
               moveFocusByDelta( delta, topBallNodes );
             }
             else if ( isSoccerBallKeyboardGrabbedProperty.value ) {
-              soccerModel.hasKeyboardMovedBallProperty.value = true;
+              soccerModel.groupSortInteractionModel.hasKeyboardMovedBallProperty.value = true;
 
               const delta = [ 'arrowLeft', 'a', 'arrowDown', 's' ].includes( keysPressed ) ? -1 : 1;
               const soccerBall = focusedSoccerBallProperty.value;
@@ -303,7 +301,7 @@ export default class SoccerSceneView {
                                                soccerBall.valueProperty.value;
               if ( typeof soccerBall.valueProperty.value === 'number' ) {
                 soccerBall.toneEmitter.emit( soccerBall.valueProperty.value );
-                soccerModel.hasKeyboardMovedBallProperty.value = true;
+                soccerModel.groupSortInteractionModel.hasKeyboardMovedBallProperty.value = true;
               }
             }
           }

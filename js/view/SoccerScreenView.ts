@@ -74,7 +74,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         y: SoccerCommonConstants.GROUND_POSITION_Y
       } );
 
-    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
+    // TODO: factor out DRAG_CUE_SCALE? https://github.com/phetsims/scenery-phet/issues/815
+    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.groupSortInteractionModel.isKeyboardDragArrowVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
   }
@@ -84,7 +85,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
     const grabReleaseCueNode = new GrabReleaseCueNode( {
       centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 ),
-      visibleProperty: this.model.isGrabReleaseVisibleProperty
+      visibleProperty: this.model.groupSortInteractionModel.isGrabReleaseVisibleProperty
     } );
     this.addChild( grabReleaseCueNode );
 

@@ -22,6 +22,7 @@ import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
+import SoccerBall from './SoccerBall.js';
 
 export default class DragIndicatorModel extends PhetioObject {
 
@@ -78,6 +79,12 @@ export default class DragIndicatorModel extends PhetioObject {
 
     // Show the drag indicator over the most recently landed ball
     this.valueProperty.value = reversedBalls.length > 0 ? reversedBalls[ 0 ].valueProperty.value : null;
+  }
+
+
+  public moveToFocus( focusedSoccerBall: SoccerBall | null ): void {
+    // TODO: needed for CAV, elsewhere too? https://github.com/phetsims/scenery-phet/issues/815
+
   }
 
   public reset(): void {
