@@ -75,7 +75,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
         sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
       } );
 
-      this.groupSortInteractionModel.focusResetEmitter.emit();
+      this.groupSortInteractionModel.clearFocus();
     } );
 
     // These DynamicProperties allow us to track all the necessary scenes Properties for dragIndicator update, and not
@@ -105,7 +105,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   }
 
   public clearData(): void {
-    this.groupSortInteractionModel.clearData();
+    this.groupSortInteractionModel.clearFocus();
     this.selectedSceneModelProperty.value.clearData();
   }
 }
