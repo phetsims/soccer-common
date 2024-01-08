@@ -24,6 +24,7 @@ import SoccerSceneModel from './SoccerSceneModel.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import SoccerBall from './SoccerBall.js';
 
+// TODO: move this into GroupSortInteractionModel. https://github.com/phetsims/scenery-phet/issues/815
 export default class DragIndicatorModel extends PhetioObject {
 
   // Whether the hand drag icon is currently showing on the soccer ball area
@@ -44,6 +45,7 @@ export default class DragIndicatorModel extends PhetioObject {
       phetioDocumentation: 'This is the drag indicator (hand) that appears on a soccer ball after all balls have been kicked.'
     } );
 
+    // TODO: migration rules when moving to groupSortInteractionModel, https://github.com/phetsims/scenery-phet/issues/815
     this.soccerBallHasBeenDraggedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'soccerBallHasBeenDraggedProperty' ),
       phetioFeatured: false
