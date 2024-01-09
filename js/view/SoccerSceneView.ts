@@ -53,11 +53,8 @@ export default class SoccerSceneView {
       tagName: 'div'
     } );
 
-    // TODO: view node as first parameter https://github.com/phetsims/scenery-phet/issues/815
-    // TODO: GroupSortInteractionView.create() may be more clean to describe the "decoration" pattern here. Like Multilink.multilink(). https://github.com/phetsims/scenery-phet/issues/815
     this.groupSortInteractionView = new GroupSortInteractionView<SoccerBall, SoccerBallNode>(
-      soccerModel.groupSortInteractionModel, sceneModel, soccerBallMap, keyboardDragArrowNode,
-      backLayerSoccerBallLayer,
+      soccerModel.groupSortInteractionModel, backLayerSoccerBallLayer, sceneModel, soccerBallMap, keyboardDragArrowNode,
       modelViewTransform,
       physicalRange );
 
