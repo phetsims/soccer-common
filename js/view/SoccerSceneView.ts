@@ -41,7 +41,9 @@ export default class SoccerSceneView {
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel'>,
     public readonly sceneModel: SoccerSceneModel,
     keyboardDragArrowNode: Node,
-    soccerBallHasBeenDraggedProperty: TProperty<boolean>,
+    // TODO: unused so far: https://github.com/phetsims/scenery-phet/issues/815
+    groupItemHasBeenDraggedProperty: TProperty<boolean>,
+    // TODO: unused so far: https://github.com/phetsims/scenery-phet/issues/815
     dragIndicatorValueProperty: TReadOnlyProperty<number | null>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
