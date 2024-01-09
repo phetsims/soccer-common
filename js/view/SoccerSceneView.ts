@@ -22,8 +22,6 @@ import Kicker from '../model/Kicker.js';
 import Range from '../../../dot/js/Range.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
-import TProperty from '../../../axon/js/TProperty.js';
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import GroupSortInteractionView from './GroupSortInteractionView.js';
 
 /**
@@ -41,10 +39,6 @@ export default class SoccerSceneView {
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel'>,
     public readonly sceneModel: SoccerSceneModel,
     keyboardDragArrowNode: Node,
-    // TODO: unused so far: https://github.com/phetsims/scenery-phet/issues/815
-    hasGroupItemBeenDraggedProperty: TProperty<boolean>,
-    // TODO: unused so far: https://github.com/phetsims/scenery-phet/issues/815
-    dragIndicatorValueProperty: TReadOnlyProperty<number | null>,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
