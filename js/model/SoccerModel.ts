@@ -46,7 +46,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
     const options = optionize<SoccerModelOptions, SelfOptions, PhetioObjectOptions>()( {
       isDisposable: false,
-      groupSortInteractionModelOptions: {}
+      groupSortInteractionModelOptions: {} // TODO: How to get CAVGroupSortInteractionModel into here. . .  https://github.com/phetsims/scenery-phet/issues/815
     }, providedOptions );
 
     super( options );
