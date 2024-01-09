@@ -34,7 +34,7 @@ export default class SoccerSceneView {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
-  public readonly groupSortInteractionView: GroupSortInteractionView;
+  public readonly groupSortInteractionView: GroupSortInteractionView<SoccerBall, SoccerBallNode>;
 
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
@@ -61,7 +61,7 @@ export default class SoccerSceneView {
 
     // TODO: view node as first parameter https://github.com/phetsims/scenery-phet/issues/815
     // TODO: GroupSortInteractionView.create() may be more clean to describe the "decoration" pattern here. Like Multilink.multilink(). https://github.com/phetsims/scenery-phet/issues/815
-    this.groupSortInteractionView = new GroupSortInteractionView(
+    this.groupSortInteractionView = new GroupSortInteractionView<SoccerBall, SoccerBallNode>(
       soccerModel.groupSortInteractionModel, sceneModel, soccerBallMap, keyboardDragArrowNode,
       backLayerSoccerBallLayer,
       modelViewTransform,

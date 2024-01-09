@@ -19,6 +19,7 @@ import IOType from '../../../tandem/js/types/IOType.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import GroupSortInteractionModel, { GroupSortInteractionModelOptions } from './GroupSortInteractionModel.js';
+import SoccerBall from './SoccerBall.js';
 
 type SelfOptions = {
   groupSortInteractionModelOptions?: GroupSortInteractionModelOptions;
@@ -41,7 +42,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // The maximum number of kicks in the currently active scene
   protected readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
-  public readonly groupSortInteractionModel: GroupSortInteractionModel;
+  public readonly groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>;
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
     const options = optionize<SoccerModelOptions, SelfOptions, PhetioObjectOptions>()( {
@@ -68,7 +69,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       checkTandemName: false
     } );
 
-    this.groupSortInteractionModel = new GroupSortInteractionModel( this.soccerBallsEnabledProperty, options.groupSortInteractionModelOptions );
+    this.groupSortInteractionModel = new GroupSortInteractionModel<SoccerBall>( this.soccerBallsEnabledProperty, options.groupSortInteractionModelOptions );
 
     this.selectedSceneModelProperty.link( selectedScene => {
       this.sceneModels.forEach( sceneModel => {
