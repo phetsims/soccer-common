@@ -87,7 +87,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
     const grabReleaseCueNode = new GrabReleaseCueNode( {
       centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 ),
-      visibleProperty: this.model.groupSortInteractionModel.isGrabReleaseVisibleProperty
+      visibleProperty: this.model.groupSortInteractionModel.grabReleaseCueVisibleProperty
     } );
     this.addChild( grabReleaseCueNode );
 
