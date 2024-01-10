@@ -18,13 +18,13 @@ import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
-import GroupSortInteractionModel, { GroupSortInteractionModelOptions } from './GroupSortInteractionModel.js';
+import GroupSortInteractionModel from './GroupSortInteractionModel.js';
 import SoccerBall from './SoccerBall.js';
 
-type SelfOptions = {
-  groupSortInteractionModelOptions?: GroupSortInteractionModelOptions;
+type SelfOptions<T extends SoccerSceneModel> = {
+  createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T> ) => GroupSortInteractionModel<SoccerBall>;
 };
-type SoccerModelOptions = SelfOptions & PhetioObjectOptions;
+export type SoccerModelOptions<T extends SoccerSceneModel> = SelfOptions<T> & PhetioObjectOptions;
 export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObject {
 
   // The scene model that is currently active
@@ -37,17 +37,17 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   protected readonly soccerAreaTandem: Tandem;
 
   // The number of stacked soccer balls in the currently active scene
-  protected readonly selectedSceneStackedSoccerBallCountProperty: DynamicProperty<number, number, SoccerSceneModel>;
+  public readonly selectedSceneStackedSoccerBallCountProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
   // The maximum number of kicks in the currently active scene
-  protected readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
+  public readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
   public readonly groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>;
 
-  protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions ) {
-    const options = optionize<SoccerModelOptions, SelfOptions, PhetioObjectOptions>()( {
+  protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions<T> ) {
+    const options = optionize<SoccerModelOptions<T>, SelfOptions<T>, PhetioObjectOptions>()( {
       isDisposable: false,
-      groupSortInteractionModelOptions: {} // TODO: How to get CAVGroupSortInteractionModel into here. . .  https://github.com/phetsims/scenery-phet/issues/815
+      createGroupSortInteractionModel: soccerModel => new GroupSortInteractionModel<SoccerBall>( soccerModel.soccerBallsEnabledProperty )
     }, providedOptions );
 
     super( options );
@@ -69,16 +69,6 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       checkTandemName: false
     } );
 
-    this.groupSortInteractionModel = new GroupSortInteractionModel<SoccerBall>( this.soccerBallsEnabledProperty, options.groupSortInteractionModelOptions );
-
-    this.selectedSceneModelProperty.link( selectedScene => {
-      this.sceneModels.forEach( sceneModel => {
-        sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
-      } );
-
-      this.groupSortInteractionModel.clearFocus();
-    } );
-
     // These DynamicProperties allow us to track all the necessary scenes Properties for dragIndicator update, and not
     // just the first selectedScene
     this.selectedSceneStackedSoccerBallCountProperty = new DynamicProperty<number, number, SoccerSceneModel>( this.selectedSceneModelProperty, {
@@ -86,6 +76,16 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     } );
     this.selectedSceneMaxKicksProperty = new DynamicProperty<number, number, SoccerSceneModel>( this.selectedSceneModelProperty, {
       derive: 'maxKicksProperty'
+    } );
+
+    this.groupSortInteractionModel = options.createGroupSortInteractionModel( this );
+
+    this.selectedSceneModelProperty.link( selectedScene => {
+      this.sceneModels.forEach( sceneModel => {
+        sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
+      } );
+
+      this.groupSortInteractionModel.clearFocus();
     } );
   }
 
