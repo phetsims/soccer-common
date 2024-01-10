@@ -36,7 +36,9 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
       sceneModel,
       soccerBallMap,
       keyboardSortArrowCueNode,
-      physicalRange );
+      physicalRange, {
+        getSortableItemNodes: () => sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! )
+      } );
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
     // indicator item
