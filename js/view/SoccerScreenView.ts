@@ -74,12 +74,13 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         y: SoccerCommonConstants.GROUND_POSITION_Y
       } );
 
-    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE( model.groupSortInteractionModel.keyboardSortArrowCueVisibleProperty, DRAG_CUE_SCALE );
+    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE(
+      model.groupSortInteractionModel.keyboardSortArrowCueVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
   }
 
-  // TODO: To GroupSortInteractionView, https://github.com/phetsims/scenery-phet/issues/815
+  // TODO: To GroupSortInteractionView with static function to factor out GrabReleaseCueNode, https://github.com/phetsims/scenery-phet/issues/815
   protected addGrabReleaseCue(): void {
     assert && assert( !this.grabReleaseCueNodeAdded, 'grabReleaseCueNode should only be added once' );
 

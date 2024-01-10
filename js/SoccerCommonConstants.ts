@@ -19,7 +19,7 @@ const SoccerCommonConstants = {
   SCREEN_VIEW_X_MARGIN: 15,
   SCREEN_VIEW_Y_MARGIN: 15,
 
-  // TODO: move to GroupSortInteractionView? https://github.com/phetsims/scenery-phet/issues/815
+  // TODO: move to GroupSortInteractionView.createSortCueNode() https://github.com/phetsims/scenery-phet/issues/815
   CREATE_KEYBOARD_ARROW_NODE: ( visibleProperty: TReadOnlyProperty<boolean>, scale = 1 ): InteractiveCueArrowNode => new InteractiveCueArrowNode( {
       doubleHead: true,
       dashWidth: 3.5 * scale,
