@@ -23,6 +23,7 @@ import Range from '../../../dot/js/Range.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import GroupSortInteractionView from './GroupSortInteractionView.js';
+import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -53,10 +54,15 @@ export default class SoccerSceneView {
       tagName: 'div'
     } );
 
-    this.groupSortInteractionView = new GroupSortInteractionView<SoccerBall, SoccerBallNode>(
-      soccerModel.groupSortInteractionModel, backLayerSoccerBallLayer, sceneModel, soccerBallMap, keyboardDragArrowNode,
+    this.groupSortInteractionView = new SoccerCommonGroupSortInteractionView(
+      soccerModel.groupSortInteractionModel,
+      backLayerSoccerBallLayer,
+      sceneModel,
+      soccerBallMap,
+      keyboardDragArrowNode,
       modelViewTransform,
-      physicalRange );
+      physicalRange
+    );
 
     const backLayer = new Node( {
       children: [ backLayerSoccerBallLayer ]
