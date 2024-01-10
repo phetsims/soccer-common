@@ -22,7 +22,6 @@ import Kicker from '../model/Kicker.js';
 import Range from '../../../dot/js/Range.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
-import GroupSortInteractionView from './GroupSortInteractionView.js';
 import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
 
 /**
@@ -33,11 +32,11 @@ export default class SoccerSceneView {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
-  public readonly groupSortInteractionView: GroupSortInteractionView<SoccerBall, SoccerBallNode>;
+  public readonly groupSortInteractionView: SoccerCommonGroupSortInteractionView;
 
   public constructor(
     soccerModel: Pick<SoccerModel<SoccerSceneModel>,
-      'soccerBallsEnabledProperty' | 'groupSortInteractionModel'>,
+      'soccerBallsEnabledProperty' | 'groupSortInteractionModel' | 'selectedSceneModelProperty'>,
     public readonly sceneModel: SoccerSceneModel,
     keyboardDragArrowNode: Node,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
@@ -58,6 +57,7 @@ export default class SoccerSceneView {
       soccerModel.groupSortInteractionModel,
       backLayerSoccerBallLayer,
       sceneModel,
+      soccerModel.selectedSceneModelProperty,
       soccerBallMap,
       keyboardDragArrowNode,
       modelViewTransform,
