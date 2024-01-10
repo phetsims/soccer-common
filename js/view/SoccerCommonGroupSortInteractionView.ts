@@ -63,6 +63,19 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
         }
       }
     } );
+
+    sceneModel.soccerBalls.forEach( soccerBall => {
+      soccerBall.valueProperty.link( ( value, oldValue ) => {
+
+        // If the value changed from numeric to numeric, it must have been by user dragging it.
+        // It's simpler to have the listener here because in the model or drag listener, there is rounding/snapping
+        // And we only want to hide the indicator of the user dragged the ball a full tick mark
+        if ( value !== null && oldValue !== null ) {
+          this.groupSortInteractionModel.hasGroupItemBeenSortedProperty.value = true;
+        }
+      } );
+    } );
+
   }
 
   /**
