@@ -18,6 +18,7 @@ import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2
 import Range from '../../../dot/js/Range.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import Utils from '../../../dot/js/Utils.js';
 
 export default class SoccerCommonGroupSortInteractionView extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
@@ -37,7 +38,18 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
       soccerBallMap,
       keyboardSortArrowCueNode,
       physicalRange, {
-        getSortableItemNodes: () => sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! )
+        getNextFocusedGroupItem: delta => {
+          const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
+          assert && assert( focusedSoccerBall, 'must not be null' );
+          const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
+          const numberOfTopSoccerBalls = topBallNodes.length;
+
+          // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
+          // also does not wrap.
+          const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
+          const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
+          return topBallNodes[ nextIndex ].soccerBall;
+        }
       } );
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
