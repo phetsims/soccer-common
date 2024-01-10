@@ -60,8 +60,9 @@ export default class SoccerSceneView {
       soccerModel.selectedSceneModelProperty,
       soccerBallMap,
       keyboardDragArrowNode,
-      modelViewTransform,
-      physicalRange
+      modelViewTransform, {
+        sortingRange: physicalRange
+      }
     );
 
     const backLayer = new Node( {

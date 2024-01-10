@@ -7,7 +7,7 @@
  */
 
 import soccerCommon from '../soccerCommon.js';
-import GroupSortInteractionView from './GroupSortInteractionView.js';
+import GroupSortInteractionView, { GroupSortInteractionViewOptions } from './GroupSortInteractionView.js';
 import SoccerBall from '../model/SoccerBall.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { Shape } from '../../../kite/js/imports.js';
@@ -15,11 +15,17 @@ import Matrix3 from '../../../dot/js/Matrix3.js';
 import GroupSortInteractionModel from '../model/GroupSortInteractionModel.js';
 import { Node } from '../../../scenery/js/imports.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import Range from '../../../dot/js/Range.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import Utils from '../../../dot/js/Utils.js';
+import optionize from '../../../phet-core/js/optionize.js';
+import PickOptional from '../../../phet-core/js/types/PickOptional.js';
+import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 
+type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall>, 'getNextFocusedGroupItem'>;
+
+type ParentOptions = StrictOmit<GroupSortInteractionViewOptions<SoccerBall>, 'getNextFocusedGroupItem'>;
+type SoccerCommonGroupSortInteractionViewOptions = SelfOptions & ParentOptions;
 export default class SoccerCommonGroupSortInteractionView extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
   public constructor(
@@ -29,28 +35,27 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
     selectedSceneModelProperty: TReadOnlyProperty<SoccerSceneModel>,
     soccerBallMap: Map<SoccerBall, SoccerBallNode>,
     keyboardSortArrowCueNode: Node,
-    public readonly modelViewTransform: ModelViewTransform2,
-    physicalRange: Range ) {
+    public readonly modelViewTransform: ModelViewTransform2, providedOptions: SoccerCommonGroupSortInteractionViewOptions ) {
+
+    const options = optionize<SoccerCommonGroupSortInteractionViewOptions, SelfOptions, ParentOptions>()( {
+      getNextFocusedGroupItem: delta => {
+        const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
+        assert && assert( focusedSoccerBall, 'must not be null' );
+        const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
+        const numberOfTopSoccerBalls = topBallNodes.length;
+
+        // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
+        // also does not wrap.
+        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
+        const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
+        return topBallNodes[ nextIndex ].soccerBall;
+      }
+    }, providedOptions );
 
     super( groupSortInteractionModel,
       primaryFocusedNode,
       sceneModel,
-      soccerBallMap,
-      keyboardSortArrowCueNode,
-      physicalRange, {
-        getNextFocusedGroupItem: delta => {
-          const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
-          assert && assert( focusedSoccerBall, 'must not be null' );
-          const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
-          const numberOfTopSoccerBalls = topBallNodes.length;
-
-          // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
-          // also does not wrap.
-          const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
-          const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-          return topBallNodes[ nextIndex ].soccerBall;
-        }
-      } );
+      soccerBallMap, options );
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
     // indicator item
