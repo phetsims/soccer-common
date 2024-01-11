@@ -22,9 +22,13 @@ import optionize from '../../../phet-core/js/optionize.js';
 import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 
-type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall>, 'getNextFocusedGroupItem'>;
+// A list of options that are required by the supertype, but optional here because
+// we provide a default.
+type RequiredButProvidedBySubtype = 'getNextFocusedGroupItem' | 'getNodeFromModelItem';
 
-type ParentOptions = StrictOmit<GroupSortInteractionViewOptions<SoccerBall>, 'getNextFocusedGroupItem'>;
+type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
+
+type ParentOptions = StrictOmit<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 type SoccerCommonGroupSortInteractionViewOptions = SelfOptions & ParentOptions;
 export default class SoccerCommonGroupSortInteractionView extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
@@ -38,6 +42,10 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
     public readonly modelViewTransform: ModelViewTransform2, providedOptions: SoccerCommonGroupSortInteractionViewOptions ) {
 
     const options = optionize<SoccerCommonGroupSortInteractionViewOptions, SelfOptions, ParentOptions>()( {
+      getNodeFromModelItem: model => {
+        assert && assert( soccerBallMap.has( model ), 'unexpected model' );
+        return soccerBallMap.get( model )!;
+      },
       getNextFocusedGroupItem: delta => {
         const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
         assert && assert( focusedSoccerBall, 'must not be null' );
@@ -55,7 +63,7 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
     super( groupSortInteractionModel,
       primaryFocusedNode,
       sceneModel,
-      soccerBallMap, options );
+      options );
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
     // indicator item
