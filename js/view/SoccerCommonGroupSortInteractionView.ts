@@ -58,6 +58,10 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
         return topBallNodes[ nextIndex ].soccerBall;
       },
+      onSort: soccerBall => {
+        assert && assert( soccerBall.valueProperty.value !== null );
+        soccerBall.toneEmitter.emit( soccerBall.valueProperty.value! );
+      },
       numberKeyMapper: keysPressed => {
 
         // Note here how "0" maps to 10 based on the location of it next to 9.
