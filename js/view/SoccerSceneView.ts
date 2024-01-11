@@ -28,18 +28,18 @@ import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInterac
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
  * populate the middleScreenViewLayer and frontScreenViewLayer in the parent.
  */
-export default class SoccerSceneView {
+export default class SoccerSceneView<SceneModel extends SoccerSceneModel = SoccerSceneModel> {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
-  public readonly groupSortInteractionView: SoccerCommonGroupSortInteractionView;
+  public readonly groupSortInteractionView: SoccerCommonGroupSortInteractionView<SceneModel>;
 
   public constructor(
-    soccerModel: Pick<SoccerModel<SoccerSceneModel>,
+    soccerModel: Pick<SoccerModel<SceneModel>,
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel' | 'selectedSceneModelProperty'>,
-    public readonly sceneModel: SoccerSceneModel,
+    public readonly sceneModel: SceneModel,
     keyboardDragArrowNode: Node,
-    getKickerImageSet: ( kicker: Kicker, sceneModel: SoccerSceneModel ) => KickerImageSet[],
+    getKickerImageSet: ( kicker: Kicker, sceneModel: SceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
     tandem: Tandem ) {
@@ -53,7 +53,7 @@ export default class SoccerSceneView {
       tagName: 'div'
     } );
 
-    this.groupSortInteractionView = new SoccerCommonGroupSortInteractionView(
+    this.groupSortInteractionView = new SoccerCommonGroupSortInteractionView<SceneModel>(
       soccerModel.groupSortInteractionModel,
       backLayerSoccerBallLayer,
       sceneModel,

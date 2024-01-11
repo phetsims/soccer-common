@@ -32,13 +32,13 @@ type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, Socc
 
 type ParentOptions = StrictOmit<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 type SoccerCommonGroupSortInteractionViewOptions = SelfOptions & ParentOptions;
-export default class SoccerCommonGroupSortInteractionView extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
+export default class SoccerCommonGroupSortInteractionView<SceneModel extends SoccerSceneModel> extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
   public constructor(
     groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>,
     primaryFocusedNode: Node,
-    sceneModel: SoccerSceneModel,
-    selectedSceneModelProperty: TReadOnlyProperty<SoccerSceneModel>,
+    sceneModel: SceneModel,
+    selectedSceneModelProperty: TReadOnlyProperty<SceneModel>,
     soccerBallMap: Map<SoccerBall, SoccerBallNode>,
     keyboardSortArrowCueNode: Node,
     public readonly modelViewTransform: ModelViewTransform2, providedOptions: SoccerCommonGroupSortInteractionViewOptions ) {
