@@ -144,22 +144,24 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
 
     // Update soccer ball selection when topmost ball in the stack changes.
     sceneModel.stackChangedEmitter.addListener( () => {
-      const focusedGroupItem = focusedGroupItemProperty.value;
+      if ( selectedSceneModelProperty.value === sceneModel ) {
+        const focusedGroupItem = focusedGroupItemProperty.value;
 
-      // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
-      // a focusedSoccerBall gets assigned once the ball lands.
-      // TODO: Hard to generalize, perhaps with a hook like "update focus please" https://github.com/phetsims/scenery-phet/issues/815
-      const topSoccerBalls = sceneModel.getTopSoccerBalls();
-      if ( focusedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
-        focusedGroupItemProperty.value = topSoccerBalls[ 0 ];
-      }
+        // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
+        // a focusedSoccerBall gets assigned once the ball lands.
+        // TODO: Hard to generalize, perhaps with a hook like "update focus please" https://github.com/phetsims/scenery-phet/issues/815
+        const topSoccerBalls = sceneModel.getTopSoccerBalls();
+        if ( focusedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
+          focusedGroupItemProperty.value = topSoccerBalls[ 0 ];
+        }
 
-      // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
-      // stays on top.
-      if ( focusedGroupItem !== null ) {
-        assert && assert( focusedGroupItem.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
-        const focusedStack = sceneModel.getStackAtValue( focusedGroupItem.valueProperty.value! );
-        focusedGroupItemProperty.value = focusedStack[ focusedStack.length - 1 ];
+        // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
+        // stays on top.
+        if ( focusedGroupItem !== null ) {
+          assert && assert( focusedGroupItem.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
+          const focusedStack = sceneModel.getStackAtValue( focusedGroupItem.valueProperty.value! );
+          focusedGroupItemProperty.value = focusedStack[ focusedStack.length - 1 ];
+        }
       }
     } );
   }
