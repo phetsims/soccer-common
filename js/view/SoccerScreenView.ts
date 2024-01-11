@@ -20,6 +20,7 @@ import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 import { Node } from '../../../scenery/js/imports.js';
+import GroupSortInteractionView from './GroupSortInteractionView.js';
 
 type SelfOptions = {
   questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>;
@@ -74,7 +75,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         y: SoccerCommonConstants.GROUND_POSITION_Y
       } );
 
-    this.keyboardDragArrowNode = SoccerCommonConstants.CREATE_KEYBOARD_ARROW_NODE(
+    this.keyboardDragArrowNode = GroupSortInteractionView.createSortCueNode(
       model.groupSortInteractionModel.keyboardSortArrowCueVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardDragArrowNode );
