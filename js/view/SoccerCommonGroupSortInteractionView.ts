@@ -100,10 +100,7 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
       }
     }, providedOptions );
 
-    super( groupSortInteractionModel,
-      primaryFocusedNode,
-      sceneModel,
-      options );
+    super( groupSortInteractionModel, primaryFocusedNode, options );
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
     // indicator item

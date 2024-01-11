@@ -80,6 +80,10 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
 
     this.groupSortInteractionModel = options.createGroupSortInteractionModel( this );
 
+    sceneModels.forEach( sceneModel => {
+      sceneModel.preClearDataEmitter.addListener( () => this.groupSortInteractionModel.resetInteractionState() );
+    } );
+
     this.selectedSceneModelProperty.link( selectedScene => {
       this.sceneModels.forEach( sceneModel => {
         sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
