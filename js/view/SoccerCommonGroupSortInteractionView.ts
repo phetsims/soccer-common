@@ -43,9 +43,9 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
     public readonly modelViewTransform: ModelViewTransform2, providedOptions: SoccerCommonGroupSortInteractionViewOptions ) {
 
     const options = optionize<SoccerCommonGroupSortInteractionViewOptions, SelfOptions, ParentOptions>()( {
-      getNodeFromModelItem: model => {
-        assert && assert( soccerBallMap.has( model ), 'unexpected model' );
-        return soccerBallMap.get( model )!;
+      getNodeFromModelItem: groupItemModel => {
+        const soccerBallNode = soccerBallMap.get( groupItemModel );
+        return soccerBallNode || null; // If not part of this map, then the groupItemModel is not part of this scene.
       },
       getNextFocusedGroupItem: delta => {
         const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
