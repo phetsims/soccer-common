@@ -26,7 +26,7 @@ import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.
-type RequiredButProvidedBySubtype = 'getNextFocusedGroupItem' | 'getGroupItemToFocus' | 'getNodeFromModelItem';
+type RequiredButProvidedBySubtype = 'getNextSelectedGroupItem' | 'getGroupItemToSelect' | 'getNodeFromModelItem';
 
 type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 
@@ -48,21 +48,21 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         const soccerBallNode = soccerBallMap.get( groupItemModel );
         return soccerBallNode || null; // If not part of this map, then the groupItemModel is not part of this scene.
       },
-      getNextFocusedGroupItem: delta => {
-        const focusedSoccerBall = groupSortInteractionModel.focusedGroupItemProperty.value;
-        assert && assert( focusedSoccerBall, 'must not be null' );
+      getNextSelectedGroupItem: delta => {
+        const selectedSoccerBall = groupSortInteractionModel.selectedGroupItemProperty.value;
+        assert && assert( selectedSoccerBall, 'must not be null' );
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
         const numberOfTopSoccerBalls = topBallNodes.length;
 
         // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
         // also does not wrap.
-        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
+        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall! )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
         return topBallNodes[ nextIndex ].soccerBall;
       },
-      getGroupItemToFocus: () => {
+      getGroupItemToSelect: () => {
 
-        assert && assert( groupSortInteractionModel.focusedGroupItemProperty.value === null,
+        assert && assert( groupSortInteractionModel.selectedGroupItemProperty.value === null,
           'expected to only be called when there is no focus' );
 
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
@@ -108,13 +108,13 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     this.positionKeyboardSortArrowCueNodeEmitter.addListener( () => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
 
-        const focusedSoccerBall = this.groupSortInteractionModel.focusedGroupItemProperty.value;
+        const selectedSoccerBall = this.groupSortInteractionModel.selectedGroupItemProperty.value;
         const sortIndicatorValue = this.groupSortInteractionModel.sortIndicatorValueProperty.value!;
 
         assert && assert( sortIndicatorValue !== null, 'no nulls allowed' );
 
         // If a soccer ball has focus, that takes precedence for displaying the indicators
-        const valueToShow = focusedSoccerBall ? focusedSoccerBall.valueProperty.value! : sortIndicatorValue;
+        const valueToShow = selectedSoccerBall ? selectedSoccerBall.valueProperty.value! : sortIndicatorValue;
         const stack = sceneModel.getStackAtValue( valueToShow );
 
         if ( stack.length > 0 ) {
@@ -141,27 +141,27 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
       } );
     } );
 
-    const focusedGroupItemProperty = this.groupSortInteractionModel.focusedGroupItemProperty;
+    const selectedGroupItemProperty = this.groupSortInteractionModel.selectedGroupItemProperty;
 
     // Update soccer ball selection when topmost ball in the stack changes.
     sceneModel.stackChangedEmitter.addListener( () => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
-        const focusedGroupItem = focusedGroupItemProperty.value;
+        const selectedGroupItem = selectedGroupItemProperty.value;
 
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
-        // a focusedSoccerBall gets assigned once the ball lands.
+        // a selectedGroupItem gets assigned once the ball lands.
         // TODO: Hard to generalize, perhaps with a hook like "update focus please" https://github.com/phetsims/scenery-phet/issues/815
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( focusedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
-          focusedGroupItemProperty.value = topSoccerBalls[ 0 ];
+        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
+          selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
         }
 
-        // Anytime a stack changes and the focusedSoccerBall is assigned, we want to make sure the focusedSoccerBall
+        // Anytime a stack changes and the selectedGroupItem is assigned, we want to make sure the selectedGroupItem
         // stays on top.
-        if ( focusedGroupItem !== null ) {
-          assert && assert( focusedGroupItem.valueProperty.value !== null, 'The valueProperty of the focusedSoccerBall should not be null.' );
-          const focusedStack = sceneModel.getStackAtValue( focusedGroupItem.valueProperty.value! );
-          focusedGroupItemProperty.value = focusedStack[ focusedStack.length - 1 ];
+        if ( selectedGroupItem !== null ) {
+          assert && assert( selectedGroupItem.valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
+          const selectedStack = sceneModel.getStackAtValue( selectedGroupItem.valueProperty.value! );
+          selectedGroupItemProperty.value = selectedStack[ selectedStack.length - 1 ];
         }
       }
     } );
