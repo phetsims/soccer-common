@@ -57,6 +57,21 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
         const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
         return topBallNodes[ nextIndex ].soccerBall;
+      },
+      numberKeyMapper: keysPressed => {
+
+        // Note here how "0" maps to 10 based on the location of it next to 9.
+        return keysPressed === '1' ? 1 :
+               keysPressed === '2' ? 2 :
+               keysPressed === '3' ? 3 :
+               keysPressed === '4' ? 4 :
+               keysPressed === '5' ? 5 :
+               keysPressed === '6' ? 6 :
+               keysPressed === '7' ? 7 :
+               keysPressed === '8' ? 8 :
+               keysPressed === '9' ? 9 :
+               keysPressed === '0' ? 10 :
+               null; // Guard against having an unexpected key (don't change the value).
       }
     }, providedOptions );
 
