@@ -1,7 +1,8 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * TODO: https://github.com/phetsims/scenery-phet/issues/815
+ * Apply the sim-specific logic to wire up a GroupSortInteractionView for the particular Soccer scene the interaction
+ * is associated with.
  * @author Michael Kauzmann (PhET Interactive Simulations)
  * @author Marla Schulz (PhET Interactive Simulations)
  */

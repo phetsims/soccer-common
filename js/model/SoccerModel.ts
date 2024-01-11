@@ -42,6 +42,9 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // The maximum number of kicks in the currently active scene
   public readonly selectedSceneMaxKicksProperty: DynamicProperty<number, number, SoccerSceneModel>;
 
+  // Hold the model information about the state of the group sort interaction. Instantiate just one for the whole screen
+  // So that the "learning" state in the interaction can persist across scenes. For example, whether to show cue hints
+  // when a successful sort has not yet occurred.
   public readonly groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>;
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions<T> ) {
