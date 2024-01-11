@@ -21,10 +21,11 @@ import Utils from '../../../dot/js/Utils.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.
-type RequiredButProvidedBySubtype = 'getNextFocusedGroupItem' | 'getNodeFromModelItem';
+type RequiredButProvidedBySubtype = 'getNextFocusedGroupItem' | 'getGroupItemToFocus' | 'getNodeFromModelItem';
 
 type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 
@@ -57,6 +58,26 @@ export default class SoccerCommonGroupSortInteractionView extends GroupSortInter
         const currentIndex = topBallNodes.indexOf( soccerBallMap.get( focusedSoccerBall! )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
         return topBallNodes[ nextIndex ].soccerBall;
+      },
+      getGroupItemToFocus: () => {
+
+        assert && assert( groupSortInteractionModel.focusedGroupItemProperty.value === null,
+          'expected to only be called when there is no focus' );
+
+        const topSoccerBalls = sceneModel.getTopSoccerBalls();
+        if ( topSoccerBalls.length > 0 ) {
+          const sortIndicatorValue = groupSortInteractionModel.sortIndicatorValueProperty.value;
+          if ( sortIndicatorValue !== null ) {
+            const sortIndicatorStack = sceneModel.getStackAtValue( sortIndicatorValue,
+              soccerBall => soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED );
+            assert && assert( sortIndicatorStack.length > 0, `must have a stack length at the sortIndicator value: ${sortIndicatorValue}` );
+            return sortIndicatorStack[ sortIndicatorStack.length - 1 ];
+          }
+          else {
+            return topSoccerBalls[ 0 ];
+          }
+        }
+        return null;
       },
       onSort: soccerBall => {
         assert && assert( soccerBall.valueProperty.value !== null );
