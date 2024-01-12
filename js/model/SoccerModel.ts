@@ -51,7 +51,10 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     const options = optionize<SoccerModelOptions<T>, SelfOptions<T>, PhetioObjectOptions>()( {
       isDisposable: false,
       tandem: Tandem.REQUIRED,
-      createGroupSortInteractionModel: ( soccerModel, tandem ) => new GroupSortInteractionModel<SoccerBall>( soccerModel.soccerBallsEnabledProperty, { tandem: tandem } )
+      createGroupSortInteractionModel: ( soccerModel, tandem ) => new GroupSortInteractionModel<SoccerBall>( {
+        enabledProperty: soccerModel.soccerBallsEnabledProperty,
+        tandem: tandem
+      } )
     }, providedOptions );
 
     super( options );
