@@ -105,7 +105,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
 
     // Position the keyboard cue given the MVT. The selection arrow is shown over the same ball as the mouse sort
     // indicator item
-    this.positionKeyboardSortArrowCueNodeEmitter.addListener( () => {
+    this.positionSortCueNodeEmitter.addListener( () => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
 
         const selectedSoccerBall = this.groupSortInteractionModel.selectedGroupItemProperty.value;
@@ -150,7 +150,6 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
 
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
-        // TODO: Hard to generalize, perhaps with a hook like "update focus please" https://github.com/phetsims/scenery-phet/issues/815
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
         if ( selectedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
           selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
