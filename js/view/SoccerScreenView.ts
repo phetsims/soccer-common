@@ -18,7 +18,6 @@ import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
-import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 import { Node } from '../../../scenery/js/imports.js';
 import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
 
@@ -81,15 +80,13 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
     this.addChild( this.keyboardSortCueNode );
   }
 
-  // TODO: To GroupSortInteractionView with static function to factor out GrabReleaseCueNode, https://github.com/phetsims/scenery-phet/issues/815
   protected addGrabReleaseCue(): void {
     assert && assert( !this.grabReleaseCueNodeAdded, 'grabReleaseCueNode should only be added once' );
 
-    const grabReleaseCueNode = new GrabReleaseCueNode( {
-      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 ),
-      visibleProperty: this.model.groupSortInteractionModel.grabReleaseCueVisibleProperty
-    } );
-    this.addChild( grabReleaseCueNode );
+    const visibleProperty = this.model.groupSortInteractionModel.grabReleaseCueVisibleProperty;
+    this.addChild( GroupSortInteractionView.createGrabReleaseCueNode( visibleProperty, {
+      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 )
+    } ) );
 
     this.grabReleaseCueNodeAdded = true;
   }
