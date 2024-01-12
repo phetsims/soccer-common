@@ -21,8 +21,8 @@ import optionize from '../../../phet-core/js/optionize.js';
 import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/view/GroupSortInteractionView.js';
-import GroupSortInteractionModel from '../../../scenery-phet/js/model/GroupSortInteractionModel.js';
+import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
+import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.

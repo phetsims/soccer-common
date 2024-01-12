@@ -18,7 +18,7 @@ import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
-import GroupSortInteractionModel from '../../../scenery-phet/js/model/GroupSortInteractionModel.js';
+import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
 import SoccerBall from './SoccerBall.js';
 
 type SelfOptions<T extends SoccerSceneModel> = {
