@@ -67,11 +67,11 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
 
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
         if ( topSoccerBalls.length > 0 ) {
-          const sortIndicatorValue = groupSortInteractionModel.sortIndicatorValueProperty.value;
-          if ( sortIndicatorValue !== null ) {
-            const sortIndicatorStack = sceneModel.getStackAtValue( sortIndicatorValue,
+          const selectedValue = groupSortInteractionModel.selectedGroupItemProperty.value?.valueProperty.value ?? null;
+          if ( selectedValue !== null ) {
+            const sortIndicatorStack = sceneModel.getStackAtValue( selectedValue,
               soccerBall => soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED );
-            assert && assert( sortIndicatorStack.length > 0, `must have a stack length at the sortIndicator value: ${sortIndicatorValue}` );
+            assert && assert( sortIndicatorStack.length > 0, `must have a stack length at the sortIndicator value: ${selectedValue}` );
             return sortIndicatorStack[ sortIndicatorStack.length - 1 ];
           }
           else {
@@ -109,12 +109,11 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
       if ( selectedSceneModelProperty.value === sceneModel ) {
 
         const selectedSoccerBall = this.groupSortInteractionModel.selectedGroupItemProperty.value;
-        const sortIndicatorValue = this.groupSortInteractionModel.sortIndicatorValueProperty.value!;
-
-        assert && assert( sortIndicatorValue !== null, 'no nulls allowed' );
+        assert && assert( selectedSoccerBall !== null, 'Must have a selection to position the sorting cue node' );
+        assert && assert( selectedSoccerBall!.valueProperty.value !== null, 'Cannot select a soccer ball with no value' );
 
         // If a soccer ball has focus, that takes precedence for displaying the indicators
-        const valueToShow = selectedSoccerBall ? selectedSoccerBall.valueProperty.value! : sortIndicatorValue;
+        const valueToShow = selectedSoccerBall!.valueProperty.value!;
         const stack = sceneModel.getStackAtValue( valueToShow );
 
         if ( stack.length > 0 ) {
@@ -151,7 +150,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && primaryFocusedNode.focused ) {
+        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && this.groupSortInteractionModel.isKeyboardFocusedProperty.value ) {
           selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
         }
 

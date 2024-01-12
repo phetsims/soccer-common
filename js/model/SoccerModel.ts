@@ -96,7 +96,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
         sceneModel.isVisibleProperty.value = sceneModel === selectedScene;
       } );
 
-      this.groupSortInteractionModel.clearFocus();
+      this.groupSortInteractionModel.clearSelection();
     } );
   }
 
@@ -117,7 +117,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   }
 
   public clearData(): void {
-    this.groupSortInteractionModel.clearFocus();
+    this.groupSortInteractionModel.clearSelection();
     this.selectedSceneModelProperty.value.clearData();
   }
 }
