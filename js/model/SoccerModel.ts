@@ -52,6 +52,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       isDisposable: false,
       tandem: Tandem.REQUIRED,
       createGroupSortInteractionModel: ( soccerModel, tandem ) => new GroupSortInteractionModel<SoccerBall>( {
+        getValueProperty: soccerBall => soccerBall.valueProperty,
         enabledProperty: soccerModel.soccerBallsEnabledProperty,
         tandem: tandem
       } )
