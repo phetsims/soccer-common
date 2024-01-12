@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * SoccerModel is the base class for the soccer simulation. It manages the scene models and keyboard input properties.

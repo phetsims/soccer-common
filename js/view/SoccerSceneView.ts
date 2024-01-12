@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * Depicts a single scene in which soccer balls can be kicked. This includes the soccer balls, soccer players,
