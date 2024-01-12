@@ -38,7 +38,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     soccerModel: Pick<SoccerModel<SceneModel>,
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel' | 'selectedSceneModelProperty'>,
     public readonly sceneModel: SceneModel,
-    keyboardDragArrowNode: Node,
+    keyboardSortCueNode: Node,
     getKickerImageSet: ( kicker: Kicker, sceneModel: SceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
@@ -59,7 +59,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       sceneModel,
       soccerModel.selectedSceneModelProperty,
       soccerBallMap,
-      keyboardDragArrowNode,
+      keyboardSortCueNode,
       modelViewTransform, {
         sortingRange: physicalRange
       }

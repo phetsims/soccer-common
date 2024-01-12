@@ -45,7 +45,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected readonly playAreaNumberLineNode: NumberLineNode;
 
   // The keyboard drag indicator arrow
-  protected readonly keyboardDragArrowNode: Node;
+  protected readonly keyboardSortCueNode: Node;
 
   // Flag to ensure that the grabReleaseCueNode is only added once
   private grabReleaseCueNodeAdded = false;
@@ -75,10 +75,10 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         y: SoccerCommonConstants.GROUND_POSITION_Y
       } );
 
-    this.keyboardDragArrowNode = GroupSortInteractionView.createSortCueNode(
-      model.groupSortInteractionModel.keyboardSortArrowCueVisibleProperty, DRAG_CUE_SCALE );
+    this.keyboardSortCueNode = GroupSortInteractionView.createSortCueNode(
+      model.groupSortInteractionModel.keyboardSortCueVisibleProperty, DRAG_CUE_SCALE );
 
-    this.addChild( this.keyboardDragArrowNode );
+    this.addChild( this.keyboardSortCueNode );
   }
 
   // TODO: To GroupSortInteractionView with static function to factor out GrabReleaseCueNode, https://github.com/phetsims/scenery-phet/issues/815
