@@ -22,7 +22,7 @@ import GroupSortInteractionModel from './GroupSortInteractionModel.js';
 import SoccerBall from './SoccerBall.js';
 
 type SelfOptions<T extends SoccerSceneModel> = {
-  createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T> ) => GroupSortInteractionModel<SoccerBall>;
+  createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T>, tandem: Tandem ) => GroupSortInteractionModel<SoccerBall>;
 };
 export type SoccerModelOptions<T extends SoccerSceneModel> = SelfOptions<T> & PhetioObjectOptions;
 export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObject {
@@ -50,7 +50,8 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions<T> ) {
     const options = optionize<SoccerModelOptions<T>, SelfOptions<T>, PhetioObjectOptions>()( {
       isDisposable: false,
-      createGroupSortInteractionModel: soccerModel => new GroupSortInteractionModel<SoccerBall>( soccerModel.soccerBallsEnabledProperty )
+      tandem: Tandem.REQUIRED,
+      createGroupSortInteractionModel: ( soccerModel, tandem ) => new GroupSortInteractionModel<SoccerBall>( soccerModel.soccerBallsEnabledProperty, { tandem: tandem } )
     }, providedOptions );
 
     super( options );
@@ -81,7 +82,7 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
       derive: 'maxKicksProperty'
     } );
 
-    this.groupSortInteractionModel = options.createGroupSortInteractionModel( this );
+    this.groupSortInteractionModel = options.createGroupSortInteractionModel( this, this.soccerAreaTandem.createTandem( 'groupSortInteractionModel' ) );
 
     sceneModels.forEach( sceneModel => {
       sceneModel.preClearDataEmitter.addListener( () => this.groupSortInteractionModel.resetInteractionState() );
