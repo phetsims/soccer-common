@@ -8,12 +8,10 @@
  */
 
 import soccerCommon from '../soccerCommon.js';
-import GroupSortInteractionView, { GroupSortInteractionViewOptions } from './GroupSortInteractionView.js';
 import SoccerBall from '../model/SoccerBall.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import { Shape } from '../../../kite/js/imports.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
-import GroupSortInteractionModel from '../model/GroupSortInteractionModel.js';
 import { Node } from '../../../scenery/js/imports.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -23,6 +21,8 @@ import optionize from '../../../phet-core/js/optionize.js';
 import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/view/GroupSortInteractionView.js';
+import GroupSortInteractionModel from '../../../scenery-phet/js/model/GroupSortInteractionModel.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.

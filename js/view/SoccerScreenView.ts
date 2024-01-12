@@ -20,7 +20,7 @@ import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
 import GrabReleaseCueNode from '../../../scenery-phet/js/accessibility/nodes/GrabReleaseCueNode.js';
 import { Node } from '../../../scenery/js/imports.js';
-import GroupSortInteractionView from './GroupSortInteractionView.js';
+import GroupSortInteractionView from '../../../scenery-phet/js/view/GroupSortInteractionView.js';
 
 type SelfOptions = {
   questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>;
