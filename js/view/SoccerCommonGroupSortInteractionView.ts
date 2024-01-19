@@ -48,15 +48,13 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         const soccerBallNode = soccerBallMap.get( groupItemModel );
         return soccerBallNode || null; // If not part of this map, then the groupItemModel is not part of this scene.
       },
-      getNextSelectedGroupItem: delta => {
-        const selectedSoccerBall = groupSortInteractionModel.selectedGroupItemProperty.value;
-        assert && assert( selectedSoccerBall, 'must not be null' );
+      getNextSelectedGroupItem: ( delta, selectedSoccerBall ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
         const numberOfTopSoccerBalls = topBallNodes.length;
 
         // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
         // also does not wrap.
-        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall! )! );
+        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
         return topBallNodes[ nextIndex ].soccerBall;
       },
