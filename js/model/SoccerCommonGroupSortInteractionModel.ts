@@ -39,7 +39,8 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
       ...allValueProperties,
       this.hasGroupItemBeenSortedProperty,
       this.selectedSceneStackedSoccerBallCountProperty,
-      this.selectedSceneMaxKicksProperty
+      this.selectedSceneMaxKicksProperty,
+      this.isKeyboardFocusedProperty
     ], () => {
       const sceneModel = this.selectedSceneModelProperty.value;
       const soccerBallCount = this.selectedSceneStackedSoccerBallCountProperty.value;
@@ -62,7 +63,7 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
   // group sort selection.
   public updateSelectedGroupItem( sceneModel: SceneModel ): void {
 
-    if ( !this.isKeyboardFocusedProperty.value ) {
+    if ( !this.isKeyboardFocusedProperty.value && !this.hasKeyboardSelectedGroupItemProperty.value ) {
 
       const reversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall => soccerBall.valueProperty.value !== null ).reverse();
 
