@@ -23,6 +23,7 @@ import Range from '../../../dot/js/Range.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
+import TinyProperty from '../../../axon/js/TinyProperty.js';
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -61,7 +62,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       soccerBallMap,
       keyboardSortCueNode,
       modelViewTransform, {
-        sortingRange: physicalRange
+        sortingRangeProperty: new TinyProperty( physicalRange )
       }
     );
 
