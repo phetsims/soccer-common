@@ -4,14 +4,6 @@
  * CAVGroupSortInteractionModel is a subclass that adds logic to place the drag indicator in a
  * spot that is not the median. Its role is to minimize the occurrence of drag indicator and median indicator overlap.
  * @author Marla Schulz (PhET Interactive Simulations)
- *
- * design requirements:
- * 1. Default selection is the most recently landed ball
- * 2. Mouse cue location doesn't overlap with the median marker unless keyboard has specifically selected it.
- * 3. BUG FIX! mouse cue doesn't actually follow keyboard selection. boooo.
- * TODO: https://github.com/phetsims/scenery-phet/issues/815
- * 1. SoccerCommonGroupSort for the multilink and "recently landed ball" selection heuristic.
- * 2. Bug fixes and confirmation.
  */
 
 import soccerCommon from '../soccerCommon.js';
