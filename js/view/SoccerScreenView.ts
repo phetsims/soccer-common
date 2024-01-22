@@ -46,9 +46,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   // The keyboard drag indicator arrow
   protected readonly keyboardSortCueNode: Node;
 
-  // Flag to ensure that the grabReleaseCueNode is only added once
-  private grabReleaseCueNodeAdded = false;
-
   protected constructor( protected readonly model: Q, providedOptions: SoccerScreenViewOptions ) {
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
@@ -78,17 +75,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       model.groupSortInteractionModel.keyboardSortCueVisibleProperty, DRAG_CUE_SCALE );
 
     this.addChild( this.keyboardSortCueNode );
-  }
-
-  protected addGrabReleaseCue(): void {
-    assert && assert( !this.grabReleaseCueNodeAdded, 'grabReleaseCueNode should only be added once' );
-
-    const visibleProperty = this.model.groupSortInteractionModel.grabReleaseCueVisibleProperty;
-    this.addChild( GroupSortInteractionView.createGrabReleaseCueNode( visibleProperty, {
-      centerTop: this.modelViewTransform.modelToViewXY( 7.5, 4 )
-    } ) );
-
-    this.grabReleaseCueNodeAdded = true;
   }
 }
 

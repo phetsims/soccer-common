@@ -96,6 +96,9 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
                keysPressed === '9' ? 9 :
                keysPressed === '0' ? 10 :
                null; // Guard against having an unexpected key (don't change the value).
+      },
+      grabReleaseCueOptions: {
+        centerTop: modelViewTransform.modelToViewXY( 7.5, 4 )
       }
     }, providedOptions );
 
@@ -171,7 +174,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     const margin = 4; // Distance below the accordion box
     const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) )
       .transformed( Matrix3.translation( 0, 37 ) );
-    this.groupFocusHighlightPath.shape = Shape.rect(
+    this.groupSortGroupFocusHighlightPath.shape = Shape.rect(
       shapeForLeftRightBottom.bounds.x,
       top + margin,
       shapeForLeftRightBottom.bounds.width,
