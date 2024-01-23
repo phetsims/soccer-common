@@ -44,7 +44,8 @@ of data points) to view coordinates in the soccer area. The transform is defined
 
 ### Query Parameters
 
-Query parameters specific to this common code repo can be found in [SoccerCommonQueryParameters](https://github.com/phetsims/soccer-common/blob/main/js/SoccerCommonQueryParameters.ts).
+Query parameters specific to this common code repo can be found
+in [SoccerCommonQueryParameters](https://github.com/phetsims/soccer-common/blob/main/js/SoccerCommonQueryParameters.ts).
 
 ### Memory Management
 
@@ -52,8 +53,8 @@ Query parameters specific to this common code repo can be found in [SoccerCommon
   simulation. We use `isActiveProperty` flags or other phase Property flags to indicate whether they appear in the sim
   and participate in the model.
 - **Listeners**: All uses of `link`, `addListener`, etc. do NOT need a corresponding `unlink`, `removeListener`, etc.
-- **dispose**: The "additional-bad-text" lint rule prevents the usage of the token "dispose" in this repo, and classes are marked
-  as `isDisposable: false`. Disposal is not supported and should not be used.
+- **dispose**: The "additional-bad-text" lint rule prevents the usage of the token "dispose" in this repo, and classes
+  are marked as `isDisposable: false`. Disposal is not supported and should not be used.
 
 ### Main Architecture & Scenes
 
@@ -89,8 +90,8 @@ skew on reset. PhET-iO provides a rich API for specifying different types of dis
 
 ### SoccerBall
 
-A soccer ball is like a data point that has a `null` value until it lands, then it takes a numerical value that corresponds
-to its location on the soccer field. See SoccerBallPhase for the full list of phases a soccer ball may take.
+A soccer ball is like a data point that has a `null` value until it lands, then it takes a numerical value that
+corresponds to its location on the soccer field. See SoccerBallPhase for the full list of phases a soccer ball may take.
 
 ### Artwork & git push caveats
 
