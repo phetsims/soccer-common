@@ -32,6 +32,7 @@ type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, Socc
 
 type ParentOptions = StrictOmit<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 type SoccerCommonGroupSortInteractionViewOptions = SelfOptions & ParentOptions;
+
 export default class SoccerCommonGroupSortInteractionView<SceneModel extends SoccerSceneModel> extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
   public constructor(
@@ -146,14 +147,16 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     // Update soccer ball selection when topmost ball in the stack changes.
     sceneModel.stackChangedEmitter.addListener( () => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
-        const selectedGroupItem = selectedGroupItemProperty.value;
 
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && this.groupSortInteractionModel.isKeyboardFocusedProperty.value ) {
+        if ( selectedGroupItemProperty.value === null && topSoccerBalls.length > 0 && this.groupSortInteractionModel.isKeyboardFocusedProperty.value ) {
+          assert && assert( topSoccerBalls[ 0 ].valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
           selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
         }
+
+        const selectedGroupItem = selectedGroupItemProperty.value;
 
         // Anytime a stack changes and the selectedGroupItem is assigned, we want to make sure the selectedGroupItem
         // stays on top.
