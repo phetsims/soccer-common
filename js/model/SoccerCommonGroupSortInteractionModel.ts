@@ -40,8 +40,7 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
 
       //  If an object was sorted, objects are not input enabled, or the max number of balls haven't been kicked out
       //  don't show the sortIndicatorCue.
-      this.mouseSortCueVisibleProperty.value = !this.hasGroupItemBeenSortedProperty.value &&
-                                               !this.isKeyboardFocusedProperty.value &&
+      this.mouseSortCueVisibleProperty.value = this.mouseSortCueShouldBeVisible() &&
                                                soccerBallCount === maxKicks &&
                                                this.enabledProperty.value &&
                                                _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
