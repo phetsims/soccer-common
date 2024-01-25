@@ -137,7 +137,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         // It's simpler to have the listener here because in the model or drag listener, there is rounding/snapping
         // And we only want to hide the indicator of the user dragged the ball a full tick mark
         if ( value !== null && oldValue !== null ) {
-          this.groupSortInteractionModel.hasGroupItemBeenSortedProperty.value = true;
+          this.groupSortInteractionModel.setMouseSortedGroupItem( true );
         }
       } );
     } );
