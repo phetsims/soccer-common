@@ -32,7 +32,8 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
       this.hasGroupItemBeenSortedProperty,
       this.selectedSceneStackedSoccerBallCountProperty,
       this.selectedSceneMaxKicksProperty,
-      this.isKeyboardFocusedProperty
+      this.isKeyboardFocusedProperty,
+      this.enabledProperty
     ], () => {
       const sceneModel = this.selectedSceneModelProperty.value;
       const soccerBallCount = this.selectedSceneStackedSoccerBallCountProperty.value;
@@ -42,7 +43,6 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
       //  don't show the sortIndicatorCue.
       this.mouseSortCueVisibleProperty.value = this.mouseSortCueShouldBeVisible() &&
                                                soccerBallCount === maxKicks &&
-                                               this.enabledProperty.value &&
                                                _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
 
       this.updateSelectedGroupItem( sceneModel );
