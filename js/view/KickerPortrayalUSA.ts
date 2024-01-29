@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-import KickerPortrayal, { portrayalsTandem } from './KickerPortrayal.js';
+import KickerPortrayal from './KickerPortrayal.js';
 import player01Standing_png from '../../images/usa/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/usa/player01PoisedToKick_png.js';
 import player01Kicking_png from '../../images/usa/player01Kicking_png.js';
@@ -173,11 +173,6 @@ const KickerPortrayalUSA = new KickerPortrayal(
       kicking: variabilityPlayer04Kicking_png
     }
   ],
-  USA_REGION_AND_CULTURE_ID,
-  {
-    tandem: portrayalsTandem.createTandem( 'kickerPortrayalUSA' ),
-    phetioState: false
-  }
-);
+  USA_REGION_AND_CULTURE_ID );
 
 export default KickerPortrayalUSA;

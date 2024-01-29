@@ -8,18 +8,17 @@
  *
  */
 
-import RegionAndCulturePortrayal, { RegionAndCulturePortrayalOptions } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
+import RegionAndCulturePortrayal, { RegionAndCultureID, RegionAndCulturePortrayalOptions } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
 import soccerCommon from '../soccerCommon.js';
-import Tandem from '../../../tandem/js/Tandem.js';
+
+type KickerPortrayalOptions = RegionAndCulturePortrayalOptions;
 
 export type KickerImageSet = {
   standing: HTMLImageElement;
   poisedToKick: HTMLImageElement;
   kicking: HTMLImageElement;
 };
-
-export const portrayalsTandem = Tandem.PREFERENCES.createTandem( 'regionAndCulturePortrayals' );
 
 export default class KickerPortrayal extends RegionAndCulturePortrayal {
 
@@ -29,8 +28,8 @@ export default class KickerPortrayal extends RegionAndCulturePortrayal {
   public constructor( labelString: LocalizedStringProperty,
                       public readonly unnumberedKickerImages: KickerImageSet[],
                       public readonly numberedKickerImages: KickerImageSet[],
-                      queryParameterValue: string,
-                      providedOptions: RegionAndCulturePortrayalOptions ) {
+                      queryParameterValue: RegionAndCultureID,
+                      providedOptions?: KickerPortrayalOptions ) {
 
     super( labelString, queryParameterValue, providedOptions );
 

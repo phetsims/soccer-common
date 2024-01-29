@@ -1,6 +1,6 @@
 // Copyright 2023, University of Colorado Boulder
 
-import KickerPortrayal, { portrayalsTandem } from './KickerPortrayal.js';
+import KickerPortrayal from './KickerPortrayal.js';
 import player01Standing_png from '../../images/africaModest/player01Standing_png.js';
 import player01PoisedToKick_png from '../../images/africaModest/player01PoisedToKick_png.js';
 import player01Kicking_png from '../../images/africaModest/player01Kicking_png.js';
@@ -59,11 +59,6 @@ const KickerPortrayalAfricaModest = new KickerPortrayal(
     KickerPortrayalAfrica.numberedKickerImages[ 3 - 1 ],
     KickerPortrayalAfrica.numberedKickerImages[ 4 - 1 ]
   ],
-  AFRICA_MODEST_REGION_AND_CULTURE_ID,
-  {
-    tandem: portrayalsTandem.createTandem( 'kickerPortrayalAfricaModest' ),
-    phetioState: false
-  }
-);
+  AFRICA_MODEST_REGION_AND_CULTURE_ID );
 
 export default KickerPortrayalAfricaModest;
