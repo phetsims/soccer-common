@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * A collection of KickerImageSets. One KickerPortrayal is active at a time. A different KickerPortrayal can be selected

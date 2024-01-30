@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 import KickerPortrayal from './KickerPortrayal.js';
 import player01Standing_png from '../../images/africa/player01Standing_png.js';
