@@ -110,12 +110,12 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     this.positionSortCueNodeEmitter.addListener( () => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
 
-        const selectedSoccerBall = this.groupSortInteractionModel.selectedGroupItemProperty.value;
+        const selectedSoccerBall = this.model.selectedGroupItemProperty.value!;
         assert && assert( selectedSoccerBall !== null, 'Must have a selection to position the sorting cue node' );
-        assert && assert( selectedSoccerBall!.valueProperty.value !== null, 'Cannot select a soccer ball with no value' );
+        assert && assert( selectedSoccerBall.valueProperty.value !== null, 'Cannot select a soccer ball with no value' );
 
         // If a soccer ball has focus, that takes precedence for displaying the indicators
-        const valueToShow = selectedSoccerBall!.valueProperty.value!;
+        const valueToShow = selectedSoccerBall.valueProperty.value!;
         const stack = sceneModel.getStackAtValue( valueToShow );
 
         if ( stack.length > 0 ) {
@@ -137,12 +137,12 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         // It's simpler to have the listener here because in the model or drag listener, there is rounding/snapping
         // And we only want to hide the indicator of the user dragged the ball a full tick mark
         if ( value !== null && oldValue !== null ) {
-          this.groupSortInteractionModel.setMouseSortedGroupItem( true );
+          this.model.setMouseSortedGroupItem( true );
         }
       } );
     } );
 
-    const selectedGroupItemProperty = this.groupSortInteractionModel.selectedGroupItemProperty;
+    const selectedGroupItemProperty = this.model.selectedGroupItemProperty;
 
     // Update soccer ball selection when topmost ball in the stack changes.
     sceneModel.stackChangedEmitter.addListener( () => {
@@ -151,7 +151,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( selectedGroupItemProperty.value === null && topSoccerBalls.length > 0 && this.groupSortInteractionModel.isKeyboardFocusedProperty.value ) {
+        if ( selectedGroupItemProperty.value === null && topSoccerBalls.length > 0 && this.model.isKeyboardFocusedProperty.value ) {
           assert && assert( topSoccerBalls[ 0 ].valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
           selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
         }
