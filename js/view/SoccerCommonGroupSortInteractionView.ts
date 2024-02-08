@@ -26,7 +26,7 @@ import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/gr
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.
-type RequiredButProvidedBySubtype = 'getNextSelectedGroupItem' | 'getGroupItemToSelect' | 'getNodeFromModelItem';
+type RequiredButProvidedBySubtype = 'getNextSelectedGroupItem' | 'getGroupItemToSelect' | 'getNodeFromModelItem' | 'sortGroupItem';
 
 type SelfOptions = PickOptional<GroupSortInteractionViewOptions<SoccerBall, SoccerBallNode>, RequiredButProvidedBySubtype>;
 
@@ -79,6 +79,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         }
         return null;
       },
+      sortGroupItem: ( soccerBall, newValue ) => soccerBall.valueProperty.set( newValue ),
       onSort: soccerBall => {
         assert && assert( soccerBall.valueProperty.value !== null );
         soccerBall.toneEmitter.emit( soccerBall.valueProperty.value! );
