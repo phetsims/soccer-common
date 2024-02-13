@@ -22,7 +22,7 @@ import { Node } from '../../../scenery/js/imports.js';
 import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
 
 type SelfOptions = {
-  questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>;
+  questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>; // TODO: Why do we care? There's no question bar defined here... https://github.com/phetsims/mean-share-and-balance/issues/152
   physicalRange: Range;
   chartViewWidth: number;
   numberLineXMargin: number;
