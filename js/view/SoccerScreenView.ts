@@ -7,8 +7,6 @@
 
 import ScreenView, { ScreenViewOptions } from '../../../joist/js/ScreenView.js';
 import soccerCommon from '../soccerCommon.js';
-import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
-import { QuestionBarOptions } from '../../../scenery-phet/js/QuestionBar.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
@@ -22,7 +20,6 @@ import { Node } from '../../../scenery/js/imports.js';
 import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
 
 type SelfOptions = {
-  questionBarOptions: StrictOmit<QuestionBarOptions, 'tandem'>; // TODO: Why do we care? There's no question bar defined here... https://github.com/phetsims/mean-share-and-balance/issues/152
   physicalRange: Range;
   chartViewWidth: number;
   numberLineXMargin: number;
