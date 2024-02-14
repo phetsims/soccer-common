@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * The `SoccerBall` class represents a data point within the simulation. Upon instantiation, the `SoccerBall` object has
