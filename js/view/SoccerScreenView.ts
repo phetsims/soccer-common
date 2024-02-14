@@ -23,6 +23,7 @@ type SelfOptions = {
   physicalRange: Range;
   chartViewWidth: number;
   numberLineXMargin: number;
+  groundPositionY?: number;
 };
 
 export const DRAG_CUE_SCALE = 0.8;
@@ -46,18 +47,21 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected constructor( protected readonly model: Q, providedOptions: SoccerScreenViewOptions ) {
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
-      isDisposable: false
+      isDisposable: false,
+      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y
     }, providedOptions );
 
     super( options );
 
     this.numberOfKicksProperty = new DynamicProperty<number, number, SoccerSceneModel>( model.selectedSceneModelProperty, { derive: 'numberOfDataPointsProperty' } );
 
+    const groundPositionY = options.groundPositionY;
+
     // The ground is at y=0
     this.modelViewTransform = ModelViewTransform2.createRectangleInvertedYMapping(
       new Bounds2( options.physicalRange.min, 0, options.physicalRange.max, 1 ),
-      new Bounds2( options.numberLineXMargin, SoccerCommonConstants.GROUND_POSITION_Y - SoccerCommonConstants.SOCCER_BALL_VIEW_SIZE,
-        options.numberLineXMargin + options.chartViewWidth, SoccerCommonConstants.GROUND_POSITION_Y )
+      new Bounds2( options.numberLineXMargin, groundPositionY - SoccerCommonConstants.SOCCER_BALL_VIEW_SIZE,
+        options.numberLineXMargin + options.chartViewWidth, groundPositionY )
     );
 
     this.playAreaNumberLineNode = new NumberLineNode(
@@ -65,7 +69,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       options.physicalRange, {
         includeXAxis: false,
         x: options.numberLineXMargin,
-        y: SoccerCommonConstants.GROUND_POSITION_Y
+        y: groundPositionY
       } );
 
     this.keyboardSortCueNode = GroupSortInteractionView.createSortCueNode(
