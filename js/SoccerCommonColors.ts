@@ -25,7 +25,15 @@ const SoccerCommonColors = {
 
   arrowStrokeProperty: new ProfileColorProperty( soccerCommon, 'arrowStroke', {
     default: 'black'
-  } )
+  } ),
+
+  // sky gradient, sampled from a screenshot
+  skyGradientTopColorProperty: new ProfileColorProperty( soccerCommon, 'skyGradientTopColor', { default: '#365b9b' } ),
+  skyGradientMiddleColorProperty: new ProfileColorProperty( soccerCommon, 'skyGradientMiddleColor', { default: '#81b5ea' } ),
+  skyGradientBottomColorProperty: new ProfileColorProperty( soccerCommon, 'skyGradientBottomColor', { default: '#c9d9ef' } ),
+
+  // the ground
+  groundColorProperty: new ProfileColorProperty( soccerCommon, 'groundColor', { default: '#009245' } )
 };
 
 soccerCommon.register( 'SoccerCommonColors', SoccerCommonColors );

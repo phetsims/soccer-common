@@ -10,12 +10,12 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import centerAndVariability from '../../centerAndVariability.js';
-import { LinearGradient, Rectangle } from '../../../../scenery/js/imports.js';
-import Property from '../../../../axon/js/Property.js';
-import Bounds2 from '../../../../dot/js/Bounds2.js';
-import CAVColors from '../CAVColors.js';
-import Multilink from '../../../../axon/js/Multilink.js';
+import { LinearGradient, Rectangle } from '../../../scenery/js/imports.js';
+import Property from '../../../axon/js/Property.js';
+import Bounds2 from '../../../dot/js/Bounds2.js';
+import Multilink from '../../../axon/js/Multilink.js';
+import soccerCommon from '../soccerCommon.js';
+import SoccerCommonColors from '../SoccerCommonColors.js';
 
 export default class BackgroundNode extends Rectangle {
   public constructor( bottomY: number, visibleBoundsProperty: Property<Bounds2> ) {
@@ -24,10 +24,10 @@ export default class BackgroundNode extends Rectangle {
     } );
 
     Multilink.multilink( [
-      CAVColors.skyGradientTopColorProperty,
-      CAVColors.skyGradientMiddleColorProperty,
-      CAVColors.skyGradientBottomColorProperty,
-      CAVColors.groundColorProperty,
+      SoccerCommonColors.skyGradientTopColorProperty,
+      SoccerCommonColors.skyGradientMiddleColorProperty,
+      SoccerCommonColors.skyGradientBottomColorProperty,
+      SoccerCommonColors.groundColorProperty,
       visibleBoundsProperty
     ], ( skyGradientTopColor, skyGradientMiddleColor, skyGradientBottomColor, groundColor, visibleBounds ) => {
       const gradient = new LinearGradient( visibleBounds.centerX, visibleBounds.top, visibleBounds.centerX, bottomY );
@@ -46,4 +46,4 @@ export default class BackgroundNode extends Rectangle {
   }
 }
 
-centerAndVariability.register( 'BackgroundNode', BackgroundNode );
+soccerCommon.register( 'BackgroundNode', BackgroundNode );
