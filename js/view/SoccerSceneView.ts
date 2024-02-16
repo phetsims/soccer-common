@@ -29,14 +29,14 @@ import TinyProperty from '../../../axon/js/TinyProperty.js';
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
  * populate the middleScreenViewLayer and frontScreenViewLayer in the parent.
  */
-export default class SoccerSceneView<SceneModel extends SoccerSceneModel = SoccerSceneModel> {
+export default class SoccerSceneView<SceneModel extends SoccerSceneModel = SoccerSceneModel, Model extends SoccerModel<SceneModel> = SoccerModel<SceneModel>> {
 
   public readonly backSceneViewLayer: Node;
   public readonly frontSceneViewLayer: Node;
   public readonly groupSortInteractionView: SoccerCommonGroupSortInteractionView<SceneModel>;
 
   public constructor(
-    soccerModel: Pick<SoccerModel<SceneModel>,
+    soccerModel: Pick<Model,
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel' | 'selectedSceneModelProperty'>,
     public readonly sceneModel: SceneModel,
     keyboardSortCueNode: Node,
