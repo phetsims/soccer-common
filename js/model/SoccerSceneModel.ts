@@ -118,7 +118,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   private readonly timeWhenLastBallWasKickedProperty: NumberProperty;
 
   // Starting at 0, iterate through the index of the kickers. This updates the Kicker.kickerPhaseProperty to show the current kicker
-  private readonly activeKickIndexProperty: NumberProperty;
+  protected readonly activeKickIndexProperty: NumberProperty;
 
   // Called when the value of a ball changed within a stack, so the pointer areas can be updated
   public readonly stackChangedEmitter = new Emitter<[ SoccerBall[] ]>( {

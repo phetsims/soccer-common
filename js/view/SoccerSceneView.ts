@@ -20,10 +20,18 @@ import { Shape } from '../../../kite/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Kicker from '../model/Kicker.js';
 import Range from '../../../dot/js/Range.js';
-import Tandem from '../../../tandem/js/Tandem.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
 import TinyProperty from '../../../axon/js/TinyProperty.js';
+import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import { optionize } from '../../../phet-core/js/imports.js';
+import { DerivedProperty } from '../../../axon/js/imports.js';
+
+type SelfOptions = {
+  soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;
+};
+type SoccerSceneViewOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
@@ -43,7 +51,11 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     getKickerImageSet: ( kicker: Kicker, sceneModel: SceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
-    tandem: Tandem ) {
+    providedOptions: SoccerSceneViewOptions ) {
+
+    const options = optionize<SoccerSceneViewOptions, SelfOptions, PickRequired<PhetioObjectOptions, 'tandem'>>()( {
+      soccerBallDerivedVisibilityCallback: phase => phase !== SoccerBallPhase.INACTIVE
+    }, providedOptions );
 
     const soccerBallsEnabledProperty = soccerModel.soccerBallsEnabledProperty;
     const soccerBallMap = new Map<SoccerBall, SoccerBallNode>();
@@ -78,7 +90,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
         soccerBall,
         modelViewTransform,
         soccerBallsEnabledProperty, {
-          tandem: tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
+          visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], options.soccerBallDerivedVisibilityCallback ),
+          tandem: options.tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
           pickable: false
         } );
 

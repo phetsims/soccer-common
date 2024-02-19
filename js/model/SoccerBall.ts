@@ -125,6 +125,13 @@ export default class SoccerBall extends PhetioObject {
       phetioValueType: NullableIO( ReferenceIO( Kicker.KickerIO ) ),
       tandem: tandem.createTandem( 'kickerProperty' )
     } );
+
+    this.soccerBallPhaseProperty.link( soccerBallPhase => {
+      if ( soccerBallPhase === SoccerBallPhase.INACTIVE ) {
+        this.valueProperty.value = null;
+        this.positionProperty.reset();
+      }
+    } );
   }
 
   // this doesn't change the soccerBallPhaseProperty of the soccerBall - that is done by the ball animationEnded callback
