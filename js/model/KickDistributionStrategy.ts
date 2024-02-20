@@ -25,6 +25,7 @@ import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
 
 // Right skewed means most of the data is on the left, see https://github.com/phetsims/center-and-variability/issues/112
+// TODO: This is currently assuming that there are 15 possible distances, https://github.com/phetsims/soccer-common/issues/9
 export const RIGHT_SKEWED_DATA = [
   10, 25, 45, 30, 18,
   12, 10, 5, 4, 4,
