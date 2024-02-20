@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * SoccerBallNode renders a soccer ball that can be dragged horizontally. The Node has a "dark" version

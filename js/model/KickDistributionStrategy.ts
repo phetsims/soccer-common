@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * KickDistributionStrategy specifies how kick distances are determined. Can be used to specify probability distributions
