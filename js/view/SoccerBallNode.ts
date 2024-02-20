@@ -21,7 +21,6 @@ import ball_png from '../../images/ball_png.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { Shape } from '../../../kite/js/imports.js';
-import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 
@@ -40,10 +39,6 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
     const options = optionize<SoccerBallNodeOptions, SelfOptions, SoccerObjectNodeOptions>()( {
       cursor: 'pointer',
-
-      // Data point should be visible if the soccer ball landed
-      visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], phase =>
-        phase !== SoccerBallPhase.INACTIVE ),
       isDisposable: false
     }, providedOptions );
 
