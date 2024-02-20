@@ -102,7 +102,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   private readonly isSingleKickerScene: boolean;
 
   // The number kicks are currently scheduled to be kicked
-  private readonly numberOfQueuedKicksProperty: NumberProperty;
+  protected readonly numberOfQueuedKicksProperty: NumberProperty;
 
   // The number of soccer balls that have not yet been kicked
   public readonly numberOfUnkickedBallsProperty: TReadOnlyProperty<number>;
