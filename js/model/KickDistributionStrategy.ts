@@ -54,6 +54,8 @@ export default class KickDistributionStrategy extends PhetioObject {
     const pre = '<pre style="display: block; padding: 10px; border: 1px solid #ccc; border-radius: 3px; overflow: auto;">';
     const code = '<code style="background-color: #f9f9f9; font-family: \'Courier New\', Courier, monospace;">';
 
+    // TODO: Pass in options that allow customization for each sim specific usage in the documentation.
+    //  https://github.com/phetsims/soccer-common/issues/9
     const options = optionize<KickDistributionStrategyOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioType: KickDistributionStrategyIO,
 

@@ -305,6 +305,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       options.tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
     ) );
 
+    // TODO: this is a misnomer... it does not include QueuedKicks which are balls that have not been kicked yet...
+    //  https://github.com/phetsims/mean-share-and-balance/issues/152
     this.numberOfUnkickedBallsProperty = DerivedProperty.deriveAny( [
       this.maxKicksProperty,
       this.numberOfQueuedKicksProperty,
