@@ -104,8 +104,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The number kicks are currently scheduled to be kicked
   protected readonly numberOfQueuedKicksProperty: NumberProperty;
 
-  // The number of soccer balls that have not yet been kicked
-  public readonly numberOfUnkickedBallsProperty: TReadOnlyProperty<number>;
+  // The number of idle balls that are not on the field and have not been scheduled to be kicked.
+  public readonly numberOfIdleBallsProperty: TReadOnlyProperty<number>;
 
   // Whether the scene has any kickable soccer balls remaining
   public readonly hasKickableSoccerBallsProperty: TReadOnlyProperty<boolean>;
@@ -305,9 +305,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       options.tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
     ) );
 
-    // TODO: this is a misnomer... it does not include QueuedKicks which are balls that have not been kicked yet...
-    //  https://github.com/phetsims/mean-share-and-balance/issues/152
-    this.numberOfUnkickedBallsProperty = DerivedProperty.deriveAny( [
+    this.numberOfIdleBallsProperty = DerivedProperty.deriveAny( [
       this.maxKicksProperty,
       this.numberOfQueuedKicksProperty,
       ...this.soccerBalls.map( soccerBall => soccerBall.soccerBallPhaseProperty ) ], () => {
@@ -322,7 +320,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       return value;
     } );
 
-    this.hasKickableSoccerBallsProperty = new DerivedProperty( [ this.numberOfUnkickedBallsProperty ],
+    this.hasKickableSoccerBallsProperty = new DerivedProperty( [ this.numberOfIdleBallsProperty ],
       numberOfUnkickedBalls => numberOfUnkickedBalls > 0 );
 
     this.hasKickableSoccerBallsStableProperty = new BooleanProperty( this.hasKickableSoccerBallsProperty.value );
@@ -655,7 +653,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
    * Adds the provided number of balls to the scheduled balls to kick
    */
   public scheduleKicks( numberOfBallsToKick: number ): void {
-    this.numberOfQueuedKicksProperty.value += Math.min( numberOfBallsToKick, this.numberOfUnkickedBallsProperty.value );
+    this.numberOfQueuedKicksProperty.value += Math.min( numberOfBallsToKick, this.numberOfIdleBallsProperty.value );
   }
 
   /**

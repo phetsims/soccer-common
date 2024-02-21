@@ -69,6 +69,11 @@ export default class Kicker extends PhetioObject {
     this.initialPlaceInLine = placeInLine;
   }
 
+  public readyToKick(): void {
+    this.timestampWhenPoisedBeganProperty.reset();
+    this.kickerPhaseProperty.value = KickerPhase.READY;
+  }
+
   public reset(): void {
     this.kickerPhaseProperty.reset();
     this.timestampWhenPoisedBeganProperty.reset();
