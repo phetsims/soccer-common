@@ -43,7 +43,7 @@ import kick_mp3 from '../../../center-and-variability/sounds/kick_mp3.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
-import KickDistributionStrategy, { KickDistributionStrategySpecification } from '../model/KickDistributionStrategy.js';
+import KickDistributionStrategy from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
@@ -138,7 +138,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   protected constructor(
     public readonly maxKicksProperty: TReadOnlyProperty<number>,
     maxKicksChoices: number[],
-    kickDistributionStrategySpecification: KickDistributionStrategySpecification,
+    kickDistributionStrategy: KickDistributionStrategy,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
     regionAndCultureProperty: Property<RegionAndCulturePortrayal>,
@@ -157,10 +157,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       tandem: options.tandem
     } );
 
-    this.kickDistributionStrategy = new KickDistributionStrategy( kickDistributionStrategySpecification.type, kickDistributionStrategySpecification.values, kickDistributionStrategySpecification.skewType, {
-      tandem: options.tandem.createTandem( 'kickDistributionStrategy' ),
-      phetioFeatured: true
-    } );
+    this.kickDistributionStrategy = kickDistributionStrategy;
 
     const updateDataMeasures = () => this.updateDataMeasures();
 
