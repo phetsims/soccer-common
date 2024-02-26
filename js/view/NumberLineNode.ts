@@ -28,6 +28,7 @@ import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 type SelfOptions = {
   color?: TPaint;
   includeXAxis: boolean;
+  showTickMarks?: boolean;
 };
 export type NumberLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'tandem'>;
 
@@ -39,12 +40,13 @@ export default class NumberLineNode extends Node {
   public constructor(
     chartViewWidth: number,
     physicalRange: Range,
-    providedOptions?: NumberLineNodeOptions
+    providedOptions: NumberLineNodeOptions
   ) {
 
     const options = optionize<NumberLineNodeOptions, SelfOptions, NodeOptions>()( {
       color: 'white',
-      isDisposable: false
+      isDisposable: false,
+      showTickMarks: true
     }, providedOptions );
 
     super();
@@ -60,7 +62,8 @@ export default class NumberLineNode extends Node {
     } );
     const tickMarkSet = new TickMarkSet( chartTransform, Orientation.HORIZONTAL, 1, {
       stroke: options.color,
-      extent: tickMarkExtent
+      extent: tickMarkExtent,
+      visible: options.showTickMarks
     } );
     this.addChild( tickMarkSet );
 
