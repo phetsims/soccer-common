@@ -26,6 +26,7 @@ import optionize from '../../../phet-core/js/optionize.js';
 import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = {
+  // defines how a soccerObject's model position is translated to the view according to any sim specific requirements.
   translationStrategy?: ( position: Vector2 ) => void;
 };
 
