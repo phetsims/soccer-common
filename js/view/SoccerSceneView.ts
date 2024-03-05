@@ -25,8 +25,8 @@ import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInterac
 import TinyProperty from '../../../axon/js/TinyProperty.js';
 import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
-import { optionize } from '../../../phet-core/js/imports.js';
-import { DerivedProperty } from '../../../axon/js/imports.js';
+import optionize from '../../../phet-core/js/optionize.js';
+import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;

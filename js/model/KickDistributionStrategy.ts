@@ -18,10 +18,10 @@ import optionize from '../../../phet-core/js/optionize.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import dotRandom from '../../../dot/js/dotRandom.js';
+import Range from '../../../dot/js/Range.js';
 import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
-import { Range } from '../../../dot/js/imports.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
 
