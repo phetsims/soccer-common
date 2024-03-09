@@ -1,17 +1,17 @@
 // Copyright 2023-2024, University of Colorado Boulder
 
 import KickerPortrayal from './KickerPortrayal.js';
-import player01Standing_png from '../../images/africa-modest/player01Standing_png.js';
-import player01PoisedToKick_png from '../../images/africa-modest/player01PoisedToKick_png.js';
-import player01Kicking_png from '../../images/africa-modest/player01Kicking_png.js';
-import player02Standing_png from '../../images/africa-modest/player02Standing_png.js';
-import player02PoisedToKick_png from '../../images/africa-modest/player02PoisedToKick_png.js';
-import player02Kicking_png from '../../images/africa-modest/player02Kicking_png.js';
+import player01Standing_png from '../../images/africaModest/player01Standing_png.js';
+import player01PoisedToKick_png from '../../images/africaModest/player01PoisedToKick_png.js';
+import player01Kicking_png from '../../images/africaModest/player01Kicking_png.js';
+import player02Standing_png from '../../images/africaModest/player02Standing_png.js';
+import player02PoisedToKick_png from '../../images/africaModest/player02PoisedToKick_png.js';
+import player02Kicking_png from '../../images/africaModest/player02Kicking_png.js';
 import KickerPortrayalUSA from './KickerPortrayalUSA.js';
 import KickerPortrayalAfrica from './KickerPortrayalAfrica.js';
-import variabilityPlayer01Standing_png from '../../images/africa-modest/variabilityPlayer01Standing_png.js';
-import variabilityPlayer01PoisedToKick_png from '../../images/africa-modest/variabilityPlayer01PoisedToKick_png.js';
-import variabilityPlayer01Kicking_png from '../../images/africa-modest/variabilityPlayer01Kicking_png.js';
+import variabilityPlayer01Standing_png from '../../images/africaModest/variabilityPlayer01Standing_png.js';
+import variabilityPlayer01PoisedToKick_png from '../../images/africaModest/variabilityPlayer01PoisedToKick_png.js';
+import variabilityPlayer01Kicking_png from '../../images/africaModest/variabilityPlayer01Kicking_png.js';
 import JoistStrings from '../../../joist/js/JoistStrings.js';
 import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
