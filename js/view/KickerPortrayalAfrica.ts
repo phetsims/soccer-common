@@ -19,9 +19,9 @@ import africaPlayer05Kicking_png from '../../images/africa/africaPlayer05Kicking
 import africaPlayer06Standing_png from '../../images/africa/africaPlayer06Standing_png.js';
 import africaPlayer06PoisedToKick_png from '../../images/africa/africaPlayer06PoisedToKick_png.js';
 import africaPlayer06Kicking_png from '../../images/africa/africaPlayer06Kicking_png.js';
-import africaPlayer07Standing_png from '../../images/africa/africaPlayer07Standing_png.js';
-import africaPlayer07PoisedToKick_png from '../../images/africa/africaPlayer07PoisedToKick_png.js';
-import africaPlayer07Kicking_png from '../../images/africa/africaPlayer07Kicking_png.js';
+import africaPlayer13Standing_png from '../../images/africa/africaPlayer13Standing_png.js';
+import africaPlayer13PoisedToKick_png from '../../images/africa/africaPlayer13PoisedToKick_png.js';
+import africaPlayer13Kicking_png from '../../images/africa/africaPlayer13Kicking_png.js';
 import KickerPortrayalUSA from './KickerPortrayalUSA.js';
 import africaVariabilityPlayer01Standing_png from '../../images/africa/africaVariabilityPlayer01Standing_png.js';
 import africaVariabilityPlayer01PoisedToKick_png from '../../images/africa/africaVariabilityPlayer01PoisedToKick_png.js';
@@ -92,9 +92,9 @@ const KickerPortrayalAfrica = new KickerPortrayal(
     },
     KickerPortrayalUSA.unnumberedKickerImages[ 4 - 1 ],
     {
-      standing: africaPlayer07Standing_png,
-      poisedToKick: africaPlayer07PoisedToKick_png,
-      kicking: africaPlayer07Kicking_png
+      standing: africaPlayer13Standing_png,
+      poisedToKick: africaPlayer13PoisedToKick_png,
+      kicking: africaPlayer13Kicking_png
     } ],
 
   // Numbered Kickers
