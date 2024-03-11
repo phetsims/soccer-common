@@ -8,9 +8,9 @@
  *
  */
 
-import RegionAndCulturePortrayal, { RegionAndCultureID, RegionAndCulturePortrayalOptions } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
+import RegionAndCulturePortrayal, { RegionAndCulturePortrayalOptions } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import soccerCommon from '../soccerCommon.js';
+import { RegionAndCulture } from '../../../joist/js/i18n/regionAndCultureProperty.js';
 
 type KickerPortrayalOptions = RegionAndCulturePortrayalOptions;
 
@@ -25,13 +25,12 @@ export default class KickerPortrayal extends RegionAndCulturePortrayal {
   // Keeps track of how many characters are in each set. This is only needed for unnumbered kickers.
   public readonly unnumberedKickersCount: number;
 
-  public constructor( labelString: LocalizedStringProperty,
+  public constructor( regionAndCulture: RegionAndCulture,
                       public readonly unnumberedKickerImages: KickerImageSet[],
                       public readonly numberedKickerImages: KickerImageSet[],
-                      queryParameterValue: RegionAndCultureID,
                       providedOptions?: KickerPortrayalOptions ) {
 
-    super( labelString, queryParameterValue, providedOptions );
+    super( regionAndCulture, providedOptions );
 
     this.unnumberedKickersCount = unnumberedKickerImages.length;
   }

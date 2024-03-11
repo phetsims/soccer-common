@@ -12,8 +12,6 @@ import KickerPortrayalAfrica from './KickerPortrayalAfrica.js';
 import africaModestVariabilityPlayer02Standing_png from '../../images/africaModest/africaModestVariabilityPlayer02Standing_png.js';
 import africaModestVariabilityPlayer02PoisedToKick_png from '../../images/africaModest/africaModestVariabilityPlayer02PoisedToKick_png.js';
 import africaModestVariabilityPlayer02Kicking_png from '../../images/africaModest/africaModestVariabilityPlayer02Kicking_png.js';
-import JoistStrings from '../../../joist/js/JoistStrings.js';
-import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 /**
  * Artwork representing characters from Africa (modest).
@@ -21,10 +19,8 @@ import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../joist/js/preferenc
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-const africaModestStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaModestStringProperty;
-
 const KickerPortrayalAfricaModest = new KickerPortrayal(
-  africaModestStringProperty,
+  'africaModest',
 
   // Unnumbered Kickers
   [
@@ -58,7 +54,7 @@ const KickerPortrayalAfricaModest = new KickerPortrayal(
     },
     KickerPortrayalAfrica.numberedKickerImages[ 3 - 1 ],
     KickerPortrayalAfrica.numberedKickerImages[ 4 - 1 ]
-  ],
-  AFRICA_MODEST_REGION_AND_CULTURE_ID );
+  ]
+);
 
 export default KickerPortrayalAfricaModest;

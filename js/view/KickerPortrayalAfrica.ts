@@ -35,8 +35,6 @@ import africaVariabilityPlayer03Kicking_png from '../../images/africa/africaVari
 import africaVariabilityPlayer04Standing_png from '../../images/africa/africaVariabilityPlayer04Standing_png.js';
 import africaVariabilityPlayer04PoisedToKick_png from '../../images/africa/africaVariabilityPlayer04PoisedToKick_png.js';
 import africaVariabilityPlayer04Kicking_png from '../../images/africa/africaVariabilityPlayer04Kicking_png.js';
-import JoistStrings from '../../../joist/js/JoistStrings.js';
-import { AFRICA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -44,10 +42,8 @@ import { AFRICA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/Regi
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-const africaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty;
-
 const KickerPortrayalAfrica = new KickerPortrayal(
-  africaStringProperty,
+  'africa',
 
   // Unnumbered Kickers
   [
@@ -119,7 +115,7 @@ const KickerPortrayalAfrica = new KickerPortrayal(
       poisedToKick: africaVariabilityPlayer04PoisedToKick_png,
       kicking: africaVariabilityPlayer04Kicking_png
     }
-  ],
-  AFRICA_REGION_AND_CULTURE_ID );
+  ]
+);
 
 export default KickerPortrayalAfrica;

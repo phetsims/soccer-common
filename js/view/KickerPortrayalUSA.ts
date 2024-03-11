@@ -58,18 +58,15 @@ import usaVariabilityPlayer03Kicking_svg from '../../images/usa/usaVariabilityPl
 import usaVariabilityPlayer04Standing_svg from '../../images/usa/usaVariabilityPlayer04Standing_svg.js';
 import usaVariabilityPlayer04PoisedToKick_svg from '../../images/usa/usaVariabilityPlayer04PoisedToKick_svg.js';
 import usaVariabilityPlayer04Kicking_svg from '../../images/usa/usaVariabilityPlayer04Kicking_svg.js';
-import JoistStrings from '../../../joist/js/JoistStrings.js';
-import { USA_REGION_AND_CULTURE_ID } from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 
 /**
  * Artwork representing characters from the United States of America.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-const unitedStatesOfAmericaStringProperty = JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.unitedStatesOfAmericaStringProperty;
 
 const KickerPortrayalUSA = new KickerPortrayal(
-  unitedStatesOfAmericaStringProperty,
+  'usa',
 
   // Unnumbered Kickers
   [
@@ -172,7 +169,7 @@ const KickerPortrayalUSA = new KickerPortrayal(
       poisedToKick: usaVariabilityPlayer04PoisedToKick_svg,
       kicking: usaVariabilityPlayer04Kicking_svg
     }
-  ],
-  USA_REGION_AND_CULTURE_ID );
+  ]
+);
 
 export default KickerPortrayalUSA;
