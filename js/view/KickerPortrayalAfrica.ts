@@ -1,40 +1,40 @@
 // Copyright 2023-2024, University of Colorado Boulder
 
 import KickerPortrayal from './KickerPortrayal.js';
-import africaPlayer01Standing_png from '../../images/africa/africaPlayer01Standing_png.js';
-import africaPlayer01PoisedToKick_png from '../../images/africa/africaPlayer01PoisedToKick_png.js';
-import africaPlayer01Kicking_png from '../../images/africa/africaPlayer01Kicking_png.js';
-import africaPlayer02Standing_png from '../../images/africa/africaPlayer02Standing_png.js';
-import africaPlayer02PoisedToKick_png from '../../images/africa/africaPlayer02PoisedToKick_png.js';
-import africaPlayer02Kicking_png from '../../images/africa/africaPlayer02Kicking_png.js';
-import africaPlayer03Standing_png from '../../images/africa/africaPlayer03Standing_png.js';
-import africaPlayer03PoisedToKick_png from '../../images/africa/africaPlayer03PoisedToKick_png.js';
-import africaPlayer03Kicking_png from '../../images/africa/africaPlayer03Kicking_png.js';
-import africaPlayer04Standing_png from '../../images/africa/africaPlayer04Standing_png.js';
-import africaPlayer04PoisedToKick_png from '../../images/africa/africaPlayer04PoisedToKick_png.js';
-import africaPlayer04Kicking_png from '../../images/africa/africaPlayer04Kicking_png.js';
-import africaPlayer07Standing_png from '../../images/africa/africaPlayer07Standing_png.js';
-import africaPlayer07PoisedToKick_png from '../../images/africa/africaPlayer07PoisedToKick_png.js';
-import africaPlayer07Kicking_png from '../../images/africa/africaPlayer07Kicking_png.js';
-import africaPlayer11Standing_png from '../../images/africa/africaPlayer11Standing_png.js';
-import africaPlayer11PoisedToKick_png from '../../images/africa/africaPlayer11PoisedToKick_png.js';
-import africaPlayer11Kicking_png from '../../images/africa/africaPlayer11Kicking_png.js';
-import africaPlayer13Standing_png from '../../images/africa/africaPlayer13Standing_png.js';
-import africaPlayer13PoisedToKick_png from '../../images/africa/africaPlayer13PoisedToKick_png.js';
-import africaPlayer13Kicking_png from '../../images/africa/africaPlayer13Kicking_png.js';
+import africaKicker01Standing_png from '../../images/africa/africaKicker01Standing_png.js';
+import africaKicker01PoisedToKick_png from '../../images/africa/africaKicker01PoisedToKick_png.js';
+import africaKicker01Kicking_png from '../../images/africa/africaKicker01Kicking_png.js';
+import africaKicker02Standing_png from '../../images/africa/africaKicker02Standing_png.js';
+import africaKicker02PoisedToKick_png from '../../images/africa/africaKicker02PoisedToKick_png.js';
+import africaKicker02Kicking_png from '../../images/africa/africaKicker02Kicking_png.js';
+import africaKicker03Standing_png from '../../images/africa/africaKicker03Standing_png.js';
+import africaKicker03PoisedToKick_png from '../../images/africa/africaKicker03PoisedToKick_png.js';
+import africaKicker03Kicking_png from '../../images/africa/africaKicker03Kicking_png.js';
+import africaKicker04Standing_png from '../../images/africa/africaKicker04Standing_png.js';
+import africaKicker04PoisedToKick_png from '../../images/africa/africaKicker04PoisedToKick_png.js';
+import africaKicker04Kicking_png from '../../images/africa/africaKicker04Kicking_png.js';
+import africaKicker07Standing_png from '../../images/africa/africaKicker07Standing_png.js';
+import africaKicker07PoisedToKick_png from '../../images/africa/africaKicker07PoisedToKick_png.js';
+import africaKicker07Kicking_png from '../../images/africa/africaKicker07Kicking_png.js';
+import africaKicker11Standing_png from '../../images/africa/africaKicker11Standing_png.js';
+import africaKicker11PoisedToKick_png from '../../images/africa/africaKicker11PoisedToKick_png.js';
+import africaKicker11Kicking_png from '../../images/africa/africaKicker11Kicking_png.js';
+import africaKicker13Standing_png from '../../images/africa/africaKicker13Standing_png.js';
+import africaKicker13PoisedToKick_png from '../../images/africa/africaKicker13PoisedToKick_png.js';
+import africaKicker13Kicking_png from '../../images/africa/africaKicker13Kicking_png.js';
 import KickerPortrayalUSA from './KickerPortrayalUSA.js';
-import africaVariabilityPlayer01Standing_png from '../../images/africa/africaVariabilityPlayer01Standing_png.js';
-import africaVariabilityPlayer01PoisedToKick_png from '../../images/africa/africaVariabilityPlayer01PoisedToKick_png.js';
-import africaVariabilityPlayer01Kicking_png from '../../images/africa/africaVariabilityPlayer01Kicking_png.js';
-import africaVariabilityPlayer02Standing_png from '../../images/africa/africaVariabilityPlayer02Standing_png.js';
-import africaVariabilityPlayer02PoisedToKick_png from '../../images/africa/africaVariabilityPlayer02PoisedToKick_png.js';
-import africaVariabilityPlayer02Kicking_png from '../../images/africa/africaVariabilityPlayer02Kicking_png.js';
-import africaVariabilityPlayer03Standing_png from '../../images/africa/africaVariabilityPlayer03Standing_png.js';
-import africaVariabilityPlayer03PoisedToKick_png from '../../images/africa/africaVariabilityPlayer03PoisedToKick_png.js';
-import africaVariabilityPlayer03Kicking_png from '../../images/africa/africaVariabilityPlayer03Kicking_png.js';
-import africaVariabilityPlayer04Standing_png from '../../images/africa/africaVariabilityPlayer04Standing_png.js';
-import africaVariabilityPlayer04PoisedToKick_png from '../../images/africa/africaVariabilityPlayer04PoisedToKick_png.js';
-import africaVariabilityPlayer04Kicking_png from '../../images/africa/africaVariabilityPlayer04Kicking_png.js';
+import africaVariabilityKicker01Standing_png from '../../images/africa/africaVariabilityKicker01Standing_png.js';
+import africaVariabilityKicker01PoisedToKick_png from '../../images/africa/africaVariabilityKicker01PoisedToKick_png.js';
+import africaVariabilityKicker01Kicking_png from '../../images/africa/africaVariabilityKicker01Kicking_png.js';
+import africaVariabilityKicker02Standing_png from '../../images/africa/africaVariabilityKicker02Standing_png.js';
+import africaVariabilityKicker02PoisedToKick_png from '../../images/africa/africaVariabilityKicker02PoisedToKick_png.js';
+import africaVariabilityKicker02Kicking_png from '../../images/africa/africaVariabilityKicker02Kicking_png.js';
+import africaVariabilityKicker03Standing_png from '../../images/africa/africaVariabilityKicker03Standing_png.js';
+import africaVariabilityKicker03PoisedToKick_png from '../../images/africa/africaVariabilityKicker03PoisedToKick_png.js';
+import africaVariabilityKicker03Kicking_png from '../../images/africa/africaVariabilityKicker03Kicking_png.js';
+import africaVariabilityKicker04Standing_png from '../../images/africa/africaVariabilityKicker04Standing_png.js';
+import africaVariabilityKicker04PoisedToKick_png from '../../images/africa/africaVariabilityKicker04PoisedToKick_png.js';
+import africaVariabilityKicker04Kicking_png from '../../images/africa/africaVariabilityKicker04Kicking_png.js';
 
 /**
  * Artwork representing characters from Africa.
@@ -48,33 +48,33 @@ const KickerPortrayalAfrica = new KickerPortrayal(
   // Unnumbered Kickers
   [
     {
-      standing: africaPlayer01Standing_png,
-      poisedToKick: africaPlayer01PoisedToKick_png,
-      kicking: africaPlayer01Kicking_png
+      standing: africaKicker01Standing_png,
+      poisedToKick: africaKicker01PoisedToKick_png,
+      kicking: africaKicker01Kicking_png
     },
     {
-      standing: africaPlayer02Standing_png,
-      poisedToKick: africaPlayer02PoisedToKick_png,
-      kicking: africaPlayer02Kicking_png
+      standing: africaKicker02Standing_png,
+      poisedToKick: africaKicker02PoisedToKick_png,
+      kicking: africaKicker02Kicking_png
     },
     {
-      standing: africaPlayer03Standing_png,
-      poisedToKick: africaPlayer03PoisedToKick_png,
-      kicking: africaPlayer03Kicking_png
+      standing: africaKicker03Standing_png,
+      poisedToKick: africaKicker03PoisedToKick_png,
+      kicking: africaKicker03Kicking_png
     },
     {
-      standing: africaPlayer04Standing_png,
-      poisedToKick: africaPlayer04PoisedToKick_png,
-      kicking: africaPlayer04Kicking_png
+      standing: africaKicker04Standing_png,
+      poisedToKick: africaKicker04PoisedToKick_png,
+      kicking: africaKicker04Kicking_png
     },
 
     KickerPortrayalUSA.unnumberedKickerImages[ 8 - 1 ],
     KickerPortrayalUSA.unnumberedKickerImages[ 14 - 1 ],
 
     {
-      standing: africaPlayer07Standing_png,
-      poisedToKick: africaPlayer07PoisedToKick_png,
-      kicking: africaPlayer07Kicking_png
+      standing: africaKicker07Standing_png,
+      poisedToKick: africaKicker07PoisedToKick_png,
+      kicking: africaKicker07Kicking_png
     },
 
     KickerPortrayalUSA.unnumberedKickerImages[ 12 - 1 ],
@@ -82,38 +82,38 @@ const KickerPortrayalAfrica = new KickerPortrayal(
     KickerPortrayalUSA.unnumberedKickerImages[ 2 - 1 ],
 
     {
-      standing: africaPlayer11Standing_png,
-      poisedToKick: africaPlayer11PoisedToKick_png,
-      kicking: africaPlayer11Kicking_png
+      standing: africaKicker11Standing_png,
+      poisedToKick: africaKicker11PoisedToKick_png,
+      kicking: africaKicker11Kicking_png
     },
     KickerPortrayalUSA.unnumberedKickerImages[ 4 - 1 ],
     {
-      standing: africaPlayer13Standing_png,
-      poisedToKick: africaPlayer13PoisedToKick_png,
-      kicking: africaPlayer13Kicking_png
+      standing: africaKicker13Standing_png,
+      poisedToKick: africaKicker13PoisedToKick_png,
+      kicking: africaKicker13Kicking_png
     } ],
 
   // Numbered Kickers
   [
     {
-      standing: africaVariabilityPlayer01Standing_png,
-      poisedToKick: africaVariabilityPlayer01PoisedToKick_png,
-      kicking: africaVariabilityPlayer01Kicking_png
+      standing: africaVariabilityKicker01Standing_png,
+      poisedToKick: africaVariabilityKicker01PoisedToKick_png,
+      kicking: africaVariabilityKicker01Kicking_png
     },
     {
-      standing: africaVariabilityPlayer02Standing_png,
-      poisedToKick: africaVariabilityPlayer02PoisedToKick_png,
-      kicking: africaVariabilityPlayer02Kicking_png
+      standing: africaVariabilityKicker02Standing_png,
+      poisedToKick: africaVariabilityKicker02PoisedToKick_png,
+      kicking: africaVariabilityKicker02Kicking_png
     },
     {
-      standing: africaVariabilityPlayer03Standing_png,
-      poisedToKick: africaVariabilityPlayer03PoisedToKick_png,
-      kicking: africaVariabilityPlayer03Kicking_png
+      standing: africaVariabilityKicker03Standing_png,
+      poisedToKick: africaVariabilityKicker03PoisedToKick_png,
+      kicking: africaVariabilityKicker03Kicking_png
     },
     {
-      standing: africaVariabilityPlayer04Standing_png,
-      poisedToKick: africaVariabilityPlayer04PoisedToKick_png,
-      kicking: africaVariabilityPlayer04Kicking_png
+      standing: africaVariabilityKicker04Standing_png,
+      poisedToKick: africaVariabilityKicker04PoisedToKick_png,
+      kicking: africaVariabilityKicker04Kicking_png
     }
   ]
 );

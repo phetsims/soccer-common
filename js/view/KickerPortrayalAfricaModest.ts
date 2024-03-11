@@ -1,17 +1,17 @@
 // Copyright 2023-2024, University of Colorado Boulder
 
 import KickerPortrayal from './KickerPortrayal.js';
-import africaModestPlayer03Standing_png from '../../images/africaModest/africaModestPlayer03Standing_png.js';
-import africaModestPlayer03PoisedToKick_png from '../../images/africaModest/africaModestPlayer03PoisedToKick_png.js';
-import africaModestPlayer03Kicking_png from '../../images/africaModest/africaModestPlayer03Kicking_png.js';
-import africaModestPlayer06Standing_png from '../../images/africaModest/africaModestPlayer06Standing_png.js';
-import africaModestPlayer06PoisedToKick_png from '../../images/africaModest/africaModestPlayer06PoisedToKick_png.js';
-import africaModestPlayer06Kicking_png from '../../images/africaModest/africaModestPlayer06Kicking_png.js';
+import africaModestKicker03Standing_png from '../../images/africaModest/africaModestKicker03Standing_png.js';
+import africaModestKicker03PoisedToKick_png from '../../images/africaModest/africaModestKicker03PoisedToKick_png.js';
+import africaModestKicker03Kicking_png from '../../images/africaModest/africaModestKicker03Kicking_png.js';
+import africaModestKicker06Standing_png from '../../images/africaModest/africaModestKicker06Standing_png.js';
+import africaModestKicker06PoisedToKick_png from '../../images/africaModest/africaModestKicker06PoisedToKick_png.js';
+import africaModestKicker06Kicking_png from '../../images/africaModest/africaModestKicker06Kicking_png.js';
 import KickerPortrayalUSA from './KickerPortrayalUSA.js';
 import KickerPortrayalAfrica from './KickerPortrayalAfrica.js';
-import africaModestVariabilityPlayer02Standing_png from '../../images/africaModest/africaModestVariabilityPlayer02Standing_png.js';
-import africaModestVariabilityPlayer02PoisedToKick_png from '../../images/africaModest/africaModestVariabilityPlayer02PoisedToKick_png.js';
-import africaModestVariabilityPlayer02Kicking_png from '../../images/africaModest/africaModestVariabilityPlayer02Kicking_png.js';
+import africaModestVariabilityKicker02Standing_png from '../../images/africaModest/africaModestVariabilityKicker02Standing_png.js';
+import africaModestVariabilityKicker02PoisedToKick_png from '../../images/africaModest/africaModestVariabilityKicker02PoisedToKick_png.js';
+import africaModestVariabilityKicker02Kicking_png from '../../images/africaModest/africaModestVariabilityKicker02Kicking_png.js';
 
 /**
  * Artwork representing characters from Africa (modest).
@@ -27,17 +27,17 @@ const KickerPortrayalAfricaModest = new KickerPortrayal(
     KickerPortrayalAfrica.unnumberedKickerImages[ 1 - 1 ],
     KickerPortrayalAfrica.unnumberedKickerImages[ 4 - 1 ],
     {
-      standing: africaModestPlayer03Standing_png,
-      poisedToKick: africaModestPlayer03PoisedToKick_png,
-      kicking: africaModestPlayer03Kicking_png
+      standing: africaModestKicker03Standing_png,
+      poisedToKick: africaModestKicker03PoisedToKick_png,
+      kicking: africaModestKicker03Kicking_png
     },
     KickerPortrayalUSA.unnumberedKickerImages[ 14 - 1 ],
 
     KickerPortrayalAfrica.unnumberedKickerImages[ 3 - 1 ],
     {
-      standing: africaModestPlayer06Standing_png,
-      poisedToKick: africaModestPlayer06PoisedToKick_png,
-      kicking: africaModestPlayer06Kicking_png
+      standing: africaModestKicker06Standing_png,
+      poisedToKick: africaModestKicker06PoisedToKick_png,
+      kicking: africaModestKicker06Kicking_png
     },
     KickerPortrayalAfrica.unnumberedKickerImages[ 7 - 1 ],
     KickerPortrayalUSA.unnumberedKickerImages[ 8 - 1 ],
@@ -48,9 +48,9 @@ const KickerPortrayalAfricaModest = new KickerPortrayal(
   [
     KickerPortrayalAfrica.numberedKickerImages[ 1 - 1 ],
     {
-      standing: africaModestVariabilityPlayer02Standing_png,
-      poisedToKick: africaModestVariabilityPlayer02PoisedToKick_png,
-      kicking: africaModestVariabilityPlayer02Kicking_png
+      standing: africaModestVariabilityKicker02Standing_png,
+      poisedToKick: africaModestVariabilityKicker02PoisedToKick_png,
+      kicking: africaModestVariabilityKicker02Kicking_png
     },
     KickerPortrayalAfrica.numberedKickerImages[ 3 - 1 ],
     KickerPortrayalAfrica.numberedKickerImages[ 4 - 1 ]
