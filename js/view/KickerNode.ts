@@ -1,7 +1,7 @@
 // Copyright 2023-2024, University of Colorado Boulder
 
 /**
- * Shows a cartoon representation of a soccer player which will kick a ball.
+ * Shows a cartoon representation of a soccer player (aka kicker) which will kick a ball.
  *
  * @author Chris Klusendorf (PhET Interactive Simulations)
  * @author Sam Reid (PhET Interactive Simulations)
@@ -29,7 +29,7 @@ const SCALE = 0.645;
 export default class KickerNode extends Node {
   public readonly kicker: Kicker;
 
-  public constructor( kicker: Kicker, playerImageSets: KickerImageSet[], modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
+  public constructor( kicker: Kicker, kickerImageSets: KickerImageSet[], modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
     super( {
 
       // Avoid a flickering on firefox where the image temporarily disappears (even in built mode)
@@ -41,26 +41,26 @@ export default class KickerNode extends Node {
     this.kicker = kicker;
 
     // Load in standing images for all locales
-    const standingPortrayalImageUSA = new Image( playerImageSets[ 0 ].standing );
-    const standingPortrayalImageAfrica = new Image( playerImageSets[ 1 ].standing );
-    const standingPortrayalImageAfricaModest = new Image( playerImageSets[ 2 ].standing );
+    const standingPortrayalImageUSA = new Image( kickerImageSets[ 0 ].standing );
+    const standingPortrayalImageAfrica = new Image( kickerImageSets[ 1 ].standing );
+    const standingPortrayalImageAfricaModest = new Image( kickerImageSets[ 2 ].standing );
 
     this.addChild( standingPortrayalImageUSA );
     this.addChild( standingPortrayalImageAfrica );
     this.addChild( standingPortrayalImageAfricaModest );
 
     // Load in poisedToKick images for all locales
-    const poisedToKickPortrayalImageUSA = new Image( playerImageSets[ 0 ].poisedToKick );
-    const poisedToKickPortrayalAfrica = new Image( playerImageSets[ 1 ].poisedToKick );
-    const poisedToKickPortrayalAfricaModest = new Image( playerImageSets[ 2 ].poisedToKick );
+    const poisedToKickPortrayalImageUSA = new Image( kickerImageSets[ 0 ].poisedToKick );
+    const poisedToKickPortrayalAfrica = new Image( kickerImageSets[ 1 ].poisedToKick );
+    const poisedToKickPortrayalAfricaModest = new Image( kickerImageSets[ 2 ].poisedToKick );
 
     this.addChild( poisedToKickPortrayalImageUSA );
     this.addChild( poisedToKickPortrayalAfrica );
     this.addChild( poisedToKickPortrayalAfricaModest );
 
-    const kickingPortrayalImageUSA = new Image( playerImageSets[ 0 ].kicking );
-    const kickingPortrayalAfrica = new Image( playerImageSets[ 1 ].kicking );
-    const kickingPortrayalAfricaModest = new Image( playerImageSets[ 2 ].kicking );
+    const kickingPortrayalImageUSA = new Image( kickerImageSets[ 0 ].kicking );
+    const kickingPortrayalAfrica = new Image( kickerImageSets[ 1 ].kicking );
+    const kickingPortrayalAfricaModest = new Image( kickerImageSets[ 2 ].kicking );
     this.addChild( kickingPortrayalImageUSA );
     this.addChild( kickingPortrayalAfrica );
     this.addChild( kickingPortrayalAfricaModest );

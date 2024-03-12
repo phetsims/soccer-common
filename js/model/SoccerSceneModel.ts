@@ -193,7 +193,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         }
         else {
 
-          // If the soccer player that kicked that ball was still in line when the ball lands, they can leave the line now.
+          // If the kicker that kicked that ball was still in line when the ball lands, they can leave the line now.
           if ( soccerBall.kickerProperty.value === this.getFrontKicker() ) {
             this.advanceLine();
           }
@@ -510,25 +510,25 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.timeProperty.value += dt;
     this.getActiveSoccerBalls().forEach( soccerBall => soccerBall.step( dt ) );
 
-    const frontPlayer = this.getFrontKicker();
+    const frontKicker = this.getFrontKicker();
 
-    if ( frontPlayer ) {
+    if ( frontKicker ) {
 
       if ( this.numberOfQueuedKicksProperty.value > 0 &&
            this.timeProperty.value >= this.timeWhenLastBallWasKickedProperty.value + TIME_BETWEEN_RAPID_KICKS ) {
 
         this.advanceLine();
 
-        if ( frontPlayer.kickerPhaseProperty.value === KickerPhase.READY ) {
-          frontPlayer.kickerPhaseProperty.value = KickerPhase.POISED;
-          frontPlayer.timestampWhenPoisedBeganProperty.value = this.timeProperty.value;
+        if ( frontKicker.kickerPhaseProperty.value === KickerPhase.READY ) {
+          frontKicker.kickerPhaseProperty.value = KickerPhase.POISED;
+          frontKicker.timestampWhenPoisedBeganProperty.value = this.timeProperty.value;
         }
       }
 
-      // How long has the front player been poised?
-      if ( frontPlayer.kickerPhaseProperty.value === KickerPhase.POISED ) {
-        assert && assert( typeof frontPlayer.timestampWhenPoisedBeganProperty.value === 'number', 'timestampWhenPoisedBegan should be a number' );
-        const elapsedTime = this.timeProperty.value - frontPlayer.timestampWhenPoisedBeganProperty.value!;
+      // How long has the front kicker been poised?
+      if ( frontKicker.kickerPhaseProperty.value === KickerPhase.POISED ) {
+        assert && assert( typeof frontKicker.timestampWhenPoisedBeganProperty.value === 'number', 'timestampWhenPoisedBegan should be a number' );
+        const elapsedTime = this.timeProperty.value - frontKicker.timestampWhenPoisedBeganProperty.value!;
         if ( elapsedTime > 0.075 ) {
 
           const soccerBall = this.soccerBalls.find( soccerBall =>
@@ -538,7 +538,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
           // In fuzzing, sometimes there are no soccer balls available
           if ( soccerBall ) {
-            this.kickBall( frontPlayer, soccerBall, true );
+            this.kickBall( frontKicker, soccerBall, true );
             this.numberOfQueuedKicksProperty.value--;
           }
         }
@@ -568,12 +568,12 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     }
   }
 
-  // When a ball lands, or when the next player is supposed to kick (before the ball lands), move the line forward
+  // When a ball lands, or when the next kicker is supposed to kick (before the ball lands), move the line forward
   // and queue up the next ball as well
   private advanceLine(): void {
 
     // Allow kicking another ball while one is already in the air.
-    // if the previous ball was still in the air, we need to move the line forward so the next player can kick
+    // If the previous ball was still in the air, we need to move the line forward so the next kicker can kick.
     const kickers = this.kickers.filter( kicker => kicker.kickerPhaseProperty.value === KickerPhase.KICKING );
     if ( kickers.length > 0 ) {
       let nextIndex = this.activeKickIndexProperty.value + 1;

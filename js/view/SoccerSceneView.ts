@@ -1,7 +1,7 @@
 // Copyright 2023-2024, University of Colorado Boulder
 
 /**
- * Depicts a single scene in which soccer balls can be kicked. This includes the soccer balls, soccer players,
+ * Depicts a single scene in which soccer balls can be kicked. This includes the soccer balls, soccer players (kickers),
  * and drag indicator arrow. The scene is rendered in two layers to ensure the correct z-ordering.
  *
  * @author Sam Reid (PhET Interactive Simulations)
