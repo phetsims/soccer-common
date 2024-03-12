@@ -67,7 +67,7 @@ const KickerPortrayalAfricaModest = new KickerPortrayal(
       kicking: africaModestKicker07Kicking_svg
     },
     KickerPortrayalAfrica.unnumberedKickerImages[ 14 - 1 ],
-    KickerPortrayalAfrica.unnumberedKickerImages[ 13 - 1 ],
+    KickerPortrayalAfrica.unnumberedKickerImages[ 3 - 1 ],
     KickerPortrayalUSA.unnumberedKickerImages[ 2 - 1 ],
     {
       standing: africaModestKicker11Standing_svg,
