@@ -53,56 +53,81 @@ const KickerPortrayalAfrica = new KickerPortrayal(
 
   // Unnumbered Kickers
   [
+    // 01: see https://github.com/phetsims/soccer-common/issues/13#issuecomment-1992492081
     {
       standing: africaKicker01Standing_svg,
       poisedToKick: africaKicker01PoisedToKick_svg,
       kicking: africaKicker01Kicking_svg
     },
+
+    // 02
     {
       standing: africaKicker02Standing_svg,
       poisedToKick: africaKicker02PoisedToKick_svg,
       kicking: africaKicker02Kicking_svg
     },
+
+    // 03
     {
       standing: africaKicker03Standing_svg,
       poisedToKick: africaKicker03PoisedToKick_svg,
       kicking: africaKicker03Kicking_svg
     },
+
+    // 04
     {
       standing: africaKicker04Standing_svg,
       poisedToKick: africaKicker04PoisedToKick_svg,
       kicking: africaKicker04Kicking_svg
     },
 
+    // 05
     KickerPortrayalUSA.unnumberedKickerImages[ 8 - 1 ],
+
+    // 06
     KickerPortrayalUSA.unnumberedKickerImages[ 14 - 1 ],
 
+    // 07
     {
       standing: africaKicker07Standing_svg,
       poisedToKick: africaKicker07PoisedToKick_svg,
       kicking: africaKicker07Kicking_svg
     },
 
+    // 08
     KickerPortrayalUSA.unnumberedKickerImages[ 12 - 1 ],
+
+    // 09
     KickerPortrayalUSA.unnumberedKickerImages[ 10 - 1 ],
+
+    // 10
     KickerPortrayalUSA.unnumberedKickerImages[ 2 - 1 ],
 
+    // 11
     {
       standing: africaKicker11Standing_svg,
       poisedToKick: africaKicker11PoisedToKick_svg,
       kicking: africaKicker11Kicking_svg
     },
+
+    // 12
     KickerPortrayalUSA.unnumberedKickerImages[ 4 - 1 ],
+
+    // 13
     {
       standing: africaKicker13Standing_svg,
       poisedToKick: africaKicker13PoisedToKick_svg,
       kicking: africaKicker13Kicking_svg
     },
+
+    // 14
     {
       standing: africaKicker14Standing_svg,
       poisedToKick: africaKicker14PoisedToKick_svg,
       kicking: africaKicker14Kicking_svg
     },
+
+    // 15
     {
       standing: africaKicker15Standing_svg,
       poisedToKick: africaKicker15PoisedToKick_svg,
@@ -112,21 +137,28 @@ const KickerPortrayalAfrica = new KickerPortrayal(
 
   // Numbered Kickers
   [
+    // 1
     {
       standing: africaVariabilityKicker01Standing_svg,
       poisedToKick: africaVariabilityKicker01PoisedToKick_svg,
       kicking: africaVariabilityKicker01Kicking_svg
     },
+
+    // 2
     {
       standing: africaVariabilityKicker02Standing_svg,
       poisedToKick: africaVariabilityKicker02PoisedToKick_svg,
       kicking: africaVariabilityKicker02Kicking_svg
     },
+
+    // 3
     {
       standing: africaVariabilityKicker03Standing_svg,
       poisedToKick: africaVariabilityKicker03PoisedToKick_svg,
       kicking: africaVariabilityKicker03Kicking_svg
     },
+
+    // 4
     {
       standing: africaVariabilityKicker04Standing_svg,
       poisedToKick: africaVariabilityKicker04PoisedToKick_svg,
