@@ -31,10 +31,6 @@ export default class KickerNode extends Node {
 
   public constructor( kicker: Kicker, kickerImageSets: KickerImageSet[], modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
     super( {
-
-      // Avoid a flickering on firefox where the image temporarily disappears (even in built mode)
-      // TODO: once svg images are in, remove webgl flag and send to QA, https://github.com/phetsims/soccer-common/issues/11
-      renderer: 'webgl',
       isDisposable: false
     } );
 
