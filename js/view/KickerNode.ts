@@ -24,7 +24,7 @@ import KickerPortrayalAfricaModest from './KickerPortrayalAfricaModest.js';
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
 
-const SCALE = 0.31;
+const SCALE = 0.645;
 
 export default class KickerNode extends Node {
   public readonly kicker: Kicker;
