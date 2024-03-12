@@ -1,5 +1,5 @@
 {
-  "africaKicker01Kicking.png": {
+  "africaKicker01Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -7,7 +7,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker01Standing.png": {
+  "africaKicker01Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -15,7 +15,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker01PoisedToKick.png": {
+  "africaKicker01PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -23,7 +23,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker02Kicking.png": {
+  "africaKicker02Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -31,7 +31,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker02Standing.png": {
+  "africaKicker02Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -39,7 +39,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker02PoisedToKick.png": {
+  "africaKicker02PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -47,7 +47,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker03Kicking.png": {
+  "africaKicker03Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -55,7 +55,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker03Standing.png": {
+  "africaKicker03Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -63,7 +63,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker03PoisedToKick.png": {
+  "africaKicker03PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -71,7 +71,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker04Kicking.png": {
+  "africaKicker04Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -79,7 +79,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker04Standing.png": {
+  "africaKicker04Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -87,7 +87,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker04PoisedToKick.png": {
+  "africaKicker04PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -95,7 +95,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker07Kicking.png": {
+  "africaKicker07Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -103,7 +103,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker07Standing.png": {
+  "africaKicker07Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -111,7 +111,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker07PoisedToKick.png": {
+  "africaKicker07PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -119,7 +119,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker11Kicking.png": {
+  "africaKicker11Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -127,7 +127,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker11Standing.png": {
+  "africaKicker11Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -135,7 +135,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker11PoisedToKick.png": {
+  "africaKicker11PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -143,8 +143,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-
-  "africaKicker13Kicking.png": {
+  "africaKicker13Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -152,7 +151,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker13Standing.png": {
+  "africaKicker13Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -160,7 +159,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaKicker13PoisedToKick.png": {
+  "africaKicker13PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -168,7 +167,55 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker01Kicking.png": {
+  "africaKicker14Kicking.svg": {
+    "text": [
+      "Copyright 20224 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaKicker14Standing.svg": {
+    "text": [
+      "Copyright 2024 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaKicker14PoisedToKick.svg": {
+    "text": [
+      "Copyright 2024 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaKicker15Kicking.svg": {
+    "text": [
+      "Copyright 2024 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaKicker15Standing.svg": {
+    "text": [
+      "Copyright 2024 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaKicker15PoisedToKick.svg": {
+    "text": [
+      "Copyright 2024 University of Colorado Boulder"
+    ],
+    "projectURL": "https://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Mariah Hermsmeyer"
+  },
+  "africaVariabilityKicker01Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -176,7 +223,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker01Standing.png": {
+  "africaVariabilityKicker01Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -184,7 +231,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker01PoisedToKick.png": {
+  "africaVariabilityKicker01PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -192,7 +239,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker02Kicking.png": {
+  "africaVariabilityKicker02Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -200,7 +247,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker02Standing.png": {
+  "africaVariabilityKicker02Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -208,7 +255,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker02PoisedToKick.png": {
+  "africaVariabilityKicker02PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -216,7 +263,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker03Kicking.png": {
+  "africaVariabilityKicker03Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -224,7 +271,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker03Standing.png": {
+  "africaVariabilityKicker03Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -232,7 +279,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker03PoisedToKick.png": {
+  "africaVariabilityKicker03PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -240,7 +287,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker04Kicking.png": {
+  "africaVariabilityKicker04Kicking.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -248,7 +295,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker04Standing.png": {
+  "africaVariabilityKicker04Standing.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
@@ -256,7 +303,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Mariah Hermsmeyer"
   },
-  "africaVariabilityKicker04PoisedToKick.png": {
+  "africaVariabilityKicker04PoisedToKick.svg": {
     "text": [
       "Copyright 2022 University of Colorado Boulder"
     ],
