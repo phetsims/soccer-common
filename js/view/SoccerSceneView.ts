@@ -31,7 +31,7 @@ import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;
 };
-type SoccerSceneViewOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type SoccerSceneViewOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
 
 /**
  * Renders view elements for a SoccerSceneModel. Note that to satisfy the correct z-ordering, elements
