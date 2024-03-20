@@ -16,8 +16,11 @@ import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
-import { Node } from '../../../scenery/js/imports.js';
+import { Image, ManualConstraint, Node } from '../../../scenery/js/imports.js';
 import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
+import dragIndicatorHand_png from '../../images/dragIndicatorHand_png.js';
+import Vector2 from '../../../dot/js/Vector2.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 
 type SelfOptions = {
   physicalRange: Range;
@@ -43,6 +46,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
   // The keyboard drag indicator arrow
   protected readonly keyboardSortCueNode: Node;
+  protected readonly sortIndicatorArrowNode: Node;
+  protected readonly mouseSortHandCueNode: Node;
 
   protected constructor( protected readonly model: Q, providedOptions: SoccerScreenViewOptions ) {
 
@@ -72,10 +77,62 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         y: groundPositionY
       } );
 
+    /**
+     * Create and handle cue nodes.
+     */
     this.keyboardSortCueNode = GroupSortInteractionView.createSortCueNode(
       model.groupSortInteractionModel.keyboardSortCueVisibleProperty, DRAG_CUE_SCALE );
 
+    this.sortIndicatorArrowNode = GroupSortInteractionView.createSortCueNode(
+      model.groupSortInteractionModel.mouseSortCueVisibleProperty, DRAG_CUE_SCALE );
+
+    this.mouseSortHandCueNode = new Image( dragIndicatorHand_png, {
+      scale: 0.07,
+      visibleProperty: model.groupSortInteractionModel.mouseSortCueVisibleProperty,
+      rotation: Math.PI / 4
+    } );
+
+    ManualConstraint.create( this, [ this.sortIndicatorArrowNode ], sortIndicatorArrowNodeProxy => {
+
+      // Pixel adjustments needed with rotation option on mouseSortHandCueNode and empirically determined to match design
+      this.mouseSortHandCueNode.right = sortIndicatorArrowNodeProxy.left + 22;
+      this.mouseSortHandCueNode.top = sortIndicatorArrowNodeProxy.bottom + Math.abs( this.modelViewTransform.modelToViewDeltaY( SoccerCommonConstants.SOCCER_BALL_RADIUS ) ) - 5;
+    } );
+
+    this.visibleBoundsProperty.link( this.updateMouseSortCueNode.bind( this ) );
+    this.model.selectedSceneModelProperty.link( this.updateMouseSortCueNode.bind( this ) );
+    this.model.sceneModels.forEach( sceneModel => {
+      sceneModel.objectChangedEmitter.addListener( this.updateMouseSortCueNode.bind( this ) );
+    } );
+    model.groupSortInteractionModel.registerUpdateSortCueNode( this.updateMouseSortCueNode.bind( this ) );
+
     this.addChild( this.keyboardSortCueNode );
+  }
+
+  // calculate where the top object is at a given value
+  protected getTopObjectPositionY( value: number ): number {
+    const sceneModel = this.model.selectedSceneModelProperty.value;
+    const ballsAtValue = sceneModel.soccerBalls.filter( soccerBall =>
+      soccerBall.valueProperty.value === value && soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED );
+    const modelHeight = ballsAtValue.length * SoccerCommonConstants.SOCCER_BALL_RADIUS * 2 * ( 1 - SoccerCommonConstants.SOCCER_BALL_OVERLAP );
+    const viewHeight = this.modelViewTransform.modelToViewDeltaY( modelHeight );
+    return this.modelViewTransform.modelToViewY( 0 ) + viewHeight;
+  }
+
+  protected updateMouseSortCueNode(): void {
+    const mouseSortCueVisible = this.model.groupSortInteractionModel.mouseSortCueVisibleProperty.value;
+    const selectedValue = this.model.groupSortInteractionModel.selectedGroupItemProperty.value?.valueProperty.value ?? null;
+
+    if ( mouseSortCueVisible && selectedValue !== null ) {
+      const topObjectPositionY = this.getTopObjectPositionY( selectedValue );
+      this.sortIndicatorArrowNode.center = new Vector2(
+        this.modelViewTransform.modelToViewX( selectedValue ),
+
+        // This value must be kept in sync with the other occurrences of GroupSortInteractionView.createSortCueNode()
+        // that are shown for the keyboard.
+        topObjectPositionY - 11.5
+      );
+    }
   }
 }
 
