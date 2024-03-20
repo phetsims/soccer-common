@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2024, University of Colorado Boulder
 /**
  * Multiple soccer common sims use similar buttons to kick soccer balls. This class has default options for those
  * buttons that allows for consistency between sims.
