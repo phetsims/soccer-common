@@ -23,6 +23,7 @@ import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
 import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
+import Range from '../../../dot/js/Range.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.
@@ -174,15 +175,18 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
    * The group focus region for the soccer ball area is supposed to be just below the accordion box, and adjust when the
    * accordion box expands and collapses. Translate lower so it also includes the number line and labels
    */
-  public setGroupFocusHighlightTop( top: number ): void {
-    const margin = 4; // Distance below the accordion box
-    const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape( Shape.rect( 0.5, 0, 15, 6 ) )
-      .transformed( Matrix3.translation( 0, 37 ) );
+  public setGroupFocusHighlightTop( top: number, ballRange: Range ): void {
+    const yMargin = 4; // Distance below top bounds
+    const xPadding = this.modelViewTransform.modelToViewDeltaX( 0.5 ); // Padding on left and right
+    const shapeForLeftRightBottom = this.modelViewTransform.modelToViewShape(
+      Shape.rect( ballRange.min, 0, ballRange.getLength(), 6 )
+    ).transformed( Matrix3.translation( 0, 37 ) );
+
     this.groupSortGroupFocusHighlightPath.shape = Shape.rect(
-      shapeForLeftRightBottom.bounds.x,
-      top + margin,
-      shapeForLeftRightBottom.bounds.width,
-      shapeForLeftRightBottom.bounds.bottom - top - margin
+      shapeForLeftRightBottom.bounds.x - xPadding,
+      top + yMargin,
+      shapeForLeftRightBottom.bounds.width + xPadding * 2,
+      shapeForLeftRightBottom.bounds.bottom - top - yMargin
     );
   }
 
