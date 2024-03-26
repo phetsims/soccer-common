@@ -15,11 +15,7 @@ import Vector2 from '../../../dot/js/Vector2.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import Pose from '../model/Pose.js';
 import { KickerPhase } from '../model/KickerPhase.js';
-import { KickerImageSet } from './KickerPortrayal.js';
-import Multilink from '../../../axon/js/Multilink.js';
-import KickerPortrayalUSA from './KickerPortrayalUSA.js';
-import KickerPortrayalAfrica from './KickerPortrayalAfrica.js';
-import KickerPortrayalAfricaModest from './KickerPortrayalAfricaModest.js';
+import { KickerImageSet } from './KickerImageSets.js';
 
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
@@ -29,7 +25,7 @@ const SCALE = 0.645;
 export default class KickerNode extends Node {
   public readonly kicker: Kicker;
 
-  public constructor( kicker: Kicker, kickerImageSets: KickerImageSet[], modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
+  public constructor( kicker: Kicker, kickerImageSet: KickerImageSet, modelViewTransform: ModelViewTransform2, providedOptions?: KickerNodeOptions ) {
     super( {
       isDisposable: false
     } );
@@ -37,29 +33,13 @@ export default class KickerNode extends Node {
     this.kicker = kicker;
 
     // Load in standing images for all locales
-    const standingPortrayalImageUSA = new Image( kickerImageSets[ 0 ].standing );
-    const standingPortrayalImageAfrica = new Image( kickerImageSets[ 1 ].standing );
-    const standingPortrayalImageAfricaModest = new Image( kickerImageSets[ 2 ].standing );
+    const standingImageProperty = new Image( kickerImageSet.standingImageProperty );
+    const poisedToKickImageProperty = new Image( kickerImageSet.poisedToKickImageProperty );
+    const kickingImageProperty = new Image( kickerImageSet.kickingImageProperty );
 
-    this.addChild( standingPortrayalImageUSA );
-    this.addChild( standingPortrayalImageAfrica );
-    this.addChild( standingPortrayalImageAfricaModest );
-
-    // Load in poisedToKick images for all locales
-    const poisedToKickPortrayalImageUSA = new Image( kickerImageSets[ 0 ].poisedToKick );
-    const poisedToKickPortrayalAfrica = new Image( kickerImageSets[ 1 ].poisedToKick );
-    const poisedToKickPortrayalAfricaModest = new Image( kickerImageSets[ 2 ].poisedToKick );
-
-    this.addChild( poisedToKickPortrayalImageUSA );
-    this.addChild( poisedToKickPortrayalAfrica );
-    this.addChild( poisedToKickPortrayalAfricaModest );
-
-    const kickingPortrayalImageUSA = new Image( kickerImageSets[ 0 ].kicking );
-    const kickingPortrayalAfrica = new Image( kickerImageSets[ 1 ].kicking );
-    const kickingPortrayalAfricaModest = new Image( kickerImageSets[ 2 ].kicking );
-    this.addChild( kickingPortrayalImageUSA );
-    this.addChild( kickingPortrayalAfrica );
-    this.addChild( kickingPortrayalAfricaModest );
+    this.addChild( standingImageProperty );
+    this.addChild( poisedToKickImageProperty );
+    this.addChild( kickingImageProperty );
 
     this.setScaleMagnitude( SCALE );
 
@@ -76,23 +56,15 @@ export default class KickerNode extends Node {
       this.visible = phase !== KickerPhase.INACTIVE;
     } );
 
-    Multilink.multilink( [ kicker.portrayalProperty, kicker.poseProperty ], ( portrayal, pose ) => {
+    kicker.poseProperty.link( pose => {
+      standingImageProperty.visible = pose === Pose.STANDING;
+      poisedToKickImageProperty.visible = pose === Pose.POISED_TO_KICK;
+      kickingImageProperty.visible = pose === Pose.KICKING;
 
-      // The first portrayal will be the default at startup, when portrayalProperty is null.
-      standingPortrayalImageUSA.visible = pose === Pose.STANDING && ( portrayal === KickerPortrayalUSA || portrayal === null );
-      poisedToKickPortrayalImageUSA.visible = pose === Pose.POISED_TO_KICK && ( portrayal === KickerPortrayalUSA || portrayal === null );
-      kickingPortrayalImageUSA.visible = pose === Pose.KICKING && ( portrayal === KickerPortrayalUSA || portrayal === null );
-
-      standingPortrayalImageAfrica.visible = pose === Pose.STANDING && portrayal === KickerPortrayalAfrica;
-      poisedToKickPortrayalAfrica.visible = pose === Pose.POISED_TO_KICK && portrayal === KickerPortrayalAfrica;
-      kickingPortrayalAfrica.visible = pose === Pose.KICKING && portrayal === KickerPortrayalAfrica;
-
-      standingPortrayalImageAfricaModest.visible = pose === Pose.STANDING && portrayal === KickerPortrayalAfricaModest;
-      poisedToKickPortrayalAfricaModest.visible = pose === Pose.POISED_TO_KICK && portrayal === KickerPortrayalAfricaModest;
-      kickingPortrayalAfricaModest.visible = pose === Pose.KICKING && portrayal === KickerPortrayalAfricaModest;
-
-      this.centerBottom = modelViewTransform.modelToViewPosition( new Vector2( 0, 0 ) ).plusXY( -28, 8.5 );
     } );
+
+    this.centerBottom = modelViewTransform.modelToViewPosition( new Vector2( 0, 0 ) ).plusXY( -28, 8.5 );
+
 
     const options = optionize<KickerNodeOptions, SelfOptions, NodeOptions>()( {
       excludeInvisibleChildrenFromBounds: false,

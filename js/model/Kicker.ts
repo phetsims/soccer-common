@@ -17,7 +17,6 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import { KickerPhase } from './KickerPhase.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 
@@ -35,7 +34,7 @@ export default class Kicker extends PhetioObject {
   // Used to determine the artwork for rendering the KickerNode
   public readonly initialPlaceInLine: number;
 
-  public constructor( placeInLine: number, public readonly portrayalProperty: Property<RegionAndCulturePortrayal>, tandem: Tandem ) {
+  public constructor( placeInLine: number, tandem: Tandem ) {
 
     super( {
       phetioState: false,

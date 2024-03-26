@@ -16,7 +16,12 @@
     ],
     "supportsOutputJS": true,
     "simFeatures": {
-      "supportsDynamicLocale": true
+      "supportsDynamicLocale": true,
+      "supportedRegionsAndCultures": [
+        "usa",
+        "africa",
+        "africaModest"
+      ]
     }
   },
   "eslintConfig": {

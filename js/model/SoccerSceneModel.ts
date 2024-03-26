@@ -46,12 +46,12 @@ import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import KickDistributionStrategy from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
-import RegionAndCulturePortrayal from '../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import isResettingProperty from './isResettingProperty.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
+import regionAndCultureProperty from '../../../joist/js/i18n/regionAndCultureProperty.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -141,7 +141,6 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     kickDistributionStrategy: KickDistributionStrategy,
     public readonly physicalRange: Range,
     createSoccerBall: ( isFirstSoccerBall: boolean, tandem: Tandem ) => T,
-    regionAndCultureProperty: Property<RegionAndCulturePortrayal>,
     providedOptions: SoccerSceneModelOptions
   ) {
 
@@ -298,7 +297,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     const numKickers = options.isSingleKickerScene ? 1 : this.maxKicksLimit;
 
-    this.kickers = _.range( 0, numKickers ).map( placeInLine => new Kicker( placeInLine, regionAndCultureProperty,
+    this.kickers = _.range( 0, numKickers ).map( placeInLine => new Kicker( placeInLine,
       options.tandem.createTandem( 'kickers' ).createTandem1Indexed( 'kicker', placeInLine )
     ) );
 

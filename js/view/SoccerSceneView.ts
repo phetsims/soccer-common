@@ -12,13 +12,12 @@ import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import KickerNode from './KickerNode.js';
-import { KickerImageSet } from './KickerPortrayal.js';
+import KickerImageSets from './KickerImageSets.js';
 import soccerCommon from '../soccerCommon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoccerBall from '../model/SoccerBall.js';
 import { Shape } from '../../../kite/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
-import Kicker from '../model/Kicker.js';
 import Range from '../../../dot/js/Range.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
@@ -48,7 +47,6 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       'soccerBallsEnabledProperty' | 'groupSortInteractionModel' | 'selectedSceneModelProperty'>,
     public readonly sceneModel: SceneModel,
     keyboardSortCueNode: Node,
-    getKickerImageSet: ( kicker: Kicker, sceneModel: SceneModel ) => KickerImageSet[],
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
     providedOptions: SoccerSceneViewOptions ) {
@@ -147,11 +145,13 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       }
     } );
 
-    const kickerNodes = sceneModel.kickers.map( kicker =>
+
+    const kickerNodes = sceneModel.kickers.map( ( kicker, i ) =>
       new KickerNode(
         kicker,
-        getKickerImageSet( kicker, sceneModel ),
+        KickerImageSets[ i % sceneModel.kickers.length % KickerImageSets.length ],
         modelViewTransform ) );
+
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
