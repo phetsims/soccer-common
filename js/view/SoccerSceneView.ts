@@ -12,7 +12,6 @@ import SoccerBallNode from './SoccerBallNode.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import KickerNode from './KickerNode.js';
-import KickerImageSets from './KickerImageSets.js';
 import soccerCommon from '../soccerCommon.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import SoccerBall from '../model/SoccerBall.js';
@@ -26,6 +25,7 @@ import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
+import { KickerImageSet } from './KickerImageSets.js';
 
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;
@@ -49,6 +49,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     keyboardSortCueNode: Node,
     public readonly modelViewTransform: ModelViewTransform2,
     physicalRange: Range,
+    kickerImageSets: KickerImageSet[],
     providedOptions: SoccerSceneViewOptions ) {
 
     const options = optionize<SoccerSceneViewOptions, SelfOptions, PickRequired<PhetioObjectOptions, 'tandem'>>()( {
@@ -149,9 +150,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     const kickerNodes = sceneModel.kickers.map( ( kicker, i ) =>
       new KickerNode(
         kicker,
-        KickerImageSets[ i % sceneModel.kickers.length % KickerImageSets.length ],
+        kickerImageSets[ i % sceneModel.kickers.length % kickerImageSets.length ],
         modelViewTransform ) );
-
 
     kickerNodes.forEach( kickerNode => frontLayer.addChild( kickerNode ) );
 
