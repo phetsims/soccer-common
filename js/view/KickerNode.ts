@@ -32,7 +32,7 @@ export default class KickerNode extends Node {
 
     this.kicker = kicker;
 
-    // Load in standing images for all locales
+    // Load in images for all the kicker poses.
     const standingImageProperty = new Image( kickerImageSet.standingImageProperty );
     const poisedToKickImageProperty = new Image( kickerImageSet.poisedToKickImageProperty );
     const kickingImageProperty = new Image( kickerImageSet.kickingImageProperty );
