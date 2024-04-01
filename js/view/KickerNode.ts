@@ -20,6 +20,7 @@ import Multilink from '../../../axon/js/Multilink.js';
 import KickerCharacterSetUSA from './KickerCharacterSetUSA.js';
 import KickerCharacterSetAfrica from './KickerCharacterSetAfrica.js';
 import KickerCharacterSetAfricaModest from './KickerCharacterSetAfricaModest.js';
+import platform from '../../../phet-core/js/platform.js';
 
 type SelfOptions = EmptySelfOptions;
 type KickerNodeOptions = SelfOptions & NodeOptions;
@@ -33,7 +34,7 @@ export default class KickerNode extends Node {
     super( {
 
       // Avoid a flickering on firefox where the image temporarily disappears (even in built mode)
-      renderer: 'webgl',
+      renderer: platform.firefox ? 'webgl' : null,
       isDisposable: false
     } );
 
