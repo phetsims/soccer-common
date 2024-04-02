@@ -1,8 +1,7 @@
 // Copyright 2024, University of Colorado Boulder
 
 /**
- * A collection of KickerImageSets. One KickerPortrayal is active at a time. A different KickerPortrayal can be selected
- * from preferences.
+ * KickerImageSets defines the LocalizedImageProperty instances for the 3 poses associated with each kicker.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
