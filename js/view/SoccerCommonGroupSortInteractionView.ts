@@ -101,7 +101,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
                null; // Guard against having an unexpected key (don't change the value).
       },
       grabReleaseCueOptions: {
-        centerTop: modelViewTransform.modelToViewXY( 7.5, 4 )
+        centerTop: modelViewTransform.modelToViewXY( sceneModel.physicalRange.getCenter(), 4 )
       }
     }, providedOptions );
 
