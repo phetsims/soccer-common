@@ -16,8 +16,8 @@ import { DragListener, HighlightFromNode, Image, Node } from '../../../scenery/j
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import ballDark_png from '../../images/ballDark_png.js';
-import ball_png from '../../images/ball_png.js';
+import ballDark_svg from '../../images/ballDark_svg.js';
+import ball_svg from '../../images/ball_svg.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { Shape } from '../../../kite/js/imports.js';
@@ -45,8 +45,8 @@ export default class SoccerBallNode extends SoccerObjectNode {
     super( soccerBall, modelViewTransform, options );
 
     // The dark soccer ball is used for when a ball has input disabled.
-    const soccerBallNode = new Image( ball_png );
-    const soccerBallDarkNode = new Image( ballDark_png );
+    const soccerBallNode = new Image( ball_svg );
+    const soccerBallDarkNode = new Image( ballDark_svg );
     const soccerBallNodes = new Node( {
       children: [ soccerBallNode, soccerBallDarkNode ],
 
