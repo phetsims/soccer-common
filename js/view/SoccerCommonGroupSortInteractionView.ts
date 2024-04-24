@@ -153,19 +153,25 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
         const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( selectedGroupItemProperty.value === null && topSoccerBalls.length > 0 && this.model.isKeyboardFocusedProperty.value ) {
+        const selectedGroupItem = selectedGroupItemProperty.value;
+
+        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && this.model.isKeyboardFocusedProperty.value ) {
           assert && assert( topSoccerBalls[ 0 ].valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
           selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
         }
 
-        const selectedGroupItem = selectedGroupItemProperty.value;
-
         // Anytime a stack changes and the selectedGroupItem is assigned, we want to make sure the selectedGroupItem
         // stays on top.
         if ( selectedGroupItem !== null ) {
-          assert && assert( selectedGroupItem.valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
-          const selectedStack = sceneModel.getStackAtValue( selectedGroupItem.valueProperty.value! );
-          selectedGroupItemProperty.value = selectedStack[ selectedStack.length - 1 ];
+
+          // If the value is null, it means the ball was removed from the field, so we need to select a new ball.
+          if ( selectedGroupItem.valueProperty.value === null ) {
+            selectedGroupItemProperty.value = topSoccerBalls.length > 0 ? topSoccerBalls[ 0 ] : null;
+          }
+          else {
+            const selectedStack = sceneModel.getStackAtValue( selectedGroupItem.valueProperty.value );
+            selectedGroupItemProperty.value = selectedStack[ selectedStack.length - 1 ];
+          }
         }
       }
     } );
