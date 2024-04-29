@@ -18,11 +18,10 @@ import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
-import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
-import SoccerBall from './SoccerBall.js';
+import SoccerCommonGroupSortInteractionModel from './SoccerCommonGroupSortInteractionModel.js';
 
 type SelfOptions<T extends SoccerSceneModel> = {
-  createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T>, tandem: Tandem ) => GroupSortInteractionModel<SoccerBall>;
+  createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T>, tandem: Tandem ) => SoccerCommonGroupSortInteractionModel;
 };
 export type SoccerModelOptions<T extends SoccerSceneModel> = SelfOptions<T> & PhetioObjectOptions;
 export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObject {
@@ -45,17 +44,22 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
   // Hold the model information about the state of the group sort interaction. Instantiate just one for the whole screen
   // So that the "learning" state in the interaction can persist across scenes. For example, whether to show cue hints
   // when a successful sort has not yet occurred.
-  public readonly groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>;
+  public readonly groupSortInteractionModel: SoccerCommonGroupSortInteractionModel;
 
   protected constructor( public readonly sceneModels: T[], providedOptions: SoccerModelOptions<T> ) {
     const options = optionize<SoccerModelOptions<T>, SelfOptions<T>, PhetioObjectOptions>()( {
       isDisposable: false,
       tandem: Tandem.REQUIRED,
-      createGroupSortInteractionModel: ( soccerModel, tandem ) => new GroupSortInteractionModel<SoccerBall>( {
-        getGroupItemValue: soccerBall => soccerBall.valueProperty.value,
-        enabledProperty: soccerModel.soccerBallsEnabledProperty,
-        tandem: tandem
-      } )
+      createGroupSortInteractionModel: ( soccerModel, tandem ) => new SoccerCommonGroupSortInteractionModel(
+        this.selectedSceneModelProperty,
+        this.selectedSceneStackedSoccerBallCountProperty,
+        this.selectedSceneMaxKicksProperty,
+        this.sceneModels,
+        {
+          getGroupItemValue: soccerBall => soccerBall.valueProperty.value,
+          enabledProperty: soccerModel.soccerBallsEnabledProperty,
+          tandem: tandem
+        } )
     }, providedOptions );
 
     super( options );

@@ -37,13 +37,12 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
     ], () => {
       const sceneModel = this.selectedSceneModelProperty.value;
       const soccerBallCount = this.selectedSceneStackedSoccerBallCountProperty.value;
-      const maxKicks = this.selectedSceneMaxKicksProperty.value;
 
-      //  If an object was sorted, objects are not input enabled, or the max number of balls haven't been kicked out
+      //  If an object was sorted, objects are not input enabled, or the max number of balls haven't been kicked out yet
       //  don't show the sortIndicatorCue.
       this.mouseSortCueVisibleProperty.value = this.mouseSortCueShouldBeVisible() &&
-                                               soccerBallCount === maxKicks &&
-                                               _.every( sceneModel?.getActiveSoccerBalls(), soccerBall => soccerBall.valueProperty.value !== null );
+                                               soccerBallCount > 0 &&
+                                               sceneModel.soccerBallCountReachedMax;
 
       this.updateSelectedGroupItem( sceneModel );
     } );

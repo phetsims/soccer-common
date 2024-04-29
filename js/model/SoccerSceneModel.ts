@@ -95,6 +95,9 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // The total number of data points (landed soccer balls) that a scene is currently showing
   public readonly numberOfDataPointsProperty: Property<number>;
 
+  // A flag to help determine if a cueing arrow should be shown once all balls have been kicked.
+  public soccerBallCountReachedMax = false;
+
   // The array of kickers that can kick soccer balls in a scene
   public readonly kickers: Kicker[];
 
@@ -351,6 +354,13 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
     } );
 
+    // When the soccer ball count reaches the max, set the soccerBallCountReachedMax flag to true.
+    this.numberOfDataPointsProperty.link( stackedSoccerBallCount => {
+      if ( stackedSoccerBallCount === this.maxKicksProperty.value ) {
+        this.soccerBallCountReachedMax = true;
+      }
+    } );
+
     maxKicksProperty.lazyLink( () => this.clearData() );
     regionAndCultureProperty.lazyLink( () => this.clearData() );
   }
@@ -444,6 +454,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     // This emitter handles interactive and focus highlight properties that need to reset before data values are reset.
     this.preClearDataEmitter.emit();
 
+    this.soccerBallCountReachedMax = false;
     this.numberOfQueuedKicksProperty.reset();
     this.timeProperty.reset();
     this.timeWhenLastBallWasKickedProperty.reset();
