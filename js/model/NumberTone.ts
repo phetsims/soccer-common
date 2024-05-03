@@ -17,7 +17,7 @@ import isResettingProperty from './isResettingProperty.js';
 // This is the dominant frequency of numberTone_mp3. If the audio file is changed, this will need to be updated.
 const E3 = 164.81; // Hz
 
-const INITIAL_OUTPUT_LEVEL = 0.12;
+const INITIAL_OUTPUT_LEVEL = 0.2;
 const soundClip = new SoundClip( numberTone_mp3, {
   initialOutputLevel: INITIAL_OUTPUT_LEVEL
 } );
