@@ -96,7 +96,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   public readonly numberOfDataPointsProperty: Property<number>;
 
   // A flag to help determine if a cueing arrow should be shown once all balls have been kicked.
-  public soccerBallCountReachedMax = false;
+  public readonly soccerBallCountReachedMaxProperty: Property<boolean>;
 
   // The array of kickers that can kick soccer balls in a scene
   public readonly kickers: Kicker[];
@@ -164,6 +164,11 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     const updateDataMeasures = () => this.updateDataMeasures();
 
     this.maxKicksLimit = Math.max( ...maxKicksChoices );
+
+    this.soccerBallCountReachedMaxProperty = new BooleanProperty( false, {
+      tandem: options.tandem.createTandem( 'soccerBallCountReachedMaxProperty' ),
+      phetioReadOnly: true
+    } );
 
     this.isSingleKickerScene = options.isSingleKickerScene;
 
@@ -354,10 +359,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       } );
     } );
 
-    // When the soccer ball count reaches the max, set the soccerBallCountReachedMax flag to true.
+    // When the soccer ball count reaches the max, set the soccerBallCountReachedMaxProperty flag to true.
     this.numberOfDataPointsProperty.link( stackedSoccerBallCount => {
       if ( stackedSoccerBallCount === this.maxKicksProperty.value ) {
-        this.soccerBallCountReachedMax = true;
+        this.soccerBallCountReachedMaxProperty.value = true;
       }
     } );
 
@@ -454,7 +459,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     // This emitter handles interactive and focus highlight properties that need to reset before data values are reset.
     this.preClearDataEmitter.emit();
 
-    this.soccerBallCountReachedMax = false;
+    this.soccerBallCountReachedMaxProperty.reset();
     this.numberOfQueuedKicksProperty.reset();
     this.timeProperty.reset();
     this.timeWhenLastBallWasKickedProperty.reset();

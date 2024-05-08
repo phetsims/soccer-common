@@ -42,7 +42,7 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
       //  don't show the sortIndicatorCue.
       this.mouseSortCueVisibleProperty.value = this.mouseSortCueShouldBeVisible() &&
                                                soccerBallCount > 0 &&
-                                               sceneModel.soccerBallCountReachedMax;
+                                               sceneModel.soccerBallCountReachedMaxProperty.value;
 
       this.updateSelectedGroupItem( sceneModel );
     } );

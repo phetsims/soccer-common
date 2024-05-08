@@ -135,10 +135,11 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     sceneModel.soccerBalls.forEach( soccerBall => {
       soccerBall.valueProperty.link( ( value, oldValue ) => {
 
-        // If the value changed from numeric to numeric, it must have been by user dragging it.
+        // If the value changed from numeric to numeric, while the soccer ball is being dragged, we want to set the
+        // mouseSortedGroupItem to true so that visibility can be handled accordingly.
         // It's simpler to have the listener here because in the model or drag listener, there is rounding/snapping
-        // And we only want to hide the indicator of the user dragged the ball a full tick mark
-        if ( value !== null && oldValue !== null ) {
+        // And we only want to hide the indicator if the user dragged the ball a full tick mark
+        if ( soccerBall.isDraggingProperty.value && value !== null && oldValue !== null ) {
           this.model.setMouseSortedGroupItem( true );
         }
       } );
