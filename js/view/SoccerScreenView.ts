@@ -18,7 +18,7 @@ import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import NumberLineNode from './NumberLineNode.js';
 import { Image, ManualConstraint, Node } from '../../../scenery/js/imports.js';
 import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
-import dragIndicatorHand_png from '../../images/dragIndicatorHand_png.js';
+import dragIndicatorHand_png from '../../../scenery-phet/images/dragIndicatorHand_png.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 
