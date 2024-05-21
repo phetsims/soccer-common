@@ -23,14 +23,13 @@ import Orientation from '../../../phet-core/js/Orientation.js';
 import TickLabelSet from '../../../bamboo/js/TickLabelSet.js';
 import Utils from '../../../dot/js/Utils.js';
 import { Shape } from '../../../kite/js/imports.js';
-import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 
 type SelfOptions = {
   color?: TPaint;
   includeXAxis: boolean;
   showTickMarks?: boolean;
 };
-export type NumberLineNodeOptions = SelfOptions & StrictOmit<NodeOptions, 'tandem'>;
+export type NumberLineNodeOptions = SelfOptions & NodeOptions;
 
 export default class NumberLineNode extends Node {
 
@@ -43,10 +42,15 @@ export default class NumberLineNode extends Node {
     providedOptions: NumberLineNodeOptions
   ) {
 
+
     const options = optionize<NumberLineNodeOptions, SelfOptions, NodeOptions>()( {
       color: 'white',
       isDisposable: false,
-      showTickMarks: true
+      showTickMarks: true,
+
+      // When the Node is instrumented we want clients to be able to toggle visibility.
+      // https://github.com/phetsims/mean-share-and-balance/issues/253
+      phetioVisiblePropertyInstrumented: !!providedOptions.tandem
     }, providedOptions );
 
     super();

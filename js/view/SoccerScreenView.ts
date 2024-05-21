@@ -21,12 +21,14 @@ import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/gro
 import dragIndicatorHand_png from '../../../scenery-phet/images/dragIndicatorHand_png.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 
 type SelfOptions = {
   physicalRange: Range;
   chartViewWidth: number;
   numberLineXMargin: number;
   groundPositionY?: number;
+  numberLineNodeTandem?: Tandem | null;
 };
 
 export const DRAG_CUE_SCALE = 0.8;
@@ -53,7 +55,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
       isDisposable: false,
-      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y
+      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y,
+      numberLineNodeTandem: null
     }, providedOptions );
 
     super( options );
@@ -74,7 +77,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
       options.physicalRange, {
         includeXAxis: false,
         x: options.numberLineXMargin,
-        y: groundPositionY
+        y: groundPositionY,
+        tandem: options.numberLineNodeTandem ? options.numberLineNodeTandem : undefined
       } );
 
     /**
