@@ -11,7 +11,6 @@ import SoccerObjectNode, { SoccerObjectNodeOptions } from './SoccerObjectNode.js
 import soccerCommon from '../soccerCommon.js';
 import SoccerBall from '../model/SoccerBall.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import TProperty from '../../../axon/js/TProperty.js';
 import { DragListener, HighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Multilink from '../../../axon/js/Multilink.js';
@@ -23,6 +22,7 @@ import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js'
 import { Shape } from '../../../kite/js/imports.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import EnabledProperty from '../../../axon/js/EnabledProperty.js';
+import ReadOnlyProperty from '../../../axon/js/ReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
 type SoccerBallNodeOptions = SelfOptions & SoccerObjectNodeOptions;
@@ -31,7 +31,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
   public constructor( soccerBall: SoccerBall,
                       modelViewTransform: ModelViewTransform2,
-                      soccerBallsEnabledProperty: TProperty<boolean>,
+                      soccerBallsEnabledProperty: ReadOnlyProperty<boolean>,
                       providedOptions: SoccerBallNodeOptions ) {
 
     // Use the y dimension, since it determines how the soccer balls stack. But maintain the same aspect ratio as the image
@@ -144,6 +144,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
     } );
 
     this.addLinkedElement( soccerBall );
+    this.addLinkedElement( soccerBallsEnabledProperty );
 
     super.addDebugText( soccerBall );
   }
