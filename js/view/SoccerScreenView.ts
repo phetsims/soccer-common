@@ -21,19 +21,18 @@ import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/gro
 import dragIndicatorHand_png from '../../../scenery-phet/images/dragIndicatorHand_png.js';
 import Vector2 from '../../../dot/js/Vector2.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import Tandem from '../../../tandem/js/Tandem.js';
+import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 
 type SelfOptions = {
   physicalRange: Range;
   chartViewWidth: number;
   numberLineXMargin: number;
   groundPositionY?: number;
-  numberLineNodeTandem?: Tandem | null;
 };
 
 export const DRAG_CUE_SCALE = 0.8;
 
-export type SoccerScreenViewOptions = SelfOptions & ScreenViewOptions;
+export type SoccerScreenViewOptions = SelfOptions & WithRequired<ScreenViewOptions, 'tandem'>;
 
 export default class SoccerScreenView<T extends SoccerSceneModel, Q extends SoccerModel<T>> extends ScreenView {
 
@@ -55,8 +54,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
       isDisposable: false,
-      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y,
-      numberLineNodeTandem: null
+      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y
     }, providedOptions );
 
     super( options );
@@ -78,7 +76,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         includeXAxis: false,
         x: options.numberLineXMargin,
         y: groundPositionY,
-        tandem: options.numberLineNodeTandem ? options.numberLineNodeTandem : undefined
+        tandem: options.tandem?.createTandem( 'playAreaNumberLineNode' )
       } );
 
     /**
