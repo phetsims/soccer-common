@@ -144,8 +144,6 @@ export default class SoccerBallNode extends SoccerObjectNode {
     } );
 
     this.addLinkedElement( soccerBall );
-    this.addLinkedElement( soccerBallsEnabledProperty );
-
     super.addDebugText( soccerBall );
   }
 }

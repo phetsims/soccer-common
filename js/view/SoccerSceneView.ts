@@ -85,14 +85,22 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     const frontLayer = new Node();
 
     sceneModel.soccerBalls.map( ( soccerBall, index ) => {
+
+      const soccerBallParentTandem = options.tandem.createTandem( 'soccerBallNodes' );
+
       const soccerBallNode = new SoccerBallNode(
         soccerBall,
         modelViewTransform,
         soccerBallsEnabledProperty, {
           visibleProperty: new DerivedProperty( [ soccerBall.soccerBallPhaseProperty ], options.soccerBallDerivedVisibilityCallback ),
-          tandem: options.tandem.createTandem( 'soccerBallNodes' ).createTandem1Indexed( 'soccerBallNode', index ),
+          tandem: soccerBallParentTandem.createTandem1Indexed( 'soccerBallNode', index ),
           pickable: false
         } );
+
+      // We want the soccerBallsEnabledProperty to be linked under the parent tandem for all the SoccerBallNodes.
+      index === 0 && soccerBallNode.addLinkedElement( soccerBallsEnabledProperty, {
+        tandem: soccerBallParentTandem.createTandem( 'soccerBallsEnabledProperty' )
+      } );
 
       backLayerSoccerBallLayer.addChild( soccerBallNode );
 
