@@ -57,7 +57,7 @@ type SelfOptions = {
   isSingleKickerScene?: boolean;
 };
 
-export type SoccerSceneModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type SoccerSceneModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'> & Pick<PhetioObjectOptions, 'isDisposable'>;
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
