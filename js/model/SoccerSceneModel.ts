@@ -47,17 +47,17 @@ import KickDistributionStrategy from '../model/KickDistributionStrategy.js';
 import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Tandem from '../../../tandem/js/Tandem.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import isResettingProperty from './isResettingProperty.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 import regionAndCultureProperty from '../../../joist/js/i18n/regionAndCultureProperty.js';
+import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
 };
 
-export type SoccerSceneModelOptions = SelfOptions & PickRequired<PhetioObjectOptions, 'tandem'>;
+export type SoccerSceneModelOptions = SelfOptions & WithRequired<PhetioObjectOptions, 'tandem'>;
 
 const kickSound = new SoundClip( kick_mp3, { initialOutputLevel: 0.3 } );
 soundManager.addSoundGenerator( kickSound );
