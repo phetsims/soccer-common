@@ -70,11 +70,7 @@ that handle keyboard events (e.g. `KeyboardDragListener`).
 
 This repo does not use hotkeys.
 
-Setting focus for tools is done via tab traversal. This sim does not use `GrabDragInteraction` since at the time of
-writing that did not support the "group" interaction design.
-
-This sim uses "group" interaction for the soccer balls, where the user first selects an object via the arrow keys, then
-presses enter/spacebar to grab the soccer ball.
+Setting focus for tools is done via tab traversal. The soccer context uses `GroupSortInteraction` to navigate between and interact with the soccer balls on the field.
 
 ## PhET-iO
 
