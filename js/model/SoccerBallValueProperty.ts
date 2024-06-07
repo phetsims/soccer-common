@@ -30,6 +30,7 @@ export default class SoccerBallValueProperty extends Property<number | null> {
 
   /**
    * @param value - The soccer ball's location on the number line. If the soccer ball has not yet landed, 'value' is null.
+   * @param providedOptions
    */
   public constructor( value: number | null, providedOptions?: SoccerBallValuePropertyOptions ) {
 

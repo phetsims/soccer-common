@@ -33,7 +33,7 @@ let count = 0;
 export default class SoccerBall extends PhetioObject {
 
   /**
-   * Continuous value for the drag listener. When dragging, the object snaps to each tickmark. This is an implementation
+   * Continuous value for the drag listener. When dragging, the object snaps to each tick mark. This is an implementation
    * detail for the drag listener that is only used for deltas, and the absolute value does not matter.
    * Therefore, it should not be reset (because resetting it would take the model through an incorrect transient state).
    *

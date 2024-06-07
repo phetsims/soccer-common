@@ -104,7 +104,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
 
       backLayerSoccerBallLayer.addChild( soccerBallNode );
 
-      // While flying, it should be in front in z-order, to be in front of the accordion box
+      // While flying, it should be at the front in z-order, to be in front of the accordion box
       soccerBall.soccerBallPhaseProperty.lazyLink( ( soccerBallPhase, oldSoccerBallPhase ) => {
 
         //when the ball is kicked

@@ -580,7 +580,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
       // Even number of values, average the two middle-most values
       const mid1Index = ( sortedObjects.length - 2 ) / 2;
-      const mid2Index = ( sortedObjects.length - 0 ) / 2;
+      const mid2Index = ( sortedObjects.length ) / 2;
       return [ sortedObjects[ mid1Index ], sortedObjects[ mid2Index ] ];
     }
     else {
