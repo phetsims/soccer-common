@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * This Property represents the value of a soccer ball within a soccer scene. The value can either be a number or null.
