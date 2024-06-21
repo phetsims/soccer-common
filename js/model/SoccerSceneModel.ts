@@ -298,6 +298,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.objectValueBecameNonNullEmitter = new Emitter();
 
     this.numberOfQueuedKicksProperty = new NumberProperty( 0, {
+      phetioDocumentation: 'The number of balls that are currently scheduled to be kicked.',
       tandem: options.tandem.createTandem( 'numberOfQueuedKicksProperty' ),
       phetioReadOnly: true
     } );
@@ -330,6 +331,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
     this.hasKickableSoccerBallsStableProperty = new BooleanProperty( this.hasKickableSoccerBallsProperty.value );
 
     this.activeKickIndexProperty = new NumberProperty( 0, {
+      phetioDocumentation: 'The index of the kicker that is currently kicking the ball, starting at 0. This may be different than the targetNumberOfBallsProperty or the numberOfDataPointsProperty.',
       tandem: options.tandem.createTandem( 'activeKickIndexProperty' ),
       phetioReadOnly: true,
       phetioFeatured: true

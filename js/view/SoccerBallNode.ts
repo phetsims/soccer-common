@@ -39,7 +39,8 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
     const options = optionize<SoccerBallNodeOptions, SelfOptions, SoccerObjectNodeOptions>()( {
       cursor: 'pointer',
-      isDisposable: false
+      isDisposable: false,
+      phetioFeatured: true
     }, providedOptions );
 
     super( soccerBall, modelViewTransform, options );
@@ -144,6 +145,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
     } );
 
     this.addLinkedElement( soccerBall );
+    this.addLinkedElement( soccerBallsEnabledProperty );
     super.addDebugText( soccerBall );
   }
 }

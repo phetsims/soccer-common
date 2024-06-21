@@ -97,11 +97,6 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
           pickable: false
         } );
 
-      // We want the soccerBallsEnabledProperty to be linked under the parent tandem for all the SoccerBallNodes.
-      index === 0 && soccerBallNode.addLinkedElement( soccerBallsEnabledProperty, {
-        tandem: soccerBallParentTandem.createTandem( 'soccerBallsEnabledProperty' )
-      } );
-
       backLayerSoccerBallLayer.addChild( soccerBallNode );
 
       // While flying, it should be at the front in z-order, to be in front of the accordion box
