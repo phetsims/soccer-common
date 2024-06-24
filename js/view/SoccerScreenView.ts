@@ -76,7 +76,11 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         includeXAxis: false,
         x: options.numberLineXMargin,
         y: groundPositionY,
-        tandem: options.tandem?.createTandem( 'playAreaNumberLineNode' )
+        tandem: options.tandem?.createTandem( 'playAreaNumberLineNode' ),
+        phetioVisiblePropertyInstrumented: true,
+        visiblePropertyOptions: {
+          phetioFeatured: true
+        }
       } );
 
     /**
