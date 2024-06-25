@@ -12,7 +12,7 @@ import soccerCommon from '../soccerCommon.js';
 import phetAudioContext from '../../../tambo/js/phetAudioContext.js';
 import Utils from '../../../dot/js/Utils.js';
 import numberTone_mp3 from '../../sounds/numberTone_mp3.js';
-import isResettingProperty from './isResettingProperty.js';
+import ResetAllButton from '../../../scenery-phet/js/buttons/ResetAllButton.js';
 
 // This is the dominant frequency of numberTone_mp3. If the audio file is changed, this will need to be updated.
 const E3 = 164.81; // Hz
@@ -124,14 +124,14 @@ const toPlaybackRate = ( value: number ): number => Math.pow( 2, toStep( value )
 export default class NumberTone {
 
   public static play( isPlayAreaMedianVisible: boolean, isPlayAreaMeanVisible: boolean, medianValue: number | null, meanValue: number | null, value: number ): void {
-    if ( isResettingProperty.value ) {
+    if ( ResetAllButton.isResettingAllProperty.value ) {
       return;
     }
     NumberTone.playValue( value );
   }
 
   public static playValue( value: number ): void {
-    if ( isResettingProperty.value ) {
+    if ( ResetAllButton.isResettingAllProperty.value ) {
       return;
     }
     const playbackSpeed = toPlaybackRate( value );
@@ -141,7 +141,7 @@ export default class NumberTone {
   }
 
   public static playMedian( value: number ): void {
-    if ( isResettingProperty.value ) {
+    if ( ResetAllButton.isResettingAllProperty.value ) {
       return;
     }
     const playbackSpeed = toPlaybackRate( value );
@@ -155,7 +155,7 @@ export default class NumberTone {
   }
 
   public static playMean( value: number ): void {
-    if ( isResettingProperty.value ) {
+    if ( ResetAllButton.isResettingAllProperty.value ) {
       return;
     }
     const playbackRate = toPlaybackRate( value );

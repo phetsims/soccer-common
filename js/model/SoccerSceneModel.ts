@@ -48,10 +48,10 @@ import { KickerPhase } from './KickerPhase.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import optionize from '../../../phet-core/js/optionize.js';
-import isResettingProperty from './isResettingProperty.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
 import regionAndCultureProperty from '../../../joist/js/i18n/regionAndCultureProperty.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
+import ResetAllButton from '../../../scenery-phet/js/buttons/ResetAllButton.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -256,7 +256,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
       // Signal to listeners that a value changed, but batch notifications during reset
       const guardedEmit = () => {
-        if ( !this.isClearingData && !isResettingProperty.value && !isSettingPhetioStateProperty.value ) {
+        if ( !this.isClearingData && !ResetAllButton.isResettingAllProperty.value && !isSettingPhetioStateProperty.value ) {
           this.objectChangedEmitter.emit();
         }
       };
@@ -266,7 +266,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       return soccerBall;
     } );
 
-    isResettingProperty.link( isResetting => {
+    ResetAllButton.isResettingAllProperty.link( isResetting => {
       if ( !isResetting ) {
         this.objectChangedEmitter.emit();
       }
