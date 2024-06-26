@@ -62,7 +62,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     // Keep soccer balls in one layer, so we can control the focus order.
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       focusable: true,
-      tagName: 'div'
+      tagName: 'div',
+      accessibleName: 'Soccer Balls'
     } );
 
     this.groupSortInteractionView = new SoccerCommonGroupSortInteractionView<SceneModel>(
