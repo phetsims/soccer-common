@@ -167,6 +167,13 @@ export default class NumberTone {
     meanSoundClip.setPlaybackRate( playbackRate );
     meanSoundClip.play();
   }
+
+  /**
+   * Set the output level for the sound used for the "playValue" method.
+   */
+  public static setValueOutputLevel( outputLevel: number ): void {
+    soundClip.setOutputLevel( outputLevel );
+  }
 }
 
 soccerCommon.register( 'NumberTone', NumberTone );
