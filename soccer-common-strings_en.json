@@ -3,12 +3,15 @@
     "value": "Need at least one kick"
   },
   "characterSet.unitedStatesOfAmerica": {
-    "value": "United States of America"
+    "value": "United States of America",
+    "deprecated": true
   },
   "characterSet.africa": {
-    "value": "Africa"
+    "value": "Africa",
+    "deprecated": true
   },
   "characterSet.africaModest": {
-    "value": "Africa (Modest)"
+    "value": "Africa (Modest)",
+    "deprecated": true
   }
 }
