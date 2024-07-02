@@ -81,7 +81,7 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
           const stackValue = selectedItem === null ? 0 :
                              soccerModel.groupSortInteractionModel.getGroupItemValue( selectedItem );
           const stackValueDescription = stackValue === null ? 0 : stackValue;
-          backLayerSoccerBallLayer.accessibleName = isGrabbed ? 'Move Soccer Ball' :
+          backLayerSoccerBallLayer.accessibleName = isGrabbed ? 'Change Value' :
                                                     `Grab Soccer Ball at ${stackValueDescription}`;
         }
       } );
