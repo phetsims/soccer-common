@@ -26,6 +26,7 @@ import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import { KickerImageSet } from './KickerImageSets.js';
+import Multilink from '../../../axon/js/Multilink.js';
 
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;
@@ -62,9 +63,28 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     // Keep soccer balls in one layer, so we can control the focus order.
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       focusable: true,
-      tagName: 'div',
-      accessibleName: 'Soccer Balls'
+      tagName: 'button',
+      accessibleName: 'Grab Soccer Ball'
     } );
+
+    Multilink.multilink( [
+        soccerModel.groupSortInteractionModel.isGroupItemKeyboardGrabbedProperty,
+        soccerModel.groupSortInteractionModel.selectedGroupItemProperty,
+        sceneModel.numberOfDataPointsProperty
+      ],
+      ( isGrabbed, selectedItem, numberOfDataPoints ) => {
+
+        if ( numberOfDataPoints === 0 ) {
+          backLayerSoccerBallLayer.accessibleName = 'No Soccer Balls to Grab';
+        }
+        else {
+          const stackValue = selectedItem === null ? 0 :
+                             soccerModel.groupSortInteractionModel.getGroupItemValue( selectedItem );
+          const stackValueDescription = stackValue === null ? 0 : stackValue;
+          backLayerSoccerBallLayer.accessibleName = isGrabbed ? 'Move Soccer Ball' :
+                                                    `Grab Soccer Ball at ${stackValueDescription}`;
+        }
+      } );
 
     this.groupSortInteractionView = new SoccerCommonGroupSortInteractionView<SceneModel>(
       soccerModel.groupSortInteractionModel,
