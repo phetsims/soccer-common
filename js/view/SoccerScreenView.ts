@@ -24,9 +24,17 @@ import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 
 type SelfOptions = {
+
+  // The range of values on the field that soccer balls can be kicked to
   physicalRange: Range;
+
+  // The width of the chart view for the model view transform
   chartViewWidth: number;
+
+  // The margin on the left side of the number line
   numberLineXMargin: number;
+
+  // The y position of the ground in view coordinates
   groundPositionY?: number;
 };
 
