@@ -10,6 +10,13 @@ import soccerCommon from './soccerCommon.js';
 
 type StringsType = {
   'needAtLeastOneKickStringProperty': LocalizedStringProperty;
+  'kickStringProperty': LocalizedStringProperty;
+  'keyboardHelpDialog': {
+    'grabOrReleaseItemHeadingStringProperty': LocalizedStringProperty;
+    'grabOrReleaseItemStringProperty': LocalizedStringProperty;
+    'moveHeadingStringProperty': LocalizedStringProperty;
+    'moveDescriptionStringProperty': LocalizedStringProperty;
+  }
 };
 
 const SoccerCommonStrings = getStringModule( 'SOCCER_COMMON' ) as StringsType;
