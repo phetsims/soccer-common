@@ -58,8 +58,6 @@ export default class KickDistributionStrategy extends PhetioObject {
 
     const leftSkewedData = providedOptions.rightSkewedData.slice().reverse();
 
-    // TODO: The documentation still has some hard coded examples...
-    //  https://github.com/phetsims/soccer-common/issues/9
     const options = optionize<KickDistributionStrategyOptions, SelfOptions, PhetioObjectOptions>()( {
       phetioType: KickDistributionStrategyIO,
 
@@ -100,7 +98,7 @@ export default class KickDistributionStrategy extends PhetioObject {
       }
     }
     else if ( this.type === 'probabilityByDistance' ) {
-      return dotRandom.sampleProbabilities( this.values! ) + 1;
+      return dotRandom.sampleProbabilities( this.values! ) + this.valuesRange.min;
     }
     else if ( this.type === 'distanceByIndex' ) {
       return this.values![ kickIndex ];
