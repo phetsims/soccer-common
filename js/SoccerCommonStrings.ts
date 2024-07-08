@@ -16,6 +16,12 @@ type StringsType = {
     'grabOrReleaseItemStringProperty': LocalizedStringProperty;
     'moveHeadingStringProperty': LocalizedStringProperty;
     'moveDescriptionStringProperty': LocalizedStringProperty;
+  };
+  'a11y': {
+    'grabSoccerBallStringProperty': LocalizedStringProperty;
+    'noSoccerBallsToGrabStringProperty': LocalizedStringProperty;
+    'changeValueStringProperty': LocalizedStringProperty;
+    'grabSoccerBallPatternStringProperty': LocalizedStringProperty;
   }
 };
 

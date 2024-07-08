@@ -27,6 +27,8 @@ import optionize from '../../../phet-core/js/optionize.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import { KickerImageSet } from './KickerImageSets.js';
 import Multilink from '../../../axon/js/Multilink.js';
+import SoccerCommonStrings from '../SoccerCommonStrings.js';
+import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
 
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;
@@ -64,25 +66,31 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       focusable: true,
       tagName: 'button',
-      accessibleName: 'Grab Soccer Ball'
+        accessibleName: SoccerCommonStrings.a11y.grabSoccerBallStringProperty
     } );
 
+    const stackValueDependencies = sceneModel.soccerBalls.map( soccerBall => soccerBall.valueProperty );
+    const stackValueProperty = DerivedProperty.deriveAny( [ soccerModel.groupSortInteractionModel.selectedGroupItemProperty, ...stackValueDependencies ], () => {
+      const selectedBall = soccerModel.groupSortInteractionModel.selectedGroupItemProperty.value;
+      return selectedBall === null || soccerModel.groupSortInteractionModel.getGroupItemValue( selectedBall ) === null ? 0 :
+             soccerModel.groupSortInteractionModel.getGroupItemValue( selectedBall );
+    } );
+    const grabSoccerBallPatternStringProperty = new PatternStringProperty( SoccerCommonStrings.a11y.grabSoccerBallPatternStringProperty, {
+      value: stackValueProperty
+    } );
     Multilink.multilink( [
         soccerModel.groupSortInteractionModel.isGroupItemKeyboardGrabbedProperty,
-        soccerModel.groupSortInteractionModel.selectedGroupItemProperty,
-        sceneModel.numberOfDataPointsProperty
+        sceneModel.numberOfDataPointsProperty,
+        soccerModel.groupSortInteractionModel.selectedGroupItemProperty
       ],
-      ( isGrabbed, selectedItem, numberOfDataPoints ) => {
+      ( isGrabbed, numberOfDataPoints ) => {
 
         if ( numberOfDataPoints === 0 ) {
-          backLayerSoccerBallLayer.accessibleName = 'No Soccer Balls to Grab';
+          backLayerSoccerBallLayer.accessibleName = SoccerCommonStrings.a11y.noSoccerBallsToGrabStringProperty;
         }
         else {
-          const stackValue = selectedItem === null ? 0 :
-                             soccerModel.groupSortInteractionModel.getGroupItemValue( selectedItem );
-          const stackValueDescription = stackValue === null ? 0 : stackValue;
-          backLayerSoccerBallLayer.accessibleName = isGrabbed ? 'Change Value' :
-                                                    `Grab Soccer Ball at ${stackValueDescription}`;
+          backLayerSoccerBallLayer.accessibleName = isGrabbed ? SoccerCommonStrings.a11y.changeValueStringProperty :
+                                                    grabSoccerBallPatternStringProperty;
         }
       } );
 

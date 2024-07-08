@@ -28,5 +28,19 @@
   },
   "keyboardHelpDialog.moveDescription": {
     "value": "Move grabbed soccer ball"
+  },
+  "a11y": {
+    "grabSoccerBall": {
+      "value": "Grab soccer ball"
+    },
+    "noSoccerBallsToGrab": {
+      "value": "No soccer balls to grab"
+    },
+    "changeValue": {
+        "value": "Change value"
+    },
+    "grabSoccerBallPattern": {
+      "value": "Grab Soccer Ball at {{value}}"
+    }
   }
 }
