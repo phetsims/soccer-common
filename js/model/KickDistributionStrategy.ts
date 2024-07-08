@@ -124,6 +124,65 @@ export default class KickDistributionStrategy extends PhetioObject {
       this.skewType = KickDistributionStrategy.chooseSkewDirection();
     }
   }
+
+  public getKickDistributionStrategyErrors( kickDistributionStrategySpecification: KickDistributionStrategySpecification ): string[] {
+    const errors = [];
+    // 1. Check the type property.
+    if ( !kickDistributionStrategySpecification.hasOwnProperty( 'type' ) ) {
+      errors.push( 'type is required. It must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
+    }
+    else {
+      if ( kickDistributionStrategySpecification.type !== 'probabilityByDistance' && kickDistributionStrategySpecification.type !== 'distanceByIndex' && kickDistributionStrategySpecification.type !== 'randomSkew' && kickDistributionStrategySpecification.type !== 'skew' ) {
+        errors.push( 'type must be one of the following: "probabilityByDistance", "distanceByIndex", "randomSkew", or "skew".' );
+      }
+    }
+
+    // 2. For types 'probabilityByDistance' and 'distanceByIndex', check the values.
+    if ( kickDistributionStrategySpecification.type === 'probabilityByDistance' ) {
+      if ( kickDistributionStrategySpecification.values === null ) {
+        errors.push( 'values must be specified for type: ' + kickDistributionStrategySpecification.type );
+      }
+      else if ( !Array.isArray( kickDistributionStrategySpecification.values ) ) {
+        errors.push( 'values must be an array for type: ' + kickDistributionStrategySpecification.type );
+      }
+      else if ( kickDistributionStrategySpecification.values.some( v => typeof v !== 'number' ) ) {
+        errors.push( 'all elements in values must be numbers for type: ' + kickDistributionStrategySpecification.type );
+      }
+    }
+    else if ( kickDistributionStrategySpecification.type === 'distanceByIndex' ) {
+      if ( kickDistributionStrategySpecification.values === null ) {
+        errors.push( 'values must be specified for type: ' + kickDistributionStrategySpecification.type );
+      }
+      else if ( !Array.isArray( kickDistributionStrategySpecification.values ) ) {
+        errors.push( 'values must be an array for type: ' + kickDistributionStrategySpecification.type );
+      }
+      else {
+        if ( kickDistributionStrategySpecification.values.some( v => !Number.isInteger( v ) ) ) {
+          errors.push( 'all elements in values must be an integer for type: ' + kickDistributionStrategySpecification.type );
+        }
+        if ( kickDistributionStrategySpecification.values.some( v => v < this.valuesRange.min || v > 15 ) ) {
+          errors.push( 'all elements in values must satisfy the range [1, 15] for type: ' + kickDistributionStrategySpecification.type );
+        }
+      }
+    }
+
+    // 3. For type 'randomSkew' and 'skew', check the skewType.
+    if ( kickDistributionStrategySpecification.type === 'randomSkew' || kickDistributionStrategySpecification.type === 'skew' ) {
+      if ( kickDistributionStrategySpecification.skewType !== 'left' && kickDistributionStrategySpecification.skewType !== 'right' ) {
+        errors.push( 'skewType must be one of the following: "left" or "right"' );
+      }
+    }
+
+    // 4. Check for unnecessary properties.
+    for ( const key in kickDistributionStrategySpecification ) {
+      if ( ![ 'type', 'values', 'skewType' ].includes( key ) ) {
+        errors.push( `Unexpected property: "${key}"` );
+      }
+    }
+
+    return errors;
+  }
+
 }
 
 const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
@@ -151,61 +210,7 @@ const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
       returnType: NullableIO( StringIO ),
       parameterTypes: [ ObjectLiteralIO ],
       implementation: function( this: KickDistributionStrategy, value: KickDistributionStrategySpecification ) {
-
-        const errors: string[] = [];
-
-        // 1. Check the type property.
-        if ( !value.hasOwnProperty( 'type' ) ) {
-          errors.push( 'type is required. It must be one of the following: "probabilityByDistance", "distanceByIndex", or "randomSkew"' );
-        }
-        else {
-          if ( value.type !== 'probabilityByDistance' && value.type !== 'distanceByIndex' && value.type !== 'randomSkew' && value.type !== 'skew' ) {
-            errors.push( 'type must be one of the following: "probabilityByDistance", "distanceByIndex", "randomSkew", or "skew".' );
-          }
-        }
-
-        // 2. For types 'probabilityByDistance' and 'distanceByIndex', check the values.
-        if ( value.type === 'probabilityByDistance' ) {
-          if ( value.values === null ) {
-            errors.push( 'values must be specified for type: ' + value.type );
-          }
-          else if ( !Array.isArray( value.values ) ) {
-            errors.push( 'values must be an array for type: ' + value.type );
-          }
-          else if ( value.values.some( v => typeof v !== 'number' ) ) {
-            errors.push( 'all elements in values must be numbers for type: ' + value.type );
-          }
-        }
-        else if ( value.type === 'distanceByIndex' ) {
-          if ( value.values === null ) {
-            errors.push( 'values must be specified for type: ' + value.type );
-          }
-          else if ( !Array.isArray( value.values ) ) {
-            errors.push( 'values must be an array for type: ' + value.type );
-          }
-          else {
-            if ( value.values.some( v => !Number.isInteger( v ) ) ) {
-              errors.push( 'all elements in values must be an integer for type: ' + value.type );
-            }
-            if ( value.values.some( v => v < 1 || v > 15 ) ) {
-              errors.push( 'all elements in values must satisfy the range [1, 15] for type: ' + value.type );
-            }
-          }
-        }
-
-        // 3. For type 'randomSkew' and 'skew', check the skewType.
-        if ( value.type === 'randomSkew' || value.type === 'skew' ) {
-          if ( value.skewType !== 'left' && value.skewType !== 'right' ) {
-            errors.push( 'skewType must be one of the following: "left" or "right"' );
-          }
-        }
-
-        // 4. Check for unnecessary properties.
-        for ( const key in value ) {
-          if ( ![ 'type', 'values', 'skewType' ].includes( key ) ) {
-            errors.push( `Unexpected property: "${key}"` );
-          }
-        }
+        const errors = this.getKickDistributionStrategyErrors( value );
 
         // Return all errors or null if none found.
         if ( errors.length === 0 ) {
