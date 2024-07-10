@@ -20,8 +20,8 @@ type StringsType = {
   'a11y': {
     'grabSoccerBallStringProperty': LocalizedStringProperty;
     'noSoccerBallsToGrabStringProperty': LocalizedStringProperty;
-    'changeValueStringProperty': LocalizedStringProperty;
-    'grabSoccerBallPatternStringProperty': LocalizedStringProperty;
+    'sortingSoccerBallPatternStringProperty': LocalizedStringProperty;
+    'selectingSoccerBallPatternStringProperty': LocalizedStringProperty;
   }
 };
 

@@ -66,18 +66,28 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       focusable: true,
       tagName: 'button',
-        accessibleName: SoccerCommonStrings.a11y.grabSoccerBallStringProperty
+      accessibleName: SoccerCommonStrings.a11y.grabSoccerBallStringProperty
     } );
 
+
     const stackValueDependencies = sceneModel.soccerBalls.map( soccerBall => soccerBall.valueProperty );
-    const stackValueProperty = DerivedProperty.deriveAny( [ soccerModel.groupSortInteractionModel.selectedGroupItemProperty, ...stackValueDependencies ], () => {
+    const currentStackValueProperty = DerivedProperty.deriveAny( [ soccerModel.groupSortInteractionModel.selectedGroupItemProperty, ...stackValueDependencies ], () => {
       const selectedBall = soccerModel.groupSortInteractionModel.selectedGroupItemProperty.value;
       return selectedBall === null || soccerModel.groupSortInteractionModel.getGroupItemValue( selectedBall ) === null ? 0 :
-             soccerModel.groupSortInteractionModel.getGroupItemValue( selectedBall );
+             soccerModel.groupSortInteractionModel.getGroupItemValue( selectedBall )!;
     } );
-    const grabSoccerBallPatternStringProperty = new PatternStringProperty( SoccerCommonStrings.a11y.grabSoccerBallPatternStringProperty, {
-      value: stackValueProperty
+
+    const stackHeightProperty = new DerivedProperty( [ currentStackValueProperty, soccerModel.groupSortInteractionModel.selectedGroupItemProperty ], stackNumber => {
+      return sceneModel.getStackAtValue( stackNumber ).length;
     } );
+    const patternValues = {
+      currentStack: currentStackValueProperty,
+      totalStacks: sceneModel.physicalRange.max,
+      stackHeight: stackHeightProperty
+    };
+    const selectingSoccerBallPatternStringProperty = new PatternStringProperty( SoccerCommonStrings.a11y.selectingSoccerBallPatternStringProperty, patternValues );
+    const sortingSoccerBallPatternStringProperty = new PatternStringProperty( SoccerCommonStrings.a11y.sortingSoccerBallPatternStringProperty, patternValues );
+
     Multilink.multilink( [
         soccerModel.groupSortInteractionModel.isGroupItemKeyboardGrabbedProperty,
         sceneModel.numberOfDataPointsProperty,
@@ -89,8 +99,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
           backLayerSoccerBallLayer.accessibleName = SoccerCommonStrings.a11y.noSoccerBallsToGrabStringProperty;
         }
         else {
-          backLayerSoccerBallLayer.accessibleName = isGrabbed ? SoccerCommonStrings.a11y.changeValueStringProperty :
-                                                    grabSoccerBallPatternStringProperty;
+          backLayerSoccerBallLayer.accessibleName = isGrabbed ? sortingSoccerBallPatternStringProperty :
+                                                    selectingSoccerBallPatternStringProperty;
         }
       } );
 

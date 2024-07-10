@@ -36,11 +36,11 @@
     "noSoccerBallsToGrab": {
       "value": "No soccer balls to grab"
     },
-    "changeValue": {
-        "value": "Change value"
+    "sortingSoccerBallPattern": {
+      "value": "Stack {{currentStack}} of {{totalStacks}}, Move Top of {{stackHeight}} Soccer Balls"
     },
-    "grabSoccerBallPattern": {
-      "value": "Grab Soccer Ball at {{value}}"
+    "selectingSoccerBallPattern": {
+      "value": "Stack {{currentStack}} of {{totalStacks}}, Top of {{stackHeight}} Soccer Balls"
     }
   }
 }
