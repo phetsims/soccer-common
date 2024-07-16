@@ -81,8 +81,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       return sceneModel.getStackAtValue( stackNumber ).length;
     } );
     const patternValues = {
-      currentStack: currentStackValueProperty,
-      totalStacks: sceneModel.physicalRange.max,
+      currentMeter: currentStackValueProperty,
+      totalMeters: sceneModel.physicalRange.max,
       stackHeight: stackHeightProperty
     };
     const selectingSoccerBallPatternStringProperty = new PatternStringProperty( SoccerCommonStrings.a11y.selectingSoccerBallPatternStringProperty, patternValues );

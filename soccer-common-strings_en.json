@@ -37,10 +37,10 @@
       "value": "No soccer balls to grab"
     },
     "sortingSoccerBallPattern": {
-      "value": "Stack {{currentStack}} of {{totalStacks}}, Move Top of {{stackHeight}} Soccer Balls"
+      "value": "Meter {{currentMeter}} of {{totalMeters}}, Move Top of {{stackHeight}} Soccer Balls"
     },
     "selectingSoccerBallPattern": {
-      "value": "Stack {{currentStack}} of {{totalStacks}}, Top of {{stackHeight}} Soccer Balls"
+      "value": "Meter {{currentMeter}} of {{totalMeters}}, Top of {{stackHeight}} Soccer Balls"
     }
   }
 }
