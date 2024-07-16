@@ -686,9 +686,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     // Range equation is R=v0^2 sin(2 theta0) / g, see https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion
     // Equation 4.26
+    // There is special handling if the ball gets kicked 0 meters in distance.
     const degreesToRadians = ( degrees: number ) => degrees * Math.PI * 2 / 360;
-    const angle = dotRandom.nextDoubleBetween( degreesToRadians( 25 ), degreesToRadians( 70 ) );
-    const v0 = Math.sqrt( Math.abs( x1 * Math.abs( SoccerCommonConstants.GRAVITY ) / Math.sin( 2 * angle ) ) );
+    const angle = x1 !== 0 ? dotRandom.nextDoubleBetween( degreesToRadians( 25 ), degreesToRadians( 70 ) ) : Math.PI / 2;
+    const v0 = x1 !== 0 ? Math.sqrt( Math.abs( x1 * Math.abs( SoccerCommonConstants.GRAVITY ) / Math.sin( 2 * angle ) ) ) : 5;
 
     soccerBall.velocityProperty.value = Vector2.createPolar( v0, angle );
 

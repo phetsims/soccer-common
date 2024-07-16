@@ -199,7 +199,7 @@ export default class SoccerBall extends PhetioObject {
  * 4th order Runge Kutte integration under constant acceleration.  We use this more sophisticated algorithm instead of
  * x=x0+v0t+1/2at^2 because that looked too much like the ball ended a little to the left of the target value,
  * and jumped slightly to the side.
- * See https://mtdevans.com/2013/05/fourth-order-runge-kutta-algorithm-in-javascript-with-demo/
+ * See https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
  */
 const rk4 = ( x: number, v: number, a: number, dt: number ) => {
   const v2 = v + a * dt / 2;
