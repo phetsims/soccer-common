@@ -320,9 +320,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
                       soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKING ||
                       soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED
       );
-      const value = this.maxKicksProperty.value - kickedSoccerBalls.length - this.numberOfQueuedKicksProperty.value;
 
-      return value;
+      return this.maxKicksProperty.value - kickedSoccerBalls.length - this.numberOfQueuedKicksProperty.value;
     } );
 
     this.hasKickableSoccerBallsProperty = new DerivedProperty( [ this.numberOfIdleBallsProperty ],
@@ -560,8 +559,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
           // In fuzzing, sometimes there are no soccer balls available
           if ( soccerBall ) {
-            this.kickBall( frontKicker, soccerBall, true );
             this.numberOfQueuedKicksProperty.value--;
+            this.kickBall( frontKicker, soccerBall, true );
           }
         }
       }
