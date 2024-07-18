@@ -33,7 +33,7 @@ export default class KickButton extends RectangularPushButton {
       xMargin: 12,
       yMargin: 12,
 
-      // The Kick 1 button can be held down for repeat kicks, but the Kick 5 cannot.
+      // The Kick (or Kick 1) button can be held down for repeat kicks, but the Kick 5 cannot.
       fireOnHold: !providedOptions.multiKick,
       fireOnHoldDelay: 750,
 
