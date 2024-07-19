@@ -559,6 +559,10 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
           // In fuzzing, sometimes there are no soccer balls available
           if ( soccerBall ) {
+
+            // The number of queued kicks must be decremented before the ball is kicked to avoid eagerly hitting the
+            // max kicks limit (due to the nature of the derivation for numberOfIdleBallsProperty).
+            // See: https://github.com/phetsims/soccer-common/issues/17 for more information.
             this.numberOfQueuedKicksProperty.value--;
             this.kickBall( frontKicker, soccerBall, true );
           }
