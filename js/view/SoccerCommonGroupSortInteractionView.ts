@@ -149,7 +149,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
     const selectedGroupItemProperty = this.model.selectedGroupItemProperty;
 
     // Update soccer ball selection when topmost ball in the stack changes.
-    sceneModel.stackChangedEmitter.addListener( () => {
+    sceneModel.stackChangedEmitter.addListener( stack => {
       if ( selectedSceneModelProperty.value === sceneModel ) {
 
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
@@ -172,7 +172,9 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
           if ( selectedGroupItem.valueProperty.value === null || !selectedGroupItem.enabledProperty.value ) {
             selectedGroupItemProperty.value = topEnabledSoccerBalls.length > 0 ? topEnabledSoccerBalls[ 0 ] : null;
           }
-          else {
+
+          // If the selectedGroupItem is in the stack that was changed, we want to make sure it stays on top.
+          else if ( stack.includes( selectedGroupItem ) ) {
             const selectedStack = sceneModel.getStackAtValue( selectedGroupItem.valueProperty.value );
             selectedGroupItemProperty.value = selectedStack[ selectedStack.length - 1 ];
           }
