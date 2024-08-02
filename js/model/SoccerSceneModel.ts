@@ -179,6 +179,13 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         options.tandem.createTandem( 'soccerBalls' ).createTandem1Indexed( 'soccerBall', index )
       );
 
+      soccerBall.enabledProperty.link( enabled => {
+        if ( !enabled && soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED ) {
+          assert && assert( soccerBall.valueProperty.value !== null, 'value should not be null if ball is stacked.' );
+          this.stackChangedEmitter.emit( this.getStackAtValue( soccerBall.valueProperty.value! ) );
+        }
+      } );
+
       // When the soccer ball drag position changes, constrain it to the physical range and move it to the top, if necessary
       soccerBall.dragPositionProperty.lazyLink( ( dragPosition: Vector2 ) => {
         soccerBall.valueProperty.value = Utils.roundSymmetric( this.physicalRange.constrainValue( dragPosition.x ) );
