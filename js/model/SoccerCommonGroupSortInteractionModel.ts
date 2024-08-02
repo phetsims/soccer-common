@@ -55,9 +55,11 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
 
     if ( !this.isKeyboardFocusedProperty.value && !this.hasKeyboardSelectedGroupItemProperty.value ) {
 
-      const reversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall => soccerBall.valueProperty.value !== null ).reverse();
+      const enabledReversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall =>
+        soccerBall.valueProperty.value !== null &&
+        soccerBall.enabledProperty.value );
       const topBalls = sceneModel.getTopSoccerBalls();
-      const topBallsInReversedKickOrder = reversedBalls.filter( ball => topBalls.includes( ball ) );
+      const topBallsInReversedKickOrder = enabledReversedBalls.filter( ball => topBalls.includes( ball ) );
 
       // Show the sort indicator over the most recently landed ball that is at the top of a stack.
       this.selectedGroupItemProperty.value = topBallsInReversedKickOrder.length > 0 ? topBallsInReversedKickOrder[ 0 ] : null;

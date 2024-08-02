@@ -21,7 +21,6 @@ import Vector2 from '../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import { Shape } from '../../../kite/js/imports.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
-import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import ReadOnlyProperty from '../../../axon/js/ReadOnlyProperty.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -109,17 +108,11 @@ export default class SoccerBallNode extends SoccerObjectNode {
 
     this.addInputListener( dragListener );
 
-    // For PhET-iO, allow clients to shut off interactivity via this Property.
-    const enabledProperty = new EnabledProperty( true, {
-      tandem: options.tandem.createTandem( 'enabledProperty' ),
-      phetioFeatured: true
-    } );
-
     // Prevent dragging or interaction while the object does not have a value (when it is not in the play area yet),
     // when it is animating, if input for this individual node is disabled, or if input for all the object nodes
     // has been disabled
     Multilink.multilink(
-      [ soccerBall.soccerBallPhaseProperty, soccerBall.valueProperty, enabledProperty, soccerBallsEnabledProperty ],
+      [ soccerBall.soccerBallPhaseProperty, soccerBall.valueProperty, soccerBall.enabledProperty, soccerBallsEnabledProperty ],
       ( mode, value, selfInputEnabled, objectsInputEnabled ) => {
         const inputEnabled = value !== null && mode === SoccerBallPhase.STACKED && selfInputEnabled && objectsInputEnabled;
 
@@ -145,6 +138,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
     } );
 
     this.addLinkedElement( soccerBall );
+    this.addLinkedElement( soccerBall.enabledProperty );
     this.addLinkedElement( soccerBallsEnabledProperty );
     super.addDebugText( soccerBall );
   }

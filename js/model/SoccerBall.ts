@@ -26,6 +26,7 @@ import SoccerBallValueProperty from './SoccerBallValueProperty.js';
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
+import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 
 // Global counter for debugging
 let count = 0;
@@ -59,6 +60,8 @@ export default class SoccerBall extends PhetioObject {
 
   public animation: Animation | null = null;
   public kickerProperty: Property<Kicker | null>;
+
+  public readonly enabledProperty: Property<boolean>;
 
   // Global index for debugging
   public readonly index = count++;
@@ -107,6 +110,12 @@ export default class SoccerBall extends PhetioObject {
       // The listeners must be processed in the order specified or "sort data" with cards while soccer balls are still landing
       // will cause the data to be sorted incorrectly.
       hasListenerOrderDependencies: true
+    } );
+
+    // For PhET-iO, allow clients to shut off interactivity via this Property.
+    this.enabledProperty = new EnabledProperty( true, {
+      tandem: tandem.createTandem( EnabledProperty.TANDEM_NAME ),
+      phetioFeatured: true
     } );
 
     // During normal sim run the value will always be set before the phaseProperty is set. We want to make sure this is

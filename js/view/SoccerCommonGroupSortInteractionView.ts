@@ -52,21 +52,22 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
       },
       getNextSelectedGroupItem: ( delta, selectedSoccerBall ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
-        const numberOfTopSoccerBalls = topBallNodes.length;
+        const topEnabledBallNodes = topBallNodes.filter( soccerBallNode => soccerBallNode.inputEnabledProperty.value );
+        const numberOfTopSoccerBalls = topEnabledBallNodes.length;
 
         // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
         // also does not wrap.
-        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall )! );
+        const currentIndex = topEnabledBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-        return topBallNodes[ nextIndex ].soccerBall;
+        return topEnabledBallNodes[ nextIndex ].soccerBall;
       },
       getGroupItemToSelect: () => {
 
         assert && assert( groupSortInteractionModel.selectedGroupItemProperty.value === null,
           'expected to only be called when there is no focus' );
 
-        const topSoccerBalls = sceneModel.getTopSoccerBalls();
-        if ( topSoccerBalls.length > 0 ) {
+        const topEnabledSoccerBalls = sceneModel.getTopSoccerBalls().filter( soccerBall => soccerBall.enabledProperty.value );
+        if ( topEnabledSoccerBalls.length > 0 ) {
           const selectedValue = groupSortInteractionModel.selectedGroupItemProperty.value?.valueProperty.value ?? null;
           if ( selectedValue !== null ) {
             const sortIndicatorStack = sceneModel.getStackAtValue( selectedValue,
@@ -75,7 +76,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
             return sortIndicatorStack[ sortIndicatorStack.length - 1 ];
           }
           else {
-            return topSoccerBalls[ 0 ];
+            return topEnabledSoccerBalls[ 0 ];
           }
         }
         return null;
@@ -153,21 +154,23 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
 
         // When a user is focused on the backLayerSoccerBallLayer, but no balls have landed yet, we want to ensure that
         // a selectedGroupItem gets assigned once the ball lands.
-        const topSoccerBalls = sceneModel.getTopSoccerBalls();
+        const topEnabledSoccerBalls = sceneModel.getTopSoccerBalls().filter( soccerBall => soccerBall.enabledProperty.value );
         const selectedGroupItem = selectedGroupItemProperty.value;
 
-        if ( selectedGroupItem === null && topSoccerBalls.length > 0 && this.model.isKeyboardFocusedProperty.value ) {
-          assert && assert( topSoccerBalls[ 0 ].valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
-          selectedGroupItemProperty.value = topSoccerBalls[ 0 ];
+        // If the selectedGroupItem is null or not input enabled, we want to assign it to the first enabled top ball.
+        if ( ( selectedGroupItem === null || !selectedGroupItem.enabledProperty.value )
+             && topEnabledSoccerBalls.length > 0 && this.model.isKeyboardFocusedProperty.value ) {
+          assert && assert( topEnabledSoccerBalls[ 0 ].valueProperty.value !== null, 'The valueProperty of the selectedGroupItem should not be null.' );
+          selectedGroupItemProperty.value = topEnabledSoccerBalls[ 0 ];
         }
 
         // Anytime a stack changes and the selectedGroupItem is assigned, we want to make sure the selectedGroupItem
         // stays on top.
-        if ( selectedGroupItem !== null ) {
+        else if ( selectedGroupItem !== null ) {
 
           // If the value is null, it means the ball was removed from the field, so we need to select a new ball.
-          if ( selectedGroupItem.valueProperty.value === null ) {
-            selectedGroupItemProperty.value = topSoccerBalls.length > 0 ? topSoccerBalls[ 0 ] : null;
+          if ( selectedGroupItem.valueProperty.value === null || !selectedGroupItem.enabledProperty.value ) {
+            selectedGroupItemProperty.value = topEnabledSoccerBalls.length > 0 ? topEnabledSoccerBalls[ 0 ] : null;
           }
           else {
             const selectedStack = sceneModel.getStackAtValue( selectedGroupItem.valueProperty.value );
