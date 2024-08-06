@@ -157,9 +157,8 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
       return soccerBallNode;
     } );
 
-    // Update pointer areas and soccer ball focus (for keyboard and interactive highlight) when topmost ball changes
-    sceneModel.stackChangedEmitter.addListener( stack => {
-
+    // Update pointer areas and pickability when topmost ball changes
+    const updateSoccerBallPointerAreas = ( stack: SoccerBall[] ) => {
       let bounds: Bounds2 | null = null;
 
       for ( let i = 0; i < stack.length; i++ ) {
@@ -186,6 +185,14 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
           soccerBallNode.touchArea = Shape.rectangle( 0, 0, 0, 0 );
         }
       }
+    };
+    sceneModel.stackChangedEmitter.addListener( stack => updateSoccerBallPointerAreas( stack ) );
+    sceneModel.objectChangedEmitter.addListener( () => {
+      sceneModel.getStackedObjects().forEach( soccerBall => {
+        assert && assert( soccerBall.valueProperty.value !== null, 'value should be set' );
+        const stack = sceneModel.getStackAtValue( soccerBall.valueProperty.value! );
+        updateSoccerBallPointerAreas( stack );
+      } );
     } );
 
 
