@@ -36,6 +36,7 @@ type SelfOptions = {
   probabilityByDistanceDocumentationValues: string;
   distanceByIndexDocumentationValues: string;
   valuesRange: Range;
+  maxKicks: number;
 };
 type KickDistributionStrategyOptions = SelfOptions & PhetioObjectOptions;
 
@@ -46,6 +47,7 @@ export default class KickDistributionStrategy extends PhetioObject {
   private readonly rightSkewedData: number[];
   private readonly leftSkewedData: number[];
   private readonly valuesRange: Range;
+  private readonly maxKicks: number;
 
   public constructor(
     public type: DistributionType,
@@ -74,6 +76,7 @@ export default class KickDistributionStrategy extends PhetioObject {
     this.rightSkewedData = providedOptions.rightSkewedData;
     this.leftSkewedData = leftSkewedData;
     this.valuesRange = providedOptions.valuesRange;
+    this.maxKicks = providedOptions.maxKicks;
 
     // We want to make sure that the skew type for randomSkew is randomized after setting state from pressing the 'Reset All' button
     // When scope is equal to Tandem.ROOT, it means we are resetting the state of all screens. We only want to do this when resetting a single screen.
@@ -157,6 +160,9 @@ export default class KickDistributionStrategy extends PhetioObject {
         errors.push( 'values must be an array for type: ' + kickDistributionStrategySpecification.type );
       }
       else {
+        if ( kickDistributionStrategySpecification.values.length !== this.maxKicks ) {
+          errors.push( `values must have a length equal to the maximum number of possible kicks (${this.maxKicks}) for the scene.` );
+        }
         if ( kickDistributionStrategySpecification.values.some( v => !Number.isInteger( v ) ) ) {
           errors.push( 'all elements in values must be an integer for type: ' + kickDistributionStrategySpecification.type );
         }
