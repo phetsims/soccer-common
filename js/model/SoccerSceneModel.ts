@@ -105,7 +105,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   private readonly isSingleKickerScene: boolean;
 
   // The number kicks are currently scheduled to be kicked
-  protected readonly numberOfQueuedKicksProperty: NumberProperty;
+  public readonly numberOfQueuedKicksProperty: NumberProperty;
 
   // The number of idle balls that are not on the field and have not been scheduled to be kicked.
   public readonly numberOfIdleBallsProperty: TReadOnlyProperty<number>;
@@ -753,18 +753,15 @@ const SoccerSceneModelIO = new IOType( 'SoccerSceneModelIO', {
     setDataPoints: {
       returnType: VoidIO,
       parameterTypes: [ ArrayIO( NumberIO ) ],
-      implementation: function( this: SoccerSceneModel, dataPoints: number[] ) {
-        this.setDataPoints( dataPoints );
-      },
+      implementation: ( model: SoccerSceneModel, dataPoints: number[] ) => model.setDataPoints( dataPoints ),
       documentation: 'Sets the data points for the scene model. Array lengths that exceed maxKicks will ignore excess values.'
     },
 
     getDataPoints: {
       returnType: ArrayIO( NumberIO ),
       parameterTypes: [],
-      implementation: function( this: SoccerSceneModel ) {
-        return this.getSortedStackedObjects().map( soccerBall => soccerBall.valueProperty.value );
-      },
+      implementation: ( model: SoccerSceneModel ) =>
+        model.getSortedStackedObjects().map( soccerBall => soccerBall.valueProperty.value ),
       documentation: 'Gets the data points for the scene model.'
     }
   }
