@@ -54,15 +54,18 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
   public updateSelectedGroupItem( sceneModel: SceneModel ): void {
 
     if ( !this.isKeyboardFocusedProperty.value && !this.hasKeyboardSelectedGroupItemProperty.value ) {
-
-      const enabledReversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall =>
-        soccerBall.valueProperty.value !== null &&
-        soccerBall.enabledProperty.value );
-      const topBalls = sceneModel.getTopSoccerBalls();
-      const topBallsInReversedKickOrder = enabledReversedBalls.filter( ball => topBalls.includes( ball ) );
+      const reversedBalls = sceneModel.getActiveSoccerBalls().filter( soccerBall =>
+        soccerBall.valueProperty.value !== null ).reverse();
+      const enabledTopBalls = sceneModel.getTopSoccerBalls().filter( soccerBall => soccerBall.enabledProperty.value );
+      const enabledTopBallsInReversedKickOrder = reversedBalls.filter( ball => enabledTopBalls.includes( ball ) );
 
       // Show the sort indicator over the most recently landed ball that is at the top of a stack.
-      this.selectedGroupItemProperty.value = topBallsInReversedKickOrder.length > 0 ? topBallsInReversedKickOrder[ 0 ] : null;
+      this.selectedGroupItemProperty.value = enabledTopBallsInReversedKickOrder.length > 0 ? enabledTopBallsInReversedKickOrder[ 0 ] : null;
+    }
+
+    // If the selected group item is no longer enabled, clear it.
+    else if ( this.selectedGroupItemProperty.value && !this.selectedGroupItemProperty.value.enabledProperty.value ) {
+      this.selectedGroupItemProperty.value = null;
     }
   }
 }
