@@ -137,15 +137,31 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
     const mouseSortCueVisible = this.model.groupSortInteractionModel.mouseSortCueVisibleProperty.value;
     const selectedValue = this.model.groupSortInteractionModel.selectedGroupItemProperty.value?.valueProperty.value ?? null;
 
-    if ( mouseSortCueVisible && selectedValue !== null ) {
-      const topObjectPositionY = this.getTopObjectPositionY( selectedValue );
-      this.sortIndicatorArrowNode.center = new Vector2(
-        this.modelViewTransform.modelToViewX( selectedValue ),
+    if ( mouseSortCueVisible ) {
 
-        // This value must be kept in sync with the other occurrences of GroupSortInteractionView.createSortCueNode()
-        // that are shown for the keyboard.
-        topObjectPositionY - 11.5
-      );
+      let stackValue = selectedValue;
+
+      // We want to handle the situation where the selectedGroupItemProperty may be null due to balls being disabled,
+      // but there are still balls on the field. In this case, we want to show the sort indicator over the top ball.
+      // This may create buggy states for PhET-iO clients but that is up to them to handle. We want to at least make
+      // sure the cue is appearing in a reasonable location. https://github.com/phetsims/mean-share-and-balance/issues/337
+      if ( selectedValue === null ) {
+        const selectedSceneModel = this.model.selectedSceneModelProperty.value;
+        const topBallsInReversedOrder = selectedSceneModel.getActiveSoccerBalls().filter( soccerBall =>
+          soccerBall.valueProperty.value !== null ).reverse().filter( soccerBall =>
+          selectedSceneModel.getTopSoccerBalls().includes( soccerBall ) );
+        stackValue = topBallsInReversedOrder.length > 0 ? topBallsInReversedOrder[ 0 ].valueProperty.value! : null;
+      }
+      if ( stackValue !== null ) {
+        const topObjectPositionY = this.getTopObjectPositionY( stackValue );
+        this.sortIndicatorArrowNode.center = new Vector2(
+          this.modelViewTransform.modelToViewX( stackValue ),
+
+          // This value must be kept in sync with the other occurrences of GroupSortInteractionView.createSortCueNode()
+          // that are shown for the keyboard.
+          topObjectPositionY - 11.5
+        );
+      }
     }
   }
 }
