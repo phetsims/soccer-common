@@ -24,6 +24,7 @@ import Vector2 from '../../../dot/js/Vector2.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import soccerCommon from '../soccerCommon.js';
+import PhetioObject from '../../../tandem/js/PhetioObject.js';
 
 type SelfOptions = {
   // defines how a soccerObject's model position is translated to the view according to any sim specific requirements.
@@ -72,6 +73,14 @@ export default class SoccerObjectNode extends InteractiveHighlightingNode {
         x: this.width / 2 + 1
       } ) );
     }
+  }
+
+  /**
+   * For phet-io.  This enables the correct linkage in PhET-iO Studio between the soccer balls and their corresponding
+   * model elements.
+   */
+  public override getCorrespondingLinkedElement(): PhetioObject | 'noCorrespondingLinkedElement' {
+    return this.soccerBall;
   }
 }
 
