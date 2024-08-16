@@ -52,22 +52,22 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
       },
       getNextSelectedGroupItem: ( delta, selectedSoccerBall ) => {
         const topBallNodes = sceneModel.getTopSoccerBalls().map( soccerBall => soccerBallMap.get( soccerBall )! );
-        const topEnabledBallNodes = topBallNodes.filter( soccerBallNode => soccerBallNode.inputEnabledProperty.value );
-        const numberOfTopSoccerBalls = topEnabledBallNodes.length;
+        const numberOfTopSoccerBalls = topBallNodes.length;
 
         // We are deciding not to wrap the value around the ends of the range because the grabbed soccer ball
         // also does not wrap.
-        const currentIndex = topEnabledBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall )! );
+        const currentIndex = topBallNodes.indexOf( soccerBallMap.get( selectedSoccerBall )! );
         const nextIndex = Utils.clamp( currentIndex + delta, 0, numberOfTopSoccerBalls - 1 );
-        return topEnabledBallNodes[ nextIndex ].soccerBall;
+        return topBallNodes[ nextIndex ].soccerBall;
       },
+      isGroupItemEnabled: soccerBall => soccerBall.enabledProperty.value,
       getGroupItemToSelect: () => {
 
         assert && assert( groupSortInteractionModel.selectedGroupItemProperty.value === null,
           'expected to only be called when there is no focus' );
 
-        const topEnabledSoccerBalls = sceneModel.getTopSoccerBalls().filter( soccerBall => soccerBall.enabledProperty.value );
-        if ( topEnabledSoccerBalls.length > 0 ) {
+        const topSoccerBalls = sceneModel.getTopSoccerBalls();
+        if ( topSoccerBalls.length > 0 ) {
           const selectedValue = groupSortInteractionModel.selectedGroupItemProperty.value?.valueProperty.value ?? null;
           if ( selectedValue !== null ) {
             const sortIndicatorStack = sceneModel.getStackAtValue( selectedValue,
@@ -76,7 +76,7 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
             return sortIndicatorStack[ sortIndicatorStack.length - 1 ];
           }
           else {
-            return topEnabledSoccerBalls[ 0 ];
+            return topSoccerBalls[ 0 ];
           }
         }
         return null;

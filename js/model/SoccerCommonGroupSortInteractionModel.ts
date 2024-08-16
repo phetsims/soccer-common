@@ -62,11 +62,6 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
       // Show the sort indicator over the most recently landed ball that is at the top of a stack.
       this.selectedGroupItemProperty.value = enabledTopBallsInReversedKickOrder.length > 0 ? enabledTopBallsInReversedKickOrder[ 0 ] : null;
     }
-
-    // If the selected group item is no longer enabled, clear it.
-    else if ( this.selectedGroupItemProperty.value && !this.selectedGroupItemProperty.value.enabledProperty.value ) {
-      this.selectedGroupItemProperty.value = null;
-    }
   }
 }
 
