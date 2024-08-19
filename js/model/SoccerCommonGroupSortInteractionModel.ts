@@ -24,17 +24,14 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
 
     const allValueProperties = sceneModels.flatMap( sceneModel => sceneModel.soccerBalls.map( soccerBall => soccerBall.valueProperty ) );
 
-    // It is important to link to the values of all the soccer balls in the screen, so that the dragIndicator can be
-    // updated after all the balls have landed, and not just after they have been kicked.
-    Multilink.multilinkAny( [
+    const soccerCommonDependencies: TReadOnlyProperty<unknown>[] = [
       this.selectedSceneModelProperty,
       ...allValueProperties,
-      this.hasGroupItemBeenSortedProperty,
       this.selectedSceneStackedSoccerBallCountProperty,
-      this.selectedSceneMaxKicksProperty,
-      this.isKeyboardFocusedProperty,
-      this.enabledProperty
-    ], () => {
+      this.selectedSceneMaxKicksProperty
+    ];
+
+    const updateSortIndicatorNode = () => {
       const sceneModel = this.selectedSceneModelProperty.value;
       const soccerBallCount = this.selectedSceneStackedSoccerBallCountProperty.value;
 
@@ -44,8 +41,19 @@ export default class SoccerCommonGroupSortInteractionModel<SceneModel extends So
                                                soccerBallCount > 0 &&
                                                sceneModel.soccerBallCountReachedMaxProperty.value;
 
-      this.updateSelectedGroupItem( sceneModel );
-    } );
+    };
+    this.registerUpdateSortCueNode( updateSortIndicatorNode );
+    Multilink.multilinkAny( soccerCommonDependencies, updateSortIndicatorNode );
+
+    // It is important to link to the values of all the soccer balls in the screen, so that the dragIndicator can be
+    // updated after all the balls have landed, and not just after they have been kicked.
+    Multilink.multilinkAny( [
+      ...soccerCommonDependencies,
+
+      // Super members
+      this.hasGroupItemBeenSortedProperty,
+      this.isKeyboardFocusedProperty
+    ], () => this.updateSelectedGroupItem( this.selectedSceneModelProperty.value ) );
   }
 
   // This is an algorithm that can be used to get the best guess about where the sort indicator should be set to based
