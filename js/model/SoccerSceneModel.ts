@@ -753,15 +753,18 @@ const SoccerSceneModelIO = new IOType( 'SoccerSceneModelIO', {
     setDataPoints: {
       returnType: VoidIO,
       parameterTypes: [ ArrayIO( NumberIO ) ],
-      implementation: ( model: SoccerSceneModel, dataPoints: number[] ) => model.setDataPoints( dataPoints ),
+      implementation: function( this: SoccerSceneModel, dataPoints: number[] ) {
+        this.setDataPoints( dataPoints );
+      },
       documentation: 'Sets the data points for the scene model. Array lengths that exceed maxKicks will ignore excess values.'
     },
 
     getDataPoints: {
       returnType: ArrayIO( NumberIO ),
       parameterTypes: [],
-      implementation: ( model: SoccerSceneModel ) =>
-        model.getSortedStackedObjects().map( soccerBall => soccerBall.valueProperty.value ),
+      implementation: function( this: SoccerSceneModel ) {
+        return this.getSortedStackedObjects().map( soccerBall => soccerBall.valueProperty.value );
+      },
       documentation: 'Gets the data points for the scene model.'
     }
   }
