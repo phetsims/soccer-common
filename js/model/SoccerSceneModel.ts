@@ -278,6 +278,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
         this.objectChangedEmitter.emit();
       }
     } );
+
+    // TODO: Most likely you should run this on stateSetEmitter() instead, https://github.com/phetsims/soccer-common/issues/20
     isSettingPhetioStateProperty.link( isSettingPhetioState => {
       if ( !isSettingPhetioState ) {
         this.objectChangedEmitter.emit();
