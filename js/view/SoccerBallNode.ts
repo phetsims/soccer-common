@@ -62,7 +62,7 @@ export default class SoccerBallNode extends SoccerObjectNode {
     const interactiveHighlight = new HighlightFromNode( this );
     this.setInteractiveHighlight( interactiveHighlight );
     soccerBall.isDraggingProperty.link( isDragging => {
-      interactiveHighlight.makeDashed( isDragging );
+      interactiveHighlight.setDashed( isDragging );
     } );
 
     // only setup input-related things if dragging is enabled
