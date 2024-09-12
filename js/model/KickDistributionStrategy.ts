@@ -22,6 +22,7 @@ import Range from '../../../dot/js/Range.js';
 import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
+import phetioStateSetEmitter from '../../../tandem/js/phetioStateSetEmitter.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
 
@@ -80,7 +81,7 @@ export default class KickDistributionStrategy extends PhetioObject {
 
     // We want to make sure that the skew type for randomSkew is randomized after setting state from pressing the 'Reset All' button
     // When scope is equal to Tandem.ROOT, it means we are resetting the state of all screens. We only want to do this when resetting a single screen.
-    Tandem.PHET_IO_ENABLED && phet.phetio.phetioEngine.phetioStateEngine.stateSetEmitter.addListener( ( state: IntentionalAny, scope: Tandem ) => {
+    phetioStateSetEmitter.addListener( ( state: IntentionalAny, scope: Tandem ) => {
       if ( this.type === 'randomSkew' && scope !== Tandem.ROOT && this.tandem.hasAncestor( scope ) ) {
         this.reset();
       }
