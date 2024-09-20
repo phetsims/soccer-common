@@ -12,6 +12,7 @@
   "phet": {
     "requirejsNamespace": "SOCCER_COMMON",
     "phetLibs": [
+      "bamboo",
       "twixt"
     ],
     "supportsOutputJS": true,
@@ -52,6 +53,11 @@
                 "../center-and-variability/js"
               ]
             }
+          ]
+        },
+        "parserOptions": {
+          "project": [
+            "../soccer-common/tsconfig.json"
           ]
         }
       }
