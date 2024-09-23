@@ -5,7 +5,6 @@
  */
 /* eslint-disable */
 import LocalizedImageProperty from '../../joist/js/i18n/LocalizedImageProperty.js';
-import soccerCommon from './soccerCommon.js';
 import africaKicker01Kicking_svg from '../../soccer-common/images/africa/africaKicker01Kicking_svg.js';
 import africaKicker01PoisedToKick_svg from '../../soccer-common/images/africa/africaKicker01PoisedToKick_svg.js';
 import africaKicker01Standing_svg from '../../soccer-common/images/africa/africaKicker01Standing_svg.js';
@@ -204,6 +203,7 @@ import usaKicker14Standing_svg from '../../soccer-common/images/usa/usaKicker14S
 import usaKicker15Kicking_svg from '../../soccer-common/images/usa/usaKicker15Kicking_svg.js';
 import usaKicker15PoisedToKick_svg from '../../soccer-common/images/usa/usaKicker15PoisedToKick_svg.js';
 import usaKicker15Standing_svg from '../../soccer-common/images/usa/usaKicker15Standing_svg.js';
+import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonImages = {
   kicker01KickingImageProperty: new LocalizedImageProperty( 'kicker01Kicking', {
