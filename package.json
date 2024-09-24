@@ -54,11 +54,6 @@
               ]
             }
           ]
-        },
-        "parserOptions": {
-          "project": [
-            "../chipper/tsconfig/eslint-all/tsconfig.json"
-          ]
         }
       }
     ]
