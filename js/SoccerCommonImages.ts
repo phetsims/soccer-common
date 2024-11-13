@@ -1,10 +1,10 @@
 // Copyright 2024, University of Colorado Boulder
-
+/* eslint-disable */
+/* @formatter:off */
 /**
  * Auto-generated from modulify, DO NOT manually modify.
  */
-/* eslint-disable */
-/* @formatter:off */
+ 
 import LocalizedImageProperty from '../../joist/js/i18n/LocalizedImageProperty.js';
 import soccerCommon from './soccerCommon.js';
 import africaKicker01Kicking_svg from '../../soccer-common/images/africa/africaKicker01Kicking_svg.js';
