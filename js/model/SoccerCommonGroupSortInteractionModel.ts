@@ -8,18 +8,18 @@
 
 import soccerCommon from '../soccerCommon.js';
 import SoccerBall from './SoccerBall.js';
-import GroupSortInteractionModel, { GroupSortInteractionModelOptions } from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
+import GroupSelectModel, { GroupSelectModelOptions } from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSelectModel.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 
 export default class SoccerCommonGroupSortInteractionModel<SceneModel extends SoccerSceneModel = SoccerSceneModel>
-  extends GroupSortInteractionModel<SoccerBall> {
+  extends GroupSelectModel<SoccerBall> {
 
   public constructor( protected readonly selectedSceneModelProperty: TReadOnlyProperty<SceneModel>,
                       private readonly selectedSceneStackedSoccerBallCountProperty: TReadOnlyProperty<number>,
                       private readonly selectedSceneMaxKicksProperty: TReadOnlyProperty<number>,
-                      sceneModels: SceneModel[], providedOptions?: GroupSortInteractionModelOptions<SoccerBall> ) {
+                      sceneModels: SceneModel[], providedOptions?: GroupSelectModelOptions<SoccerBall> ) {
     super( providedOptions );
 
     const allValueProperties = sceneModels.flatMap( sceneModel => sceneModel.soccerBalls.map( soccerBall => soccerBall.valueProperty ) );

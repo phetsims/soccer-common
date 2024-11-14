@@ -22,7 +22,7 @@ import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
-import GroupSortInteractionModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSortInteractionModel.js';
+import GroupSelectModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSelectModel.js';
 import Range from '../../../dot/js/Range.js';
 
 // A list of options that are required by the supertype, but optional here because
@@ -37,7 +37,7 @@ type SoccerCommonGroupSortInteractionViewOptions = SelfOptions & ParentOptions;
 export default class SoccerCommonGroupSortInteractionView<SceneModel extends SoccerSceneModel> extends GroupSortInteractionView<SoccerBall, SoccerBallNode> {
 
   public constructor(
-    groupSortInteractionModel: GroupSortInteractionModel<SoccerBall>,
+    groupSortInteractionModel: GroupSelectModel<SoccerBall>,
     primaryFocusedNode: Node,
     sceneModel: SceneModel,
     selectedSceneModelProperty: TReadOnlyProperty<SceneModel>,
