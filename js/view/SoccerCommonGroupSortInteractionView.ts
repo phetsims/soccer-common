@@ -7,23 +7,23 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../soccerCommon.js';
-import SoccerBall from '../model/SoccerBall.js';
-import SoccerBallNode from './SoccerBallNode.js';
-import { Shape } from '../../../kite/js/imports.js';
-import Matrix3 from '../../../dot/js/Matrix3.js';
-import { Node } from '../../../scenery/js/imports.js';
-import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import Matrix3 from '../../../dot/js/Matrix3.js';
+import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';
+import { Shape } from '../../../kite/js/imports.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import PickOptional from '../../../phet-core/js/types/PickOptional.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
-import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import GroupSelectModel from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSelectModel.js';
-import Range from '../../../dot/js/Range.js';
+import GroupSortInteractionView, { GroupSortInteractionViewOptions } from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
+import { Node } from '../../../scenery/js/imports.js';
+import SoccerBall from '../model/SoccerBall.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import SoccerSceneModel from '../model/SoccerSceneModel.js';
+import soccerCommon from '../soccerCommon.js';
+import SoccerBallNode from './SoccerBallNode.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.

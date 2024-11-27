@@ -7,28 +7,28 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { InteractiveHighlightingNode, Node } from '../../../scenery/js/imports.js';
-import SoccerBallNode from './SoccerBallNode.js';
-import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import KickerNode from './KickerNode.js';
-import soccerCommon from '../soccerCommon.js';
-import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import SoccerBall from '../model/SoccerBall.js';
-import { Shape } from '../../../kite/js/imports.js';
+import DerivedProperty from '../../../axon/js/DerivedProperty.js';
+import Multilink from '../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
+import TinyProperty from '../../../axon/js/TinyProperty.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Range from '../../../dot/js/Range.js';
-import SoccerModel from '../model/SoccerModel.js';
-import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
-import TinyProperty from '../../../axon/js/TinyProperty.js';
-import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import { Shape } from '../../../kite/js/imports.js';
 import optionize from '../../../phet-core/js/optionize.js';
-import DerivedProperty from '../../../axon/js/DerivedProperty.js';
-import { KickerImageSet } from './KickerImageSets.js';
-import Multilink from '../../../axon/js/Multilink.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import { InteractiveHighlightingNode, Node } from '../../../scenery/js/imports.js';
+import { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import SoccerBall from '../model/SoccerBall.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import SoccerModel from '../model/SoccerModel.js';
+import SoccerSceneModel from '../model/SoccerSceneModel.js';
+import soccerCommon from '../soccerCommon.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
-import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
+import { KickerImageSet } from './KickerImageSets.js';
+import KickerNode from './KickerNode.js';
+import SoccerBallNode from './SoccerBallNode.js';
+import SoccerCommonGroupSortInteractionView from './SoccerCommonGroupSortInteractionView.js';
 
 type SelfOptions = {
   soccerBallDerivedVisibilityCallback?: ( phase: SoccerBallPhase ) => boolean;

@@ -6,12 +6,12 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
+import Multilink from '../../../axon/js/Multilink.js';
+import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import GroupSelectModel, { GroupSelectModelOptions } from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSelectModel.js';
 import soccerCommon from '../soccerCommon.js';
 import SoccerBall from './SoccerBall.js';
-import GroupSelectModel, { GroupSelectModelOptions } from '../../../scenery-phet/js/accessibility/group-sort/model/GroupSelectModel.js';
-import Multilink from '../../../axon/js/Multilink.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 
 export default class SoccerCommonGroupSortInteractionModel<SceneModel extends SoccerSceneModel = SoccerSceneModel>
   extends GroupSelectModel<SoccerBall> {

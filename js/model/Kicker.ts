@@ -7,18 +7,18 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../soccerCommon.js';
-import Pose from './Pose.js';
-import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
-import Tandem from '../../../tandem/js/Tandem.js';
-import Property from '../../../axon/js/Property.js';
-import NullableIO from '../../../tandem/js/types/NullableIO.js';
-import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import { KickerPhase } from './KickerPhase.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
+import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
+import Property from '../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import IOType from '../../../tandem/js/types/IOType.js';
+import NullableIO from '../../../tandem/js/types/NullableIO.js';
+import NumberIO from '../../../tandem/js/types/NumberIO.js';
+import soccerCommon from '../soccerCommon.js';
+import { KickerPhase } from './KickerPhase.js';
+import Pose from './Pose.js';
 
 export default class Kicker extends PhetioObject {
 

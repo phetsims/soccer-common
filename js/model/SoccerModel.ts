@@ -8,17 +8,17 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../soccerCommon.js';
-import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
-import optionize from '../../../phet-core/js/optionize.js';
-import SoccerSceneModel from './SoccerSceneModel.js';
-import Property from '../../../axon/js/Property.js';
-import Tandem from '../../../tandem/js/Tandem.js';
-import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
-import IOType from '../../../tandem/js/types/IOType.js';
-import EnabledProperty from '../../../axon/js/EnabledProperty.js';
 import DynamicProperty from '../../../axon/js/DynamicProperty.js';
+import EnabledProperty from '../../../axon/js/EnabledProperty.js';
+import Property from '../../../axon/js/Property.js';
+import optionize from '../../../phet-core/js/optionize.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import IOType from '../../../tandem/js/types/IOType.js';
+import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
+import soccerCommon from '../soccerCommon.js';
 import SoccerCommonGroupSortInteractionModel from './SoccerCommonGroupSortInteractionModel.js';
+import SoccerSceneModel from './SoccerSceneModel.js';
 
 type SelfOptions<T extends SoccerSceneModel> = {
   createGroupSortInteractionModel?: ( soccerModel: SoccerModel<T>, tandem: Tandem ) => SoccerCommonGroupSortInteractionModel;

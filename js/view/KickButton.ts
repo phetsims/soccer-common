@@ -7,13 +7,13 @@
  *
  */
 
-import RectangularPushButton, { RectangularPushButtonOptions } from '../../../sun/js/buttons/RectangularPushButton.js';
-import soccerCommon from '../soccerCommon.js';
 import optionize from '../../../phet-core/js/optionize.js';
-import SoccerCommonColors from '../SoccerCommonColors.js';
-import nullSoundPlayer from '../../../tambo/js/nullSoundPlayer.js';
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import RectangularPushButton, { RectangularPushButtonOptions } from '../../../sun/js/buttons/RectangularPushButton.js';
+import nullSoundPlayer from '../../../tambo/js/nullSoundPlayer.js';
+import soccerCommon from '../soccerCommon.js';
+import SoccerCommonColors from '../SoccerCommonColors.js';
 
 type SelfOptions = {
   multiKick: boolean;

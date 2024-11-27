@@ -13,18 +13,18 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
-import { InteractiveHighlightingNode, NodeOptions, Text } from '../../../scenery/js/imports.js';
-import SoccerBall from '../model/SoccerBall.js';
-import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import PickRequired from '../../../phet-core/js/types/PickRequired.js';
 import Multilink from '../../../axon/js/Multilink.js';
 import Vector2 from '../../../dot/js/Vector2.js';
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import optionize from '../../../phet-core/js/optionize.js';
-import soccerCommon from '../soccerCommon.js';
+import PickRequired from '../../../phet-core/js/types/PickRequired.js';
+import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import PhetFont from '../../../scenery-phet/js/PhetFont.js';
+import { InteractiveHighlightingNode, NodeOptions, Text } from '../../../scenery/js/imports.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
+import SoccerBall from '../model/SoccerBall.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = {
   // defines how a soccerObject's model position is translated to the view according to any sim specific requirements.

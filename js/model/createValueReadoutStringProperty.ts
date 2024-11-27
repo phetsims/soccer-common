@@ -10,12 +10,12 @@
  *
  */
 
-import soccerCommon from '../soccerCommon.js';
-import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
-import Utils from '../../../dot/js/Utils.js';
 import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
+import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import LocalizedStringProperty from '../../../chipper/js/LocalizedStringProperty.js';
+import Utils from '../../../dot/js/Utils.js';
+import soccerCommon from '../soccerCommon.js';
 
 
 const createValueReadoutStringProperty = (

@@ -7,21 +7,21 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import SoccerObjectNode, { SoccerObjectNodeOptions } from './SoccerObjectNode.js';
-import soccerCommon from '../soccerCommon.js';
-import SoccerBall from '../model/SoccerBall.js';
+import Multilink from '../../../axon/js/Multilink.js';
+import ReadOnlyProperty from '../../../axon/js/ReadOnlyProperty.js';
+import Bounds2 from '../../../dot/js/Bounds2.js';
+import Vector2 from '../../../dot/js/Vector2.js';
+import { Shape } from '../../../kite/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { DragListener, HighlightFromNode, Image, Node } from '../../../scenery/js/imports.js';
-import Bounds2 from '../../../dot/js/Bounds2.js';
-import Multilink from '../../../axon/js/Multilink.js';
-import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import ballDark_svg from '../../images/ballDark_svg.js';
 import ball_svg from '../../images/ball_svg.js';
-import Vector2 from '../../../dot/js/Vector2.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import { Shape } from '../../../kite/js/imports.js';
+import ballDark_svg from '../../images/ballDark_svg.js';
+import SoccerBall from '../model/SoccerBall.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
+import soccerCommon from '../soccerCommon.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
-import ReadOnlyProperty from '../../../axon/js/ReadOnlyProperty.js';
+import SoccerObjectNode, { SoccerObjectNodeOptions } from './SoccerObjectNode.js';
 
 type SelfOptions = EmptySelfOptions;
 type SoccerBallNodeOptions = SelfOptions & SoccerObjectNodeOptions;

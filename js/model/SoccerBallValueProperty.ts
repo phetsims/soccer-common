@@ -10,16 +10,16 @@
  *
  */
 
-import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
+import Property from '../../../axon/js/Property.js';
 import ReadOnlyProperty, { PropertyOptions, ReadOnlyPropertyState } from '../../../axon/js/ReadOnlyProperty.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import Property from '../../../axon/js/Property.js';
-import soccerCommon from '../soccerCommon.js';
+import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
+import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import StringIO from '../../../tandem/js/types/StringIO.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
-import NumberIO from '../../../tandem/js/types/NumberIO.js';
+import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = EmptySelfOptions;
 

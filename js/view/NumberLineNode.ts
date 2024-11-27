@@ -13,16 +13,16 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../soccerCommon.js';
-import { Node, NodeOptions, Path, Text, TPaint } from '../../../scenery/js/imports.js';
-import optionize from '../../../phet-core/js/optionize.js';
 import ChartTransform from '../../../bamboo/js/ChartTransform.js';
-import Range from '../../../dot/js/Range.js';
-import TickMarkSet from '../../../bamboo/js/TickMarkSet.js';
-import Orientation from '../../../phet-core/js/Orientation.js';
 import TickLabelSet from '../../../bamboo/js/TickLabelSet.js';
+import TickMarkSet from '../../../bamboo/js/TickMarkSet.js';
+import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';
 import { Shape } from '../../../kite/js/imports.js';
+import optionize from '../../../phet-core/js/optionize.js';
+import Orientation from '../../../phet-core/js/Orientation.js';
+import { Node, NodeOptions, Path, Text, TPaint } from '../../../scenery/js/imports.js';
+import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = {
   color?: TPaint;

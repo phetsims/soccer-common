@@ -5,23 +5,23 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
-import ScreenView, { ScreenViewOptions } from '../../../joist/js/ScreenView.js';
-import soccerCommon from '../soccerCommon.js';
-import optionize from '../../../phet-core/js/optionize.js';
+import DynamicProperty from '../../../axon/js/DynamicProperty.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
-import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import Range from '../../../dot/js/Range.js';
+import Vector2 from '../../../dot/js/Vector2.js';
+import ScreenView, { ScreenViewOptions } from '../../../joist/js/ScreenView.js';
+import optionize from '../../../phet-core/js/optionize.js';
+import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
+import dragIndicatorHand_png from '../../../scenery-phet/images/dragIndicatorHand_png.js';
+import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
+import { Image, ManualConstraint, Node } from '../../../scenery/js/imports.js';
+import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import DynamicProperty from '../../../axon/js/DynamicProperty.js';
+import soccerCommon from '../soccerCommon.js';
+import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import NumberLineNode from './NumberLineNode.js';
-import { Image, ManualConstraint, Node } from '../../../scenery/js/imports.js';
-import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/group-sort/view/GroupSortInteractionView.js';
-import dragIndicatorHand_png from '../../../scenery-phet/images/dragIndicatorHand_png.js';
-import Vector2 from '../../../dot/js/Vector2.js';
-import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 
 type SelfOptions = {
 

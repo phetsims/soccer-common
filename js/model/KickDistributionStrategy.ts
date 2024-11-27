@@ -7,22 +7,22 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
-import soccerCommon from '../soccerCommon.js';
-import IOType from '../../../tandem/js/types/IOType.js';
-import StringIO from '../../../tandem/js/types/StringIO.js';
-import VoidIO from '../../../tandem/js/types/VoidIO.js';
-import ObjectLiteralIO from '../../../tandem/js/types/ObjectLiteralIO.js';
-import NullableIO from '../../../tandem/js/types/NullableIO.js';
-import optionize from '../../../phet-core/js/optionize.js';
-import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
 import dotRandom from '../../../dot/js/dotRandom.js';
 import Range from '../../../dot/js/Range.js';
-import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
-import Tandem from '../../../tandem/js/Tandem.js';
+import optionize from '../../../phet-core/js/optionize.js';
 import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
+import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObject.js';
 import phetioStateSetEmitter from '../../../tandem/js/phetioStateSetEmitter.js';
+import Tandem from '../../../tandem/js/Tandem.js';
+import ArrayIO from '../../../tandem/js/types/ArrayIO.js';
+import GetSetButtonsIO from '../../../tandem/js/types/GetSetButtonsIO.js';
+import IOType from '../../../tandem/js/types/IOType.js';
+import NullableIO from '../../../tandem/js/types/NullableIO.js';
+import NumberIO from '../../../tandem/js/types/NumberIO.js';
+import ObjectLiteralIO from '../../../tandem/js/types/ObjectLiteralIO.js';
+import StringIO from '../../../tandem/js/types/StringIO.js';
+import VoidIO from '../../../tandem/js/types/VoidIO.js';
+import soccerCommon from '../soccerCommon.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
 

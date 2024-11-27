@@ -8,25 +8,25 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import Animation from '../../../twixt/js/Animation.js';
-import soccerCommon from '../soccerCommon.js';
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
+import Emitter from '../../../axon/js/Emitter.js';
+import EnabledProperty from '../../../axon/js/EnabledProperty.js';
+import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
+import Property from '../../../axon/js/Property.js';
+import TEmitter from '../../../axon/js/TEmitter.js';
+import Vector2 from '../../../dot/js/Vector2.js';
 import Vector2Property from '../../../dot/js/Vector2Property.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
-import Vector2 from '../../../dot/js/Vector2.js';
-import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import Property from '../../../axon/js/Property.js';
-import NullableIO from '../../../tandem/js/types/NullableIO.js';
-import Emitter from '../../../axon/js/Emitter.js';
-import { SoccerBallPhase } from './SoccerBallPhase.js';
-import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
-import TEmitter from '../../../axon/js/TEmitter.js';
-import Kicker from './Kicker.js';
-import SoccerCommonConstants from '../SoccerCommonConstants.js';
-import SoccerBallValueProperty from './SoccerBallValueProperty.js';
-import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Tandem from '../../../tandem/js/Tandem.js';
+import NullableIO from '../../../tandem/js/types/NullableIO.js';
+import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
-import EnabledProperty from '../../../axon/js/EnabledProperty.js';
+import Animation from '../../../twixt/js/Animation.js';
+import soccerCommon from '../soccerCommon.js';
+import SoccerCommonConstants from '../SoccerCommonConstants.js';
+import Kicker from './Kicker.js';
+import { SoccerBallPhase } from './SoccerBallPhase.js';
+import SoccerBallValueProperty from './SoccerBallValueProperty.js';
 
 // Global counter for debugging
 let count = 0;

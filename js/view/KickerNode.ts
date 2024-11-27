@@ -7,14 +7,14 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from '../soccerCommon.js';
+import Vector2 from '../../../dot/js/Vector2.js';
+import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
 import { Image, Node, NodeOptions, Text } from '../../../scenery/js/imports.js';
 import Kicker from '../model/Kicker.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
-import Vector2 from '../../../dot/js/Vector2.js';
-import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import Pose from '../model/Pose.js';
 import { KickerPhase } from '../model/KickerPhase.js';
+import Pose from '../model/Pose.js';
+import soccerCommon from '../soccerCommon.js';
 import { KickerImageSet } from './KickerImageSets.js';
 
 type SelfOptions = EmptySelfOptions;

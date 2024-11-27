@@ -10,10 +10,10 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { LinearGradient, Rectangle } from '../../../scenery/js/imports.js';
+import Multilink from '../../../axon/js/Multilink.js';
 import Property from '../../../axon/js/Property.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
-import Multilink from '../../../axon/js/Multilink.js';
+import { LinearGradient, Rectangle } from '../../../scenery/js/imports.js';
 import soccerCommon from '../soccerCommon.js';
 import SoccerCommonColors from '../SoccerCommonColors.js';
 

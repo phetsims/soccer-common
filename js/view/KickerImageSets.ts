@@ -7,8 +7,8 @@
  *
  */
 
-import soccerCommon from '../soccerCommon.js';
 import LocalizedImageProperty from '../../../joist/js/i18n/LocalizedImageProperty.js';
+import soccerCommon from '../soccerCommon.js';
 import SoccerCommonImages from '../SoccerCommonImages.js';
 
 export type KickerImageSet = {
