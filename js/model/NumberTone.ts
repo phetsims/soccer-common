@@ -7,7 +7,7 @@
  */
 
 import Utils from '../../../dot/js/Utils.js';
-import ResetAllButton from '../../../scenery-phet/js/buttons/ResetAllButton.js';
+import isResettingAllProperty from '../../../scenery-phet/js/isResettingAllProperty.js';
 import phetAudioContext from '../../../tambo/js/phetAudioContext.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
@@ -124,14 +124,14 @@ const toPlaybackRate = ( value: number ): number => Math.pow( 2, toStep( value )
 export default class NumberTone {
 
   public static play( isPlayAreaMedianVisible: boolean, isPlayAreaMeanVisible: boolean, medianValue: number | null, meanValue: number | null, value: number ): void {
-    if ( ResetAllButton.isResettingAllProperty.value ) {
+    if ( isResettingAllProperty.value ) {
       return;
     }
     NumberTone.playValue( value );
   }
 
   public static playValue( value: number ): void {
-    if ( ResetAllButton.isResettingAllProperty.value ) {
+    if ( isResettingAllProperty.value ) {
       return;
     }
     const playbackSpeed = toPlaybackRate( value );
@@ -141,7 +141,7 @@ export default class NumberTone {
   }
 
   public static playMedian( value: number ): void {
-    if ( ResetAllButton.isResettingAllProperty.value ) {
+    if ( isResettingAllProperty.value ) {
       return;
     }
     const playbackSpeed = toPlaybackRate( value );
@@ -155,7 +155,7 @@ export default class NumberTone {
   }
 
   public static playMean( value: number ): void {
-    if ( ResetAllButton.isResettingAllProperty.value ) {
+    if ( isResettingAllProperty.value ) {
       return;
     }
     const playbackRate = toPlaybackRate( value );

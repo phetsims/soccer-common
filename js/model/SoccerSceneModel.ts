@@ -30,7 +30,6 @@ import regionAndCultureProperty from '../../../joist/js/i18n/regionAndCulturePro
 import TModel from '../../../joist/js/TModel.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
-import ResetAllButton from '../../../scenery-phet/js/buttons/ResetAllButton.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
 import isSettingPhetioStateProperty from '../../../tandem/js/isSettingPhetioStateProperty.js';
@@ -52,6 +51,7 @@ import Kicker from './Kicker.js';
 import { KickerPhase } from './KickerPhase.js';
 import SoccerBall from './SoccerBall.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
+import isResettingAllProperty from '../../../scenery-phet/js/isResettingAllProperty.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -263,7 +263,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
       // Signal to listeners that a value changed, but batch notifications during reset
       const guardedEmit = () => {
-        if ( !this.isClearingData && !ResetAllButton.isResettingAllProperty.value && !isSettingPhetioStateProperty.value ) {
+        if ( !this.isClearingData && !isResettingAllProperty.value && !isSettingPhetioStateProperty.value ) {
           this.objectChangedEmitter.emit();
         }
       };
@@ -273,7 +273,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
       return soccerBall;
     } );
 
-    ResetAllButton.isResettingAllProperty.link( isResetting => {
+    isResettingAllProperty.link( isResetting => {
       if ( !isResetting ) {
         this.objectChangedEmitter.emit();
       }
