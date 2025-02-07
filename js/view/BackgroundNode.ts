@@ -13,7 +13,8 @@
 import Multilink from '../../../axon/js/Multilink.js';
 import Property from '../../../axon/js/Property.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
-import { LinearGradient, Rectangle } from '../../../scenery/js/imports.js';
+import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
+import LinearGradient from '../../../scenery/js/util/LinearGradient.js';
 import soccerCommon from '../soccerCommon.js';
 import SoccerCommonColors from '../SoccerCommonColors.js';
 

@@ -18,10 +18,13 @@ import TickLabelSet from '../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';
-import { Shape } from '../../../kite/js/imports.js';
+import Shape from '../../../kite/js/Shape.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import Orientation from '../../../phet-core/js/Orientation.js';
-import { Node, NodeOptions, Path, Text, TPaint } from '../../../scenery/js/imports.js';
+import Node, { NodeOptions } from '../../../scenery/js/nodes/Node.js';
+import Path from '../../../scenery/js/nodes/Path.js';
+import Text from '../../../scenery/js/nodes/Text.js';
+import TPaint from '../../../scenery/js/util/TPaint.js';
 import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = {

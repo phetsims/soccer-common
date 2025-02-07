@@ -10,7 +10,9 @@
 import Vector2 from '../../../dot/js/Vector2.js';
 import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
 import ModelViewTransform2 from '../../../phetcommon/js/view/ModelViewTransform2.js';
-import { Image, Node, NodeOptions, Text } from '../../../scenery/js/imports.js';
+import Image from '../../../scenery/js/nodes/Image.js';
+import Node, { NodeOptions } from '../../../scenery/js/nodes/Node.js';
+import Text from '../../../scenery/js/nodes/Text.js';
 import Kicker from '../model/Kicker.js';
 import { KickerPhase } from '../model/KickerPhase.js';
 import Pose from '../model/Pose.js';

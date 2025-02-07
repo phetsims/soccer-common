@@ -14,7 +14,7 @@
  * @author Marla Schulz
  */
 
-import { ProfileColorProperty } from '../../scenery/js/imports.js';
+import ProfileColorProperty from '../../scenery/js/util/ProfileColorProperty.js';
 import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonColors = {
