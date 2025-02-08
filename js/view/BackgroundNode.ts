@@ -1,4 +1,4 @@
-// Copyright 2022-2024, University of Colorado Boulder
+// Copyright 2022-2025, University of Colorado Boulder
 
 /**
  * BackgroundNode is a visual component designed to represent the environment's backdrop. It features both the sky

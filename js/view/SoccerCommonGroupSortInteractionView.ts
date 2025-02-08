@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2024-2025, University of Colorado Boulder
 
 /**
  * Apply the sim-specific logic to wire up a GroupSortInteractionView for the particular Soccer scene the interaction
