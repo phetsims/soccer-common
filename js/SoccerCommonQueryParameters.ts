@@ -6,6 +6,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
+import { QueryStringMachine } from '../../query-string-machine/js/QueryStringMachineModule.js';
 import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonQueryParameters = QueryStringMachine.getAll( {
