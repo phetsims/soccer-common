@@ -192,7 +192,7 @@ export default class KickDistributionStrategy extends PhetioObject {
 
 }
 
-const KickDistributionStrategyIO = new IOType( 'KickDistributionStrategyIO', {
+const KickDistributionStrategyIO = new IOType<IntentionalAny, IntentionalAny>( 'KickDistributionStrategyIO', {
   supertype: GetSetButtonsIO,
   valueType: KickDistributionStrategy,
   stateSchema: {

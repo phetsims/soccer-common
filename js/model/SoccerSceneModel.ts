@@ -29,6 +29,7 @@ import Vector2 from '../../../dot/js/Vector2.js';
 import regionAndCultureProperty from '../../../joist/js/i18n/regionAndCultureProperty.js';
 import TModel from '../../../joist/js/TModel.js';
 import optionize from '../../../phet-core/js/optionize.js';
+import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
 import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
@@ -749,7 +750,7 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   }
 }
 
-const SoccerSceneModelIO = new IOType( 'SoccerSceneModelIO', {
+const SoccerSceneModelIO = new IOType<IntentionalAny, IntentionalAny>( 'SoccerSceneModelIO', {
   valueType: SoccerSceneModel,
   methods: {
     setDataPoints: {

@@ -11,6 +11,7 @@ import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../axon/js/EnumerationProperty.js';
 import Property from '../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import IntentionalAny from '../../../phet-core/js/types/IntentionalAny.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import Tandem from '../../../tandem/js/Tandem.js';
 import IOType from '../../../tandem/js/types/IOType.js';
@@ -78,7 +79,7 @@ export default class Kicker extends PhetioObject {
     this.timestampWhenPoisedBeganProperty.reset();
   }
 
-  public static KickerIO = new IOType( 'KickerIO', {
+  public static KickerIO = new IOType<IntentionalAny, IntentionalAny>( 'KickerIO', {
     valueType: Kicker
   } );
 }
