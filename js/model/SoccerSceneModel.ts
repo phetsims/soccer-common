@@ -53,6 +53,7 @@ import { KickerPhase } from './KickerPhase.js';
 import SoccerBall from './SoccerBall.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
 import isResettingAllProperty from '../../../scenery-phet/js/isResettingAllProperty.js';
+import phetioStateSetEmitter from '../../../tandem/js/phetioStateSetEmitter.js';
 
 type SelfOptions = {
   isSingleKickerScene?: boolean;
@@ -379,6 +380,12 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     maxKicksProperty.lazyLink( () => this.clearData() );
     regionAndCultureProperty.lazyLink( () => this.clearData() );
+
+    // After state is set, we want to set the timestampWhenPoisedBeganProperty to the current time to avoid a large
+    // lag if a kicker is caught in KickerPhase.POISED
+    phetioStateSetEmitter.addListener( () => {
+      this.getFrontKicker()?.timestampWhenPoisedBeganProperty.set( this.timeProperty.value );
+    } );
   }
 
   // Cancel out all animations in the soccer ball stack.
