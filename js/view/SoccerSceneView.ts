@@ -67,9 +67,9 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     const backLayerSoccerBallLayer = new InteractiveHighlightingNode( {
       focusable: true,
       tagName: 'button',
-      accessibleName: SoccerCommonStrings.a11y.grabSoccerBallStringProperty
+      accessibleName: SoccerCommonStrings.a11y.grabSoccerBallStringProperty,
+      accessibleHelpText: SoccerCommonStrings.a11y.soccerBallHelpTextStringProperty
     } );
-
 
     const stackValueDependencies = sceneModel.soccerBalls.map( soccerBall => soccerBall.valueProperty );
     const currentStackValueProperty = DerivedProperty.deriveAny( [ soccerModel.groupSortInteractionModel.selectedGroupItemProperty, ...stackValueDependencies ], () => {
