@@ -26,6 +26,7 @@ type StringsType = {
     'sortingSoccerBallPatternStringProperty': LocalizedStringProperty;
     'selectingSoccerBallPatternStringProperty': LocalizedStringProperty;
     'soccerBallHelpTextStringProperty': LocalizedStringProperty;
+    'movableStringProperty': LocalizedStringProperty;
   }
 };
 

@@ -44,6 +44,9 @@
     },
     "soccerBallHelpText": {
       "value": "Grab top soccer ball. Once grabbed, use keyboard shortcuts to change kick distance."
+    },
+    "movable": {
+      "value": "movable"
     }
   }
 }

@@ -24,6 +24,7 @@ import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
 import soccerCommon from '../soccerCommon.js';
 import SoccerBallNode from './SoccerBallNode.js';
+import SoccerCommonStrings from '../SoccerCommonStrings.js';
 
 // A list of options that are required by the supertype, but optional here because
 // we provide a default.
@@ -103,7 +104,8 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
       },
       grabReleaseCueOptions: {
         centerTop: modelViewTransform.modelToViewXY( sceneModel.physicalRange.getCenter(), 4 )
-      }
+      },
+      grabbedRoleDescription: SoccerCommonStrings.a11y.movableStringProperty
     }, providedOptions );
 
     super( groupSortInteractionModel, primaryFocusedNode, options );
