@@ -17,7 +17,7 @@ export class SoccerBallPhase extends EnumerationValue {
   // The phase in which a soccer ball has not yet been displayed on the field
   public static readonly INACTIVE = new SoccerBallPhase();
 
-  // The phase in which a soccer is displayed in front of the kicker, but has not yet been kicked
+  // The phase in which a soccer ball is displayed in front of the kicker, but has not yet been kicked
   public static readonly READY = new SoccerBallPhase();
 
   // The phase after a soccer ball has been kicked, but before it has landed

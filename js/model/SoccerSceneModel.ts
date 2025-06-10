@@ -106,11 +106,17 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
   // Whether the current scene only has a single kicker
   private readonly isSingleKickerScene: boolean;
 
-  // The number kicks are currently scheduled to be kicked
+  // The number of kicks that are currently scheduled to be kicked
   public readonly numberOfQueuedKicksProperty: NumberProperty;
 
   // The number of idle balls that are not on the field and have not been scheduled to be kicked.
   public readonly numberOfIdleBallsProperty: TReadOnlyProperty<number>;
+
+  // numberOfIdleBallsProperty is dependent on the values of many different Properties including
+  // numberOfQueuedKicksProperty and the phaseProperty of every soccer ball. Because of this numberOfIdleBallsProperty
+  // can go through inaccurate values if not manually controlled. The `isKickingBall` flag allows us to bypass
+  // inaccurate values and rely on numberOfQueuedKicksProperty's value to be updated at the appropriate time.
+  private isKickingBall = false;
 
   // Whether the scene has any kickable soccer balls remaining
   public readonly hasKickableSoccerBallsProperty: TReadOnlyProperty<boolean>;
@@ -331,8 +337,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
                       soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKING ||
                       soccerBall.soccerBallPhaseProperty.value === SoccerBallPhase.STACKED
       );
-
-      return this.maxKicksProperty.value - kickedSoccerBalls.length - this.numberOfQueuedKicksProperty.value;
+      return this.isKickingBall ? this.numberOfIdleBallsProperty.value :
+             this.maxKicksProperty.value - kickedSoccerBalls.length - this.numberOfQueuedKicksProperty.value;
     } );
 
     this.hasKickableSoccerBallsProperty = new DerivedProperty( [ this.numberOfIdleBallsProperty ],
@@ -577,11 +583,13 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
           // In fuzzing, sometimes there are no soccer balls available
           if ( soccerBall ) {
 
-            // The number of queued kicks must be decremented before the ball is kicked to avoid eagerly hitting the
-            // max kicks limit (due to the nature of the derivation for numberOfIdleBallsProperty).
-            // See: https://github.com/phetsims/soccer-common/issues/17 for more information.
-            this.numberOfQueuedKicksProperty.value--;
+            // The number of queued kicks must be decremented after the ball is kicked due to the nature of the
+            // derivation for numberOfIdleBallsProperty. We use the isKickingBall flag to limit calls mid-Property
+            // changes to only update the numberOfIdleBallsProperty when all values are accurate.
+            this.isKickingBall = true;
             this.kickBall( frontKicker, soccerBall, true );
+            this.isKickingBall = false;
+            this.numberOfQueuedKicksProperty.value--;
           }
         }
       }
