@@ -13,7 +13,6 @@
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import LocalizedStringProperty from '../../../chipper/js/browser/LocalizedStringProperty.js';
 import Utils from '../../../dot/js/Utils.js';
 import soccerCommon from '../soccerCommon.js';
 
@@ -21,10 +20,10 @@ import soccerCommon from '../soccerCommon.js';
 const createValueReadoutStringProperty = (
   valueProperty: TReadOnlyProperty<number | null>,
   patternStringProperty: TReadOnlyProperty<string>,
-  unknownStringProperty: LocalizedStringProperty,
+  unknownStringProperty: TReadOnlyProperty<string>,
   decimalPlaces: number | null,
   additionalDependencies?: TReadOnlyProperty<unknown>[]
-  ): TReadOnlyProperty<string> => {
+): TReadOnlyProperty<string> => {
 
   const valuePatternStringProperty = new PatternStringProperty( patternStringProperty, {
     value: valueProperty
