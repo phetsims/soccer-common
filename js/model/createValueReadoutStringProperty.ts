@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2024-2025, University of Colorado Boulder
 /**
  * This is a function that simplifies creation for value readouts in soccer common repos. When there are no data points
  * and the value is calculated as null the readout will display the unknownStringProperty. If the value is not null,
