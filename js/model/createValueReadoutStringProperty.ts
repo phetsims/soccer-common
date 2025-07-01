@@ -13,8 +13,8 @@
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
 import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
-import Utils from '../../../dot/js/Utils.js';
 import soccerCommon from '../soccerCommon.js';
+import { toFixed } from '../../../dot/js/util/toFixed.js';
 
 
 const createValueReadoutStringProperty = (
@@ -29,7 +29,7 @@ const createValueReadoutStringProperty = (
     value: valueProperty
   }, {
     maps: {
-      value: value => value === null ? 'null' : typeof decimalPlaces === 'number' ? Utils.toFixed( value, decimalPlaces ) : value
+      value: value => value === null ? 'null' : typeof decimalPlaces === 'number' ? toFixed( value, decimalPlaces ) : value
     }
   } );
   return DerivedProperty.deriveAny( [ unknownStringProperty, valueProperty, valuePatternStringProperty,
