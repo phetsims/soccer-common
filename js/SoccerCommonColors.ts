@@ -33,7 +33,7 @@ const SoccerCommonColors = {
   skyGradientBottomColorProperty: new ProfileColorProperty( soccerCommon, 'skyGradientBottomColor', { default: '#c9d9ef' } ),
 
   // the ground
-  groundColorProperty: new ProfileColorProperty( soccerCommon, 'groundColor', { default: '#009245' } ),
+  groundColorProperty: new ProfileColorProperty( soccerCommon, 'groundColor', { default: '#00893E' } ),
 
   kickButtonFillColorProperty: new ProfileColorProperty( soccerCommon, 'kickButtonFillColor', {
     default: '#dae6f7'
