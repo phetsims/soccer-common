@@ -12,7 +12,7 @@
 
 import Property from '../../../axon/js/Property.js';
 import ReadOnlyProperty, { PropertyOptions, ReadOnlyPropertyState } from '../../../axon/js/ReadOnlyProperty.js';
-import optionize, { EmptySelfOptions } from '../../../phet-core/js/optionize.js';
+import optionize from '../../../phet-core/js/optionize.js';
 import StrictOmit from '../../../phet-core/js/types/StrictOmit.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
@@ -20,19 +20,24 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import StringIO from '../../../tandem/js/types/StringIO.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
 import soccerCommon from '../soccerCommon.js';
+import Range from '../../../dot/js/Range.js';
 
-type SelfOptions = EmptySelfOptions;
+type SelfOptions = {
+  range: Range; // The range of values that the soccer ball can take when it is not null.
+};
 
 // client cannot specify superclass options that are controlled by BooleanProperty
 export type SoccerBallValuePropertyOptions = SelfOptions & StrictOmit<PropertyOptions<number | null>, 'isValidValue' | 'valueType' | 'phetioValueType'>;
 
 export default class SoccerBallValueProperty extends Property<number | null> {
 
+  private readonly range: Range;
+
   /**
    * @param value - The soccer ball's location on the number line. If the soccer ball has not yet landed, 'value' is null.
    * @param providedOptions
    */
-  public constructor( value: number | null, providedOptions?: SoccerBallValuePropertyOptions ) {
+  public constructor( value: number | null, providedOptions: SoccerBallValuePropertyOptions ) {
 
     // Fill in superclass options that are controlled by BooleanProperty.
     const options = optionize<SoccerBallValuePropertyOptions, SelfOptions, PropertyOptions<number | null>>()( {
@@ -42,18 +47,30 @@ export default class SoccerBallValueProperty extends Property<number | null> {
     }, providedOptions );
 
     super( value, options );
+    this.range = options.range;
   }
 
   // See SoccerBallValuePropertyIO.documentation
-  private static validateSoccerBallValue( oldValue: number | null, newValue: number | null ): string | null {
+  public validateSoccerBallValue( oldValue: number | null, newValue: number | null ): string | null {
     if ( oldValue === null && newValue !== null ) {
       return 'Cannot change a null value to a non-null value.';
     }
     else if ( oldValue !== null && newValue === null ) {
       return 'Cannot change a non-null value to a null value.';
     }
+    else if ( oldValue !== null && newValue !== null ) {
+      if ( newValue < this.range.min || newValue > this.range.max ) {
+        return `The value must satisfy the range [${this.range.min}, ${this.range.max}].`;
+      }
+      else if ( !Number.isInteger( newValue ) ) {
+        return 'The value must be an integer.';
+      }
+      else {
+        return null; // The value is valid, so we return null.
+      }
+    }
     else {
-      return null;
+      return null; // Both values are null, which is valid.
     }
   }
 
@@ -66,9 +83,9 @@ export default class SoccerBallValueProperty extends Property<number | null> {
       getValidationError: {
         returnType: NullableIO( StringIO ),
         parameterTypes: [ NullableIO( NumberIO ) ],
-        implementation: function( this: ReadOnlyProperty<number | null>, value: number | null ) {
+        implementation: function( this: SoccerBallValueProperty, value: number | null ) {
 
-          return SoccerBallValueProperty.validateSoccerBallValue( this.value, value ) ||
+          return this.validateSoccerBallValue( this.value, value ) ||
 
                  // Check with the supertype to see if it is valid, this will check if it is range, etc.
                  ReadOnlyProperty.PropertyIO( NullableIO( NumberIO ) ).methods!.getValidationError.implementation.call( this, value );
@@ -81,7 +98,7 @@ export default class SoccerBallValueProperty extends Property<number | null> {
         parameterTypes: [ NullableIO( NumberIO ) ],
         implementation: function( this: SoccerBallValueProperty, value: number | null ) {
 
-          const validationError = SoccerBallValueProperty.validateSoccerBallValue( this.value, value );
+          const validationError = this.validateSoccerBallValue( this.value, value );
           if ( validationError ) {
             throw new Error( validationError );
           }

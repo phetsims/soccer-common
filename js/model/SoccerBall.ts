@@ -27,6 +27,7 @@ import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import Kicker from './Kicker.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
 import SoccerBallValueProperty from './SoccerBallValueProperty.js';
+import Range from '../../../dot/js/Range.js';
 
 // Global counter for debugging
 let count = 0;
@@ -76,7 +77,7 @@ export default class SoccerBall extends PhetioObject {
     parameters: [ { valueType: 'number' } ]
   } );
 
-  public constructor( public readonly isFirstSoccerBall: boolean, tandem: Tandem ) {
+  public constructor( public readonly isFirstSoccerBall: boolean, valueRange: Range, tandem: Tandem ) {
 
     super( {
       phetioState: false,
@@ -100,6 +101,7 @@ export default class SoccerBall extends PhetioObject {
     } );
     this.dragPositionProperty = new Vector2Property( this.positionProperty.value.copy() );
     this.valueProperty = new SoccerBallValueProperty( null, {
+      range: valueRange,
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioDocumentation: 'The value of the soccer ball on the number line, or null if the soccer ball has not yet landed. ' +
                            'This is the value that is used to calculate the statistical measures. ' +
