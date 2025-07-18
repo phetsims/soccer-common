@@ -747,7 +747,8 @@ export default class SoccerSceneModel<T extends SoccerBall = SoccerBall> extends
 
     // Iterate through data points and create the soccer balls
     for ( let i = 0; i < dataPoints.length; i++ ) {
-      this.kickBall( this.kickers[ i ], this.soccerBalls[ i ], false );
+      const kickerIndex = this.isSingleKickerScene ? 0 : i;
+      this.kickBall( this.kickers[ kickerIndex ], this.soccerBalls[ i ], false );
       this.soccerBalls[ i ].valueProperty.value = dataPoints[ i ];
       this.soccerBalls[ i ].soccerBallPhaseProperty.value = SoccerBallPhase.STACKED;
 
