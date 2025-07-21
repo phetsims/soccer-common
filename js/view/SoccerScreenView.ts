@@ -18,6 +18,7 @@ import GroupSortInteractionView from '../../../scenery-phet/js/accessibility/gro
 import ManualConstraint from '../../../scenery/js/layout/constraints/ManualConstraint.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import Node from '../../../scenery/js/nodes/Node.js';
+import Tandem from '../../../tandem/js/Tandem.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
@@ -38,6 +39,9 @@ type SelfOptions = {
 
   // The y position of the ground in view coordinates
   groundPositionY?: number;
+
+  // Whether the number line node should be instrumented for PhET-iO
+  instrumentNumberLineNode?: boolean;
 };
 
 export const DRAG_CUE_SCALE = 0.8;
@@ -64,7 +68,8 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
       isDisposable: false,
-      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y
+      groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y,
+      instrumentNumberLineNode: false
     }, providedOptions );
 
     super( options );
@@ -86,11 +91,7 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
         includeXAxis: false,
         x: options.numberLineXMargin,
         y: groundPositionY,
-        tandem: options.tandem?.createTandem( 'playAreaNumberLineNode' ),
-        phetioVisiblePropertyInstrumented: true,
-        visiblePropertyOptions: {
-          phetioFeatured: true
-        }
+        tandem: options.instrumentNumberLineNode ? options.tandem?.createTandem( 'playAreaNumberLineNode' ) : Tandem.OPT_OUT
       } );
 
     /**

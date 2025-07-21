@@ -17,7 +17,6 @@ import ChartTransform from '../../../bamboo/js/ChartTransform.js';
 import TickLabelSet from '../../../bamboo/js/TickLabelSet.js';
 import TickMarkSet from '../../../bamboo/js/TickMarkSet.js';
 import Range from '../../../dot/js/Range.js';
-import Utils from '../../../dot/js/Utils.js';
 import Shape from '../../../kite/js/Shape.js';
 import optionize from '../../../phet-core/js/optionize.js';
 import Orientation from '../../../phet-core/js/Orientation.js';
@@ -26,6 +25,7 @@ import Path from '../../../scenery/js/nodes/Path.js';
 import Text from '../../../scenery/js/nodes/Text.js';
 import TPaint from '../../../scenery/js/util/TPaint.js';
 import soccerCommon from '../soccerCommon.js';
+import { toFixed } from '../../../dot/js/util/toFixed.js';
 
 type SelfOptions = {
   color?: TPaint;
@@ -53,7 +53,10 @@ export default class NumberLineNode extends Node {
 
       // When the Node is instrumented we want clients to be able to toggle visibility.
       // https://github.com/phetsims/mean-share-and-balance/issues/253
-      phetioVisiblePropertyInstrumented: !!providedOptions.tandem
+      phetioVisiblePropertyInstrumented: !!providedOptions.tandem,
+      visiblePropertyOptions: {
+        phetioFeatured: !!providedOptions.tandem
+      }
     }, providedOptions );
 
     super();
@@ -78,7 +81,7 @@ export default class NumberLineNode extends Node {
 
     const tickLabelSet = new TickLabelSet( chartTransform, Orientation.HORIZONTAL, 1, {
       extent: tickMarkExtent + 12,
-      createLabel: ( value: number ) => new Text( Utils.toFixed( value, 0 ), {
+      createLabel: ( value: number ) => new Text( toFixed( value, 0 ), {
         fontSize: 16,
         fill: options.color
       } )
