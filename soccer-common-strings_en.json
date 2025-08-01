@@ -5,18 +5,6 @@
   "kick": {
     "value": "Kick"
   },
-  "characterSet.unitedStatesOfAmerica": {
-    "value": "United States of America",
-    "deprecated": true
-  },
-  "characterSet.africa": {
-    "value": "Africa",
-    "deprecated": true
-  },
-  "characterSet.africaModest": {
-    "value": "Africa (Modest)",
-    "deprecated": true
-  },
   "keyboardHelpDialog.grabOrReleaseItemHeading": {
     "value": "Soccer Ball"
   },
