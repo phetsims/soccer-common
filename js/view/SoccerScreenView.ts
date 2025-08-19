@@ -67,7 +67,6 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
   protected constructor( protected readonly model: Q, providedOptions: SoccerScreenViewOptions ) {
 
     const options = optionize<SoccerScreenViewOptions, SelfOptions, ScreenViewOptions>()( {
-      isDisposable: false,
       groundPositionY: SoccerCommonConstants.GROUND_POSITION_Y,
       instrumentNumberLineNode: false
     }, providedOptions );
