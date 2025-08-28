@@ -7,7 +7,7 @@
  * @author Marla Schulz (PhET Interactive Simulations)
  */
 
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../axon/js/TReadOnlyProperty.js';
 import Matrix3 from '../../../dot/js/Matrix3.js';
 import Range from '../../../dot/js/Range.js';
 import Utils from '../../../dot/js/Utils.js';

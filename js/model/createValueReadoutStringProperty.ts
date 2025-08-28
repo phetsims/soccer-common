@@ -12,7 +12,7 @@
 
 import DerivedProperty from '../../../axon/js/DerivedProperty.js';
 import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
-import TReadOnlyProperty from '../../../axon/js/TReadOnlyProperty.js';
+import { TReadOnlyProperty } from '../../../axon/js/TReadOnlyProperty.js';
 import soccerCommon from '../soccerCommon.js';
 import { toFixed } from '../../../dot/js/util/toFixed.js';
 
