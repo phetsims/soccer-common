@@ -24,7 +24,6 @@ import Node, { NodeOptions } from '../../../scenery/js/nodes/Node.js';
 import Path from '../../../scenery/js/nodes/Path.js';
 import Text from '../../../scenery/js/nodes/Text.js';
 import TPaint from '../../../scenery/js/util/TPaint.js';
-import soccerCommon from '../soccerCommon.js';
 import { toFixed } from '../../../dot/js/util/toFixed.js';
 
 type SelfOptions = {
@@ -101,5 +100,3 @@ export default class NumberLineNode extends Node {
   }
 
 }
-
-soccerCommon.register( 'NumberLineNode', NumberLineNode );

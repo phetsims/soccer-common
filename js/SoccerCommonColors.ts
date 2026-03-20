@@ -40,5 +40,4 @@ const SoccerCommonColors = {
   } )
 };
 
-soccerCommon.register( 'SoccerCommonColors', SoccerCommonColors );
 export default SoccerCommonColors;

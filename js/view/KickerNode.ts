@@ -16,7 +16,6 @@ import Text from '../../../scenery/js/nodes/Text.js';
 import Kicker from '../model/Kicker.js';
 import { KickerPhase } from '../model/KickerPhase.js';
 import Pose from '../model/Pose.js';
-import soccerCommon from '../soccerCommon.js';
 import { KickerImageSet } from './KickerImageSets.js';
 
 type SelfOptions = EmptySelfOptions;
@@ -76,5 +75,3 @@ export default class KickerNode extends Node {
     this.mutate( options );
   }
 }
-
-soccerCommon.register( 'KickerNode', KickerNode );

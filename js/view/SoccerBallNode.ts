@@ -22,7 +22,6 @@ import ball_svg from '../../images/ball_svg.js';
 import ballDark_svg from '../../images/ballDark_svg.js';
 import SoccerBall from '../model/SoccerBall.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerObjectNode, { SoccerObjectNodeOptions } from './SoccerObjectNode.js';
 
@@ -146,5 +145,3 @@ export default class SoccerBallNode extends SoccerObjectNode {
     super.addDebugText( soccerBall );
   }
 }
-
-soccerCommon.register( 'SoccerBallNode', SoccerBallNode );

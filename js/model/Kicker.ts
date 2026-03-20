@@ -17,7 +17,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
-import soccerCommon from '../soccerCommon.js';
 import { KickerPhase } from './KickerPhase.js';
 import Pose from './Pose.js';
 
@@ -83,5 +82,3 @@ export default class Kicker extends PhetioObject {
     valueType: Kicker
   } );
 }
-
-soccerCommon.register( 'Kicker', Kicker );

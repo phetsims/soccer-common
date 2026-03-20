@@ -8,7 +8,6 @@
 
 import Enumeration from '../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../phet-core/js/EnumerationValue.js';
-import soccerCommon from '../soccerCommon.js';
 
 export class KickerPhase extends EnumerationValue {
   public static readonly INACTIVE = new KickerPhase();
@@ -18,5 +17,3 @@ export class KickerPhase extends EnumerationValue {
 
   public static readonly enumeration = new Enumeration( KickerPhase );
 }
-
-soccerCommon.register( 'KickerPhase', KickerPhase );

@@ -569,6 +569,4 @@ const SoccerCommonImages = {
   } )
 };
 
-soccerCommon.register( 'SoccerCommonImages', SoccerCommonImages );
-
 export default SoccerCommonImages;

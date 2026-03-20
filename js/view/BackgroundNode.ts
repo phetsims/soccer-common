@@ -15,7 +15,6 @@ import Property from '../../../axon/js/Property.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
 import LinearGradient from '../../../scenery/js/util/LinearGradient.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonColors from '../SoccerCommonColors.js';
 
 export default class BackgroundNode extends Rectangle {
@@ -46,5 +45,3 @@ export default class BackgroundNode extends Rectangle {
     } );
   }
 }
-
-soccerCommon.register( 'BackgroundNode', BackgroundNode );

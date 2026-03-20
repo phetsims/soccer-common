@@ -6,8 +6,6 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import soccerCommon from './soccerCommon.js';
-
 const SoccerCommonConstants = {
   GRAVITY: -9.8, // in meters/second^2
   SOCCER_BALL_RADIUS: 0.3, // in meters
@@ -18,5 +16,4 @@ const SoccerCommonConstants = {
   SCREEN_VIEW_Y_MARGIN: 15
 };
 
-soccerCommon.register( 'SoccerCommonConstants', SoccerCommonConstants );
 export default SoccerCommonConstants;

@@ -22,7 +22,6 @@ import Node from '../../../scenery/js/nodes/Node.js';
 import SoccerBall from '../model/SoccerBall.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerBallNode from './SoccerBallNode.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
 
@@ -205,5 +204,3 @@ export default class SoccerCommonGroupSortInteractionView<SceneModel extends Soc
   }
 
 }
-
-soccerCommon.register( 'SoccerCommonGroupSortInteractionView', SoccerCommonGroupSortInteractionView );

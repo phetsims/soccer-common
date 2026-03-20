@@ -22,7 +22,6 @@ import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
 import Animation from '../../../twixt/js/Animation.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import Kicker from './Kicker.js';
 import { SoccerBallPhase } from './SoccerBallPhase.js';
@@ -221,5 +220,3 @@ const rk4 = ( x: number, v: number, a: number, dt: number ) => {
 
   return [ xResult, vResult ];
 };
-
-soccerCommon.register( 'SoccerBall', SoccerBall );

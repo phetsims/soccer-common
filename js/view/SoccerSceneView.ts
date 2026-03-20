@@ -24,7 +24,6 @@ import SoccerBall from '../model/SoccerBall.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonStrings from '../SoccerCommonStrings.js';
 import { KickerImageSet } from './KickerImageSets.js';
 import KickerNode from './KickerNode.js';
@@ -209,5 +208,3 @@ export default class SoccerSceneView<SceneModel extends SoccerSceneModel = Socce
     this.frontSceneViewLayer = frontLayer;
   }
 }
-
-soccerCommon.register( 'SoccerSceneView', SoccerSceneView );

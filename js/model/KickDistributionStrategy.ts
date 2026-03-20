@@ -22,7 +22,6 @@ import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import ObjectLiteralIO from '../../../tandem/js/types/ObjectLiteralIO.js';
 import StringIO from '../../../tandem/js/types/StringIO.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
-import soccerCommon from '../soccerCommon.js';
 
 type DistributionType = 'probabilityByDistance' | 'distanceByIndex' | 'randomSkew' | 'skew';
 
@@ -239,5 +238,3 @@ const KickDistributionStrategyIO = new IOType<IntentionalAny, IntentionalAny>( '
     }
   }
 } );
-
-soccerCommon.register( 'KickDistributionStrategy', KickDistributionStrategy );

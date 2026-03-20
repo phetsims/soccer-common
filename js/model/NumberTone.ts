@@ -12,7 +12,6 @@ import phetAudioContext from '../../../tambo/js/phetAudioContext.js';
 import SoundClip from '../../../tambo/js/sound-generators/SoundClip.js';
 import soundManager from '../../../tambo/js/soundManager.js';
 import numberTone_mp3 from '../../sounds/numberTone_mp3.js';
-import soccerCommon from '../soccerCommon.js';
 
 // This is the dominant frequency of numberTone_mp3. If the audio file is changed, this will need to be updated.
 const E3 = 164.81; // Hz
@@ -175,5 +174,3 @@ export default class NumberTone {
     soundClip.setOutputLevel( outputLevel );
   }
 }
-
-soccerCommon.register( 'NumberTone', NumberTone );

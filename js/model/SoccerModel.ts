@@ -16,7 +16,6 @@ import PhetioObject, { PhetioObjectOptions } from '../../../tandem/js/PhetioObje
 import Tandem from '../../../tandem/js/Tandem.js';
 import IOType from '../../../tandem/js/types/IOType.js';
 import ReferenceIO from '../../../tandem/js/types/ReferenceIO.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonGroupSortInteractionModel from './SoccerCommonGroupSortInteractionModel.js';
 import SoccerSceneModel from './SoccerSceneModel.js';
 
@@ -126,5 +125,3 @@ export default class SoccerModel<T extends SoccerSceneModel> extends PhetioObjec
     this.selectedSceneModelProperty.value.clearData();
   }
 }
-
-soccerCommon.register( 'SoccerModel', SoccerModel );

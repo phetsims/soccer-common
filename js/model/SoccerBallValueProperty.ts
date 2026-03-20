@@ -19,7 +19,6 @@ import NullableIO from '../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../tandem/js/types/NumberIO.js';
 import StringIO from '../../../tandem/js/types/StringIO.js';
 import VoidIO from '../../../tandem/js/types/VoidIO.js';
-import soccerCommon from '../soccerCommon.js';
 import Range from '../../../dot/js/Range.js';
 
 type SelfOptions = {
@@ -112,5 +111,3 @@ export default class SoccerBallValueProperty extends Property<number | null> {
     }
   } );
 }
-
-soccerCommon.register( 'SoccerBallValueProperty', SoccerBallValueProperty );

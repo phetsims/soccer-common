@@ -7,7 +7,6 @@
  */
 
 import { QueryStringMachine } from '../../query-string-machine/js/QueryStringMachineModule.js';
-import soccerCommon from './soccerCommon.js';
 
 const SoccerCommonQueryParameters = QueryStringMachine.getAll( {
 
@@ -22,5 +21,4 @@ const SoccerCommonQueryParameters = QueryStringMachine.getAll( {
   }
 } );
 
-soccerCommon.register( 'SoccerCommonQueryParameters', SoccerCommonQueryParameters );
 export default SoccerCommonQueryParameters;

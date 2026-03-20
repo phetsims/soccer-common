@@ -26,7 +26,6 @@ import Text from '../../../scenery/js/nodes/Text.js';
 import PhetioObject from '../../../tandem/js/PhetioObject.js';
 import SoccerBall from '../model/SoccerBall.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
-import soccerCommon from '../soccerCommon.js';
 
 type SelfOptions = {
   // defines how a soccerObject's model position is translated to the view according to any sim specific requirements.
@@ -85,5 +84,3 @@ export default class SoccerObjectNode extends InteractiveHighlightingNode {
     return this.soccerBall;
   }
 }
-
-soccerCommon.register( 'SoccerObjectNode', SoccerObjectNode );

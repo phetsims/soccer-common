@@ -9,7 +9,6 @@
 
 import Enumeration from '../../../phet-core/js/Enumeration.js';
 import EnumerationValue from '../../../phet-core/js/EnumerationValue.js';
-import soccerCommon from '../soccerCommon.js';
 
 // Represents the phases of a soccer ball's life cycle, from being first initialized to reaching its resting position on the field
 export class SoccerBallPhase extends EnumerationValue {
@@ -31,5 +30,3 @@ export class SoccerBallPhase extends EnumerationValue {
 
   public static readonly enumeration = new Enumeration( SoccerBallPhase );
 }
-
-soccerCommon.register( 'SoccerBallPhase', SoccerBallPhase );

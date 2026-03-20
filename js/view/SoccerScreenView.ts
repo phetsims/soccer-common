@@ -22,7 +22,6 @@ import Tandem from '../../../tandem/js/Tandem.js';
 import { SoccerBallPhase } from '../model/SoccerBallPhase.js';
 import SoccerModel from '../model/SoccerModel.js';
 import SoccerSceneModel from '../model/SoccerSceneModel.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import NumberLineNode from './NumberLineNode.js';
 
@@ -167,5 +166,3 @@ export default class SoccerScreenView<T extends SoccerSceneModel, Q extends Socc
     }
   }
 }
-
-soccerCommon.register( 'SoccerScreenView', SoccerScreenView );

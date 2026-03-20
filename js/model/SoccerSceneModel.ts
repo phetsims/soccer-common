@@ -45,7 +45,6 @@ import Animation from '../../../twixt/js/Animation.js';
 import Easing from '../../../twixt/js/Easing.js';
 import kick_mp3 from '../../sounds/kick_mp3.js';
 import KickDistributionStrategy from '../model/KickDistributionStrategy.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonConstants from '../SoccerCommonConstants.js';
 import SoccerCommonQueryParameters from '../SoccerCommonQueryParameters.js';
 import Kicker from './Kicker.js';
@@ -788,5 +787,3 @@ const SoccerSceneModelIO = new IOType<IntentionalAny, IntentionalAny>( 'SoccerSc
     }
   }
 } );
-
-soccerCommon.register( 'SoccerSceneModel', SoccerSceneModel );

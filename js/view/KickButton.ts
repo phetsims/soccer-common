@@ -12,7 +12,6 @@ import WithRequired from '../../../phet-core/js/types/WithRequired.js';
 import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import RectangularPushButton, { RectangularPushButtonOptions } from '../../../sun/js/buttons/RectangularPushButton.js';
 import nullSoundPlayer from '../../../tambo/js/nullSoundPlayer.js';
-import soccerCommon from '../soccerCommon.js';
 import SoccerCommonColors from '../SoccerCommonColors.js';
 
 type SelfOptions = {
@@ -50,5 +49,3 @@ export default class KickButton extends RectangularPushButton {
     super( options );
   }
 }
-
-soccerCommon.register( 'KickButton', KickButton );
