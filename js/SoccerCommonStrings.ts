@@ -32,4 +32,6 @@ type StringsType = {
 
 const SoccerCommonStrings = getStringModule( 'SOCCER_COMMON' ) as StringsType;
 
+soccerCommon.register( 'SoccerCommonStrings', SoccerCommonStrings );
+
 export default SoccerCommonStrings;
