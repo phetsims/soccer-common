@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * This class defines the various poses a Kicker can assume during the animation lifecycle. The poses include standing,

@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * KickerPhase is used to identify what part of the kicking phase a Kicker is currently in.

@@ -1,4 +1,4 @@
-// Copyright 2024, University of Colorado Boulder
+// Copyright 2024-2026, University of Colorado Boulder
 
 /**
  * KickerImageSets defines the LocalizedImageProperty instances for the 3 poses associated with each kicker.
