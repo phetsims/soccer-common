@@ -32,8 +32,8 @@ Before reading this document, please read:
 
 In addition to this document, you are encouraged to read:
 
-- [PhET Development Overview](https://github.com/phetsims/phet-info/blob/main/doc/phet-development-overview.md)
-- [PhET Software Design Patterns](https://github.com/phetsims/phet-info/blob/main/doc/phet-software-design-patterns.md)
+- [PhET Development Overview](../../phet-info/doc/phet-development-overview.md)
+- [PhET Software Design Patterns](../../phet-info/doc/phet-software-design-patterns.md)
 
 ## General Considerations
 
@@ -45,7 +45,7 @@ of data points) to view coordinates in the soccer area. The transform is defined
 ### Query Parameters
 
 Query parameters specific to this common code repo can be found
-in [SoccerCommonQueryParameters](https://github.com/phetsims/soccer-common/blob/main/js/SoccerCommonQueryParameters.ts).
+in [SoccerCommonQueryParameters](../js/SoccerCommonQueryParameters.ts).
 
 ### Memory Management
 
